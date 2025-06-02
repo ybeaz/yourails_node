@@ -1,7 +1,6 @@
 process.env['DEBUG'] = '*:INFO, *:WARN, *:ERR'
 
 import { debug } from 'debug'
-const currentLine = require('current-line')
 
 /**
  * @status NOT USED, NOT EXPORTED, CAUSED BUG
@@ -16,4 +15,5 @@ const currentLine = require('current-line')
 export const info = typeof window === 'undefined' && debug('yn:INFO')
 export const warn = typeof window === 'undefined' && debug('yn:WARN')
 export const err = typeof window === 'undefined' && debug('yn:ERR')
-export const comment = currentLine.get
+const currentLine = typeof window === 'undefined' && require('current-line')
+export const comment = currentLine?.get
