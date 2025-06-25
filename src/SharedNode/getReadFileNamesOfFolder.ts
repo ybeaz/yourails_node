@@ -41,7 +41,6 @@ const getReadFileNamesOfFolderUnsafe: GetReadFileNamesOfFolderType = ({ path }, 
   if (typeof window !== 'undefined') return
 
   const { isHidden, includeExtensions } = options ?? {}
-  consoler('getReadFileNamesOfFolder [47]', { path, isHidden, includeExtensions })
 
   const fs = require('fs')
   const { Dirent } = require('fs')
