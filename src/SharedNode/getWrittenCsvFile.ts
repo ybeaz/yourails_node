@@ -13,6 +13,7 @@ type GetWrittenCsvFileOptionsType = {
   header?: any[]
   isOverwrite?: boolean
   funcParent?: string
+  firstLine?: string
 }
 
 type GetWrittenCsvFileResType = void
@@ -29,6 +30,7 @@ const optionsDefault: Required<GetWrittenCsvFileOptionsType> = {
   header: [],
   isOverwrite: true,
   funcParent: 'getWrittenCsvFile',
+  firstLine: '',
 }
 
 /**
@@ -46,7 +48,7 @@ const getWrittenCsvFileUnsafe: GetWrittenCsvFileType = async (
   const { promises: fsa } = await import('fs')
 
   const { baseDir, filePathParts, data } = params
-  const { fieldDelimiter, header, isOverwrite } = options || optionsDefault
+  const { fieldDelimiter, header, isOverwrite, firstLine } = options || optionsDefault
 
   const filePath = `${[baseDir, ...filePathParts].join('/')}`
 
@@ -65,10 +67,20 @@ const getWrittenCsvFileUnsafe: GetWrittenCsvFileType = async (
     header,
   })
 
-  await csvWriter.writeRecords(data).then(() => {
-    consoler('getWrittenCsvFile [75]', '...done')
-  })
+  await csvWriter.writeRecords(data).then(() => {})
 
+  if (firstLine) {
+    /* 1. Read existing file content */
+    const existingContent = await fsa.readFile(filePath, { encoding: 'utf8' })
+
+    /* 2. Prepend the first line */
+    const newContent = `${firstLine}\n` + existingContent
+
+    /* 3. Write the combined content back to the file (overwrite) */
+    await fsa.writeFile(filePath, newContent, { encoding: 'utf8' })
+  }
+
+  consoler('getWrittenCsvFile [85]', '...done')
   return
 }
 
@@ -112,6 +124,7 @@ if (require.main === module) {
             { id: 'name', title: 'NAME' },
             { id: 'lang', title: 'LANGUAGE' },
           ],
+          firstLine: 'sep=;',
         },
       },
     ]

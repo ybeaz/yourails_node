@@ -68,3 +68,4 @@ archive
 yalc.lock
 **/*.gz
 coverage/
+.env.development
