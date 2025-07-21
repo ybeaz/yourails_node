@@ -80,9 +80,16 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
         filePathParts,
         data: dataArray,
       }
+
+      const keysMax = Object.keys(
+        dataArray.reduce((accum: {}, item: any) => {
+          return { ...accum, ...item }
+        }, {})
+      )
+
       const getWrittenCsvFileOptions: GetWrittenCsvFileOptionsType = {
         fieldDelimiter: ';',
-        header: Object.keys(dataArray[0]).map((key: string) => ({ id: key, title: key })),
+        header: keysMax.map((key: string) => ({ id: key, title: key })),
         firstLine: 'sep=;',
       }
       await getWrittenCsvFile(getWrittenCsvFileParams, getWrittenCsvFileOptions)
