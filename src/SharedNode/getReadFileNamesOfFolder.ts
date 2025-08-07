@@ -13,9 +13,11 @@ type GetReadFileNamesOfFolderOptionsType = {
   funcParent?: string
   isHidden?: boolean
   includeExtensions?: string[]
+  pickFilesPartsNamesAny?: string[]
+  omitFilesPartsNamesAny?: string[]
 }
 
-type GetReadFileNamesOfFolderResType = any
+type GetReadFileNamesOfFolderResType = string[]
 
 interface GetReadFileNamesOfFolderType {
   (
@@ -28,6 +30,8 @@ const optionsDefault: Required<GetReadFileNamesOfFolderOptionsType> = {
   funcParent: 'getReadFileNamesOfFolder',
   isHidden: false,
   includeExtensions: [],
+  pickFilesPartsNamesAny: [],
+  omitFilesPartsNamesAny: [],
 }
 
 const resDefault: GetReadFileNamesOfFolderResType = []
@@ -40,7 +44,8 @@ const resDefault: GetReadFileNamesOfFolderResType = []
 const getReadFileNamesOfFolderUnsafe: GetReadFileNamesOfFolderType = ({ path }, options) => {
   if (typeof window !== 'undefined') return
 
-  const { isHidden, includeExtensions } = options ?? {}
+  const { isHidden, includeExtensions, pickFilesPartsNamesAny, omitFilesPartsNamesAny } =
+    options ?? {}
 
   const fs = require('fs')
   const { Dirent } = require('fs')
@@ -56,6 +61,20 @@ const getReadFileNamesOfFolderUnsafe: GetReadFileNamesOfFolderType = ({ path }, 
     output = output.filter((name: string) => {
       const extension = String(name).split('.').pop() || ''
       return includeExtensions.includes(extension)
+    })
+  if (pickFilesPartsNamesAny?.length)
+    output = output.filter((name: string) => {
+      for (let i = 0; i < pickFilesPartsNamesAny.length; i++) {
+        if (name.includes(pickFilesPartsNamesAny[i])) return true
+      }
+      return false
+    })
+  if (omitFilesPartsNamesAny?.length)
+    output = output.filter((name: string) => {
+      for (let i = 0; i < omitFilesPartsNamesAny.length; i++) {
+        if (name.includes(omitFilesPartsNamesAny[i])) return false
+      }
+      return true
     })
 
   return output
@@ -92,8 +111,17 @@ if (require.main === module) {
         params: {
           path: __dirname,
         },
-        options: { includeExtensions: ['ts', 'json'] },
-        expected: '',
+        options: {
+          includeExtensions: ['ts', 'json'],
+          pickFilesPartsNamesAny: ['Read'],
+          omitFilesPartsNamesAny: ['NamesOfFolder'],
+        },
+        expected: [
+          'getReadCsvToJsonToJson.ts',
+          'getReadFile.ts',
+          'getReadFileToString.ts',
+          'getReadJsonFile.ts',
+        ],
       },
     ]
 
