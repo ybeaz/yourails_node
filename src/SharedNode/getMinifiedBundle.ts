@@ -47,7 +47,7 @@ const getMinifiedBundleUnsafe: GetMinifiedBundleType = (
   const { isUglifying, isWritingNotMinified } = options
 
   const fs = require('fs')
-  const zlib = require('zlib')
+  const zlib = require('node:zlib')
   const uglify = require('uglify-js')
 
   let output = fs.readFileSync(inputFileIn, 'utf8')
