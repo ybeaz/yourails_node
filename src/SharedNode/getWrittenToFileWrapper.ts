@@ -11,11 +11,13 @@ import { getWrittenJsonFile, GetWrittenJsonFileParamsType } from './getWrittenJs
 
 type GetWrittenToFileWrapperParamsType = {
   dataArray: any[]
-  fileNameBody: string
+  fileNameBody?: string
   baseDir: string
-  filePathParts: string[]
-  isWritingDataCsv: boolean
-  isWritingDataJson: boolean
+  filePathParts?: string[]
+  isWritingDataCsv?: boolean
+  isWritingDataJson?: boolean
+  dateTimeAssigned?: number | Date
+  isNumDataArrayLength?: boolean
 }
 
 type GetWrittenToFileWrapperOptionsType = { funcParent?: string }
@@ -43,16 +45,18 @@ const resDefault: GetWrittenToFileWrapperResType = ''
 const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
   {
     dataArray,
-    fileNameBody,
+    fileNameBody = '',
     baseDir,
-    filePathParts: filePathPartsIn,
-    isWritingDataCsv,
-    isWritingDataJson,
+    filePathParts: filePathPartsIn = [],
+    isWritingDataCsv = false,
+    isWritingDataJson = false,
+    dateTimeAssigned,
+    isNumDataArrayLength = true,
   }: GetWrittenToFileWrapperParamsType,
   options: GetWrittenToFileWrapperOptionsType = optionsDefault
 ) => {
   if (isWritingDataCsv || isWritingDataJson) {
-    const dateCreated = Date.now()
+    const dateCreated = !!dateTimeAssigned ? dateTimeAssigned : Date.now()
     const dateString = getDateString({
       timestamp: dateCreated,
       dash: true,
@@ -61,9 +65,11 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
       seconds: true,
     })
 
+    const fileName = `${dateString}-${fileNameBody}${isNumDataArrayLength ? `-n${dataArray.length}` : ``}`
+
     if (isWritingDataJson) {
-      const fileName = `${dateString}-${fileNameBody}-n${dataArray.length}.json`
-      const filePathParts = [...filePathPartsIn, fileName]
+      const fileNameJson = `${fileName}.json`
+      const filePathParts = [...filePathPartsIn, fileNameJson]
       const getWrittenJsonFileParams: GetWrittenJsonFileParamsType = {
         baseDir,
         filePathParts,
@@ -73,8 +79,8 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
     }
 
     if (isWritingDataCsv) {
-      const fileName = `${dateString}-${fileNameBody}-n${dataArray.length}.csv`
-      const filePathParts = [...filePathPartsIn, fileName]
+      const fileNameCsv = `${fileName}.csv`
+      const filePathParts = [...filePathPartsIn, fileNameCsv]
       const getWrittenCsvFileParams: GetWrittenCsvFileParamsType = {
         baseDir,
         filePathParts,
