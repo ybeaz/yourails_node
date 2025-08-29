@@ -3,6 +3,11 @@ import { consoler } from 'yourails_common'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 import { getDateString } from 'yourails_common'
 import {
+  getArrayObjToArrayPrefix,
+  GetArrayObjToArrayPrefixParamsType,
+  GetArrayObjToArrayPrefixResType,
+} from 'yourails_common'
+import {
   getWrittenCsvFile,
   GetWrittenCsvFileParamsType,
   GetWrittenCsvFileOptionsType,
@@ -14,8 +19,10 @@ type GetWrittenToFileWrapperParamsType = {
   fileNameBody?: string
   baseDir: string
   filePathParts?: string[]
-  isWritingDataCsv?: boolean
+  isDataJsonFlattened?: boolean
+  isDataCsvFlattened?: boolean
   isWritingDataJson?: boolean
+  isWritingDataCsv?: boolean
   dateTimeAssigned?: number | Date
   isNumDataArrayLength?: boolean
 }
@@ -48,8 +55,10 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
     fileNameBody = '',
     baseDir,
     filePathParts: filePathPartsIn = [],
-    isWritingDataCsv = false,
+    isDataJsonFlattened = false,
+    isDataCsvFlattened = false,
     isWritingDataJson = false,
+    isWritingDataCsv = false,
     dateTimeAssigned,
     isNumDataArrayLength = true,
   }: GetWrittenToFileWrapperParamsType,
@@ -67,28 +76,35 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
 
     const fileName = `${dateString}-${fileNameBody}${isNumDataArrayLength ? `-n${dataArray.length}` : ``}`
 
+    let dataArrayFlattened: GetArrayObjToArrayPrefixResType = []
+    if (isDataJsonFlattened || isDataCsvFlattened)
+      dataArrayFlattened = getArrayObjToArrayPrefix({
+        array: dataArray,
+      } as GetArrayObjToArrayPrefixParamsType)
+
     if (isWritingDataJson) {
       const fileNameJson = `${fileName}.json`
       const filePathParts = [...filePathPartsIn, fileNameJson]
       const getWrittenJsonFileParams: GetWrittenJsonFileParamsType = {
         baseDir,
         filePathParts,
-        data: dataArray,
+        data: isDataJsonFlattened ? dataArrayFlattened : dataArray,
       }
       await getWrittenJsonFile(getWrittenJsonFileParams)
     }
 
     if (isWritingDataCsv) {
+      const dataArrayCsv = isDataCsvFlattened ? dataArrayFlattened : dataArray
       const fileNameCsv = `${fileName}.csv`
       const filePathParts = [...filePathPartsIn, fileNameCsv]
       const getWrittenCsvFileParams: GetWrittenCsvFileParamsType = {
         baseDir,
         filePathParts,
-        data: dataArray,
+        data: dataArrayCsv,
       }
 
       const keysMax = Object.keys(
-        dataArray.reduce((accum: {}, item: any) => {
+        dataArrayCsv.reduce((accum: {}, item: any) => {
           return { ...accum, ...item }
         }, {})
       )
