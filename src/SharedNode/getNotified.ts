@@ -8,7 +8,7 @@ import {
 import { consoler } from 'yourails_common'
 import { timeout } from 'yourails_common'
 
-export enum SoundLocalEnum {
+enum SoundLocalEnum {
   bell_1 = '/Users/admin/Dev/yourails-nestjs-server-4/assets/audio/sounds/bell_01ebe77cc681c7c.mp3',
   bell_2 = '/Users/admin/Dev/yourails-nestjs-server-4/assets/audio/sounds/bell_6e842ca0b5a26c8.mp3',
   bell_3 = '/Users/admin/Dev/yourails-nestjs-server-4/assets/audio/sounds/bell_71e33590c32dee0.mp3',
@@ -59,6 +59,7 @@ const resDefault: GetNotifiedResType = undefined
  * @import import {
     getNotified,
     GetNotifiedParamsType,
+    SoundLocalEnum,
     GetNotifiedResType 
   } from './getNotified'
  */
@@ -114,7 +115,7 @@ const getNotified = withTryCatchFinallyWrapper(getNotifiedUnsafe, {
   isFinally: false,
 })
 
-export { getNotified }
+export { getNotified, SoundLocalEnum }
 export type { GetNotifiedParamsType, GetNotifiedResType, GetNotifiedOptionsType, GetNotifiedType }
 
 /**
