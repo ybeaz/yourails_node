@@ -1,6 +1,6 @@
 {
   "name": "yourails_node",
-  "version": "0.17.17",
+  "version": "0.18.1",
   "author": "ybeaz",
   "private": false,
   "license": "MIT",
@@ -65,6 +65,7 @@
     "mongoose": "^8.7.0",
     "ncp": "^2.0.0",
     "node-base64-image": "^2.0.7",
+    "node-notifier": "^10.0.1",
     "os": "^0.1.2",
     "react": "^18.2.0",
     "react-blurhash": "^0.3.0",
@@ -85,7 +86,7 @@
     "ts-node": "^10.9.1",
     "uuid": "^10.0.0",
     "xml-js": "^1.6.11",
-    "yourails_common": "latest"
+    "yourails_common": "^0.18.3"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
@@ -93,6 +94,7 @@
     "@swc/core": "^1.7.26",
     "@types/jest": "^29.5.8",
     "@types/lodash-es": "^4.17.7",
+    "@types/node-notifier": "^8.0.5",
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
     "@types/react-tagcloud": "^2.3.2",

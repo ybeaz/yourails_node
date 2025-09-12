@@ -2,7 +2,7 @@ import { consoler } from './consoler'
 import { consolerError } from './consolerError'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
-interface isDirectorySyncType {
+interface IsDirectorySyncType {
   (path: string): boolean
 }
 
@@ -11,7 +11,7 @@ interface isDirectorySyncType {
  * @run ts-node tools/isDirectorySync.ts
  * @import import { isDirectorySync } from './isDirectorySync'
  */
-const isDirectorySyncUnsafe: isDirectorySyncType = path => {
+const isDirectorySyncUnsafe: IsDirectorySyncType = path => {
   if (typeof window !== 'undefined') return
 
   const fs = require('fs')
