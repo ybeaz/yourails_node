@@ -1,6 +1,6 @@
 {
   "name": "yourails_node",
-  "version": "0.18.1",
+  "version": "0.19.4",
   "author": "ybeaz",
   "private": false,
   "license": "MIT",
@@ -86,7 +86,7 @@
     "ts-node": "^10.9.1",
     "uuid": "^10.0.0",
     "xml-js": "^1.6.11",
-    "yourails_common": "^0.18.3"
+    "yourails_common": "latest"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
@@ -140,7 +140,5 @@
     "webpackbar": "^5.0.2",
     "yalc": "^1.0.0-pre.53"
   },
-  "engines": {
-    "node": ">=20.18.0"
-  }
+  "engines": {}
 }
