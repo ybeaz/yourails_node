@@ -1,6 +1,6 @@
 {
   "name": "yourails_node",
-  "version": "0.19.4",
+  "version": "0.20.1",
   "author": "ybeaz",
   "private": false,
   "license": "MIT",
@@ -17,7 +17,8 @@
     "buildUnpkg": "npx ts-node esbuild.config.ts",
     "gzipUnpkg": ": gzip -k dist/lib.min.js",
     "build": "yarn removeCreateDist && tsc -p tsconfig.json && yarn buildUnpkg && yarn gzipUnpkg",
-    "pub": "yarn build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && yarn publish --access public --quiet --yes",
+    "pub": "yarn build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && yarn publish --access public --quiet --yes --registry=https://registry.npmjs.org/",
+    "pubV2": "yarn build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && npx npm publish --access public --registry=https://registry.npmjs.org/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/ybeaz/yourails_common.git",
@@ -43,6 +44,7 @@
     "aws-jwt-verify": "^4.0.1",
     "axios": "^1.6.0",
     "babel-loader": "^9.2.1",
+    "chalk": "^4.1.2",
     "child_process": "^1.0.2",
     "classnames": "^2.5.1",
     "cluster": "^0.7.7",
@@ -52,7 +54,6 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "esbuild": "^0.25.5",
     "esbuild-plugin-node-externals": "^1.0.1",
     "fs": "^0.0.1-security",
     "graphql": "^16.8.1",
@@ -63,6 +64,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash-es": "^4.17.21",
     "mongoose": "^8.7.0",
+    "nanoid": "^5.1.7",
     "ncp": "^2.0.0",
     "node-base64-image": "^2.0.7",
     "node-notifier": "^10.0.1",
@@ -86,7 +88,7 @@
     "ts-node": "^10.9.1",
     "uuid": "^10.0.0",
     "xml-js": "^1.6.11",
-    "yourails_common": "latest"
+    "yourails_common": "^0.20.3"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
@@ -105,6 +107,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "css-minimizer-webpack-plugin": "^5.0.0",
+    "esbuild": "^0.25.12",
     "html-webpack-plugin": "^5.5.1",
     "jest": "28.0.2",
     "js-sha3": "^0.9.3",

@@ -25,6 +25,8 @@ type GetWrittenToFileWrapperParamsType = {
   isWritingDataCsv?: boolean
   dateTimeAssigned?: number | Date
   isNumDataArrayLength?: boolean
+  isUtcMethods?: boolean
+  isTForTime?: boolean
 }
 
 type GetWrittenToFileWrapperOptionsType = { funcParent?: string }
@@ -61,6 +63,8 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
     isWritingDataCsv = false,
     dateTimeAssigned,
     isNumDataArrayLength = true,
+    isUtcMethods = false,
+    isTForTime = true,
   }: GetWrittenToFileWrapperParamsType,
   options: GetWrittenToFileWrapperOptionsType = optionsDefault
 ) => {
@@ -72,6 +76,8 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
       hours: true,
       minutes: true,
       seconds: true,
+      isUtcMethods,
+      isTForTime,
     })
 
     const fileName = `${dateString}-${fileNameBody}${isNumDataArrayLength ? `-n${dataArray.length}` : ``}`

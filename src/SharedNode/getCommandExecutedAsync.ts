@@ -22,7 +22,7 @@ export const getCommandExecutedAsync: GetCommandExecutedAsyncType = async ({ com
   return new Promise((resolve, reject) => {
     exec(command, { maxBuffer: 1024 * 500 }, (error: any, stdout, stderr) => {
       if (error) {
-        consolerError('getCommandExecutedAsync', error)
+        consolerError('getCommandExecutedAsync [25]', { error, stderr, stdout })
         reject(error)
       } else resolve({ stdout, stderr })
     })

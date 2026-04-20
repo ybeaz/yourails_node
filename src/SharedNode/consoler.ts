@@ -1,3 +1,5 @@
+import { util, chalk } from './consolerEval'
+
 interface ConsolerType {
   (
     comment: string,
@@ -10,15 +12,13 @@ const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
 
 /**
  * @description Function to
- * @run ts-node tools/consoler.ts
+ * @run npx tsx tools/consoler.ts
  * @import import { consoler } from './consoler'
  */
 
 export const consoler: ConsolerType = (comment, entity, options = optionsDefault) => {
   if (typeof window !== 'undefined') return
 
-  const chalk = require('chalk')
-  const util = require('util')
   const { headerColor, logColor, endLog } = options
 
   const inspectedObject = util.inspect(entity, { depth: null })
@@ -26,7 +26,12 @@ export const consoler: ConsolerType = (comment, entity, options = optionsDefault
   const chalkComment = chalk.bold.cyan(comment)
   const chalkInspectObject = chalk.gray(inspectedObject)
   const toPrint = `${chalkComment} ${chalkInspectObject} ${endLog}`
-  console.info(toPrint)
+
+  const isConsoleInfo =
+    process.stdout && typeof process.stdout.write === 'function' && process.stdout.isTTY === true
+
+  if (isConsoleInfo) console.info(toPrint)
+  else console.error(toPrint)
 }
 
 /**

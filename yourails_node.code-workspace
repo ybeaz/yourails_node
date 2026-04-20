@@ -8,6 +8,16 @@
     },
   ],
   "settings": {
+    "github.copilot.enable": {
+      "*": false, // disable Copilot everywhere
+    },
+    "editor.quickSuggestions": {
+      "other": false,
+      "comments": false,
+      "strings": false,
+    },
+    "editor.inlineSuggest.enabled": false,
+    "git-graph.openNewTabEditorGroup": "One",
     "editor.accessibilitySupport": "off",
     "colorize.languages": ["javascript", "typescript"],
     "js/ts.implicitProjectConfig.strictNullChecks": true,

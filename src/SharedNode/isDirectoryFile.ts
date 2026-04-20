@@ -39,7 +39,7 @@ const isDirectoryFileUnsafe: IsDirectoryFileType = ({
     }
   } catch (error: any) {
     if (error.code === 'ENOENT') {
-      consolerError('isDirectoryFile [40]', error)
+      consoler('isDirectoryFile [40]', `ENOENT: no such file or directory  at path: ${path}`)
       output = { isError: true, isExisting: false, isDirectory: false, isFile: false }
     } else {
       // Handle other errors
