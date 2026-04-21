@@ -25,14 +25,30 @@ const resDefault: GetPausedScriptResType = ''
 
 const getPausedScriptUnsafe: GetPausedScriptType = ({ message = 'Press Enter to continue...' }) => {
   return new Promise(resolve => {
-    const rl = createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    })
-    rl.question(message, () => {
-      rl.close()
-      resolve('void')
-    })
+    process.stdout.write(message)
+
+    if (!process.stdin.isTTY) {
+      process.stdin.once('data', () => resolve(true))
+      return
+    }
+
+    // Use raw mode but only listen for Enter, discard everything else
+    process.stdin.setRawMode(true)
+    process.stdin.resume()
+    process.stdin.setEncoding('utf8')
+
+    const onData = (key: string) => {
+      // Only resolve on Enter (\r or \n), discard all other keys silently
+      if (key === '\r' || key === '\n' || key === '\u0003') {
+        process.stdin.removeListener('data', onData)
+        process.stdin.setRawMode(false)
+        process.stdin.pause()
+        resolve(true)
+      }
+      // All other keys (including arrow keys ^[[A) are silently swallowed
+    }
+
+    process.stdin.on('data', onData)
   })
 }
 
@@ -53,7 +69,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/Shared/getPausedScript.ts
+ * @run npx tsx src/Shared/getPausedScript.ts
  */
 if (require.main === module) {
   ;(async () => {
