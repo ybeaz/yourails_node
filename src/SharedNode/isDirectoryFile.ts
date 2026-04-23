@@ -62,7 +62,7 @@ export { isDirectoryFile, IsDirectoryFileParamsType, IsDirectoryFileResType, IsD
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/isDirectoryFile.ts
+ * @run npx tsx src/SharedNode/isDirectoryFile.ts
  */
 if (require.main === module) {
   ;(async () => {

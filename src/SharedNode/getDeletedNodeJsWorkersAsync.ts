@@ -11,7 +11,7 @@ interface GetDeletedNodeJsWorkersAsyncType {
 
 /**
  * @description Function to terminate a worker process by calling the kill() method on the worker object
- * @run ts-node tools/getDeletedNodeJsWorkersAsync
+ * @run npx tsx tools/getDeletedNodeJsWorkersAsync
  * @import import { getDeletedNodeJsWorkersAsync } from './getDeletedNodeJsWorkersAsync'
  */
 

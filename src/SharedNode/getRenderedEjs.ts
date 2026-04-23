@@ -39,7 +39,7 @@ const optionsDefault: Required<GetRenderedEjsOptionsType> = {
  * @link Schema.org CreativeWork https://schema.org/CreativeWork
  * @link Microdata https://html.spec.whatwg.org/multipage/microdata.html
  * @link Microformats https://microformats.org/wiki/Main_Page
- * @run ts-node tools/getRenderedEjs.ts
+ * @run npx tsx tools/getRenderedEjs.ts
  *    In debugging mode:
  *       node --inspect-brk -r ts-node/register tools/getRenderedEjs.ts
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
@@ -86,7 +86,7 @@ type GetRunRenderedEjsAsyncType = {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node tools/getRenderedEjs.ts
+ * @run npx tsx tools/getRenderedEjs.ts
  */
 
 /*

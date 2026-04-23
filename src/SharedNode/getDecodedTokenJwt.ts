@@ -86,7 +86,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run NODE_ENV=development ts-node src/SharedNode/getDecodedTokenJwt.ts
+ * @run NODE_ENV=development npx tsx src/SharedNode/getDecodedTokenJwt.ts
  */
 if (require.main === module) {
   ;(async () => {

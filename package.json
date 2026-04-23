@@ -12,13 +12,13 @@
     "dist/**/*"
   ],
   "scripts": {
-    "cleanCache": "yarn cache clean --force",
+    "cleanCache": "pnpm cache clean --force",
     "removeCreateDist": "rm -rf dist && mkdir dist",
-    "buildUnpkg": "npx ts-node esbuild.config.ts",
+    "buildUnpkg": "npx npx tsx esbuild.config.ts",
     "gzipUnpkg": ": gzip -k dist/lib.min.js",
-    "build": "yarn removeCreateDist && tsc -p tsconfig.json && yarn buildUnpkg && yarn gzipUnpkg",
-    "pub": "yarn build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && yarn publish --access public --quiet --yes --registry=https://registry.npmjs.org/",
-    "pubV2": "yarn build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && npx npm publish --access public --registry=https://registry.npmjs.org/",
+    "build": "pnpm removeCreateDist && tsc -p tsconfig.json && pnpm buildUnpkg && pnpm gzipUnpkg",
+    "pub": "pnpm build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && pnpm publish --access public --quiet --registry=https://registry.npmjs.org/",
+    "pubV2": "pnpm build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && npx npm publish --access public --registry=https://registry.npmjs.org/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/ybeaz/yourails_common.git",

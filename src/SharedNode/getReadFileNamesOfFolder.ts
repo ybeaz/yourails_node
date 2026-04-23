@@ -97,7 +97,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/getReadFileNamesOfFolder.ts
+ * @run npx tsx src/SharedNode/getReadFileNamesOfFolder.ts
  */
 if (require.main === module) {
   ;(async () => {

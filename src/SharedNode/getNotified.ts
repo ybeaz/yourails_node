@@ -134,7 +134,7 @@ export type { GetNotifiedParamsType, GetNotifiedResType, GetNotifiedOptionsType,
 /**
  * @description Here the file is being run directly
  * @link https://zvukipro.com/predmet/4618-zvuki-kolokolchika-dlja-prislugi.html
- * @run ts-node src/SharedNode/getNotified.ts
+ * @run npx tsx src/SharedNode/getNotified.ts
  */
 if (require.main === module) {
   ;(async () => {

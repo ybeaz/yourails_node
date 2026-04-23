@@ -80,7 +80,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/getEncodedTokenJwt.ts
+ * @run npx tsx src/SharedNode/getEncodedTokenJwt.ts
  */
 if (require.main === module) {
   ;(async () => {

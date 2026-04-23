@@ -8,7 +8,7 @@ interface getWriteFileType {
 
 /**
  * @description Function to getWritrenFileAsync
- * @run ts-node tools/getWritrenFileAsync.ts
+ * @run npx tsx tools/getWritrenFileAsync.ts
  * @import import { getWritrenFileAsync } from './getWritrenFileAsync'
  */
 

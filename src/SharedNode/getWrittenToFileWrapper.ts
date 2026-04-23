@@ -142,7 +142,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/Shared/getWrittenToFileWrapper.ts
+ * @run npx tsx src/Shared/getWrittenToFileWrapper.ts
  */
 if (require.main === module) {
   ;(async () => {

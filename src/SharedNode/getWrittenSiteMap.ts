@@ -16,7 +16,7 @@ type GetWrittenSiteMapParamsType = {
  * Asynchronously generates and updates the sitemap.xml file for the given courses on a specific website.
  * @return {Promise<void>} Resolves when the sitemap.xml file is successfully updated.
  * @import import { getWrittenSiteMap } from 'src/shared/utils/getWrittenSiteMap'
- * @run ts-node src/Shared/getWrittenSiteMap.ts
+ * @run npx tsx src/Shared/getWrittenSiteMap.ts
  */
 export const getWrittenSiteMap = ({
   baseUrl,
@@ -74,7 +74,7 @@ export const getWrittenSiteMap = ({
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/Shared/getWrittenSiteMap.ts
+ * @run npx tsx src/Shared/getWrittenSiteMap.ts
  */
 // if (require.main === module) {
 //   ;(async () => {
