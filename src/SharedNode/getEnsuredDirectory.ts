@@ -13,7 +13,7 @@ interface GetEnsuredDirectoryType {
  * @run npx tsx src/SharedNode/getEnsuredDirectory.ts
  * @import import { getEnsuredDirectory } from './getEnsuredDirectory'
  */
-const GetEnsuredDirectoryUnsafe: GetEnsuredDirectoryType = async ({ path }) => {
+const getEnsuredDirectoryUnsafe: GetEnsuredDirectoryType = async ({ path }) => {
   if (typeof window !== 'undefined') return Promise.resolve(undefined)
 
   const res = await mkdir(path, { recursive: true })
@@ -21,7 +21,7 @@ const GetEnsuredDirectoryUnsafe: GetEnsuredDirectoryType = async ({ path }) => {
   return res
 }
 
-export const getEnsuredDirectory = withTryCatchFinallyWrapper(GetEnsuredDirectoryUnsafe, {
+export const getEnsuredDirectory = withTryCatchFinallyWrapper(getEnsuredDirectoryUnsafe, {
   optionsDefault: {},
   resDefault: false,
   isFinally: true,

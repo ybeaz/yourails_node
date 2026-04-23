@@ -54,11 +54,17 @@ const isDirectoryFileUnsafe: IsDirectoryFileType = ({
 const isDirectoryFile = withTryCatchFinallyWrapper(isDirectoryFileUnsafe, {
   optionsDefault: {},
   resDefault: false,
-  isFinally: true,
+  isFinally: false,
   funcMode: FuncModeEnumType.server,
 })
 
-export { isDirectoryFile, IsDirectoryFileParamsType, IsDirectoryFileResType, IsDirectoryFileType }
+export {
+  isDirectoryFile,
+  IsDirectoryFileParamsType,
+  IsDirectoryFileResType,
+  IsDirectoryFileType,
+  isDirectoryFileUnsafe,
+}
 
 /**
  * @description Here the file is being run directly
@@ -92,7 +98,7 @@ if (require.main === module) {
     const promises = examples.map(async (example: ExampleType, index: number) => {
       const { params, expected } = example
 
-      const output = await isDirectoryFile(params)
+      const output = isDirectoryFile(params)
       consoler(`isDirectoryFile [61-${index}]`, {
         params,
         expected,
