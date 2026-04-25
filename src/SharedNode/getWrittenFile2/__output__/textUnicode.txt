@@ -1,0 +1,1 @@
+"Hello world from getWrittenFile2\nThis is a second line\nAnd this is a third line\nSpecial chars: !@#$%^&*()\nUnicode: 🚀🔥✨"

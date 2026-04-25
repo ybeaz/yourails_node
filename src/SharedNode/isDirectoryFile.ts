@@ -53,7 +53,7 @@ const isDirectoryFileUnsafe: IsDirectoryFileType = ({
 
 const isDirectoryFile = withTryCatchFinallyWrapper(isDirectoryFileUnsafe, {
   optionsDefault: {},
-  resDefault: false,
+  resDefault: { isError: false, isExisting: false, isDirectory: false, isFile: false },
   isFinally: false,
   funcMode: FuncModeEnumType.server,
 })

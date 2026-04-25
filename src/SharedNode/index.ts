@@ -39,3 +39,6 @@ export * from './getSavedBase64ToFile'
 export * from './getEnsuredDirectory'
 export * from './getDrainedStdin'
 export * from './getResetTerminal'
+
+export * from './getWrittenFile2/getWrittenFile2'
+export * from './getReadFile2/getReadFile2'

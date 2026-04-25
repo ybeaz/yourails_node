@@ -84,7 +84,7 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
 
     let dataArrayFlattened: GetArrayObjToArrayPrefixResType = []
     if (isDataJsonFlattened || isDataCsvFlattened)
-      dataArrayFlattened = getArrayObjToArrayPrefix({
+      dataArrayFlattened = await getArrayObjToArrayPrefix({
         array: dataArray,
       } as GetArrayObjToArrayPrefixParamsType)
 

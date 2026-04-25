@@ -23,7 +23,7 @@ const getEnsuredDirectoryUnsafe: GetEnsuredDirectoryType = async ({ path }) => {
 
 export const getEnsuredDirectory = withTryCatchFinallyWrapper(getEnsuredDirectoryUnsafe, {
   optionsDefault: {},
-  resDefault: false,
+  resDefault: '',
   isFinally: true,
   funcMode: FuncModeEnumType.server,
 })
