@@ -42,3 +42,5 @@ export * from './getResetTerminal'
 
 export * from './getWrittenFile2/getWrittenFile2'
 export * from './getReadFile2/getReadFile2'
+export * from './getSpawnedProcess/getSpawnedProcess'
+export * from './getNormalizedImage/getNormalizedImage'
