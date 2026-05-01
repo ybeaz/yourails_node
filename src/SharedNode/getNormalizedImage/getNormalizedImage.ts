@@ -10,7 +10,11 @@ import { withRawSuffix } from './withRawSuffix'
 
 type GetNormalizedImageParamsType = { pathFileAbsInput: string; pathFileAbsOutput: string }
 
-type GetNormalizedImageOptionsType = { isCopingRaw?: boolean; funcParent?: string }
+type GetNormalizedImageOptionsType = {
+  isQuiet?: boolean
+  isCopingRaw?: boolean
+  funcParent?: string
+}
 
 type GetNormalizedImageResType = { pathFileAbsOutputRaw: string; pathFileAbsOutput: string }
 
@@ -22,6 +26,7 @@ interface GetNormalizedImageType {
 }
 
 const optionsDefault = {
+  isQuiet: false,
   isCopingRaw: false,
   funcParent: 'getNormalizedImage',
 } satisfies Required<GetNormalizedImageOptionsType>
@@ -38,10 +43,11 @@ const optionsDefault = {
  */
 const getNormalizedImageUnsafe = async (
   { pathFileAbsInput, pathFileAbsOutput }: GetNormalizedImageParamsType,
-  { isCopingRaw = false }: GetNormalizedImageOptionsType = optionsDefault
+  { isQuiet, isCopingRaw = false }: GetNormalizedImageOptionsType = optionsDefault
 ) => {
   await getEnsuredReadable({ pathFileAbsInput })
-  await getCheckedMagick()
+  /* not to use now, but possible
+   await getCheckedMagick() */
 
   // 1) copy input → *_raw
   let pathFileAbsOutputRaw = ''
@@ -52,6 +58,7 @@ const getNormalizedImageUnsafe = async (
 
   // 2) run magick pipeline
   const args: string[] = [
+    '-quiet',
     pathFileAbsInput,
     '-auto-orient',
     '-strip',
@@ -68,7 +75,7 @@ const getNormalizedImageUnsafe = async (
     pathFileAbsOutput,
   ]
 
-  await getSpawnedProcess({ cmd: 'magick', args })
+  await getSpawnedProcess({ cmd: 'magick', args }, { isQuiet })
 
   return { pathFileAbsOutputRaw, pathFileAbsOutput }
 }
@@ -101,7 +108,7 @@ const getNormalizedImageTests: GetNormalizedImageTestType[] = [
       pathFileAbsInput: join(__dirname, '/__mocks__/test.png'),
       pathFileAbsOutput: join(__dirname, '/__mocks__/test.png'),
     },
-    options: { isCopingRaw: true },
+    options: { isQuiet: true, isCopingRaw: true },
     expected: {
       pathFileAbsOutputRaw:
         '/Users/admin/Dev/yourails_node/src/SharedNode/getNormalizedImage/__mocks__/test_raw.png',

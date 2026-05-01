@@ -4,7 +4,7 @@ import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type GetSpawnedProcessParamsType = { cmd: string; args: readonly string[] }
 
-type GetSpawnedProcessOptionsType = { funcParent?: string }
+type GetSpawnedProcessOptionsType = { isQuiet?: boolean; funcParent?: string }
 
 type GetSpawnedProcessResType = unknown
 
@@ -16,6 +16,7 @@ interface GetSpawnedProcessType {
 }
 
 const optionsDefault = {
+  isQuiet: false,
   funcParent: 'getSpawnedProcess',
 } satisfies Required<GetSpawnedProcessOptionsType>
 
@@ -31,10 +32,10 @@ const optionsDefault = {
  */
 const getSpawnedProcessUnsafe: GetSpawnedProcessType = (
   { cmd, args }: GetSpawnedProcessParamsType,
-  options: GetSpawnedProcessOptionsType = optionsDefault
+  { isQuiet }: GetSpawnedProcessOptionsType = {}
 ) =>
   new Promise((resolve, reject) => {
-    const p = spawn(cmd, args, { stdio: 'inherit' })
+    const p = spawn(cmd, args, { stdio: isQuiet ? 'ignore' : 'inherit' })
 
     p.on('error', reject)
     p.on('close', code => {
@@ -43,7 +44,7 @@ const getSpawnedProcessUnsafe: GetSpawnedProcessType = (
     })
   })
 
-const resDefault: GetSpawnedProcessResType = ''
+const resDefault: GetSpawnedProcessResType = undefined
 
 const getSpawnedProcess = withTryCatchFinallyWrapper<
   GetSpawnedProcessParamsType,
@@ -65,7 +66,12 @@ type GetSpawnedProcessTestType = {
 }
 
 const getSpawnedProcessTests: GetSpawnedProcessTestType[] = [
-  { description: '', params: { cmd: 'ffmpeg', args: [] }, options: {}, expected: resDefault },
+  {
+    description: '',
+    params: { cmd: 'ffmpeg', args: [] },
+    options: { isQuiet: true },
+    expected: resDefault,
+  },
 ]
 
 export { getSpawnedProcess, getSpawnedProcessTests }
