@@ -1,22 +1,27 @@
-import chalk from 'chalk'
-import { consoler } from './consoler'
+import { consolerError } from 'yourails_common'
 
-interface ConsolerType {
-  (fileName: string, error: any): void
-}
+export { consolerError }
 
-/**
- * @description Function to
- * @import import { consolerError } from './consolerError'
- */
+// Remove after 2026-07-01
+// import chalk from 'chalk'
+// import { consoler } from './consoler'
 
-export const consolerError: ConsolerType = (message, params) => {
-  if (typeof window !== 'undefined') return
-  const chalk = require('chalk')
-  let messageNext = message[0] === '\ud83d' ? message : `📕 ${message}`
-  messageNext = `${messageNext} FAILURE`
+// interface ConsolerType {
+//   (fileName: string, error: any): void
+// }
 
-  console.log('\n')
-  consoler(chalk.bold.red(messageNext), params)
-  console.log('\n')
-}
+// /**
+//  * @description Function to
+//  * @import import { consolerError } from './consolerError'
+//  */
+
+// export const consolerError: ConsolerType = (message, params) => {
+//   if (typeof window !== 'undefined') return
+//   const chalk = require('chalk')
+//   let messageNext = message[0] === '\ud83d' ? message : `📕 ${message}`
+//   messageNext = `${messageNext} FAILURE`
+
+//   console.log('\n')
+//   consoler(chalk.bold.red(messageNext), params)
+//   console.log('\n')
+// }

@@ -97,6 +97,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
+    "@biomejs/biome": "^2.4.14",
     "@jest/globals": "^30.3.0",
     "@noble/hashes": "^1.5.0",
     "@swc/core": "^1.7.26",
@@ -126,7 +127,6 @@
     "postcss-loader": "^7.2.4",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^8.3.2",
-    "prettier": "^3.0.0",
     "redux-devtools-extension": "^2.13.9",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.62.0",
