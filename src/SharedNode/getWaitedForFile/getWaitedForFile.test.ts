@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { expect, describe, it } from '@jest/globals'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { getDateWithTime } from 'yourails_common'
 import { withAssignedDate } from 'yourails_common'
 
@@ -17,25 +17,22 @@ import { getWaitedForFileCases } from './getWaitedForFile.case'
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
  */
 describe('getWaitedForFile', () => {
-  it.each(getWaitedForFileCases)(
-    '$description',
-    async ({
-      description,
-      params,
-      options,
-      paramsWithAssignedDate,
-      expected,
-    }: GetWaitedForFileTestType) => {
-      let getWithDate: ReturnType<typeof withAssignedDate> = getWaitedForFile
-      if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
-        getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+  it.each(getWaitedForFileCases)('$description', async ({
+    description,
+    params,
+    options,
+    paramsWithAssignedDate,
+    expected,
+  }: GetWaitedForFileTestType) => {
+    let getWithDate: ReturnType<typeof withAssignedDate> = getWaitedForFile
+    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+      getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
-      let output: ReturnType<typeof getWaitedForFile> = await (
-        getWithDate as typeof getWaitedForFile
-      )(params, options)
-      consoler('getWaitedForFile.test', { description, params, output })
+    let output: ReturnType<typeof getWaitedForFile> = await (
+      getWithDate as typeof getWaitedForFile
+    )(params, options)
+    consoler('getWaitedForFile.test', { description, params, output })
 
-      expect(output).toEqual(expected)
-    }
-  )
+    expect(output).toEqual(expected)
+  })
 })

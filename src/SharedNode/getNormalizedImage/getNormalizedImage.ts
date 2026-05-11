@@ -1,10 +1,9 @@
 import { copyFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import { consoler } from 'yourails_common'
+import { consoler } from '../consoler'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 import { getSpawnedProcess } from '../getSpawnedProcess/getSpawnedProcess'
-import { getCheckedMagick } from './getCheckedMagick'
 import { getEnsuredReadable } from './getEnsuredReadable'
 import { withRawSuffix } from './withRawSuffix'
 
@@ -21,7 +20,7 @@ type GetNormalizedImageResType = { pathFileAbsOutputRaw: string; pathFileAbsOutp
 interface GetNormalizedImageType {
   (
     params: GetNormalizedImageParamsType,
-    options?: GetNormalizedImageOptionsType
+    options?: GetNormalizedImageOptionsType,
   ): Promise<GetNormalizedImageResType>
 }
 
@@ -43,7 +42,7 @@ const optionsDefault = {
  */
 const getNormalizedImageUnsafe = async (
   { pathFileAbsInput, pathFileAbsOutput }: GetNormalizedImageParamsType,
-  { isQuiet, isCopingRaw = false }: GetNormalizedImageOptionsType = optionsDefault
+  { isQuiet, isCopingRaw = false }: GetNormalizedImageOptionsType = optionsDefault,
 ) => {
   await getEnsuredReadable({ pathFileAbsInput })
   /* not to use now, but possible
@@ -146,7 +145,7 @@ if (require.main === module) {
           expected,
           tested: JSON.stringify(output) === JSON.stringify(expected),
         })
-      }
+      },
     )
     await Promise.all(promises)
   })()

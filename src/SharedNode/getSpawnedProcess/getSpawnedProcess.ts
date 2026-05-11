@@ -1,5 +1,5 @@
 import { spawn } from 'child_process'
-import { consoler } from 'yourails_common'
+import { consoler } from '../consoler'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type GetSpawnedProcessParamsType = { cmd: string; args: readonly string[] }
@@ -11,7 +11,7 @@ type GetSpawnedProcessResType = unknown
 interface GetSpawnedProcessType {
   (
     params: GetSpawnedProcessParamsType,
-    options?: GetSpawnedProcessOptionsType
+    options?: GetSpawnedProcessOptionsType,
   ): Promise<GetSpawnedProcessResType>
 }
 
@@ -32,13 +32,13 @@ const optionsDefault = {
  */
 const getSpawnedProcessUnsafe: GetSpawnedProcessType = (
   { cmd, args }: GetSpawnedProcessParamsType,
-  { isQuiet }: GetSpawnedProcessOptionsType = {}
+  { isQuiet }: GetSpawnedProcessOptionsType = {},
 ) =>
   new Promise((resolve, reject) => {
     const p = spawn(cmd, args, { stdio: isQuiet ? 'ignore' : 'inherit' })
 
     p.on('error', reject)
-    p.on('close', code => {
+    p.on('close', (code) => {
       if (code === 0) resolve(null)
       else reject(new Error(`getSpawnedProcess [40] ${cmd} exited with code ${code}`))
     })
@@ -102,7 +102,7 @@ if (require.main === module) {
           output,
           tested: JSON.stringify(output) === JSON.stringify(expected),
         })
-      }
+      },
     )
     await Promise.all(promises)
   })()

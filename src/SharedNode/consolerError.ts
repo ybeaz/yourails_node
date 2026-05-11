@@ -1,27 +1,36 @@
-import { consolerError } from 'yourails_common'
+import { isError } from 'yourails_common'
+import { consoler } from './consoler'
 
-export { consolerError }
+type ConsolerType = (fileName: string, error: any) => void
 
-// Remove after 2026-07-01
-// import chalk from 'chalk'
-// import { consoler } from './consoler'
+/**
+ * @description Function to log error kind of params
+ * @import import { consolerError } from './consolerError'
+ */
+export const consolerError: ConsolerType = (message, params) => {
+  if (typeof window !== 'undefined') return
+  const chalk = require('chalk')
+  let messageNext = message[0] === '\ud83d' ? message : `📕 ${message}`
+  messageNext = `${messageNext} FAILURE`
 
-// interface ConsolerType {
-//   (fileName: string, error: any): void
-// }
+  let paramsNext = params
+  if (isError(params)) {
+    const _stack = params.stack
+      ?.split('\n')
+      .slice(2, 6) // keep only relevant frames
+      .join('\n')
 
-// /**
-//  * @description Function to
-//  * @import import { consolerError } from './consolerError'
-//  */
+    paramsNext = {
+      name: params.name,
+      message: params.message,
+      stack: params.stack,
+    }
 
-// export const consolerError: ConsolerType = (message, params) => {
-//   if (typeof window !== 'undefined') return
-//   const chalk = require('chalk')
-//   let messageNext = message[0] === '\ud83d' ? message : `📕 ${message}`
-//   messageNext = `${messageNext} FAILURE`
+    // A variant
+    // paramsNext = `${params.name}: ${params.message}\n${params.stack}`
+  }
 
-//   console.log('\n')
-//   consoler(chalk.bold.red(messageNext), params)
-//   console.log('\n')
-// }
+  console.log(`\n${chalk.bold.red(messageNext)}`)
+  consoler('', paramsNext)
+  console.log()
+}

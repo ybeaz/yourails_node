@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { getDateWithTime } from 'yourails_common'
 import { withAssignedDate } from 'yourails_common'
 
@@ -15,25 +15,22 @@ import { GetNormalizedImageTestType } from './getNormalizedImage'
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
  */
 describe('getNormalizedImage', () => {
-  it.each(getNormalizedImageTests)(
-    '$description',
-    async ({
-      description,
-      params,
-      options,
-      paramsWithAssignedDate,
-      expected,
-    }: GetNormalizedImageTestType) => {
-      let getWithDate: ReturnType<typeof withAssignedDate> = getNormalizedImage
-      if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
-        getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+  it.each(getNormalizedImageTests)('$description', async ({
+    description,
+    params,
+    options,
+    paramsWithAssignedDate,
+    expected,
+  }: GetNormalizedImageTestType) => {
+    let getWithDate: ReturnType<typeof withAssignedDate> = getNormalizedImage
+    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+      getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
-      let output: ReturnType<typeof getNormalizedImage> = await (
-        getWithDate as typeof getNormalizedImage
-      )(params, options)
-      consoler('getNormalizedImage.test', { description, params, output })
+    let output: ReturnType<typeof getNormalizedImage> = await (
+      getWithDate as typeof getNormalizedImage
+    )(params, options)
+    consoler('getNormalizedImage.test', { description, params, output })
 
-      expect(output).toEqual(expected)
-    }
-  )
+    expect(output).toEqual(expected)
+  })
 })

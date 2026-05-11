@@ -1,4 +1,4 @@
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import {
   withTryCatchFinallyWrapper,
   FuncModeEnumType,
@@ -22,7 +22,7 @@ type GetReadFileNamesOfFolderResType = string[]
 interface GetReadFileNamesOfFolderType {
   (
     params: GetReadFileNamesOfFolderParamsType,
-    options?: GetReadFileNamesOfFolderOptionsType
+    options?: GetReadFileNamesOfFolderOptionsType,
   ): GetReadFileNamesOfFolderResType
 }
 

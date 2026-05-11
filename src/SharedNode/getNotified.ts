@@ -5,7 +5,7 @@ import {
   FuncModeEnumType,
   WithTryCatchFinallyWrapperOptionsType,
 } from 'yourails_common'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { timeout } from 'yourails_common'
 
 enum SoundLocalEnum {

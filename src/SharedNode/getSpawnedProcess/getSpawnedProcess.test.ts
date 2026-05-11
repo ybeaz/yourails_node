@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { getDateWithTime } from 'yourails_common'
 import { withAssignedDate } from 'yourails_common'
 
@@ -15,25 +15,22 @@ import { GetSpawnedProcessTestType } from './getSpawnedProcess'
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
  */
 describe('getSpawnedProcess', () => {
-  it.each(getSpawnedProcessTests)(
-    '$description',
-    async ({
-      description,
-      params,
-      options,
-      paramsWithAssignedDate,
-      expected,
-    }: GetSpawnedProcessTestType) => {
-      let getWithDate: ReturnType<typeof withAssignedDate> = getSpawnedProcess
-      if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
-        getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+  it.each(getSpawnedProcessTests)('$description', async ({
+    description,
+    params,
+    options,
+    paramsWithAssignedDate,
+    expected,
+  }: GetSpawnedProcessTestType) => {
+    let getWithDate: ReturnType<typeof withAssignedDate> = getSpawnedProcess
+    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+      getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
-      let output: ReturnType<typeof getSpawnedProcess> = await (
-        getWithDate as typeof getSpawnedProcess
-      )(params, options)
-      consoler('getSpawnedProcess.test', { description, params, output })
+    let output: ReturnType<typeof getSpawnedProcess> = await (
+      getWithDate as typeof getSpawnedProcess
+    )(params, options)
+    consoler('getSpawnedProcess.test', { description, params, output })
 
-      expect(output).toEqual(expected)
-    }
-  )
+    expect(output).toEqual(expected)
+  })
 })

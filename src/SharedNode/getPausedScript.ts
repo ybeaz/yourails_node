@@ -1,5 +1,5 @@
 import { createInterface } from 'readline'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type GetPausedScriptParamsType = { message?: string }
@@ -24,7 +24,7 @@ const resDefault: GetPausedScriptResType = ''
  */
 
 const getPausedScriptUnsafe: GetPausedScriptType = ({ message = 'Press Enter to continue...' }) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     process.stdout.write(message)
 
     if (!process.stdin.isTTY) {

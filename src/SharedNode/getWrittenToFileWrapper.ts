@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 import { getDateString } from 'yourails_common'
 import {
@@ -36,7 +36,7 @@ type GetWrittenToFileWrapperResType = any
 interface GetWrittenToFileWrapperType {
   (
     params: GetWrittenToFileWrapperParamsType,
-    options?: GetWrittenToFileWrapperOptionsType
+    options?: GetWrittenToFileWrapperOptionsType,
   ): GetWrittenToFileWrapperResType
 }
 
@@ -66,7 +66,7 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
     isUtcMethods = false,
     isTForTime = true,
   }: GetWrittenToFileWrapperParamsType,
-  options: GetWrittenToFileWrapperOptionsType = optionsDefault
+  options: GetWrittenToFileWrapperOptionsType = optionsDefault,
 ) => {
   if (isWritingDataCsv || isWritingDataJson) {
     const dateCreated = !!dateTimeAssigned ? dateTimeAssigned : Date.now()
@@ -112,7 +112,7 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
       const keysMax = Object.keys(
         dataArrayCsv.reduce((accum: {}, item: any) => {
           return { ...accum, ...item }
-        }, {})
+        }, {}),
       )
 
       const getWrittenCsvFileOptions: GetWrittenCsvFileOptionsType = {

@@ -1,50 +1,43 @@
-import { consoler } from 'yourails_common'
+import { chalk, util } from './consolerEval'
 
-export { consoler }
+type ConsolerType = (
+  comment: string,
+  entity: any,
+  options?: { headerColor: string; logColor: string; endLog: string },
+) => void
 
-// Remove after 2026-07-01
-// import { util, chalk } from './consolerEval'
+const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
 
-// interface ConsolerType {
-//   (
-//     comment: string,
-//     entity: any,
-//     options?: { headerColor: string; logColor: string; endLog: string }
-//   ): void
-// }
+/**
+ * @description Function to
+ * @run npx tsx tools/consoler.ts
+ * @import import { consoler } from './consoler'
+ */
 
-// const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
+export const consoler: ConsolerType = (comment, entity, options = optionsDefault) => {
+  if (typeof window !== 'undefined') return
 
-// /**
-//  * @description Function to
-//  * @run npx tsx tools/consoler.ts
-//  * @import import { consoler } from './consoler'
-//  */
+  const { headerColor, logColor, endLog } = options
 
-// export const consoler: ConsolerType = (comment, entity, options = optionsDefault) => {
-//   if (typeof window !== 'undefined') return
+  const inspectedObject = util.inspect(entity, { depth: null })
 
-//   const { headerColor, logColor, endLog } = options
+  const chalkComment = chalk.bold.cyan(comment)
+  const chalkInspectObject = chalk.gray(inspectedObject)
+  const toPrint = `${chalkComment} ${chalkInspectObject} ${endLog}`
 
-//   const inspectedObject = util.inspect(entity, { depth: null })
+  const isConsoleInfo =
+    process.stdout && typeof process.stdout.write === 'function' && process.stdout.isTTY === true
 
-//   const chalkComment = chalk.bold.cyan(comment)
-//   const chalkInspectObject = chalk.gray(inspectedObject)
-//   const toPrint = `${chalkComment} ${chalkInspectObject} ${endLog}`
+  if (isConsoleInfo) console.info(toPrint)
+  else console.error(toPrint)
+}
 
-//   const isConsoleInfo =
-//     process.stdout && typeof process.stdout.write === 'function' && process.stdout.isTTY === true
-
-//   if (isConsoleInfo) console.info(toPrint)
-//   else console.error(toPrint)
-// }
-
-// /**
-//  * @description Here the file is being run directly
-//  */
-// if (require.main === module) {
-//   ;(async () => {
-//     const params = { a: 'abc', b: [1234, 5678, 9012] }
-//     consoler('consoler [36]', params)
-//   })()
-// }
+/**
+ * @description Here the file is being run directly
+ */
+if (require.main === module) {
+  ;(async () => {
+    const params = { a: 'abc', b: [1234, 5678, 9012] }
+    consoler('consoler [36]', params)
+  })()
+}

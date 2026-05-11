@@ -1,4 +1,4 @@
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import {
   withTryCatchFinallyWrapper,
   FuncModeEnumType,
@@ -19,7 +19,7 @@ type GetEncodedTokenJwtResType = string | undefined
 interface GetEncodedTokenJwtType {
   (
     params: GetEncodedTokenJwtParamsType,
-    options?: GetEncodedTokenJwtOptionsType
+    options?: GetEncodedTokenJwtOptionsType,
   ): GetEncodedTokenJwtResType
 }
 
@@ -41,7 +41,7 @@ const getEncodedTokenJwtUnsafe: GetEncodedTokenJwtType = (
     algorithm = 'HS256',
     expiresIn,
   }: GetEncodedTokenJwtParamsType,
-  options?: GetEncodedTokenJwtOptionsType
+  options?: GetEncodedTokenJwtOptionsType,
 ) => {
   if (typeof window !== 'undefined') return
 

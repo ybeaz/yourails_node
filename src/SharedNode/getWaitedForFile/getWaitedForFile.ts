@@ -1,6 +1,6 @@
 import { stat, access } from 'fs/promises'
-import { consoler } from 'yourails_common'
-import { consolerError } from 'yourails_common'
+import { consoler } from '../consoler'
+import { consolerError } from '../consolerError'
 
 type GetWaitedForFileParamsType = {
   filePath: string
@@ -48,7 +48,7 @@ const getWaitedForFile: GetWaitedForFileType = async (
     timeoutMs = 15000,
     minSizeBytes = 1024,
     stableMs = 500,
-    comment = '',
+    comment,
   }: GetWaitedForFileParamsType,
   options: GetWaitedForFileOptionsType = optionsDefault,
 ) => {
@@ -70,7 +70,7 @@ const getWaitedForFile: GetWaitedForFileType = async (
     await new Promise((r) => setTimeout(r, stableMs))
   }
 
-  consolerError('getWaitedForFile [60] File never became ready:', filePath)
+  consolerError('getWaitedForFile [60] File never became ready:', { comment, filePath })
   throw new Error(`❌ getWaitedForFile [70] File never became ready: ${filePath}`)
 }
 

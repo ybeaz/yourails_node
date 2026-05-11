@@ -1,6 +1,6 @@
 import { parse } from 'csv-parse/sync'
 
-import { consoler } from 'yourails_common'
+import { consoler } from '../consoler'
 import {
   withTryCatchFinallyWrapper,
   FuncModeEnumType,
@@ -40,7 +40,7 @@ const optionsDefault = {
  */
 const getReadFile2Unsafe: GetReadFile2Type = async (
   { pathFileAbs }: GetReadFile2ParamsType,
-  options: GetReadFile2OptionsType = optionsDefault
+  options: GetReadFile2OptionsType = optionsDefault,
 ) => {
   if (typeof window !== 'undefined') return
 

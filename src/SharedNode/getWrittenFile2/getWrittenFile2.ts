@@ -1,6 +1,6 @@
 import { timeout } from 'yourails_common'
 
-import { consoler } from 'yourails_common'
+import { consoler } from '../consoler'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 import { getEnsuredDirectory } from '../getEnsuredDirectory'
 import { FileTypeEnum } from 'yourails_common'
@@ -10,7 +10,7 @@ const toCSV = (data: Record<string, any>[]): string => {
 
   const headers = Object.keys(data[0])
 
-  const rows = data.map(row => headers.map(h => JSON.stringify(row[h] ?? '')).join(','))
+  const rows = data.map((row) => headers.map((h) => JSON.stringify(row[h] ?? '')).join(','))
 
   return [headers.join(','), ...rows].join('\n')
 }
@@ -31,7 +31,7 @@ type GetWrittenFile2ResType<T> = T
 interface GetWrittenFile2Type<T> {
   (
     params: GetWrittenFile2ParamsType<T>,
-    options?: GetWrittenFile2OptionsType
+    options?: GetWrittenFile2OptionsType,
   ): GetWrittenFile2ResType<T>
 }
 
@@ -53,7 +53,7 @@ const optionsDefault = {
  */
 const getWrittenFile2Unsafe: GetWrittenFile2Type<unknown> = async (
   { pathFileAbs, data }: GetWrittenFile2ParamsType<unknown>,
-  options: GetWrittenFile2OptionsType = optionsDefault
+  options: GetWrittenFile2OptionsType = optionsDefault,
 ) => {
   if (typeof window !== 'undefined') return
 
@@ -237,7 +237,7 @@ if (require.main === module) {
           output,
           tested: JSON.stringify(output) === JSON.stringify(expected),
         })
-      }
+      },
     )
     await Promise.all(promises)
   })()

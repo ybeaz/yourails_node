@@ -1,5 +1,5 @@
 import { expect, describe, it } from '@jest/globals'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { getDateWithTime } from 'yourails_common'
 import { withAssignedDate } from 'yourails_common'
 
@@ -15,26 +15,23 @@ import { GetReadFile2TestType } from './getReadFile2'
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
  */
 describe('Algoritms', () => {
-  it.each(getReadFile2Tests)(
-    '$description',
-    async ({
-      description,
+  it.each(getReadFile2Tests)('$description', async ({
+    description,
+    params,
+    options,
+    paramsWithAssignedDate,
+    expected,
+  }: GetReadFile2TestType) => {
+    let getWithDate: ReturnType<typeof withAssignedDate> = getReadFile2
+    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+      getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+
+    let output: ReturnType<typeof getReadFile2> = await (getWithDate as typeof getReadFile2)(
       params,
       options,
-      paramsWithAssignedDate,
-      expected,
-    }: GetReadFile2TestType) => {
-      let getWithDate: ReturnType<typeof withAssignedDate> = getReadFile2
-      if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
-        getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+    )
+    consoler('getReadFile2.test', { description, params, output })
 
-      let output: ReturnType<typeof getReadFile2> = await (getWithDate as typeof getReadFile2)(
-        params,
-        options
-      )
-      consoler('getReadFile2.test', { description, params, output })
-
-      expect(output).toEqual(expected)
-    }
-  )
+    expect(output).toEqual(expected)
+  })
 })

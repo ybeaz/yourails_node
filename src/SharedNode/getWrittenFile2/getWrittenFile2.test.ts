@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { expect, describe, it } from '@jest/globals'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { getDateWithTime } from 'yourails_common'
 import { withAssignedDate } from 'yourails_common'
 
@@ -17,25 +17,23 @@ import { GetWrittenFile2TestType } from './getWrittenFile2'
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
  */
 describe('Algoritms', () => {
-  it.each(getWrittenFile2Tests)(
-    '$description',
-    async ({
-      description,
+  it.each(getWrittenFile2Tests)('$description', async ({
+    description,
+    params,
+    options,
+    paramsWithAssignedDate,
+    expected,
+  }: GetWrittenFile2TestType) => {
+    let getWithDate: ReturnType<typeof withAssignedDate> = getWrittenFile2
+    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+      getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+
+    let output: ReturnType<typeof getWrittenFile2> = await (getWithDate as typeof getWrittenFile2)(
       params,
       options,
-      paramsWithAssignedDate,
-      expected,
-    }: GetWrittenFile2TestType) => {
-      let getWithDate: ReturnType<typeof withAssignedDate> = getWrittenFile2
-      if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
-        getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
+    )
+    consoler('getWrittenFile2.test', { description, params, output })
 
-      let output: ReturnType<typeof getWrittenFile2> = await (
-        getWithDate as typeof getWrittenFile2
-      )(params, options)
-      consoler('getWrittenFile2.test', { description, params, output })
-
-      expect(output).toEqual(expected)
-    }
-  )
+    expect(output).toEqual(expected)
+  })
 })

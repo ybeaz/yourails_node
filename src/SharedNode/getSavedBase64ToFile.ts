@@ -1,8 +1,6 @@
 import fs from 'fs'
 import { Buffer } from 'buffer'
 
-import { consoler } from 'yourails_common'
-
 export type GetSavedBase64ToFileParamsType = {
   b64String: string
   pathFile: string
