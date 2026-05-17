@@ -1,9 +1,9 @@
-import { stat, access } from 'fs/promises'
+import { access, stat } from 'node:fs/promises'
 import { consoler } from '../consoler'
 import { consolerError } from '../consolerError'
 
 type GetWaitedForFileParamsType = {
-  filePath: string
+  pathFileAbs: string
   timeoutMs?: number
   minSizeBytes?: number
   stableMs?: number
@@ -12,17 +12,18 @@ type GetWaitedForFileParamsType = {
 
 type GetWaitedForFileOptionsType = { funcParent?: string }
 
-type GetWaitedForFileResType = void
+type GetWaitedForFileResType = string | Error
 
-interface GetWaitedForFileType {
-  (params: GetWaitedForFileParamsType, options?: GetWaitedForFileOptionsType): Promise<void>
-}
+type GetWaitedForFileType = (
+  params: GetWaitedForFileParamsType,
+  options?: GetWaitedForFileOptionsType,
+) => Promise<GetWaitedForFileResType>
 
 const optionsDefault = {
   funcParent: 'getWaitedForFile',
 } satisfies Required<GetWaitedForFileOptionsType>
 
-const resDefault: GetWaitedForFileResType = undefined
+const resDefault: GetWaitedForFileResType = new Error()
 
 /**
  * @prompt Context: Unit tests typescript challenge
@@ -44,10 +45,10 @@ const resDefault: GetWaitedForFileResType = undefined
  */
 const getWaitedForFile: GetWaitedForFileType = async (
   {
-    filePath,
+    pathFileAbs,
     timeoutMs = 15000,
-    minSizeBytes = 1024,
-    stableMs = 500,
+    minSizeBytes = 2,
+    stableMs = 333,
     comment,
   }: GetWaitedForFileParamsType,
   options: GetWaitedForFileOptionsType = optionsDefault,
@@ -57,12 +58,11 @@ const getWaitedForFile: GetWaitedForFileType = async (
 
   while (Date.now() < deadline) {
     try {
-      await access(filePath)
-      const { size } = await stat(filePath)
+      await access(pathFileAbs)
+      const { size } = await stat(pathFileAbs)
 
-      if (size >= minSizeBytes && size === lastSize) {
-        return // File exists, has content, and size is stable
-      }
+      if (size >= minSizeBytes && size === lastSize) return pathFileAbs // File exists, has content, and size is stable
+
       lastSize = size
     } catch {
       // File not accessible yet
@@ -70,8 +70,8 @@ const getWaitedForFile: GetWaitedForFileType = async (
     await new Promise((r) => setTimeout(r, stableMs))
   }
 
-  consolerError('getWaitedForFile [60] File never became ready:', { comment, filePath })
-  throw new Error(`❌ getWaitedForFile [70] File never became ready: ${filePath}`)
+  consolerError('getWaitedForFile [60] File never became ready:', { comment, pathFileAbs })
+  throw new Error(`❌ getWaitedForFile [70] File never became ready: ${pathFileAbs}`)
 }
 
 type GetWaitedForFileTestType = {
@@ -79,17 +79,17 @@ type GetWaitedForFileTestType = {
   params: Parameters<typeof getWaitedForFile>[0]
   paramsWithAssignedDate?: { timestamp: number }
   options: Parameters<typeof getWaitedForFile>[1]
-  expected: ReturnType<typeof getWaitedForFile>
+  expected: string | Promise<GetWaitedForFileResType>
 }
 
-export { getWaitedForFile }
 export type {
+  GetWaitedForFileOptionsType,
   GetWaitedForFileParamsType,
   GetWaitedForFileResType,
-  GetWaitedForFileOptionsType,
-  GetWaitedForFileType,
   GetWaitedForFileTestType,
+  GetWaitedForFileType,
 }
+export { getWaitedForFile }
 
 /**
  * @description Here the file is being run directly

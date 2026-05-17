@@ -67,7 +67,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash-es": "^4.17.21",
     "mongoose": "^8.7.0",
-    "nanoid": "^5.1.7",
+    "nanoid": "^3.3.11",
     "ncp": "^2.0.0",
     "node-base64-image": "^2.0.7",
     "node-notifier": "^10.0.1",
