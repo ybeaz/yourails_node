@@ -1,12 +1,11 @@
-import { mkdir } from 'node:fs/promises'
+import fs from 'node:fs'
+import { dirname, extname } from 'node:path'
 
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from './consoler'
 import { consolerError } from './consolerError'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
-interface GetEnsuredDirectoryType {
-  ({ path }: { path: string }): Promise<string | undefined>
-}
+type GetEnsuredDirectoryType = ({ path }: { path: string }) => Promise<string | undefined>
 
 /**
  * @description Function to getEnsuredDirectory
@@ -16,9 +15,10 @@ interface GetEnsuredDirectoryType {
 const getEnsuredDirectoryUnsafe: GetEnsuredDirectoryType = async ({ path }) => {
   if (typeof window !== 'undefined') return Promise.resolve(undefined)
 
-  const res = await mkdir(path, { recursive: true })
-
-  return res
+  const ext = extname(path)
+  const dir = ext ? dirname(path) : path
+  const output = fs.mkdirSync(dir, { recursive: true })
+  return output
 }
 
 export const getEnsuredDirectory = withTryCatchFinallyWrapper(getEnsuredDirectoryUnsafe, {

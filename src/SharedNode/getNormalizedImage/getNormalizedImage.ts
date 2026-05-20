@@ -1,8 +1,7 @@
 import { copyFile } from 'node:fs/promises'
 import { join } from 'node:path'
-
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from '../consoler'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 import { getSpawnedProcess } from '../getSpawnedProcess/getSpawnedProcess'
 import { getEnsuredReadable } from './getEnsuredReadable'
 import { withRawSuffix } from './withRawSuffix'
@@ -17,12 +16,10 @@ type GetNormalizedImageOptionsType = {
 
 type GetNormalizedImageResType = { pathFileAbsOutputRaw: string; pathFileAbsOutput: string }
 
-interface GetNormalizedImageType {
-  (
-    params: GetNormalizedImageParamsType,
-    options?: GetNormalizedImageOptionsType,
-  ): Promise<GetNormalizedImageResType>
-}
+type GetNormalizedImageType = (
+  params: GetNormalizedImageParamsType,
+  options?: GetNormalizedImageOptionsType,
+) => Promise<GetNormalizedImageResType>
 
 const optionsDefault = {
   isQuiet: false,
@@ -117,14 +114,14 @@ const getNormalizedImageTests: GetNormalizedImageTestType[] = [
   },
 ]
 
-export { getNormalizedImage, getNormalizedImageTests }
 export type {
+  GetNormalizedImageOptionsType,
   GetNormalizedImageParamsType,
   GetNormalizedImageResType,
-  GetNormalizedImageOptionsType,
-  GetNormalizedImageType,
   GetNormalizedImageTestType,
+  GetNormalizedImageType,
 }
+export { getNormalizedImage, getNormalizedImageTests }
 
 /**
  * @description Here the file is being run directly
