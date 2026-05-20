@@ -1,14 +1,7 @@
 import { join } from 'node:path'
+import { ImageSizesStandardEnum } from 'yourails_common'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import type { GetCroppedImageBySizeCaseType } from './getCroppedImageBySize'
-
-export const CustomSizes = {
-  LANDSCAPE_Y_HALF: { width: 1536, height: 512 },
-  LANDSCAPE_X_HALF: { width: 768, height: 1024 },
-  PORTRAIT_Y_HALF: { width: 1024, height: 768 },
-} as const
-
-type CustomSizeKey = keyof typeof CustomSizes
 
 export const getCroppedImageBySizeCases: GetCroppedImageBySizeCaseType[] = [
   {
@@ -20,8 +13,8 @@ export const getCroppedImageBySizeCases: GetCroppedImageBySizeCaseType[] = [
       }) as string,
       positionStartX: 0,
       positionStartY: 0,
-      targetWidth: 1536,
-      targetHeight: 512,
+      targetWidth: ImageSizesStandardEnum.LANDSCAPE_WIDTH,
+      targetHeight: ImageSizesStandardEnum.LANDSCAPE_HEIGHT_HALF,
       pathFileAbs: join(__dirname, '__output__/xxx.png'),
     },
     options: {},
