@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { consoler } from '../consoler'
-import { getCroppedImageBySize } from '../getCroppedImageBySize/getCroppedImageBySize'
+import { getImageCroppedBySize } from '../getImageCroppedBySize/getImageCroppedBySize'
 import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBase64'
 
 /**
@@ -22,7 +22,7 @@ if (require.main === module) {
 
         const pathFileAbs = join(__dirname, '__output__/xxx.png')
 
-        const base64v2 = await getCroppedImageBySize({
+        const base64v2 = await getImageCroppedBySize({
           base64,
           positionStartX: 0,
           positionStartY: 0,

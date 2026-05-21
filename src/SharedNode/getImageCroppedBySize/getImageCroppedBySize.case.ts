@@ -1,11 +1,11 @@
 import { join } from 'node:path'
 import { ImageSizesStandardEnum } from 'yourails_common'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
-import type { GetCroppedImageBySizeCaseType } from './getCroppedImageBySize'
+import type { GetImageCroppedBySizeCaseType } from './getImageCroppedBySize'
 
-export const getCroppedImageBySizeCases: GetCroppedImageBySizeCaseType[] = [
+export const getImageCroppedBySizeCases: GetImageCroppedBySizeCaseType[] = [
   {
-    description: 'basic test getCroppedImageBySize',
+    description: 'basic test getImageCroppedBySize',
     params: {
       base64: getImageToBase64({
         pathFileAbs:
