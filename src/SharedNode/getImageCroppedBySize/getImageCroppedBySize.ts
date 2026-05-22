@@ -4,7 +4,7 @@ import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { getEnsuredDirectory } from '../getEnsuredDirectory'
 
 type GetImageCroppedBySizeParamsType = {
-  base64: string
+  imageBase64: string
   positionStartX: number
   positionStartY: number
   targetWidth: number
@@ -47,7 +47,7 @@ const resDefault: GetImageCroppedBySizeResType = ''
  */
 const getImageCroppedBySizeUnsafe: GetImageCroppedBySizeType = async (
   {
-    base64,
+    imageBase64,
     positionStartX,
     positionStartY,
     targetWidth,
@@ -56,7 +56,7 @@ const getImageCroppedBySizeUnsafe: GetImageCroppedBySizeType = async (
   }: GetImageCroppedBySizeParamsType,
   options: GetImageCroppedBySizeOptionsType = optionsDefault,
 ) => {
-  const imageBuffer = Buffer.from(base64, 'base64')
+  const imageBuffer = Buffer.from(imageBase64, 'base64')
 
   const buffer = await sharp(imageBuffer)
     .extract({

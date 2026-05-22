@@ -7,7 +7,7 @@ export const getImageCroppedBySizeCases: GetImageCroppedBySizeCaseType[] = [
   {
     description: 'basic test getImageCroppedBySize',
     params: {
-      base64: getImageToBase64({
+      imageBase64: getImageToBase64({
         pathFileAbs:
           '/Users/admin/Dev/yourails_node/src/SharedNode/getImageToBase64/__mocks__/s_1_2026-05-17-18-16-18_image.png',
       }) as string,

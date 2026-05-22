@@ -18,12 +18,12 @@ if (require.main === module) {
         { description, params, options, expected }: GetImageToBase64CaseType,
         index: number,
       ) => {
-        const base64 = await getImageToBase64(params, options)
+        const imageBase64 = await getImageToBase64(params, options)
 
         const pathFileAbs = join(__dirname, '__output__/xxx.png')
 
         const base64v2 = await getImageCroppedBySize({
-          base64,
+          imageBase64,
           positionStartX: 0,
           positionStartY: 0,
           targetWidth: 1536,

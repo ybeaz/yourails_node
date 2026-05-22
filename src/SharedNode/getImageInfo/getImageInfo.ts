@@ -1,7 +1,7 @@
 import sharp from 'sharp'
 import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 
-type GetImageInfoParamsType = { pathFileAbs: string }
+type GetImageInfoParamsType = { pathFileAbs?: string; imageBase64?: string }
 
 type GetImageInfoOptionsType = { funcParent?: string }
 
@@ -57,10 +57,17 @@ const resDefault: GetImageInfoResType = {
  * @import import { getImageInfo } from './getImageInfo/getImageInfo'
  */
 const getImageInfoUnsafe: GetImageInfoType = async (
-  { pathFileAbs }: GetImageInfoParamsType,
+  { pathFileAbs, imageBase64 }: GetImageInfoParamsType,
   options: GetImageInfoOptionsType = optionsDefault,
 ) => {
-  const metadata = await sharp(pathFileAbs).metadata()
+  let input: string | Buffer<ArrayBuffer> = pathFileAbs || imageBase64 || ''
+
+  if (imageBase64) {
+    const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '')
+    input = Buffer.from(base64Data, 'base64')
+  }
+
+  const metadata = await sharp(input).metadata()
 
   return {
     // Dimensions
