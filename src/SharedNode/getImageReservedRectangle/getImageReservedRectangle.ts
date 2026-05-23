@@ -124,9 +124,10 @@ const getImageReservedRectangleUnsafe: GetImageReservedRectangleType = async (
     .png()
     .toBuffer()
 
-  await getEnsuredDirectory({ path: pathFileAbs })
-  await fs.promises.writeFile(pathFileAbs, buffer)
-
+  if (pathFileAbs) {
+    await getEnsuredDirectory({ path: pathFileAbs })
+    await fs.promises.writeFile(pathFileAbs, buffer)
+  }
   return buffer.toString('base64')
 }
 
