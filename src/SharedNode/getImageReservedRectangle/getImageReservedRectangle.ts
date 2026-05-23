@@ -3,6 +3,15 @@ import sharp from 'sharp'
 import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { getEnsuredDirectory } from '../getEnsuredDirectory'
 
+const createRoundedMask = (width: number, height: number, radius: number): Buffer => {
+  const svg = `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="${width}" height="${height}" rx="${radius}" ry="${radius}" fill="white"/>
+    </svg>
+  `
+  return Buffer.from(svg)
+}
+
 type GetImageReservedRectangleParamsType = {
   imageBase64: string
   positionStartX: number /* pixel X origin of the reserved rect */
@@ -16,6 +25,7 @@ type GetImageReservedRectangleOptionsType = {
   blurSigma?: number
   opacity?: number
   lightenColor?: [number, number, number]
+  borderRadius?: number
   funcParent?: string
 }
 
@@ -30,6 +40,7 @@ const optionsDefault = {
   blurSigma: 18,
   opacity: 0.85,
   lightenColor: [255, 255, 255] as [number, number, number],
+  borderRadius: 0,
   funcParent: 'getImageReservedRectangle',
 } satisfies Required<GetImageReservedRectangleOptionsType>
 
@@ -105,17 +116,36 @@ const getImageReservedRectangleUnsafe: GetImageReservedRectangleType = async (
     .png()
     .toBuffer()
 
-  // ── 4. Composite lighten layer onto the blurred region ──
+  // ── 4. Composite lighten layer onto the blurred region, then apply rounded mask ──
+  const roundedRadius = options.borderRadius ?? 0
+
+  const roundedMask = createRoundedMask(targetWidth, targetHeight, roundedRadius)
+
   const maskedRegion = await sharp(regionBuffer)
     .composite([{ input: lightenOverlay, blend: 'over' }])
     .png()
     .toBuffer()
 
+  const maskedRegionRounded = await sharp(maskedRegion)
+    .composite([
+      {
+        input: roundedMask,
+        blend: 'dest-in', // ← keeps only pixels where mask is white
+      },
+    ])
+    .png()
+    .toBuffer()
+
+  // const maskedRegion = await sharp(regionBuffer)
+  //   .composite([{ input: lightenOverlay, blend: 'over' }])
+  //   .png()
+  //   .toBuffer()
+
   // ── 5. Composite masked region back onto the original image ──
   const buffer = await sharp(inputBuffer)
     .composite([
       {
-        input: maskedRegion,
+        input: maskedRegionRounded,
         left: positionStartX,
         top: positionStartY,
         blend: 'over',

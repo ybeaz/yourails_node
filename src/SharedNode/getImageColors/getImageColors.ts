@@ -2,19 +2,14 @@ import sharp from 'sharp'
 
 import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 
-type GetImageColorsParamsType = { pathFileAbs: string }
+type GetImageColorsParamsType = { imageBase64?: string; pathFileAbs?: string }
 
 type GetImageColorsOptionsType = { axisX?: number; axisY?: number; funcParent?: string }
 
 type GetImageColorsDictType = { r: number; g: number; b: number; hex: string }
 
 type GetImageColorsResType = Record<
-  | 'center'
-  | 'topLeftQuaterCenter'
-  | 'topRightQuaterCenter'
-  | 'bottomLeftQuaterCenter'
-  | 'bottomRightQuaterCenter'
-  | 'custom',
+  'CENTER' | 'TOP_LEFT' | 'TOP_RIGHT' | 'BOTTOM_LEFT' | 'BOTTOM_RIGHT' | 'custom',
   GetImageColorsDictType
 >
 
@@ -30,11 +25,11 @@ const optionsDefault = {
 } satisfies Required<GetImageColorsOptionsType>
 
 const resDefault: GetImageColorsResType = {
-  center: { r: 0, g: 0, b: 0, hex: '' },
-  topLeftQuaterCenter: { r: 0, g: 0, b: 0, hex: '' },
-  topRightQuaterCenter: { r: 0, g: 0, b: 0, hex: '' },
-  bottomLeftQuaterCenter: { r: 0, g: 0, b: 0, hex: '' },
-  bottomRightQuaterCenter: { r: 0, g: 0, b: 0, hex: '' },
+  CENTER: { r: 0, g: 0, b: 0, hex: '' },
+  TOP_LEFT: { r: 0, g: 0, b: 0, hex: '' },
+  TOP_RIGHT: { r: 0, g: 0, b: 0, hex: '' },
+  BOTTOM_LEFT: { r: 0, g: 0, b: 0, hex: '' },
+  BOTTOM_RIGHT: { r: 0, g: 0, b: 0, hex: '' },
   custom: { r: 0, g: 0, b: 0, hex: '' },
 }
 
@@ -57,10 +52,20 @@ const resDefault: GetImageColorsResType = {
  * @import import { getImageColors } from './getImageColors/getImageColors'
  */
 const getImageColorsUnsafe: GetImageColorsType = async (
-  { pathFileAbs }: GetImageColorsParamsType,
+  { imageBase64, pathFileAbs }: GetImageColorsParamsType,
   { axisX = 0, axisY = 0 }: GetImageColorsOptionsType = optionsDefault,
 ) => {
-  const image = sharp(pathFileAbs)
+  if (!imageBase64 && !pathFileAbs)
+    throw Error('getImageColors [60]. There is neither imageBase64, no pathFileAbs')
+
+  let input: string | Buffer<ArrayBuffer> = pathFileAbs || imageBase64 || ''
+
+  if (imageBase64) {
+    const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '')
+    input = Buffer.from(base64Data, 'base64')
+  }
+
+  const image = sharp(input)
   const { width, height } = await image.metadata()
 
   const centerX = Math.floor(width / 2)
@@ -69,7 +74,7 @@ const getImageColorsUnsafe: GetImageColorsType = async (
   const quarterH = Math.floor(height / 4)
 
   const getPixelColor = async (left: number, top: number): Promise<GetImageColorsDictType> => {
-    const { data } = await sharp(pathFileAbs)
+    const { data } = await sharp(input)
       .extract({ left, top, width: 1, height: 1 })
       .raw()
       .toBuffer({ resolveWithObject: true })
@@ -82,14 +87,7 @@ const getImageColorsUnsafe: GetImageColorsType = async (
 
   const clamp = (value: number, max: number) => Math.min(Math.max(value, 0), max - 1)
 
-  const [
-    center,
-    topLeftQuaterCenter,
-    topRightQuaterCenter,
-    bottomLeftQuaterCenter,
-    bottomRightQuaterCenter,
-    custom,
-  ] = await Promise.all([
+  const [CENTER, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, custom] = await Promise.all([
     getPixelColor(centerX, centerY), // Image center
     getPixelColor(quarterW, quarterH), // Top-left quarter center
     getPixelColor(centerX + quarterW, quarterH), // Top-right quarter center
@@ -99,11 +97,11 @@ const getImageColorsUnsafe: GetImageColorsType = async (
   ])
 
   return {
-    center,
-    topLeftQuaterCenter,
-    topRightQuaterCenter,
-    bottomLeftQuaterCenter,
-    bottomRightQuaterCenter,
+    CENTER,
+    TOP_LEFT,
+    TOP_RIGHT,
+    BOTTOM_LEFT,
+    BOTTOM_RIGHT,
     custom,
   }
 }
