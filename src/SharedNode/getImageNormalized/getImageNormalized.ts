@@ -2,30 +2,31 @@ import { copyFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from '../consoler'
+import { getRunWithSpinner } from '../getRunWithSpinner'
 import { getSpawnedProcess } from '../getSpawnedProcess/getSpawnedProcess'
 import { getEnsuredReadable } from './getEnsuredReadable'
 import { withRawSuffix } from './withRawSuffix'
 
-type GetNormalizedImageParamsType = { pathFileAbsInput: string; pathFileAbsOutput: string }
+type GetImageNormalizedParamsType = { pathFileAbsInput: string; pathFileAbsOutput: string }
 
-type GetNormalizedImageOptionsType = {
+type GetImageNormalizedOptionsType = {
   isQuiet?: boolean
   isCopingRaw?: boolean
   funcParent?: string
 }
 
-type GetNormalizedImageResType = { pathFileAbsOutputRaw: string; pathFileAbsOutput: string }
+type GetImageNormalizedResType = { pathFileAbsOutputRaw: string; pathFileAbsOutput: string }
 
-type GetNormalizedImageType = (
-  params: GetNormalizedImageParamsType,
-  options?: GetNormalizedImageOptionsType,
-) => Promise<GetNormalizedImageResType>
+type GetImageNormalizedType = (
+  params: GetImageNormalizedParamsType,
+  options?: GetImageNormalizedOptionsType,
+) => Promise<GetImageNormalizedResType>
 
 const optionsDefault = {
   isQuiet: false,
   isCopingRaw: false,
-  funcParent: 'getNormalizedImage',
-} satisfies Required<GetNormalizedImageOptionsType>
+  funcParent: 'getImageNormalized',
+} satisfies Required<GetImageNormalizedOptionsType>
 
 /**
  * @prompt Context: Javascript chanllendge
@@ -34,12 +35,12 @@ const optionsDefault = {
  */
 
 /**
- * @description Function to getNormalizedImage
- * @import import { getNormalizedImage } from './getNormalizedImage'
+ * @description Function to getImageNormalized
+ * @import import { getImageNormalized } from './getImageNormalized'
  */
-const getNormalizedImageUnsafe = async (
-  { pathFileAbsInput, pathFileAbsOutput }: GetNormalizedImageParamsType,
-  { isQuiet, isCopingRaw = false }: GetNormalizedImageOptionsType = optionsDefault,
+const getImageNormalizedUnsafe = async (
+  { pathFileAbsInput, pathFileAbsOutput }: GetImageNormalizedParamsType,
+  { isQuiet, isCopingRaw = false }: GetImageNormalizedOptionsType = optionsDefault,
 ) => {
   await getEnsuredReadable({ pathFileAbsInput })
   /* not to use now, but possible
@@ -76,30 +77,30 @@ const getNormalizedImageUnsafe = async (
   return { pathFileAbsOutputRaw, pathFileAbsOutput }
 }
 
-const resDefault: GetNormalizedImageResType = { pathFileAbsOutputRaw: '', pathFileAbsOutput: '' }
+const resDefault: GetImageNormalizedResType = { pathFileAbsOutputRaw: '', pathFileAbsOutput: '' }
 
-const getNormalizedImage = withTryCatchFinallyWrapper<
-  GetNormalizedImageParamsType,
-  GetNormalizedImageOptionsType,
-  GetNormalizedImageResType
->(getNormalizedImageUnsafe, {
+const getImageNormalized = withTryCatchFinallyWrapper<
+  GetImageNormalizedParamsType,
+  GetImageNormalizedOptionsType,
+  GetImageNormalizedResType
+>(getImageNormalizedUnsafe, {
   optionsDefault,
   resDefault,
   funcMode: FuncModeEnumType.common,
   isFinally: false,
 })
 
-type GetNormalizedImageTestType = {
+type GetImageNormalizedTestType = {
   description?: string
-  params: Parameters<typeof getNormalizedImage>[0]
+  params: Parameters<typeof getImageNormalized>[0]
   paramsWithAssignedDate?: { timestamp: number }
-  options: Parameters<typeof getNormalizedImage>[1]
-  expected: ReturnType<typeof getNormalizedImage>
+  options: Parameters<typeof getImageNormalized>[1]
+  expected: ReturnType<typeof getImageNormalized>
 }
 
-const getNormalizedImageTests: GetNormalizedImageTestType[] = [
+const getImageNormalizedTests: GetImageNormalizedTestType[] = [
   {
-    description: 'basic test getNormalizedImage',
+    description: 'basic test getImageNormalized',
     params: {
       pathFileAbsInput: join(__dirname, '/__mocks__/test.png'),
       pathFileAbsOutput: join(__dirname, '/__mocks__/test.png'),
@@ -107,35 +108,39 @@ const getNormalizedImageTests: GetNormalizedImageTestType[] = [
     options: { isQuiet: true, isCopingRaw: true },
     expected: {
       pathFileAbsOutputRaw:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getNormalizedImage/__mocks__/test_raw.png',
+        '/Users/admin/Dev/yourails_node/src/SharedNode/getImageNormalized/__mocks__/test_raw.png',
       pathFileAbsOutput:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getNormalizedImage/__mocks__/test.png',
+        '/Users/admin/Dev/yourails_node/src/SharedNode/getImageNormalized/__mocks__/test.png',
     },
   },
 ]
 
 export type {
-  GetNormalizedImageOptionsType,
-  GetNormalizedImageParamsType,
-  GetNormalizedImageResType,
-  GetNormalizedImageTestType,
-  GetNormalizedImageType,
+  GetImageNormalizedOptionsType,
+  GetImageNormalizedParamsType,
+  GetImageNormalizedResType,
+  GetImageNormalizedTestType,
+  GetImageNormalizedType,
 }
-export { getNormalizedImage, getNormalizedImageTests }
+export { getImageNormalized, getImageNormalizedTests }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getNormalizedImage/getNormalizedImage.ts
- * @test pnpm jest getNormalizedImage.test.ts --coverage --collectCoverageFrom="src/SharedNode/getNormalizedImage/getNormalizedImage.tss"
+ * @run npx tsx src/SharedNode/getImageNormalized/getImageNormalized.ts
+ * @test pnpm jest getImageNormalized.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageNormalized/getImageNormalized.tss"
  */
 if (require.main === module) {
   ;(async () => {
-    const promises = getNormalizedImageTests.map(
-      async (test: GetNormalizedImageTestType, index: number) => {
+    const promises = getImageNormalizedTests.map(
+      async (test: GetImageNormalizedTestType, index: number) => {
         const { description, params, options, expected } = test
 
-        const output = await getNormalizedImage(params, options)
-        consoler(`getNormalizedImage [90-${index}]`, {
+        const output = await getRunWithSpinner(getImageNormalized, 'Processing... ')(
+          params,
+          options,
+        )
+
+        consoler(`getImageNormalized [90-${index}]`, {
           description,
           params,
           output,

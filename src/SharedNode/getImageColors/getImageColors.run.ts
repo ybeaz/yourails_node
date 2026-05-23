@@ -1,4 +1,5 @@
 import { consoler } from '../consoler'
+import { getRunWithSpinner } from '../getRunWithSpinner'
 import { type GetImageColorsCaseType, getImageColors } from './getImageColors'
 
 /**
@@ -13,7 +14,7 @@ if (require.main === module) {
 
     const promises = getImageColorsCases.map(
       async ({ description, params, options, expected }: GetImageColorsCaseType, index: number) => {
-        const output = await getImageColors(params, options)
+        const output = await getRunWithSpinner(getImageColors, 'Processing... ')(params, options)
 
         consoler(`getImageColors [90-${index}]`, {
           description,

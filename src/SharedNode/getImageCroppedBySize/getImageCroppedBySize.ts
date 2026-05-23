@@ -5,21 +5,21 @@ import { getEnsuredDirectory } from '../getEnsuredDirectory'
 
 type GetImageCroppedBySizeParamsType = {
   imageBase64: string
-  positionStartX: number
-  positionStartY: number
-  targetWidth: number
-  targetHeight: number
-  pathFileAbs: string
+  positionStartX: number /* pixel X origin of the reserved rect */
+  positionStartY: number /* pixel Y origin of the reserved rect */
+  targetWidth: number /* pixel width of the reserved rect */
+  targetHeight: number /* pixel height of the reserved rect */
+  pathFileAbs: string /* absolute path to write the output file */
 }
 
 type GetImageCroppedBySizeOptionsType = { funcParent?: string }
 
-type GetImageCroppedBySizeResType = unknown
+type GetImageCroppedBySizeResType = string
 
 type GetImageCroppedBySizeType = (
   params: GetImageCroppedBySizeParamsType,
   options?: GetImageCroppedBySizeOptionsType,
-) => GetImageCroppedBySizeResType
+) => Promise<GetImageCroppedBySizeResType>
 
 const optionsDefault = {
   funcParent: 'getImageCroppedBySize',

@@ -1,3 +1,4 @@
+import { getRunWithSpinner } from '../getRunWithSpinner'
 import { type GetImageInfoCaseType, getImageInfo } from './getImageInfo'
 
 /**
@@ -9,7 +10,7 @@ if (require.main === module) {
 
     const promises = getImageInfoCases.map(
       async ({ description, params, options, expected }: GetImageInfoCaseType, index: number) => {
-        const output = await getImageInfo(params, options)
+        const output = await getRunWithSpinner(getImageInfo, 'Processing... ')(params, options)
 
         console.log(`getImageInfo [90-${index}]`, {
           description,

@@ -1,4 +1,5 @@
 import { consoler } from '../consoler'
+import { getRunWithSpinner } from '../getRunWithSpinner'
 import { type GetImageCroppedBySizeCaseType, getImageCroppedBySize } from './getImageCroppedBySize'
 
 /**
@@ -16,7 +17,10 @@ if (require.main === module) {
         { description, params, options, expected }: GetImageCroppedBySizeCaseType,
         index: number,
       ) => {
-        const output = await getImageCroppedBySize(params, options)
+        const output = await getRunWithSpinner(getImageCroppedBySize, 'Processing... ')(
+          params,
+          options,
+        )
 
         consoler(`getImageCroppedBySize [90-${index}]`, {
           description,

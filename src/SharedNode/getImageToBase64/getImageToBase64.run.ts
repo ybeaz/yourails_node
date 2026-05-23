@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { consoler } from '../consoler'
 import { getImageCroppedBySize } from '../getImageCroppedBySize/getImageCroppedBySize'
+import { getRunWithSpinner } from '../getRunWithSpinner'
 import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBase64'
 
 /**
@@ -18,7 +19,10 @@ if (require.main === module) {
         { description, params, options, expected }: GetImageToBase64CaseType,
         index: number,
       ) => {
-        const imageBase64 = await getImageToBase64(params, options)
+        const imageBase64 = await getRunWithSpinner(getImageToBase64, 'Processing... ')(
+          params,
+          options,
+        )
 
         const pathFileAbs = join(__dirname, '__output__/xxx.png')
 
