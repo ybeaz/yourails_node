@@ -1,15 +1,12 @@
 import { parse } from 'csv-parse/sync'
-
-import { consoler } from '../consoler'
 import {
-  withTryCatchFinallyWrapper,
+  FileTypeEnum,
   FuncModeEnumType,
+  getFileExtension,
   WithTryCatchFinallyWrapperOptionsType,
+  withTryCatchFinallyWrapper,
 } from 'yourails_common'
-import { FileTypeEnum } from 'yourails_common'
-import { getFileExtension } from 'yourails_common'
-
-import test01 from 'src/SharedNode/getReadFile2/__mocks__/text.json'
+import { consoler } from '../consoler'
 
 type GetReadFile2ParamsType = {
   pathFileAbs: string
@@ -19,9 +16,10 @@ type GetReadFile2OptionsType = { typeFile?: FileTypeEnum; funcParent?: string }
 
 type GetReadFile2ResType = unknown
 
-interface GetReadFile2Type {
-  (params: GetReadFile2ParamsType, options?: GetReadFile2OptionsType): GetReadFile2ResType
-}
+type GetReadFile2Type = (
+  params: GetReadFile2ParamsType,
+  options?: GetReadFile2OptionsType,
+) => GetReadFile2ResType
 
 const optionsDefault = {
   typeFile: FileTypeEnum.json,
@@ -131,14 +129,14 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
   },
 ]
 
-export { getReadFile2, getReadFile2Tests }
 export type {
+  GetReadFile2OptionsType,
   GetReadFile2ParamsType,
   GetReadFile2ResType,
-  GetReadFile2OptionsType,
-  GetReadFile2Type,
   GetReadFile2TestType,
+  GetReadFile2Type,
 }
+export { getReadFile2, getReadFile2Tests }
 
 /**
  * @description Here the file is being run directly

@@ -1,11 +1,11 @@
 import { consoler } from '../../SharedNode/consoler'
 
 import {
-  getMinifiedBundle,
-  GetMinifiedBundleParamsType,
   GetMinifiedBundleOptionsType,
+  GetMinifiedBundleParamsType,
   GetMinifiedBundleResType,
   GetMinifiedBundleType,
+  getMinifiedBundle,
 } from '../getMinifiedBundle'
 
 type GetMinifiedBundleTestType = {
@@ -37,7 +37,7 @@ const tests: GetMinifiedBundleTestType[] = [
  */
 describe('Algoritms', () => {
   it.each(tests)('-- getMinifiedBundle.test', ({ params, options, expected }) => {
-    let output: string | undefined = getMinifiedBundle(params, options)
+    const output: string | undefined = getMinifiedBundle(params, options) as string
     consoler('getMinifiedBundle.test', { output })
 
     // expect(output).toEqual(expected)

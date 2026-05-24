@@ -1,7 +1,9 @@
 import { join } from 'node:path'
+import { FileTypeEnum } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageCroppedBySize } from '../getImageCroppedBySize/getImageCroppedBySize'
 import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getWrittenFile2 } from '../getWrittenFile2/getWrittenFile2'
 import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBase64'
 
 /**
@@ -24,23 +26,30 @@ if (require.main === module) {
           options,
         )
 
-        const pathFileAbs = join(__dirname, '__output__/xxx.png')
+        // const pathFileAbsPng = join(__dirname, '__output__/xxx.png')
 
-        const base64v2 = await getImageCroppedBySize({
-          imageBase64,
-          positionStartX: 0,
-          positionStartY: 0,
-          targetWidth: 1536,
-          targetHeight: 512,
-          pathFileAbs,
-        })
+        // const base64v2 = await getImageCroppedBySize({
+        //   imageBase64,
+        //   positionStartX: 0,
+        //   positionStartY: 0,
+        //   targetWidth: 1536,
+        //   targetHeight: 512,
+        //   pathFileAbs: pathFileAbsPng,
+        // })
 
         // getSavedBase64ToFile({ b64String: base64v2, pathFile: 'xxx.png', format: 'png' })
+
+        const pathFileAbsTxt = join(__dirname, '__output__/xxx.txt')
+
+        await getWrittenFile2(
+          { pathFileAbs: pathFileAbsTxt, data: { imageBase64 } },
+          { typeFile: FileTypeEnum.json },
+        )
 
         consoler(`getImageToBase64 [90-${index}]`, {
           description,
           params,
-          output: base64v2,
+          // output: imageBase64,
           // expected,
           // tested: JSON.stringify(output) === JSON.stringify(expected),
         })

@@ -1,11 +1,7 @@
-import { expect, describe, it } from '@jest/globals'
-import { consoler } from './consoler'
-import { getDateWithTime } from 'yourails_common'
-import { withAssignedDate } from 'yourails_common'
-
-import { getReadFile2 } from './getReadFile2'
-import { getReadFile2Tests } from './getReadFile2'
-import { GetReadFile2TestType } from './getReadFile2'
+import { describe, expect, it } from '@jest/globals'
+import { getDateWithTime, withAssignedDate } from 'yourails_common'
+import { consoler } from '../consoler'
+import { GetReadFile2TestType, getReadFile2, getReadFile2Tests } from './getReadFile2'
 
 /**
  * @Description Test to challenge function getReadFile2
@@ -22,14 +18,14 @@ describe('Algoritms', () => {
     paramsWithAssignedDate,
     expected,
   }: GetReadFile2TestType) => {
-    let getWithDate: ReturnType<typeof withAssignedDate> = getReadFile2
-    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+    let getWithDate = getReadFile2
+    if (paramsWithAssignedDate?.timestamp)
       getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
-    let output: ReturnType<typeof getReadFile2> = await (getWithDate as typeof getReadFile2)(
+    const output: ReturnType<typeof getReadFile2> = (await (getWithDate as typeof getReadFile2)(
       params,
       options,
-    )
+    )) as ReturnType<typeof getReadFile2>
     consoler('getReadFile2.test', { description, params, output })
 
     expect(output).toEqual(expected)

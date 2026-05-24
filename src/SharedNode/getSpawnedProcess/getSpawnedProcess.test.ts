@@ -1,11 +1,11 @@
-import { expect, describe, it } from '@jest/globals'
-import { consoler } from './consoler'
-import { getDateWithTime } from 'yourails_common'
-import { withAssignedDate } from 'yourails_common'
-
-import { getSpawnedProcess } from './getSpawnedProcess'
-import { getSpawnedProcessTests } from './getSpawnedProcess'
-import { GetSpawnedProcessTestType } from './getSpawnedProcess'
+import { describe, expect, it } from '@jest/globals'
+import { getDateWithTime, withAssignedDate } from 'yourails_common'
+import { consoler } from '../consoler'
+import {
+  GetSpawnedProcessTestType,
+  getSpawnedProcess,
+  getSpawnedProcessTests,
+} from './getSpawnedProcess'
 
 /**
  * @Description Test to challenge function getSpawnedProcess
@@ -22,8 +22,8 @@ describe('getSpawnedProcess', () => {
     paramsWithAssignedDate,
     expected,
   }: GetSpawnedProcessTestType) => {
-    let getWithDate: ReturnType<typeof withAssignedDate> = getSpawnedProcess
-    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+    let getWithDate = getSpawnedProcess
+    if (paramsWithAssignedDate?.timestamp)
       getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
     let output: ReturnType<typeof getSpawnedProcess> = await (
