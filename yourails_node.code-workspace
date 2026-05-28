@@ -1,6 +1,12 @@
 {
   "folders": [
     {
+      "path": "../__output__"
+    },
+    {
+      "path": "../yourails_scenarios"
+    },
+    {
       "path": ".",
     },
     {

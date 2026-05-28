@@ -2,6 +2,8 @@ import fs from 'node:fs'
 import sharp from 'sharp'
 import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { getEnsuredDirectory } from '../getEnsuredDirectory'
+import { getImageEdgeMargin } from './getImageEdgeMargin'
+import { getImageEdgeOffset } from './getImageEdgeOffset'
 
 const createRoundedMask = (width: number, height: number, radius: number): Buffer => {
   const svg = `
@@ -21,11 +23,14 @@ type GetImageReservedRectangleParamsType = {
   pathFileAbs: string /* absolute path to write the output file */
 }
 
+type MarginTuple = [top: number, right: number, bottom: number, left: number]
+
 type GetImageReservedRectangleOptionsType = {
   blurSigma?: number
   opacity?: number
   lightenColor?: [number, number, number]
   borderRadius?: number
+  margin?: MarginTuple
   funcParent?: string
 }
 
@@ -41,6 +46,7 @@ const optionsDefault = {
   opacity: 0.85,
   lightenColor: [255, 255, 255] as [number, number, number],
   borderRadius: 0,
+  margin: [0, 0, 0, 0],
   funcParent: 'getImageReservedRectangle',
 } satisfies Required<GetImageReservedRectangleOptionsType>
 
@@ -81,29 +87,35 @@ const getImageReservedRectangleUnsafe: GetImageReservedRectangleType = async (
     blurSigma = optionsDefault.blurSigma,
     opacity = optionsDefault.opacity,
     lightenColor = optionsDefault.lightenColor,
+    margin = optionsDefault.margin,
   } = options
 
   // ── 1. Decode base64 → Buffer ──
   const inputBuffer = Buffer.from(imageBase64, 'base64')
 
-  // ── 2. Extract the reserved region and blur it ──
+  // ── 2. Extract the reserved region (inset by margin) and blur it ──
+  const [marginTop, marginRight, marginBottom, marginLeft] = margin
+
+  const innerWidth = targetWidth - marginLeft - marginRight
+  const innerHeight = targetHeight - marginTop - marginBottom
+
   const regionBuffer = await sharp(inputBuffer)
     .extract({
-      left: positionStartX,
-      top: positionStartY,
-      width: targetWidth,
-      height: targetHeight,
+      top: positionStartY + marginTop,
+      left: positionStartX + marginLeft,
+      width: innerWidth,
+      height: innerHeight,
     })
     .blur(blurSigma)
     .png()
     .toBuffer()
 
-  // ── 3. Build a semi-transparent lighten overlay ──
+  // ── 3. Build a semi-transparent lighten overlay (at inner dimensions) ──
   const [r, g, b] = lightenColor
   const alpha = Math.round(opacity * 255)
-  const overlayPixels = new Uint8ClampedArray(targetWidth * targetHeight * 4)
+  const overlayPixels = new Uint8ClampedArray(innerWidth * innerHeight * 4)
 
-  for (let i = 0; i < targetWidth * targetHeight; i++) {
+  for (let i = 0; i < innerWidth * innerHeight; i++) {
     overlayPixels[i * 4 + 0] = r
     overlayPixels[i * 4 + 1] = g
     overlayPixels[i * 4 + 2] = b
@@ -111,7 +123,7 @@ const getImageReservedRectangleUnsafe: GetImageReservedRectangleType = async (
   }
 
   const lightenOverlay = await sharp(Buffer.from(overlayPixels.buffer), {
-    raw: { width: targetWidth, height: targetHeight, channels: 4 },
+    raw: { width: innerWidth, height: innerHeight, channels: 4 },
   })
     .png()
     .toBuffer()
@@ -119,7 +131,7 @@ const getImageReservedRectangleUnsafe: GetImageReservedRectangleType = async (
   // ── 4. Composite lighten layer onto the blurred region, then apply rounded mask ──
   const roundedRadius = options.borderRadius ?? 0
 
-  const roundedMask = createRoundedMask(targetWidth, targetHeight, roundedRadius)
+  const roundedMask = createRoundedMask(innerWidth, innerHeight, roundedRadius)
 
   const maskedRegion = await sharp(regionBuffer)
     .composite([{ input: lightenOverlay, blend: 'over' }])
@@ -136,18 +148,13 @@ const getImageReservedRectangleUnsafe: GetImageReservedRectangleType = async (
     .png()
     .toBuffer()
 
-  // const maskedRegion = await sharp(regionBuffer)
-  //   .composite([{ input: lightenOverlay, blend: 'over' }])
-  //   .png()
-  //   .toBuffer()
-
-  // ── 5. Composite masked region back onto the original image ──
+  // ── 5. Composite masked region back onto the original image (offset by margin) ──
   const buffer = await sharp(inputBuffer)
     .composite([
       {
         input: maskedRegionRounded,
-        left: positionStartX,
-        top: positionStartY,
+        left: positionStartX + marginLeft,
+        top: positionStartY + marginTop,
         blend: 'over',
       },
     ])
@@ -187,4 +194,4 @@ export type {
   GetImageReservedRectangleResType,
   GetImageReservedRectangleType,
 }
-export { getImageReservedRectangle }
+export { getImageEdgeMargin, getImageEdgeOffset, getImageReservedRectangle }
