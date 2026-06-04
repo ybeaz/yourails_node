@@ -1,1 +1,3 @@
-"Hello world from TXT file\nSecond line\nThird line"
+Hello world from TXT file
+Second line
+Third line

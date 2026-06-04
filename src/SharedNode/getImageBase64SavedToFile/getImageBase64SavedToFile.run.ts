@@ -23,7 +23,7 @@ if (require.main === module) {
         index: number,
       ) => {
         const imageBase64: string = (await getReadFile2({
-          pathFileAbs: join(__dirname, '__mocks__', 's_5_2026-05-27-21-02-16_imageRaw.txt'),
+          pathFileAbs: join(__dirname, '__mocks__', 's_5_2026-05-29-08-51-31_imageRaw.txt'),
         })) as string
         params.imageBase64 = imageBase64
 
@@ -35,6 +35,7 @@ if (require.main === module) {
           seconds: true,
           rest: false,
           style: 'military',
+          isUtcMethods: false,
         })
 
         params.pathFileAbs = join(__dirname, '__output__', `${dateString}_image.png`)
