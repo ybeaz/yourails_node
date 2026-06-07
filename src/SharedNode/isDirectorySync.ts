@@ -8,7 +8,7 @@ interface IsDirectorySyncType {
 
 /**
  * @description Function to isDirectorySync
- * @run ts-node tools/isDirectorySync.ts
+ * @run npx tsx tools/isDirectorySync.ts
  * @import import { isDirectorySync } from './isDirectorySync'
  */
 const isDirectorySyncUnsafe: IsDirectorySyncType = path => {
@@ -28,7 +28,7 @@ export const isDirectorySync = withTryCatchFinallyWrapper(isDirectorySyncUnsafe,
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/isDirectorySync.ts
+ * @run npx tsx src/SharedNode/isDirectorySync.ts
  */
 if (require.main === module) {
   ;(async () => {

@@ -48,7 +48,7 @@ export const getDecodedTokenAwsJwt: GetDecodedTokenAwsJwtType = async ({
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/Shared/getDecodedTokenAwsJwt.ts
+ * @run npx tsx src/Shared/getDecodedTokenAwsJwt.ts
  */
 if (require.main === module) {
   ;(async () => {

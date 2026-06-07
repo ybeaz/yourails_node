@@ -1,9 +1,5 @@
-import { consoler } from 'yourails_common'
-import {
-  withTryCatchFinallyWrapper,
-  FuncModeEnumType,
-  WithTryCatchFinallyWrapperOptionsType,
-} from 'yourails_common'
+import { consoler } from './consoler'
+import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type getDecodedTokenJwtParamsType = {
   token?: string
@@ -20,7 +16,7 @@ type getDecodedTokenJwtResType = any
 interface getDecodedTokenJwtType {
   (
     params: getDecodedTokenJwtParamsType,
-    options?: getDecodedTokenJwtOptionsType
+    options?: getDecodedTokenJwtOptionsType,
   ): getDecodedTokenJwtResType
 }
 
@@ -43,7 +39,7 @@ const getDecodedTokenJwtUnsafe: getDecodedTokenJwtType = (
     secretPrivateEnvKey = 'SECRET_WEB_TOKEN',
     algorithms = ['HS256'],
   }: getDecodedTokenJwtParamsType,
-  options?: getDecodedTokenJwtOptionsType
+  options?: getDecodedTokenJwtOptionsType,
 ) => {
   if (typeof window !== 'undefined') return
 
@@ -86,7 +82,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run NODE_ENV=development ts-node src/SharedNode/getDecodedTokenJwt.ts
+ * @run NODE_ENV=development npx tsx src/SharedNode/getDecodedTokenJwt.ts
  */
 if (require.main === module) {
   ;(async () => {

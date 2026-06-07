@@ -96,7 +96,7 @@ export type {
 }
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/getReadCsvToJsonToJson.ts
+ * @run npx tsx src/SharedNode/getReadCsvToJsonToJson.ts
  */
 if (require.main === module) {
   ;(async () => {

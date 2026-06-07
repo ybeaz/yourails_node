@@ -15,7 +15,7 @@ interface getCreatedNodeJsWorkersAsyncType {
 
 /**
  * @description Function to use the os module to get information about the system, including the number of CPU cores. Then, the function uses this information to spawn worker processes accordingly
- * @run ts-node tools/getCreatedNodeJsWorkersAsync
+ * @run npx tsx tools/getCreatedNodeJsWorkersAsync
  * @import import { getCreatedNodeJsWorkersAsync } from './getCreatedNodeJsWorkersAsync'
  */
 

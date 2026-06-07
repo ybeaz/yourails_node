@@ -69,3 +69,4 @@ yalc.lock
 **/*.gz
 coverage/
 .env.development
+__output__

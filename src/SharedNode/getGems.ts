@@ -41,7 +41,7 @@ const resultDefault: GetGemsResType = {
 
 /**
  * @description Function to getGems
- * @run ts-node tools/getGems.ts
+ * @run npx tsx tools/getGems.ts
  * @import import { getGems } from './getGems'
  */
 export const getGems: GetGemsType = (optionsIn: OptionsType = optionsDefault) => {
@@ -129,7 +129,7 @@ export const getGems: GetGemsType = (optionsIn: OptionsType = optionsDefault) =>
 }
 
 /**
- * @run ts-node src/SharedNode/getGems.ts
+ * @run npx tsx src/SharedNode/getGems.ts
  */
 if (require.main === module) {
   const output = getGems()

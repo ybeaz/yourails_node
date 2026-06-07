@@ -40,7 +40,7 @@ export const getCopiedFileSync: GetCopiedFileSyncType = ({ src, dest }) => {
 }
 
 /**
- * @run ts-node tools/getCopiedFileSync.ts
+ * @run npx tsx tools/getCopiedFileSync.ts
  */
 if (require.main === module) {
   const src = 'tools/getGems.ts'

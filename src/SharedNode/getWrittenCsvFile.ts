@@ -99,7 +99,7 @@ export type {
 }
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/getWrittenCsvFile.ts
+ * @run npx tsx src/SharedNode/getWrittenCsvFile.ts
  */
 if (require.main === module) {
   ;(async () => {

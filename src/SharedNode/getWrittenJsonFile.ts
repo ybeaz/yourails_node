@@ -33,7 +33,7 @@ const optionsDefault: Required<GetWrittenJsonFileOptionsType> = {
       baseDir str, base directpry for this task,
       filePathParts: List[str], list of part to build a path to a specific file
       objDict: dict, input dictionary, that we are going to save
- * @run ts-node src/Shared/getWrittenJsonFile.ts
+ * @run npx tsx src/Shared/getWrittenJsonFile.ts
  * @import import { getWrittenJsonFile, GetWrittenJsonFileParamsType } from '../tools/getWrittenJsonFile'
  */
 const getWrittenJsonFile: GetWrittenJsonFileType = async (

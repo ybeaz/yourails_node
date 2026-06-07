@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 import { getDateString } from 'yourails_common'
 import {
@@ -25,6 +25,8 @@ type GetWrittenToFileWrapperParamsType = {
   isWritingDataCsv?: boolean
   dateTimeAssigned?: number | Date
   isNumDataArrayLength?: boolean
+  isUtcMethods?: boolean
+  isTForTime?: boolean
 }
 
 type GetWrittenToFileWrapperOptionsType = { funcParent?: string }
@@ -34,7 +36,7 @@ type GetWrittenToFileWrapperResType = any
 interface GetWrittenToFileWrapperType {
   (
     params: GetWrittenToFileWrapperParamsType,
-    options?: GetWrittenToFileWrapperOptionsType
+    options?: GetWrittenToFileWrapperOptionsType,
   ): GetWrittenToFileWrapperResType
 }
 
@@ -61,8 +63,10 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
     isWritingDataCsv = false,
     dateTimeAssigned,
     isNumDataArrayLength = true,
+    isUtcMethods = false,
+    isTForTime = true,
   }: GetWrittenToFileWrapperParamsType,
-  options: GetWrittenToFileWrapperOptionsType = optionsDefault
+  options: GetWrittenToFileWrapperOptionsType = optionsDefault,
 ) => {
   if (isWritingDataCsv || isWritingDataJson) {
     const dateCreated = !!dateTimeAssigned ? dateTimeAssigned : Date.now()
@@ -72,13 +76,15 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
       hours: true,
       minutes: true,
       seconds: true,
+      isUtcMethods,
+      isTForTime,
     })
 
     const fileName = `${dateString}-${fileNameBody}${isNumDataArrayLength ? `-n${dataArray.length}` : ``}`
 
     let dataArrayFlattened: GetArrayObjToArrayPrefixResType = []
     if (isDataJsonFlattened || isDataCsvFlattened)
-      dataArrayFlattened = getArrayObjToArrayPrefix({
+      dataArrayFlattened = await getArrayObjToArrayPrefix({
         array: dataArray,
       } as GetArrayObjToArrayPrefixParamsType)
 
@@ -106,7 +112,7 @@ const getWrittenToFileWrapperUnsafe: GetWrittenToFileWrapperType = async (
       const keysMax = Object.keys(
         dataArrayCsv.reduce((accum: {}, item: any) => {
           return { ...accum, ...item }
-        }, {})
+        }, {}),
       )
 
       const getWrittenCsvFileOptions: GetWrittenCsvFileOptionsType = {
@@ -136,7 +142,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/Shared/getWrittenToFileWrapper.ts
+ * @run npx tsx src/Shared/getWrittenToFileWrapper.ts
  */
 if (require.main === module) {
   ;(async () => {

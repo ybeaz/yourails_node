@@ -39,7 +39,7 @@ const isDirectoryFileUnsafe: IsDirectoryFileType = ({
     }
   } catch (error: any) {
     if (error.code === 'ENOENT') {
-      consolerError('isDirectoryFile [40]', error)
+      consoler('isDirectoryFile [40]', `ENOENT: no such file or directory  at path: ${path}`)
       output = { isError: true, isExisting: false, isDirectory: false, isFile: false }
     } else {
       // Handle other errors
@@ -53,16 +53,22 @@ const isDirectoryFileUnsafe: IsDirectoryFileType = ({
 
 const isDirectoryFile = withTryCatchFinallyWrapper(isDirectoryFileUnsafe, {
   optionsDefault: {},
-  resDefault: false,
-  isFinally: true,
+  resDefault: { isError: false, isExisting: false, isDirectory: false, isFile: false },
+  isFinally: false,
   funcMode: FuncModeEnumType.server,
 })
 
-export { isDirectoryFile, IsDirectoryFileParamsType, IsDirectoryFileResType, IsDirectoryFileType }
+export {
+  isDirectoryFile,
+  IsDirectoryFileParamsType,
+  IsDirectoryFileResType,
+  IsDirectoryFileType,
+  isDirectoryFileUnsafe,
+}
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/isDirectoryFile.ts
+ * @run npx tsx src/SharedNode/isDirectoryFile.ts
  */
 if (require.main === module) {
   ;(async () => {
@@ -92,7 +98,7 @@ if (require.main === module) {
     const promises = examples.map(async (example: ExampleType, index: number) => {
       const { params, expected } = example
 
-      const output = await isDirectoryFile(params)
+      const output = isDirectoryFile(params)
       consoler(`isDirectoryFile [61-${index}]`, {
         params,
         expected,

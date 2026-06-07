@@ -1,4 +1,4 @@
-import { consoler } from 'yourails_common'
+import { consoler } from './consoler'
 import {
   withTryCatchFinallyWrapper,
   FuncModeEnumType,
@@ -22,7 +22,7 @@ type GetReadFileNamesOfFolderResType = string[]
 interface GetReadFileNamesOfFolderType {
   (
     params: GetReadFileNamesOfFolderParamsType,
-    options?: GetReadFileNamesOfFolderOptionsType
+    options?: GetReadFileNamesOfFolderOptionsType,
   ): GetReadFileNamesOfFolderResType
 }
 
@@ -97,7 +97,7 @@ export type {
 
 /**
  * @description Here the file is being run directly
- * @run ts-node src/SharedNode/getReadFileNamesOfFolder.ts
+ * @run npx tsx src/SharedNode/getReadFileNamesOfFolder.ts
  */
 if (require.main === module) {
   ;(async () => {
