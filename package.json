@@ -21,7 +21,10 @@
     "pubV2": "pnpm build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && npx npm publish --access public --registry=https://registry.npmjs.org/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git+https://github.com/ybeaz/yourails_common.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybeaz/yourails_common.git"
+  },
   "keywords": [],
   "bugs": {
     "url": "https://github.com/ybeaz/yourails_common/issues"
