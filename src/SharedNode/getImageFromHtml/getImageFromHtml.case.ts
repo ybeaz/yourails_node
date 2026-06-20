@@ -1,3 +1,4 @@
+import base64Obj from './__mocks__/b2.json'
 import { type GetImageFromHtmlCaseType, ScalingModeEnum } from './getImageFromHtml'
 
 export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
@@ -149,102 +150,190 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   //   },
   //   expected: '',
   // },
+  // {
+  //   description: 'scene last image with ScalingModeEnum.deviceScaleFactor',
+  //   params: {
+  //     html: `<!DOCTYPE html>
+  //       <html lang="en">
+  //       <head>
+  //         <meta charset="UTF-8" />
+  //         <title>Slide</title>
+  //         <link rel="stylesheet" href="styles.css" />
+  //       </head>
+  //       <body>
+  //         <div class="canvas">
+  //           <div class="text top">Thank you</div>
+
+  //           <div class="text center">
+  //             <div>+1 415 650 9893</div>
+  //             <div>Telegram: @rome_sfba</div>
+  //           </div>
+
+  //           <div class="text bottom">
+  //             <img
+  //               src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
+  //               alt="YouRails logo"
+  //             />
+  //             <span>Studio YouRails.com &nbsp;&nbsp; © 2026</span>
+  //           </div>
+  //         </div>
+  //       </body>
+  //     </html>`,
+  //     style: `<style>/* Reset for deterministic rendering */
+  //       * {
+  //         margin: 0;
+  //         padding: 0;
+  //         box-sizing: border-box;
+  //       }
+
+  //       html, body {
+  //         width: 1536px;
+  //         height: 1024px;
+  //         margin: 0;
+  //         padding: 0;
+  //         overflow: hidden;
+  //         background: #ffffff;
+  //         color: #0b1220;
+  //         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  //         -webkit-font-smoothing: antialiased;
+  //         text-rendering: optimizeLegibility;
+  //       }
+
+  //       /* Fixed canvas for Playwright screenshot */
+  //       .canvas {
+  //         position: relative;
+  //         width: 1536px;
+  //         height: 1024px;
+  //       }
+
+  //       /* Shared text styles */
+  //       .text {
+  //         position: absolute;
+  //         left: 50%;
+  //         transform: translateX(-50%);
+  //         text-align: center;
+  //         letter-spacing: 0.02em;
+  //       }
+
+  //       /* Top */
+  //       .top {
+  //         top: 100px;
+  //         font-size: 64px;
+  //         font-weight: 600;
+  //       }
+
+  //       /* Center block (stacked lines) */
+  //       .center {
+  //         top: 50%;
+  //         transform: translate(-50%, -50%);
+  //         font-size: 48px;
+  //         line-height: 1.4;
+  //         font-weight: 500;
+  //       }
+
+  //       /* Bottom */
+  //       .bottom {
+  //         bottom: 60px;
+  //         font-size: 28px;
+  //         opacity: 0.7;
+  //         display: flex;
+  //         gap: 1rem;
+  //       }
+  //       .bottom img {
+  //         width: 32px;
+  //         height: auto;
+  //         opacity: 1;
+  //         display: inline-block;
+  //       }
+
+  //     </style>`,
+  //     pathFileAbs: '',
+  //     width: 1536,
+  //     height: 1024,
+  //     scale: 2,
+  //     scalingMode: ScalingModeEnum.deviceScaleFactor,
+  //   },
+  //   options: {
+  //     isProduction: false,
+  //   },
+  //   expected: '',
+  // },
   {
-    description: 'scene last image with ScalingModeEnum.deviceScaleFactor',
+    description: 'scene first image with background and ScalingModeEnum.deviceScaleFactor',
     params: {
-      html: `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <title>Slide</title>
-          <link rel="stylesheet" href="styles.css" />
-        </head>
-        <body>
-          <div class="canvas">
-            <div class="text top">Thank you</div>
-
-            <div class="text center">
-              <div>+1 415 650 9893</div>
-              <div>Telegram: @rome_sfba</div>
-            </div>
-
-            <div class="text bottom">
-              <img
-                src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
-                alt="YouRails logo"
-              />
-              <span>Studio YouRails.com &nbsp;&nbsp; © 2026</span>
-            </div>
-          </div>
-        </body>
-      </html>`,
-      style: `<style>/* Reset for deterministic rendering */
+      html: `<div class='wrapper'>
+        <div class="logo-group">
+          <img
+            src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
+            alt="YouRails logo"
+          />
+        </div>
+        <div class="text-group">
+          <div class="h1">Mastering Rust: Performance and Safety</div>
+          <div class="h2">Explore Rust's syntax, memory safety, and performance features</div>
+          <img src="Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png" />
+        </div>
+      <div>`,
+      style: `<style>
         * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
         }
-
         html, body {
-          width: 1536px;
-          height: 1024px;
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background: #ffffff;
-          color: #0b1220;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          -webkit-font-smoothing: antialiased;
-          text-rendering: optimizeLegibility;
+          height: 100%;
         }
-
-        /* Fixed canvas for Playwright screenshot */
-        .canvas {
-          position: relative;
-          width: 1536px;
-          height: 1024px;
-        }
-
-        /* Shared text styles */
-        .text {
+        .logo-group {
           position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          text-align: center;
-          letter-spacing: 0.02em;
-        }
 
-        /* Top */
-        .top {
-          top: 100px;
-          font-size: 64px;
-          font-weight: 600;
+          top: 48px;
+          left: 48px;
         }
-
-        /* Center block (stacked lines) */
-        .center {
-          top: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 48px;
-          line-height: 1.4;
-          font-weight: 500;
-        }
-
-        /* Bottom */
-        .bottom {
-          bottom: 60px;
-          font-size: 28px;
-          opacity: 0.7;
-          display: flex;
-          gap: 1rem;
-        }
-        .bottom img {
-          width: 32px;
+        .logo-group img {
+          width: 120px;
           height: auto;
-          opacity: 1;
-          display: inline-block;
-        }    
-        
+          display: block;
+        }
+        .wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 1536px;
+          height: 1024px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Roboto", Arial, sans-serif;
+          // background-image: url('data:image/png;base64,__IMAGE_BASE_64__');
+          background-image: url('http://local-assets/__IMAGE_FILE_NAME__');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        .text-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6rem;           /* 👈 gap moves h1/h2 apart but group stays centered */
+          width: 100%;
+          max-width: calc(100vw * 1 / 2);
+          margin-bottom: 2rem; /* 👈 margin-bottom moves the group of h1/h2 */
+        }
+        .wrapper .h1 {
+          text-align: center;
+          font-size: 72px;
+          font-weight: 600;
+          color: #0b1220;
+          line-height: 1.25;
+          letter-spacing: -0.03em;
+          word-break: break-word;
+        }
+        .wrapper .h2 {
+          text-align: center;
+          font-size: 48px;
+          font-weight: 500;
+          color: #667085;
+          opacity: 0.7;
+          line-height: 1.25;
+        }
       </style>`,
       pathFileAbs: '',
       width: 1536,

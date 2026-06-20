@@ -22,20 +22,6 @@ const optionsDefault = {
 const resDefault: GetImageToBase64ResType = ''
 
 /**
- * @prompt Context: Unit tests typescript challenge
- *         Question: Suggest unit test data to test the function with the description below
- *         Format: Follow the format of the array of test-objects below
-          [
-            {
-              description: 'basic test getImageToBase64',
-              params: {},
-              options: {},
-              expected: '',
-            },
-          ]
- */
-
-/**
  * @description Function to getImageToBase64
  * @import import { getImageToBase64 } from './getImageToBase64/getImageToBase64'
  */

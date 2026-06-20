@@ -1,11 +1,16 @@
 import { join } from 'node:path'
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner'
-import { type GetImageFromHtmlCaseType, getImageFromHtml } from './getImageFromHtml'
+import {
+  type GetImageFromHtmlCaseType,
+  getImageFromHtml,
+  ServeSourceFileEnum,
+} from './getImageFromHtml'
 
 /**
  * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.run.ts
- */ ;(async () => {
+ */
+;(async () => {
   const getImageFromHtmlCases = await import('./getImageFromHtml.case').then(
     (m) => m.getImageFromHtmlCases,
   )
@@ -49,12 +54,30 @@ import { type GetImageFromHtmlCaseType, getImageFromHtml } from './getImageFromH
 
       // options.isProduction = IS_PRODUCTION
 
-      const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
+      params.configsFilesToServe = [
+        {
+          serveSourceFile: ServeSourceFileEnum.serveAsImage64,
+          pathFileAbs:
+            '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+          replacement: '__IMAGE_BASE_64__',
+        },
+        {
+          serveSourceFile: ServeSourceFileEnum.serveAsFile,
+          pathFileAbs:
+            '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+          replacement: '__IMAGE_FILE_NAME__',
+        },
+      ]
+
+      const output: string = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(
+        params,
+        options,
+      )
 
       consoler(`getImageFromHtml [90-${index}]`, {
         description,
-        params,
-        output,
+        // params,
+        output: `${output.slice(1, 70)}...`,
         expected,
         tested: JSON.stringify(output) === JSON.stringify(expected),
       })

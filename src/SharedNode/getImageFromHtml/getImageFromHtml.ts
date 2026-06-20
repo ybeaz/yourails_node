@@ -1,12 +1,28 @@
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 import { chromium } from 'playwright'
-import { FuncModeEnumType, getDateString, withTryCatchFinallyWrapper } from 'yourails_common'
+import {
+  FuncModeEnumType,
+  getDateString,
+  getRestoredObject,
+  withTryCatchFinallyWrapper,
+} from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
+
+enum ServeSourceFileEnum {
+  serveAsFile = 'serveAsFile',
+  serveAsImage64 = 'serveAsImage64',
+}
 
 enum ScalingModeEnum {
   deviceScaleFactor = 'deviceScaleFactor',
   layout = 'layout',
+}
+
+export type ConfigFileToServeType = {
+  serveSourceFile: ServeSourceFileEnum
+  pathFileAbs: string
+  replacement: string
 }
 
 type GetImageFromHtmlParamsType = {
@@ -17,16 +33,20 @@ type GetImageFromHtmlParamsType = {
   height: number
   scale: number
   scalingMode?: ScalingModeEnum
+  configsFilesToServe?: ConfigFileToServeType[]
 }
 
-type GetImageFromHtmlOptionsType = { isProduction: boolean; funcParent?: string }
+type GetImageFromHtmlOptionsType = {
+  isProduction: boolean
+  funcParent?: string
+}
 
-type GetImageFromHtmlResType = unknown
+type GetImageFromHtmlResType = string
 
 type GetImageFromHtmlType = (
   params: GetImageFromHtmlParamsType,
   options?: GetImageFromHtmlOptionsType,
-) => GetImageFromHtmlResType
+) => Promise<GetImageFromHtmlResType>
 
 const optionsDefault = {
   isProduction: true,
@@ -57,16 +77,19 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     width: widthIn,
     height: heightIn,
     scale,
-    style,
+    style: styleIn,
     scalingMode = ScalingModeEnum.deviceScaleFactor,
+    configsFilesToServe = [],
   }: GetImageFromHtmlParamsType,
   { isProduction }: GetImageFromHtmlOptionsType = optionsDefault,
 ) => {
-  const pathFileAbs = pathFileAbsIn ? pathFileAbsIn : join(__dirname, 'xxx.png')
+  let style = styleIn
+
+  const pathFileAbs = pathFileAbsIn ? pathFileAbsIn : join(__dirname, './__output__/temp.png')
 
   const browser = await chromium.launch({
     headless: isProduction,
-    args: [],
+    args: ['--allow-file-access-from-files', '--disable-web-security'],
   })
 
   const air = 4
@@ -86,6 +109,76 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   }
 
   const page = await browser.newPage(newPageConfig)
+
+  /* If we need to use local image files and serve them as base64 */
+  for await (const configFileToServe of configsFilesToServe) {
+    const { serveSourceFile, pathFileAbs, replacement } = configFileToServe
+    if (serveSourceFile === ServeSourceFileEnum.serveAsImage64) {
+      const imageBase64 = await getImageToBase64({ pathFileAbs })
+
+      /* 
+        Use case: background-image: url('data:image/png;base64,__IMAGE_BASE_64__');
+      */
+      style = getRestoredObject({
+        obj: styleIn,
+        source: {},
+        variablePrefix: '__VARIABLES__.',
+        replacements: {
+          [replacement]: imageBase64,
+        },
+      })
+    }
+  }
+
+  /* If we need to use local image files and serve them as files */
+  const configsFilesToServeAsFile = configsFilesToServe.filter(
+    (configFileToServe: ConfigFileToServeType) =>
+      configFileToServe.serveSourceFile === ServeSourceFileEnum.serveAsFile,
+  )
+
+  if (configsFilesToServeAsFile.length) {
+    /* If we need to serve local files with the local paths 
+     for the file with path /Users/admin/.../a1.png
+     one can use the in the code 
+     background-image: url('http://local-assets/a1.png');
+  */
+    const { promises: fsa } = await import('fs')
+
+    await page.route('http://local-assets/**', async (route) => {
+      const promises = []
+
+      for await (const configFileToServe of configsFilesToServeAsFile) {
+        const { pathFileAbs, replacement } = configFileToServe
+
+        const filename = basename(pathFileAbs)
+
+        /* 
+          Use case: background-image: url('http://local-assets/a1.png');
+        */
+        style = getRestoredObject({
+          obj: styleIn,
+          source: {},
+          variablePrefix: '__VARIABLES__.',
+          replacements: {
+            [replacement]: filename,
+          },
+        })
+
+        const image = await fsa.readFile(pathFileAbs)
+
+        console.log('getImageFromHtml [170]', route.request().url())
+
+        promises.push(
+          route.fulfill({
+            contentType: 'image/png',
+            body: image,
+          }),
+        )
+      }
+
+      await Promise.all(promises)
+    })
+  }
 
   const fullHtml = `
     <html lang="en">
@@ -151,7 +244,7 @@ export type {
   GetImageFromHtmlResType,
   GetImageFromHtmlType,
 }
-export { getImageFromHtml, ScalingModeEnum }
+export { getImageFromHtml, ScalingModeEnum, ServeSourceFileEnum }
 
 /**
  * @description Here the file is being run directly
