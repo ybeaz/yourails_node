@@ -1,4 +1,5 @@
 import { join } from 'node:path'
+import { getRestoredObject, ImageSizesStandardEnum } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner'
 import {
@@ -54,19 +55,36 @@ import {
 
       // options.isProduction = IS_PRODUCTION
 
-      params.configsFilesToServe = [
+      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_WIDTH
+      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_HEIGHT
+      const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_WIDTH
+      const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
+
+      params.style = getRestoredObject({
+        obj: params.style,
+        source: {},
+        variablePrefix: '__VARIABLES__.',
+        replacements: {
+          __WRAPPER_WIDTH__: `${WIDTH}`,
+          __WRAPPER_HEIGHT__: `${HEIGHT}`,
+        },
+      })
+      params.width = WIDTH
+      params.height = HEIGHT
+
+      options.configsFilesImagesToServe = [
         {
           serveSourceFile: ServeSourceFileEnum.serveAsImage64,
           pathFileAbs:
             '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
           replacement: '__IMAGE_BASE_64__',
         },
-        {
-          serveSourceFile: ServeSourceFileEnum.serveAsFile,
-          pathFileAbs:
-            '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
-          replacement: '__IMAGE_FILE_NAME__',
-        },
+        // {
+        //   serveSourceFile: ServeSourceFileEnum.serveAsFile,
+        //   pathFileAbs:
+        //     '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+        //   replacement: '__IMAGE_FILE_NAME__',
+        // },
       ]
 
       const output: string = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(

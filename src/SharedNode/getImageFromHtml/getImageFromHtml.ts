@@ -19,7 +19,7 @@ enum ScalingModeEnum {
   layout = 'layout',
 }
 
-export type ConfigFileToServeType = {
+export type ConfigFileImageToServeType = {
   serveSourceFile: ServeSourceFileEnum
   pathFileAbs: string
   replacement: string
@@ -33,11 +33,11 @@ type GetImageFromHtmlParamsType = {
   height: number
   scale: number
   scalingMode?: ScalingModeEnum
-  configsFilesToServe?: ConfigFileToServeType[]
 }
 
 type GetImageFromHtmlOptionsType = {
   isProduction: boolean
+  configsFilesImagesToServe?: ConfigFileImageToServeType[]
   funcParent?: string
 }
 
@@ -50,6 +50,7 @@ type GetImageFromHtmlType = (
 
 const optionsDefault = {
   isProduction: true,
+  configsFilesImagesToServe: [],
   funcParent: 'getImageFromHtml',
 } satisfies Required<GetImageFromHtmlOptionsType>
 
@@ -79,9 +80,8 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     scale,
     style: styleIn,
     scalingMode = ScalingModeEnum.deviceScaleFactor,
-    configsFilesToServe = [],
   }: GetImageFromHtmlParamsType,
-  { isProduction }: GetImageFromHtmlOptionsType = optionsDefault,
+  { isProduction, configsFilesImagesToServe = [] }: GetImageFromHtmlOptionsType = optionsDefault,
 ) => {
   let style = styleIn
 
@@ -111,8 +111,8 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   const page = await browser.newPage(newPageConfig)
 
   /* If we need to use local image files and serve them as base64 */
-  for await (const configFileToServe of configsFilesToServe) {
-    const { serveSourceFile, pathFileAbs, replacement } = configFileToServe
+  for await (const configFileImageToServe of configsFilesImagesToServe) {
+    const { serveSourceFile, pathFileAbs, replacement } = configFileImageToServe
     if (serveSourceFile === ServeSourceFileEnum.serveAsImage64) {
       const imageBase64 = await getImageToBase64({ pathFileAbs })
 
@@ -131,12 +131,14 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   }
 
   /* If we need to use local image files and serve them as files */
-  const configsFilesToServeAsFile = configsFilesToServe.filter(
-    (configFileToServe: ConfigFileToServeType) =>
-      configFileToServe.serveSourceFile === ServeSourceFileEnum.serveAsFile,
+  const configsFilesImagesToServeAsFile = configsFilesImagesToServe.filter(
+    (configFileImageToServe: ConfigFileImageToServeType) =>
+      configFileImageToServe.serveSourceFile === ServeSourceFileEnum.serveAsFile,
   )
 
-  if (configsFilesToServeAsFile.length) {
+  consoler('getImageFromHtml [140]', { configsFilesImagesToServeAsFile })
+
+  if (configsFilesImagesToServeAsFile.length) {
     /* If we need to serve local files with the local paths 
      for the file with path /Users/admin/.../a1.png
      one can use the in the code 
@@ -147,8 +149,8 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     await page.route('http://local-assets/**', async (route) => {
       const promises = []
 
-      for await (const configFileToServe of configsFilesToServeAsFile) {
-        const { pathFileAbs, replacement } = configFileToServe
+      for await (const configFileImageToServe of configsFilesImagesToServeAsFile) {
+        const { pathFileAbs, replacement } = configFileImageToServe
 
         const filename = basename(pathFileAbs)
 
