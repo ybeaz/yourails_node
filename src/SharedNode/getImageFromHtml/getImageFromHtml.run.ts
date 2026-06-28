@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { getRestoredObject, ImageSizesStandardEnum } from 'yourails_common'
+import { getDateString, getRestoredObject, ImageSizesStandardEnum } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner'
 import {
@@ -55,10 +55,33 @@ import {
 
       // options.isProduction = IS_PRODUCTION
 
-      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_WIDTH
-      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_HEIGHT
+      const dateString = getDateString({
+        timestamp: new Date(),
+        dash: true,
+        hours: true,
+        minutes: true,
+        seconds: true,
+        isUtcMethods: false,
+      })
+
       const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_WIDTH
       const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
+      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_WIDTH
+      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_HEIGHT
+
+      const TITLE_MAIN_FORMATTED = 'Python programming language. Strings'
+      const SUBTITLE_MAIN =
+        'Comprehensive guide to Python strings: creation, methods, formatting, and more.'
+
+      params.html = getRestoredObject({
+        obj: params.html,
+        source: {},
+        variablePrefix: '__VARIABLES__.',
+        replacements: {
+          __TITLE_MAIN_FORMATTED__: `${TITLE_MAIN_FORMATTED}`,
+          __DIV_SUBTITLE_MAIN__: '', // `<div class="h2">${SUBTITLE_MAIN}</div>`,
+        },
+      })
 
       params.style = getRestoredObject({
         obj: params.style,
@@ -71,6 +94,7 @@ import {
       })
       params.width = WIDTH
       params.height = HEIGHT
+      params.pathFileAbs = join(__dirname, '__output__', `t-${dateString}-image.png`)
 
       options.configsFilesImagesToServe = [
         {
@@ -87,15 +111,12 @@ import {
         // },
       ]
 
-      const output: string = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(
-        params,
-        options,
-      )
+      const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
 
-      consoler(`getImageFromHtml [90-${index}]`, {
+      consoler(`getImageFromHtml [120-${index}]`, {
         description,
         // params,
-        output: `${output.slice(1, 70)}...`,
+        output: `${output.imageBase64.slice(1, 70)}...`,
         expected,
         tested: JSON.stringify(output) === JSON.stringify(expected),
       })

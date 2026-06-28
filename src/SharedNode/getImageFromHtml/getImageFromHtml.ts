@@ -4,20 +4,12 @@ import {
   FuncModeEnumType,
   getDateString,
   getRestoredObject,
+  ScalingModeEnum,
+  ServeSourceFileEnum,
   withTryCatchFinallyWrapper,
 } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
-
-enum ServeSourceFileEnum {
-  serveAsFile = 'serveAsFile',
-  serveAsImage64 = 'serveAsImage64',
-}
-
-enum ScalingModeEnum {
-  deviceScaleFactor = 'deviceScaleFactor',
-  layout = 'layout',
-}
 
 export type ConfigFileImageToServeType = {
   serveSourceFile: ServeSourceFileEnum
@@ -41,7 +33,7 @@ type GetImageFromHtmlOptionsType = {
   funcParent?: string
 }
 
-type GetImageFromHtmlResType = string
+type GetImageFromHtmlResType = { imageBase64: string }
 
 type GetImageFromHtmlType = (
   params: GetImageFromHtmlParamsType,
@@ -136,8 +128,6 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
       configFileImageToServe.serveSourceFile === ServeSourceFileEnum.serveAsFile,
   )
 
-  consoler('getImageFromHtml [140]', { configsFilesImagesToServeAsFile })
-
   if (configsFilesImagesToServeAsFile.length) {
     /* If we need to serve local files with the local paths 
      for the file with path /Users/admin/.../a1.png
@@ -215,10 +205,10 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
 
   const imageBase64 = await getImageToBase64({ pathFileAbs })
 
-  return imageBase64
+  return { imageBase64 }
 }
 
-const resDefault: GetImageFromHtmlResType = ''
+const resDefault: GetImageFromHtmlResType = { imageBase64: '' }
 
 const getImageFromHtml = withTryCatchFinallyWrapper<
   GetImageFromHtmlParamsType,
