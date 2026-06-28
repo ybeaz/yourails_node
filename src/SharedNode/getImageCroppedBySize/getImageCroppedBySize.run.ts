@@ -1,5 +1,5 @@
 import { consoler } from '../consoler'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetImageCroppedBySizeCaseType, getImageCroppedBySize } from './getImageCroppedBySize'
 
 /**

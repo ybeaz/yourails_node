@@ -1,4 +1,4 @@
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetImageInfoCaseType, getImageInfo } from './getImageInfo'
 
 /**

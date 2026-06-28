@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { getDateString } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getReadFile2 } from '../getReadFile2/getReadFile2'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import {
   type GetImageBase64SavedToFileCaseType,
   getImageBase64SavedToFile,

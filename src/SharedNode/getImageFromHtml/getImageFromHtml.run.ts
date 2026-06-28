@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { getDateString, getRestoredObject, ImageSizesStandardEnum } from 'yourails_common'
 import { consoler } from '../consoler'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import {
   type GetImageFromHtmlCaseType,
   getImageFromHtml,

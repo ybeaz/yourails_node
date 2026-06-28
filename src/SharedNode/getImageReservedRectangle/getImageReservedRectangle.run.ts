@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { getDateString } from 'yourails_common'
 import { consoler } from '../consoler'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getSavedBase64ToFile } from '../getSavedBase64ToFile'
 import { getImageEdgeOffset } from './getImageEdgeOffset'
 import {
