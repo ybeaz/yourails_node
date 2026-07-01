@@ -79,7 +79,7 @@ import {
         variablePrefix: '__VARIABLES__.',
         replacements: {
           __TITLE_MAIN_FORMATTED__: `${TITLE_MAIN_FORMATTED}`,
-          __DIV_SUBTITLE_MAIN__: '', // `<div class="h2">${SUBTITLE_MAIN}</div>`,
+          __DIV_SUBTITLE_MAIN__: `<div class="h2">${SUBTITLE_MAIN}</div>`,
         },
       })
 

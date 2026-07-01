@@ -10,7 +10,7 @@ if (require.main === module) {
   void (async () => {
     const getTimeout = async (params: number, options: unknown) => await timeout(params)
 
-    const output: any = await getRunWithSpinner(getTimeout, 'processing...')(2000)
+    const output: any = await getRunWithSpinner(getTimeout, 'processing...', 'finished')(2000)
 
     consoler(`getRunWithSpinner [100`, {
       isTTY: process.stdout.isTTY,
