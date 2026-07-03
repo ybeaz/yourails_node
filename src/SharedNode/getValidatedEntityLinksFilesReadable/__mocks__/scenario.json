@@ -1,0 +1,194 @@
+{
+  "metaInfo": {
+    "promptStringDynamic": "Python programming language. Encapsulation",
+    "title": "Mastering Python Encapsulation Techniques",
+    "subTitle": "Learn how encapsulation secures and organizes your Python code effectively.",
+    "description": "Discover the power of Python encapsulation. Learn to bundle data with methods, use private and public attributes, and control access with getter and setter methods. Enhance your code's modularity, maintainability, and security by implementing encapsulation in Python classes.",
+    "tags": [
+      "Python",
+      "Encapsulation",
+      "Programming",
+      "Python Classes",
+      "Private Attributes",
+      "Public Attributes",
+      "Getter Methods",
+      "Setter Methods",
+      "Code Security",
+      "Software Development"
+    ],
+    "imageCharacterPropName": "The_Walking_Dead_Survivors_safe",
+    "voiceName": "am_michael",
+    "voiceSpeed": 0.95,
+    "pathFileAbsDescriptionExt": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/2026-07-01-13-23-28_descriptionExt.txt",
+    "pathFileAbsTitleRaw": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/ttl_2026-07-02-13-24-17_imageRaw.png",
+    "pathFileAbsTitle": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/ttl_2026-07-02-13-24-17_image.png",
+    "pathFileAbsThumbnail": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/thn_2026-07-02-13-24-17_image.png"
+  },
+  "scenes": [
+    {
+      "sceneIndex": 0,
+      "html": "__VARIABLES__.scenario.sceneFirst.html",
+      "style": "__VARIABLES__.scenario.sceneFirst.style",
+      "narrative": "__SCENE_0_NARRATIVE__",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_0_2026-07-02-13-41-09_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_0_2026-07-02-13-41-09_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_0_2026-07-01-13-51-56_audio.wav",
+      "durationAudio": 10.75
+    },
+    {
+      "sceneIndex": 1,
+      "title": "Understanding Encapsulation",
+      "summary": [
+        "Encapsulation bundles data and methods",
+        "Restricts access to certain components",
+        "Promotes organized code structure"
+      ],
+      "narrative": "Encapsulation in Python involves bundling data with methods to restrict access to certain components. This helps in maintaining an organized code structure.",
+      "htmlOverlays": [
+        {
+          "positionInRectangle": "BOTTOM_LEFT",
+          "html": "<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#005cc5\">class</span> \n<span style=\"color:#905\">Car</span>:<br>\n&nbsp;&nbsp;<span style=\"color:#005cc5\">def</span> \n<span style=\"color:#905\">__init__</span>(self):<br>\n&nbsp;&nbsp;&nbsp;&nbsp;self.<span style=\"color:#905\">\n_speed</span> = <span style=\"color:#905\">0</span><br>\n&nbsp;&nbsp;<span style=\"color:#005cc5\">def</span> \n<span style=\"color:#905\">set_speed</span>(self, speed):<br>\n&nbsp;&nbsp;&nbsp;&nbsp;self.<span style=\"color:#905\">\n_speed</span> = speed<br>\n&nbsp;&nbsp;<span style=\"color:#005cc5\">def</span> \n<span style=\"color:#905\">get_speed</span>(self):<br>\n&nbsp;&nbsp;&nbsp;&nbsp;<span style=\"color:#005cc5\">\nreturn</span> self.<span style=\"color:#905\">\n_speed</span><br>\n</span>",
+          "css": ""
+        }
+      ],
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_1_2026-07-01-20-01-48_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_1_2026-07-01-13-52-05_title.png",
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_1_2026-07-01-20-01-48_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_1_2026-07-01-13-52-05_audio.wav",
+      "durationAudio": 12.95
+    },
+    {
+      "sceneIndex": 2,
+      "title": "Private and Public Attributes",
+      "summary": [
+        "Use underscores for private attributes",
+        "Public attributes are directly accessible",
+        "Private attributes need controlled access"
+      ],
+      "narrative": "In Python, underscores are used to define private attributes, while public attributes can be accessed directly. Private attributes require controlled access to ensure data integrity.",
+      "htmlOverlays": [
+        {
+          "positionInRectangle": "TOP_RIGHT",
+          "html": "<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#005cc5\">class</span> \nMyClass:<br>&nbsp; \n<span style=\"color:#005cc5\">def</span> \n__init__(self):<br>&nbsp;&nbsp; \nself.public_attr = <span class=\"javastringcolor\" style=\"color:green\">\"I am public\"</span><br>&nbsp;&nbsp; \nself._private_attr = <span class=\"javastringcolor\" style=\"color:green\">\"I am private\"</span><br>&nbsp; \n<span style=\"color:#005cc5\">def</span> \nget_private(self):<br>&nbsp;&nbsp; \n<span style=\"color:#005cc5\">return</span> \nself._private_attr<br>\n</span>",
+          "css": ""
+        }
+      ],
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_2_2026-07-02-12-13-48_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_2_2026-07-01-13-52-32_title.png",
+        "2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_2_2026-07-02-12-05-16_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_2_2026-07-01-13-52-32_audio.wav",
+      "durationAudio": 14.8
+    },
+    {
+      "sceneIndex": 3,
+      "title": "Using Getter and Setter Methods",
+      "summary": [
+        "Control access to private attributes",
+        "Getters retrieve attribute values",
+        "Setters modify attribute values"
+      ],
+      "narrative": "Getter and setter methods are used to control access to private attributes. Getters retrieve values, while setters allow for modification, ensuring controlled interaction with data.",
+      "htmlOverlays": [
+        {
+          "positionInRectangle": "BOTTOM_LEFT",
+          "html": "<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#005cc5\">class</span> <span style=\"color:#905\">MyClass</span>:<br>\n&nbsp; <span style=\"color:#005cc5\">def</span> <span style=\"color:#905\">__init__</span>(<span style=\"color:#905\">self</span>):<br>\n&nbsp;&nbsp; <span style=\"color:#905\">self</span>._value = <span style=\"color:#905\">0</span><br>\n&nbsp; <span style=\"color:#005cc5\">def</span> <span style=\"color:#905\">get_value</span>(<span style=\"color:#905\">self</span>):<br>\n&nbsp;&nbsp; <span style=\"color:#005cc5\">return</span> <span style=\"color:#905\">self</span>._value<br>\n&nbsp; <span style=\"color:#005cc5\">def</span> <span style=\"color:#905\">set_value</span>(<span style=\"color:#905\">self</span>, <span style=\"color:#905\">val</span>):<br>\n&nbsp;&nbsp; <span style=\"color:#905\">self</span>._value = <span style=\"color:#905\">val</span><br>\n</span>",
+          "css": ""
+        }
+      ],
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_3_2026-07-01-20-02-26_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_3_2026-07-01-13-52-59_title.png",
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_3_2026-07-01-20-02-26_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_3_2026-07-01-13-52-59_audio.wav",
+      "durationAudio": 14.475
+    },
+    {
+      "sceneIndex": 4,
+      "title": "Benefits of Encapsulation",
+      "summary": [
+        "Enhances code modularity",
+        "Improves maintainability",
+        "Increases code security"
+      ],
+      "narrative": "Encapsulation enhances modularity and maintainability of code. It also increases security by restricting unauthorized access to certain components.",
+      "htmlOverlays": [
+        {
+          "positionInRectangle": "BOTTOM_LEFT",
+          "html": "<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#005cc5\">class</span> \n<span style=\"color:#905\">Car</span>:<br>\n&nbsp; <span style=\"color:#005cc5\">def</span> \n__init__(self):<br>\n&nbsp;&nbsp; self.__speed = \n<span style=\"color:#905\">0</span><br>\n&nbsp; <span style=\"color:#005cc5\">def</span> \nset_speed(self, speed):<br>\n&nbsp;&nbsp; self.__speed = speed<br>\n&nbsp; <span style=\"color:#005cc5\">def</span> \nget_speed(self):<br>\n&nbsp;&nbsp; <span style=\"color:#005cc5\">\nreturn</span> self.__speed<br>\n</span>",
+          "css": ""
+        }
+      ],
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_4_2026-07-02-11-48-45_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_4_2026-07-01-13-53-26_title.png",
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_4_2026-07-02-11-48-45_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_4_2026-07-01-13-53-26_audio.wav",
+      "durationAudio": 13.35
+    },
+    {
+      "sceneIndex": 5,
+      "title": "Encapsulation in Python Classes",
+      "summary": [
+        "Implemented using classes",
+        "Access modifiers manage visibility",
+        "Supports encapsulation principles"
+      ],
+      "narrative": "Encapsulation is implemented in Python using classes and access modifiers. These tools help manage visibility and support the principles of encapsulation effectively.",
+      "htmlOverlays": [
+        {
+          "positionInRectangle": "TOP_RIGHT",
+          "html": "<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#005cc5\">class</span> \n<span style=\"color:#905\">Car</span>:<br>\n&nbsp; <span style=\"color:#005cc5\">def</span> \n__init__(<span style=\"color:#905\">self</span>,<br>\n&nbsp;&nbsp;&nbsp; model):<br>\n&nbsp;&nbsp; <span style=\"color:#905\">self</span>._model = model<br>\n&nbsp; <span style=\"color:#005cc5\">def</span> \nget_model(<span style=\"color:#905\">self</span>):<br>\n&nbsp;&nbsp; <span style=\"color:#005cc5\">return</span> \n<span style=\"color:#905\">self</span>._model<br>\n</span>",
+          "css": ""
+        }
+      ],
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_5_2026-07-02-12-10-12_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_5_2026-07-01-13-53-56_title.png",
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_5_2026-07-02-12-10-12_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_5_2026-07-01-13-53-56_audio.wav",
+      "durationAudio": 14.25
+    },
+    {
+      "sceneIndex": 6,
+      "html": "__VARIABLES__.scenario.sceneLast.html",
+      "style": "__VARIABLES__.scenario.sceneLast.style",
+      "narrative": "__VARIABLES__.scenario.sceneLast.narrative",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathFileAbsImageFinal": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_6_2026-07-01-13-54-25_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_6_2026-07-01-13-54-25_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/__output__/2026-07-01-13-23-16-Mastering-python-encapsulation-techniques/s_6_2026-07-01-13-54-25_audio.wav",
+      "durationAudio": 18.65
+    }
+  ]
+}

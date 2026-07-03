@@ -50,7 +50,6 @@ const getImageNormalizedUnsafe = async (
     imageAspectRatio = ImageAspectRatioEnum['16:9_strech'],
   }: GetImageNormalizedOptionsType = optionsDefault,
 ) => {
-  consoler('getImageNormalized [55]', { pathFileAbsInput })
   await getEnsuredReadable({ pathFileAbsInput })
 
   // 1) copy input → *_raw
