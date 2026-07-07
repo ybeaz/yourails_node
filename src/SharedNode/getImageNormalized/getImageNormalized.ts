@@ -1,8 +1,8 @@
 import { copyFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
+import { FuncModeEnumType, ImageAspectRatioEnum, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from '../consoler'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getSpawnedProcess } from '../getSpawnedProcess/getSpawnedProcess'
 import { getEnsuredReadable } from './getEnsuredReadable'
 import { withRawSuffix } from './withRawSuffix'
@@ -10,8 +10,9 @@ import { withRawSuffix } from './withRawSuffix'
 type GetImageNormalizedParamsType = { pathFileAbsInput: string; pathFileAbsOutput: string }
 
 type GetImageNormalizedOptionsType = {
+  imageAspectRatio?: ImageAspectRatioEnum
   isQuiet?: boolean
-  isCopingRaw?: boolean
+  isCopyingRaw?: boolean
   funcParent?: string
 }
 
@@ -23,10 +24,13 @@ type GetImageNormalizedType = (
 ) => Promise<GetImageNormalizedResType>
 
 const optionsDefault = {
+  imageAspectRatio: ImageAspectRatioEnum.default,
   isQuiet: false,
-  isCopingRaw: false,
+  isCopyingRaw: false,
   funcParent: 'getImageNormalized',
 } satisfies Required<GetImageNormalizedOptionsType>
+
+const DEFAULT_SIZE = { w: 1536, h: 1024 } as const
 
 /**
  * @prompt Context: Javascript chanllendge
@@ -40,38 +44,57 @@ const optionsDefault = {
  */
 const getImageNormalizedUnsafe = async (
   { pathFileAbsInput, pathFileAbsOutput }: GetImageNormalizedParamsType,
-  { isQuiet, isCopingRaw = false }: GetImageNormalizedOptionsType = optionsDefault,
+  {
+    isQuiet,
+    isCopyingRaw = false,
+    imageAspectRatio = ImageAspectRatioEnum['16:9_strech'],
+  }: GetImageNormalizedOptionsType = optionsDefault,
 ) => {
   await getEnsuredReadable({ pathFileAbsInput })
-  /* not to use now, but possible
-   await getCheckedMagick() */
 
   // 1) copy input → *_raw
   let pathFileAbsOutputRaw = ''
-  if (isCopingRaw) {
+  if (isCopyingRaw) {
     pathFileAbsOutputRaw = withRawSuffix({ pathFileAbsInput })
     await copyFile(pathFileAbsInput, pathFileAbsOutputRaw)
   }
 
-  // 2) run magick pipeline
-  const args: string[] = [
-    '-quiet',
-    pathFileAbsInput,
-    '-auto-orient',
-    '-strip',
-    '-colorspace',
-    'sRGB',
-    '-resize',
-    '1536x1024',
-    '-background',
-    'white',
-    '-gravity',
-    'center',
-    '-extent',
-    '1536x1024',
-    pathFileAbsOutput,
-  ]
+  // 2) build magick args
+  const target =
+    imageAspectRatio === ImageAspectRatioEnum['16:9_crop'] || ImageAspectRatioEnum['16:9_strech']
+      ? { w: 1536, h: 864 }
+      : DEFAULT_SIZE
 
+  const sharedPrefix = ['-quiet', pathFileAbsInput, '-auto-orient', '-strip', '-colorspace', 'sRGB']
+
+  const RESIZE_DICT: Record<ImageAspectRatioEnum, string[]> = {
+    default: [
+      '-resize',
+      `${target.w}x${target.h}`,
+      '-background',
+      'white',
+      '-gravity',
+      'center',
+      '-extent',
+      `${target.w}x${target.h}`,
+    ],
+    '16:9_crop': [
+      '-resize',
+      `${Math.round(target.w * 1.15)}x${Math.round(target.h * 1.15)}`,
+      '-gravity',
+      'center',
+      '-crop',
+      `${target.w}x${target.h}+0+0`,
+      '+repage',
+    ],
+    '16:9_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
+  }
+
+  const resizeArgs = RESIZE_DICT[imageAspectRatio]
+
+  const args = [...sharedPrefix, ...resizeArgs, pathFileAbsOutput]
+
+  // 3) run magick pipeline
   await getSpawnedProcess({ cmd: 'magick', args }, { isQuiet })
 
   return { pathFileAbsOutputRaw, pathFileAbsOutput }
@@ -102,10 +125,14 @@ const getImageNormalizedTests: GetImageNormalizedTestType[] = [
   {
     description: 'basic test getImageNormalized',
     params: {
-      pathFileAbsInput: join(__dirname, '/__mocks__/test.png'),
-      pathFileAbsOutput: join(__dirname, '/__mocks__/test.png'),
+      pathFileAbsInput: join(__dirname, '/__mocks__/s_0_2026-06-14-08-58-46_image.png'),
+      pathFileAbsOutput: join(__dirname, '/__mocks__/s_0_2026-06-14-08-58-46_2_image.png'),
     },
-    options: { isQuiet: true, isCopingRaw: true },
+    options: {
+      isQuiet: true,
+      isCopyingRaw: true,
+      imageAspectRatio: ImageAspectRatioEnum['16:9_strech'],
+    },
     expected: {
       pathFileAbsOutputRaw:
         '/Users/admin/Dev/yourails_node/src/SharedNode/getImageNormalized/__mocks__/test_raw.png',

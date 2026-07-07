@@ -1,6 +1,6 @@
 {
   "name": "yourails_node",
-  "version": "0.20.3",
+  "version": "0.22.1",
   "author": "ybeaz",
   "private": false,
   "license": "MIT",
@@ -21,7 +21,10 @@
     "pubV2": "pnpm build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && npx npm publish --access public --registry=https://registry.npmjs.org/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git+https://github.com/ybeaz/yourails_common.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybeaz/yourails_common.git"
+  },
   "keywords": [],
   "bugs": {
     "url": "https://github.com/ybeaz/yourails_common/issues"
@@ -70,6 +73,7 @@
     "nanoid": "^3.3.11",
     "ncp": "^2.0.0",
     "node-base64-image": "^2.0.7",
+    "node-html-parser": "^7.1.0",
     "node-notifier": "^10.0.1",
     "os": "^0.1.2",
     "playwright": "^1.60.0",
@@ -141,6 +145,7 @@
     "terser-webpack-plugin": "^5.3.7",
     "thread-loader": "^4.0.1",
     "ts-jest": "28.0.2",
+    "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "uglify-js": "^3.19.3",
     "webpack": "^5.80.0",

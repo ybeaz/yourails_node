@@ -1,11 +1,17 @@
 import { join } from 'node:path'
+import { getDateString, getRestoredObject, ImageSizesStandardEnum } from 'yourails_common'
 import { consoler } from '../consoler'
-import { getRunWithSpinner } from '../getRunWithSpinner'
-import { type GetImageFromHtmlCaseType, getImageFromHtml } from './getImageFromHtml'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
+import {
+  type GetImageFromHtmlCaseType,
+  getImageFromHtml,
+  ServeSourceFileEnum,
+} from './getImageFromHtml'
 
 /**
  * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.run.ts
- */ ;(async () => {
+ */
+;(async () => {
   const getImageFromHtmlCases = await import('./getImageFromHtml.case').then(
     (m) => m.getImageFromHtmlCases,
   )
@@ -49,12 +55,68 @@ import { type GetImageFromHtmlCaseType, getImageFromHtml } from './getImageFromH
 
       // options.isProduction = IS_PRODUCTION
 
+      const dateString = getDateString({
+        timestamp: new Date(),
+        dash: true,
+        hours: true,
+        minutes: true,
+        seconds: true,
+        isUtcMethods: false,
+      })
+
+      const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_WIDTH
+      const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
+      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_WIDTH
+      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_HEIGHT
+
+      const TITLE_MAIN_FORMATTED = 'Python programming language. Strings'
+      const SUBTITLE_MAIN =
+        'Comprehensive guide to Python strings: creation, methods, formatting, and more.'
+
+      params.html = getRestoredObject({
+        obj: params.html,
+        source: {},
+        variablePrefix: '__VARIABLES__.',
+        replacements: {
+          __TITLE_MAIN_FORMATTED__: `${TITLE_MAIN_FORMATTED}`,
+          __DIV_SUBTITLE_MAIN__: `<div class="h2">${SUBTITLE_MAIN}</div>`,
+        },
+      })
+
+      params.style = getRestoredObject({
+        obj: params.style,
+        source: {},
+        variablePrefix: '__VARIABLES__.',
+        replacements: {
+          __WRAPPER_WIDTH__: `${WIDTH}`,
+          __WRAPPER_HEIGHT__: `${HEIGHT}`,
+        },
+      })
+      params.width = WIDTH
+      params.height = HEIGHT
+      params.pathFileAbs = join(__dirname, '__output__', `t-${dateString}-image.png`)
+
+      options.configsFilesImagesToServe = [
+        {
+          serveSourceFile: ServeSourceFileEnum.serveAsImage64,
+          pathFileAbs:
+            '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+          replacement: '__IMAGE_BASE_64__',
+        },
+        // {
+        //   serveSourceFile: ServeSourceFileEnum.serveAsFile,
+        //   pathFileAbs:
+        //     '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+        //   replacement: '__IMAGE_FILE_NAME__',
+        // },
+      ]
+
       const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
 
-      consoler(`getImageFromHtml [90-${index}]`, {
+      consoler(`getImageFromHtml [120-${index}]`, {
         description,
-        params,
-        output,
+        // params,
+        output: `${output.imageBase64.slice(1, 70)}...`,
         expected,
         tested: JSON.stringify(output) === JSON.stringify(expected),
       })

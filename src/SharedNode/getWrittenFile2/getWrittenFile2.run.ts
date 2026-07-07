@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { FileTypeEnum, getDateString } from 'yourails_common'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetWrittenFile2CaseType, getWrittenFile2 } from './getWrittenFile2'
 
 /**

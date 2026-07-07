@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { FileTypeEnum } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageCroppedBySize } from '../getImageCroppedBySize/getImageCroppedBySize'
-import { getRunWithSpinner } from '../getRunWithSpinner'
+import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getWrittenFile2 } from '../getWrittenFile2/getWrittenFile2'
 import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBase64'
 
