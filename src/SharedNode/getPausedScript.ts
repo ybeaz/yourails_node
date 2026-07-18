@@ -1,6 +1,6 @@
 import { createInterface } from 'readline'
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from './consoler'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type GetPausedScriptParamsType = { message?: string }
 
@@ -8,9 +8,10 @@ type GetPausedScriptOptionsType = { funcParent?: string }
 
 type GetPausedScriptResType = any
 
-interface GetPausedScriptType {
-  (params: GetPausedScriptParamsType, options?: GetPausedScriptOptionsType): GetPausedScriptResType
-}
+type GetPausedScriptType = (
+  params: GetPausedScriptParamsType,
+  options?: GetPausedScriptOptionsType,
+) => Promise<GetPausedScriptResType>
 
 const optionsDefault: Required<GetPausedScriptOptionsType> = {
   funcParent: 'getPausedScript',
@@ -59,13 +60,13 @@ const getPausedScript = withTryCatchFinallyWrapper(getPausedScriptUnsafe, {
   isFinally: false,
 })
 
-export { getPausedScript, getPausedScriptUnsafe }
 export type {
-  GetPausedScriptParamsType,
   GetPausedScriptOptionsType,
+  GetPausedScriptParamsType,
   GetPausedScriptResType,
   GetPausedScriptType,
 }
+export { getPausedScript, getPausedScriptUnsafe }
 
 /**
  * @description Here the file is being run directly
@@ -89,6 +90,7 @@ if (require.main === module) {
         output,
         tested: JSON.stringify(output) === JSON.stringify(expected),
       })
+      return null
     })
     await Promise.all(promises)
   })()

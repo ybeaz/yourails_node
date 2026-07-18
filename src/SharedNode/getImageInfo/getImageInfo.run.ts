@@ -1,13 +1,12 @@
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetImageInfoCaseType, getImageInfo } from './getImageInfo'
+import { getImageInfoCases } from './getImageInfo.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageInfo/getImageInfo.run.ts
  */
 if (require.main === module) {
   ;(async () => {
-    const getImageInfoCases = await import('./getImageInfo.case').then((m) => m.getImageInfoCases)
-
     const promises = getImageInfoCases.map(
       async ({ description, params, options, expected }: GetImageInfoCaseType, index: number) => {
         const output = await getRunWithSpinner(getImageInfo, 'Processing... ')(params, options)

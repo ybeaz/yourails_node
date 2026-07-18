@@ -5,6 +5,7 @@ import { getImageCroppedBySize } from '../getImageCroppedBySize/getImageCroppedB
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getWrittenFile2 } from '../getWrittenFile2/getWrittenFile2'
 import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBase64'
+import { getImageToBase64Cases } from './getImageToBase64.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageToBase64/getImageToBase64.run.ts
@@ -12,10 +13,6 @@ import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBas
  */
 if (require.main === module) {
   ;(async () => {
-    const getImageToBase64Cases = await import('./getImageToBase64.case').then(
-      (m) => m.getImageToBase64Cases,
-    )
-
     const promises = getImageToBase64Cases.map(
       async (
         { description, params, options, expected }: GetImageToBase64CaseType,

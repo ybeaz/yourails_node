@@ -8,16 +8,13 @@ import {
   type GetImageReservedRectangleCaseType,
   getImageReservedRectangle,
 } from './getImageReservedRectangle'
+import { getImageReservedRectangleCases } from './getImageReservedRectangle.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageReservedRectangle/getImageReservedRectangle.run.ts
  */
 if (require.main === module) {
   ;(async () => {
-    const getImageReservedRectangleCases = await import('./getImageReservedRectangle.case').then(
-      (m) => m.getImageReservedRectangleCases,
-    )
-
     const promises = getImageReservedRectangleCases.map(
       async (
         { description, params, options, expected }: GetImageReservedRectangleCaseType,

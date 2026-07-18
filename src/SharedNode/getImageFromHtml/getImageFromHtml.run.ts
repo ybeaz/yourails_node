@@ -7,15 +7,12 @@ import {
   getImageFromHtml,
   ServeSourceFileEnum,
 } from './getImageFromHtml'
+import { getImageFromHtmlCases } from './getImageFromHtml.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.run.ts
  */
 ;(async () => {
-  const getImageFromHtmlCases = await import('./getImageFromHtml.case').then(
-    (m) => m.getImageFromHtmlCases,
-  )
-
   const promises = getImageFromHtmlCases.map(
     async (
       {
@@ -55,15 +52,6 @@ import {
 
       // options.isProduction = IS_PRODUCTION
 
-      const dateString = getDateString({
-        timestamp: new Date(),
-        dash: true,
-        hours: true,
-        minutes: true,
-        seconds: true,
-        isUtcMethods: false,
-      })
-
       const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_WIDTH
       const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
       // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_WIDTH
@@ -80,36 +68,13 @@ import {
         replacements: {
           __TITLE_MAIN_FORMATTED__: `${TITLE_MAIN_FORMATTED}`,
           __DIV_SUBTITLE_MAIN__: `<div class="h2">${SUBTITLE_MAIN}</div>`,
+          __POSITION_IN_RECTANGLE_CSS__: `top: calc(40px); right: calc(40px);`,
+          __SNIPPET_HTML__: `<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#6a737d\"># Kubernetes Config</span><br>\n<span style=\"color:#005cc5\">apiVersion</span>:<br>\n&nbsp; <span style=\"color:green\">\"v1\"</span><br>\n<span style=\"color:#005cc5\">kind</span>:<br>\n&nbsp; <span style=\"color:green\">\"Pod\"</span><br>\n<span style=\"color:#005cc5\">metadata</span>:<br>\n&nbsp; <span style=\"color:#005cc5\">name</span>:<br>\n&nbsp;&nbsp; <span style=\"color:green\">\"myapp\"</span><br>\n</span>`,
         },
       })
 
-      params.style = getRestoredObject({
-        obj: params.style,
-        source: {},
-        variablePrefix: '__VARIABLES__.',
-        replacements: {
-          __WRAPPER_WIDTH__: `${WIDTH}`,
-          __WRAPPER_HEIGHT__: `${HEIGHT}`,
-        },
-      })
       params.width = WIDTH
       params.height = HEIGHT
-      params.pathFileAbs = join(__dirname, '__output__', `t-${dateString}-image.png`)
-
-      options.configsFilesImagesToServe = [
-        {
-          serveSourceFile: ServeSourceFileEnum.serveAsImage64,
-          pathFileAbs:
-            '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
-          replacement: '__IMAGE_BASE_64__',
-        },
-        // {
-        //   serveSourceFile: ServeSourceFileEnum.serveAsFile,
-        //   pathFileAbs:
-        //     '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
-        //   replacement: '__IMAGE_FILE_NAME__',
-        // },
-      ]
 
       const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
 

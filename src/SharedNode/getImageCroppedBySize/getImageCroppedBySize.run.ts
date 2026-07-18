@@ -1,6 +1,7 @@
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetImageCroppedBySizeCaseType, getImageCroppedBySize } from './getImageCroppedBySize'
+import { getImageCroppedBySizeCases } from './getImageCroppedBySize.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageCroppedBySize/getImageCroppedBySize.run.ts
@@ -8,10 +9,6 @@ import { type GetImageCroppedBySizeCaseType, getImageCroppedBySize } from './get
  */
 if (require.main === module) {
   ;(async () => {
-    const getImageCroppedBySizeCases = await import('./getImageCroppedBySize.case').then(
-      (m) => m.getImageCroppedBySizeCases,
-    )
-
     const promises = getImageCroppedBySizeCases.map(
       async (
         { description, params, options, expected }: GetImageCroppedBySizeCaseType,

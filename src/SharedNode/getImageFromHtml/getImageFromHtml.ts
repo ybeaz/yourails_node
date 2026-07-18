@@ -10,6 +10,7 @@ import {
 } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
+import { getPausedScript } from '../getPausedScript'
 
 export type ConfigFileImageToServeType = {
   serveSourceFile: ServeSourceFileEnum
@@ -19,7 +20,6 @@ export type ConfigFileImageToServeType = {
 
 type GetImageFromHtmlParamsType = {
   html: string
-  style: string
   pathFileAbs: string
   width: number
   height: number
@@ -65,17 +65,16 @@ const optionsDefault = {
  */
 const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   {
-    html,
+    html: htmlIn,
     pathFileAbs: pathFileAbsIn,
     width: widthIn,
     height: heightIn,
     scale,
-    style: styleIn,
     scalingMode = ScalingModeEnum.deviceScaleFactor,
   }: GetImageFromHtmlParamsType,
   { isProduction, configsFilesImagesToServe = [] }: GetImageFromHtmlOptionsType = optionsDefault,
 ) => {
-  let style = styleIn
+  let html = htmlIn
 
   const pathFileAbs = pathFileAbsIn ? pathFileAbsIn : join(__dirname, './__output__/temp.png')
 
@@ -111,8 +110,8 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
       /* 
         Use case: background-image: url('data:image/png;base64,__IMAGE_BASE_64__');
       */
-      style = getRestoredObject({
-        obj: styleIn,
+      html = getRestoredObject({
+        obj: htmlIn,
         source: {},
         variablePrefix: '__VARIABLES__.',
         replacements: {
@@ -147,8 +146,8 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
         /* 
           Use case: background-image: url('http://local-assets/a1.png');
         */
-        style = getRestoredObject({
-          obj: styleIn,
+        html = getRestoredObject({
+          obj: htmlIn,
           source: {},
           variablePrefix: '__VARIABLES__.',
           replacements: {
@@ -172,36 +171,23 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     })
   }
 
-  const fullHtml = `
-    <html lang="en">
-      <head>
-        <style>
-          body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: white;
-          }
-        </style>
-        ${style}
-      </head>
-      <body>
-        ${html}
-      </body>
-    </html>
-  `
-
-  await page.setContent(fullHtml, { waitUntil: 'networkidle' })
+  await page.setContent(html, { waitUntil: 'networkidle' })
 
   await page.screenshot({
     path: pathFileAbs,
     fullPage: false,
   })
 
-  if (isProduction) await browser.close()
+  if (!isProduction) {
+    await getPausedScript({ message: 'Press Enter to continue...' })
+
+    await page.screenshot({
+      path: pathFileAbs,
+      fullPage: false,
+    })
+  }
+
+  await browser.close()
 
   const imageBase64 = await getImageToBase64({ pathFileAbs })
 
