@@ -1,18 +1,19 @@
 import { join } from 'path'
-import { consoler } from './consoler'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
-import { getDateString } from 'yourails_common'
 import {
-  getArrayObjToArrayPrefix,
+  FuncModeEnumType,
   GetArrayObjToArrayPrefixParamsType,
   GetArrayObjToArrayPrefixResType,
+  getArrayObjToArrayPrefix,
+  getDateString,
+  withTryCatchFinallyWrapper,
 } from 'yourails_common'
+import { consoler } from './consoler'
 import {
-  getWrittenCsvFile,
-  GetWrittenCsvFileParamsType,
   GetWrittenCsvFileOptionsType,
+  GetWrittenCsvFileParamsType,
+  getWrittenCsvFile,
 } from './getWrittenCsvFile'
-import { getWrittenJsonFile, GetWrittenJsonFileParamsType } from './getWrittenJsonFile'
+import { GetWrittenJsonFileParamsType, getWrittenJsonFile } from './getWrittenJsonFile'
 
 type GetWrittenToFileWrapperParamsType = {
   dataArray: any[]
@@ -33,12 +34,10 @@ type GetWrittenToFileWrapperOptionsType = { funcParent?: string }
 
 type GetWrittenToFileWrapperResType = any
 
-interface GetWrittenToFileWrapperType {
-  (
-    params: GetWrittenToFileWrapperParamsType,
-    options?: GetWrittenToFileWrapperOptionsType,
-  ): GetWrittenToFileWrapperResType
-}
+type GetWrittenToFileWrapperType = (
+  params: GetWrittenToFileWrapperParamsType,
+  options?: GetWrittenToFileWrapperOptionsType,
+) => GetWrittenToFileWrapperResType
 
 const optionsDefault: Required<GetWrittenToFileWrapperOptionsType> = {
   funcParent: 'getWrittenToFileWrapper',
@@ -132,17 +131,17 @@ const getWrittenToFileWrapper = withTryCatchFinallyWrapper(getWrittenToFileWrapp
   isFinally: false,
 })
 
-export { getWrittenToFileWrapper, getWrittenToFileWrapperUnsafe }
 export type {
-  GetWrittenToFileWrapperParamsType,
   GetWrittenToFileWrapperOptionsType,
+  GetWrittenToFileWrapperParamsType,
   GetWrittenToFileWrapperResType,
   GetWrittenToFileWrapperType,
 }
+export { getWrittenToFileWrapper, getWrittenToFileWrapperUnsafe }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/Shared/getWrittenToFileWrapper.ts
+ * @run npx tsx src/SharedNode/getWrittenToFileWrapper/getWrittenToFileWrapper.ts
  */
 if (require.main === module) {
   ;(async () => {
@@ -154,10 +153,13 @@ if (require.main === module) {
     const examples: ExampleType[] = [
       {
         params: {
-          dataArray: [],
-          fileNameBody: '',
+          dataArray: [
+            { a: 1, b: 'b string', c: [1, 2, 3] },
+            { a: 2, b: 'b2 string', c: [2, 3, 4] },
+          ],
+          fileNameBody: 'xyz',
           baseDir: __dirname,
-          filePathParts: [],
+          filePathParts: ['__output__'],
           isWritingDataCsv: true,
           isWritingDataJson: true,
         },
@@ -175,6 +177,7 @@ if (require.main === module) {
         output,
         tested: JSON.stringify(output) === JSON.stringify(expected),
       })
+      return null
     })
     await Promise.all(promises)
   })()
