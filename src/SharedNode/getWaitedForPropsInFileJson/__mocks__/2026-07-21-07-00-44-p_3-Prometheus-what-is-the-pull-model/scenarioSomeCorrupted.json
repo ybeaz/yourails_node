@@ -1,0 +1,36 @@
+{
+  "metaInfo": {
+    "title": "Understanding Prometheus Pull Model"
+  },
+  "scenes": [
+    {
+      "sceneIndex": 1,
+      "title": "Introduction to Prometheus Toolkit",
+      "pathFileAbsImageRaw": "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_1_2026-07-21-08-26-50_imageRaw.png",
+      "pathFileAbsImageRawTxt": "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_1_2026-07-21-08-26-50_imageRaw.txt",
+      "pathFileAbsImageFinal": "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_1_2026-07-21-09-19-42_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_1_2026-07-21-08-26-50_title.png",
+        "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_1_2026-07-21-09-19-42_image_error.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_1_2026-07-21-08-26-50_audio.wav",
+      "durationAudio": 17.725
+    },
+    {
+      "sceneIndex": 7,
+      "html": "__VARIABLES__.scenario.sceneLast.html",
+      "style": "__VARIABLES__.scenario.sceneLast.style",
+      "narrative": "__VARIABLES__.scenario.sceneLast.narrative",
+      "pathFileAbsImageRaw": "",
+      "pathFileAbsImageRawTxt": "",
+      "pathFileAbsImageFinal": "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_7_2026-07-21-09-23-33_image.png",
+      "pathFileAbsImageFinalTxt": "",
+      "pathsFilesAbsImages": [
+        "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_7_2026-07-21-09-23-33_image.png"
+      ],
+      "pathFileAbsAudio": "/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForPropsInFileJson/__mocks__/2026-07-21-07-00-44-p_3-Prometheus-what-is-the-pull-model/s_7_2026-07-21-08-30-45_audio.wav",
+      "durationAudio": 16.375
+    }
+  ]
+}

@@ -21,7 +21,7 @@ describe('getWaitedForPropsInFileJson', () => {
     params,
     options,
     paramsWithAssignedDate,
-    expected: expectedIn,
+    expected,
   }: GetWaitedForPropsInFileJsonCaseType) => {
     let getWithDate = getWaitedForPropsInFileJson
     if (paramsWithAssignedDate?.timestamp)
@@ -30,11 +30,11 @@ describe('getWaitedForPropsInFileJson', () => {
     const output: ReturnType<typeof getWaitedForPropsInFileJson> = await (
       getWithDate as typeof getWaitedForPropsInFileJson
     )(params, options)
-    consoler('getWaitedForPropsInFileJson.test', { description, params, output })
-
-    const pathFileAbs = typeof expectedIn === 'string' ? expectedIn : ''
-
-    const expected = await getReadFile2({ pathFileAbs }, { typeFile: FileTypeEnum.json })
+    consoler('getWaitedForPropsInFileJson.test [33]', {
+      description,
+      // params,
+      output,
+    })
 
     await expect(output).toEqual(expected)
   })

@@ -1,0 +1,92 @@
+## Explore the fundamentals and benefits of Prometheus' pull model for monitoring.
+
+Discover how Prometheus' pull model revolutionizes monitoring by actively scraping targets. Learn about configuration, advantages, challenges, and real-world use cases. Enhance your monitoring strategy with centralized control and scalability.
+
+Chapters:
+
+### 00:00 Title Card
+
+### 00:10 Introduction to Prometheus Toolkit
+Summary:
+- Open-source monitoring solution
+- Designed for reliability and scalability
+- Supports alerting based on metrics
+- Integrates with various systemsPrometheus
+ Open-source
+ monitoring
+ solution
+ Reliable
+ Scalable
+ Alerting
+ Integrates
+
+### 00:30 Understanding the Pull Model
+Summary:
+- Prometheus scrapes targets actively
+- No need for agents on target systems
+- Targets expose metrics at endpoints
+- Centralized data collection approach// Prometheus Pull Model
+ prometheus.scrape(
+   target.endpoint()
+ );
+ // No agents needed
+ target.exposeMetrics();
+ // Centralized collection
+
+### 00:50 Configuring Scrape Targets
+Summary:
+- Define targets in configuration files
+- Use job labels for target grouping
+- Set scrape intervals and timeouts
+- Secure endpoints with authenticationscrape_configs:
+ - job_name: 'example'
+  static_configs:
+  - targets: ['localhost:9090']
+  labels:
+  group: 'production'
+  scrape_interval: '15s'
+  scrape_timeout: '10s'
+
+### 01:09 Benefits of the Pull Model
+Summary:
+- Centralized configuration management
+- Simplifies monitoring setup
+- Reduces dependency on target systems
+- Facilitates easy scaling// Benefits of Pull Model
+ centralizedConfig = true;
+ setup = simplified;
+ dependency = reduced;
+ scaling = easy;
+
+### 01:27 Challenges in the Pull Model
+Summary:
+- Potential network overhead
+- Scaling issues with numerous targets
+- Requires robust endpoint security
+- Complexity in dynamic environments// Challenges in the Pull Model
+ const challenges = [
+   "Network overhead",
+   "Scaling issues",
+   "Endpoint security",
+   "Dynamic complexity"
+ ];
+
+### 01:45 Real-World Use Cases
+Summary:
+- Monitoring cloud infrastructure
+- Tracking application performance
+- Observing containerized environments
+- Integrating with alerting systems// Real-World Use Cases
+ monitor cloud;
+ track app;
+ observe containers;
+ integrate alerts;
+
+### 02:03 End Card
+
+
+## Our contacts:
++1 415 650 9893
+contact@yourails.com
+Telegram: @rome_sfba
+web: https://yourails.com

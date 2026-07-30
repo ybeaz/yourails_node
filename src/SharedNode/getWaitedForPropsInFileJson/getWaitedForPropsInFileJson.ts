@@ -8,6 +8,7 @@ import {
 import { consoler } from '../consoler'
 import { getReadFile2 } from '../getReadFile2/getReadFile2'
 import { getWaitedForFile } from '../getWaitedForFile/getWaitedForFile'
+import { isDirectoryFile } from '../isDirectoryFile'
 
 /**
  * @prompt Context: Unit tests typescript challenge
@@ -35,7 +36,10 @@ type GetWaitedForPropsInFileJsonParamsType = {
 
 type GetWaitedForPropsInFileJsonOptionsType = { funcParent?: string }
 
-type GetWaitedForPropsInFileJsonResType = string | Error
+type GetWaitedForPropsInFileJsonResType = {
+  isSuccess: boolean
+  message: string
+}
 
 type GetWaitedForPropsInFileJsonType = (
   params: GetWaitedForPropsInFileJsonParamsType,
@@ -46,7 +50,10 @@ const optionsDefault = {
   funcParent: 'getWaitedForPropsInFileJson',
 } satisfies Required<GetWaitedForPropsInFileJsonOptionsType>
 
-const resDefault: GetWaitedForPropsInFileJsonResType = new Error()
+const resDefault: GetWaitedForPropsInFileJsonResType = {
+  isSuccess: true,
+  message: '',
+}
 
 /**
  * @description Function to getWaitedForPropsInFileJson
@@ -55,18 +62,15 @@ const resDefault: GetWaitedForPropsInFileJsonResType = new Error()
  * @test pnpm jest getWaitedForPropsInFileJson.test.ts --coverage --collectCoverageFrom="src/SharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.ts"
  *     params: { obj: { a: 1 }, objPropsPath: 'b' },
  */
-const getWaitedForPropsInFileJsonUnsafe: GetWaitedForPropsInFileJsonType = async (
-  {
-    pathFileAbs,
-    timeoutMs = 15000,
-    minSizeBytes = 2,
-    stableMs = 333,
-    objPropsPath,
-    propsArr,
-    comment,
-  }: GetWaitedForPropsInFileJsonParamsType,
-  options: GetWaitedForPropsInFileJsonOptionsType = optionsDefault,
-) => {
+const getWaitedForPropsInFileJsonUnsafe: GetWaitedForPropsInFileJsonType = async ({
+  pathFileAbs,
+  timeoutMs = 15000,
+  minSizeBytes = 2,
+  stableMs = 333,
+  objPropsPath,
+  propsArr,
+  comment,
+}: GetWaitedForPropsInFileJsonParamsType) => {
   await getWaitedForFile({
     pathFileAbs,
     timeoutMs,
@@ -77,36 +81,67 @@ const getWaitedForPropsInFileJsonUnsafe: GetWaitedForPropsInFileJsonType = async
 
   /* No props to check, file readiness is sufficient */
   if (!propsArr?.length) {
-    const entity: any = await getReadFile2({ pathFileAbs }, { typeFile: FileTypeEnum.json })
-    return entity
+    return {
+      isSuccess: true,
+      message: `✅ getWaitedForPropsInFileJson [80]: ${comment},\nno props specified: check propsArr\nscenario: ${pathFileAbs}`,
+    }
   }
+
+  const entity: any = await getReadFile2({ pathFileAbs }, { typeFile: FileTypeEnum.json })
 
   let countDown = timeoutMs
 
   while (countDown > 0) {
-    const entity: any = await getReadFile2({ pathFileAbs }, { typeFile: FileTypeEnum.json })
-
     const entitySlice: any = objPropsPath
       ? getObjectPropertyValue({ obj: entity, objPropsPath })
       : entity
 
-    // consoler('getWaitedForPropsInFileJson [88]', { entity })
-
     const items: any[] = Array.isArray(entitySlice) ? entitySlice : [entitySlice]
 
     const arePropsPresent = items.every((item: any) =>
-      propsArr.every((prop: string) => item[prop] !== undefined),
+      propsArr.every((prop: string) => {
+        return Array.isArray(item[prop]) ? item[prop].length : item[prop] !== undefined
+      }),
     )
 
-    if (arePropsPresent) return entity
+    if (arePropsPresent) {
+      const log: string[] = []
+
+      for await (const item of items) {
+        for await (const prop of propsArr) {
+          if (Array.isArray(item[prop])) {
+            for await (const value of item[prop]) {
+              const { isError, isExisting } = await isDirectoryFile({ path: value })
+              if (!isExisting || isError) log.push(value)
+            }
+          } else {
+            const { isError, isExisting } = await isDirectoryFile({ path: item[prop] })
+            if (!isExisting || isError) log.push(item[prop])
+          }
+        }
+      }
+
+      if (log.length) {
+        return {
+          isSuccess: false,
+          message: `❌ getWaitedForPropsInFileJson [120]: ${comment},\nscenario: ${pathFileAbs}\npathsAbs are not valid: ${log?.join(', ')}`,
+        }
+      }
+
+      return {
+        isSuccess: true,
+        message: `✅ getWaitedForPropsInFileJson [110]: ${comment}\nscenario: ${pathFileAbs}\nprops are ready: ${propsArr?.join(', ')}`,
+      }
+    }
 
     await timeout(stableMs)
     countDown -= stableMs
   }
 
-  throw new Error(
-    `❌ getWaitedForPropsInFileJson: ${comment}, never ready: ${propsArr?.join(', ')}`,
-  )
+  return {
+    isSuccess: false,
+    message: `❌ getWaitedForPropsInFileJson [120]: ${comment}\nscenario: ${pathFileAbs}\nprops are never ready: ${propsArr?.join(', ')}`,
+  }
 }
 
 const getWaitedForPropsInFileJson = withTryCatchFinallyWrapper<
