@@ -11,6 +11,20 @@
   "files": [
     "dist/**/*"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./consoler": {
+      "types": "./dist/SharedNode/consoler.d.ts",
+      "default": "./dist/SharedNode/consoler.js"
+    },
+    "./consolerError": {
+      "types": "./dist/SharedNode/consolerError.d.ts",
+      "default": "./dist/SharedNode/consolerError.js"
+    }
+  },
   "scripts": {
     "cleanCache": "pnpm cache clean --force",
     "removeCreateDist": "rm -rf dist && mkdir dist",

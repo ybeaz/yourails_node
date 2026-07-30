@@ -1,0 +1,105 @@
+1
+00:00:00,000 --> 00:00:08,450
+__SCENE_0_NARRATIVE__
+
+2
+00:00:10,450 --> 00:00:14,881
+Prometheus is an open-source toolkit used
+for monitoring and alerting. It is
+
+3
+00:00:14,881 --> 00:00:19,312
+designed to be reliable and scalable,
+supporting alerting based on collected
+
+4
+00:00:19,312 --> 00:00:23,743
+metrics. It integrates seamlessly with
+various systems to provide comprehensive
+
+5
+00:00:23,743 --> 00:00:28,175
+monitoring capabilities.
+
+6
+00:00:30,175 --> 00:00:34,663
+In the pull model, Prometheus actively
+scrapes targets without needing agents on
+
+7
+00:00:34,663 --> 00:00:39,151
+those systems. Targets expose their
+metrics at specific endpoints, allowing
+
+8
+00:00:39,151 --> 00:00:43,639
+Prometheus to collect data centrally. This
+approach simplifies monitoring by
+
+9
+00:00:43,639 --> 00:00:48,125
+centralizing data collection.
+
+10
+00:00:50,125 --> 00:00:55,808
+Scrape targets are defined in
+configuration files, where job labels help
+
+11
+00:00:55,808 --> 00:01:01,491
+group similar targets. Users can set
+specific scrape intervals and timeouts,
+
+12
+00:01:01,491 --> 00:01:07,175
+and secure endpoints using authentication
+to ensure data integrity and security.
+
+13
+00:01:09,175 --> 00:01:14,517
+The pull model offers centralized
+configuration management, simplifying the
+
+14
+00:01:14,517 --> 00:01:19,859
+monitoring setup. It reduces dependency on
+target systems and facilitates easy
+
+15
+00:01:19,859 --> 00:01:25,200
+scaling, making it an efficient choice for
+large-scale environments.
+
+16
+00:01:27,200 --> 00:01:31,363
+The pull model can introduce network
+overhead and scaling challenges when
+
+17
+00:01:31,363 --> 00:01:35,526
+dealing with numerous targets. It requires
+robust endpoint security and can become
+
+18
+00:01:35,526 --> 00:01:39,689
+complex in dynamic environments,
+necessitating careful planning and
+
+19
+00:01:39,689 --> 00:01:43,850
+management.
+
+20
+00:01:45,850 --> 00:01:51,158
+The pull model is effectively used in
+monitoring cloud infrastructure, tracking
+
+21
+00:01:51,158 --> 00:01:56,466
+application performance, and observing
+containerized environments. It integrates
+
+22
+00:01:56,466 --> 00:02:01,775
+well with alerting systems to provide
+real-time insights and notifications.

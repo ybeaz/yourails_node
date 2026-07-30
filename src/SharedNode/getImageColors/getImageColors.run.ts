@@ -1,6 +1,7 @@
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetImageColorsCaseType, getImageColors } from './getImageColors'
+import { getImageColorsCases } from './getImageColors.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageColors/getImageColors.run.ts
@@ -8,10 +9,6 @@ import { type GetImageColorsCaseType, getImageColors } from './getImageColors'
  */
 if (require.main === module) {
   ;(async () => {
-    const getImageColorsCases = await import('./getImageColors.case').then(
-      (m) => m.getImageColorsCases,
-    )
-
     const promises = getImageColorsCases.map(
       async ({ description, params, options, expected }: GetImageColorsCaseType, index: number) => {
         const output = await getRunWithSpinner(getImageColors, 'Processing... ')(params, options)

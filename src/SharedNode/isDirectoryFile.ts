@@ -1,6 +1,6 @@
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from './consoler'
 import { consolerError } from './consolerError'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type IsDirectoryFileParamsType = { path: string }
 type IsDirectoryFileResType = {
@@ -10,9 +10,7 @@ type IsDirectoryFileResType = {
   isFile: boolean
 }
 
-interface IsDirectoryFileType {
-  ({ path }: IsDirectoryFileParamsType): IsDirectoryFileResType
-}
+type IsDirectoryFileType = ({ path }: IsDirectoryFileParamsType) => IsDirectoryFileResType
 
 /**
  * @description Function to isDirectoryFile
@@ -47,6 +45,7 @@ const isDirectoryFileUnsafe: IsDirectoryFileType = ({
       output = { isError: true, isExisting: false, isDirectory: false, isFile: false }
     }
   } finally {
+    // biome-ignore lint/correctness/noUnsafeFinally: intentional return of accumulated output
     return output
   }
 }
@@ -58,13 +57,9 @@ const isDirectoryFile = withTryCatchFinallyWrapper(isDirectoryFileUnsafe, {
   funcMode: FuncModeEnumType.server,
 })
 
-export {
-  isDirectoryFile,
-  IsDirectoryFileParamsType,
-  IsDirectoryFileResType,
-  IsDirectoryFileType,
-  isDirectoryFileUnsafe,
-}
+export type { IsDirectoryFileParamsType, IsDirectoryFileResType, IsDirectoryFileType }
+
+export { isDirectoryFile, isDirectoryFileUnsafe }
 
 /**
  * @description Here the file is being run directly

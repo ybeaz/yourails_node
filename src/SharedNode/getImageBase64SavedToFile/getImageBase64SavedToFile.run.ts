@@ -7,16 +7,13 @@ import {
   type GetImageBase64SavedToFileCaseType,
   getImageBase64SavedToFile,
 } from './getImageBase64SavedToFile'
+import { getImageBase64SavedToFileCases } from './getImageBase64SavedToFile.case'
 
 /**
  * @run npx tsx src/SharedNode/getImageBase64SavedToFile/getImageBase64SavedToFile.run.ts
  */
 if (require.main === module) {
   ;(async () => {
-    const getImageBase64SavedToFileCases = await import('./getImageBase64SavedToFile.case').then(
-      (m) => m.getImageBase64SavedToFileCases,
-    )
-
     const promises = getImageBase64SavedToFileCases.map(
       async (
         { description, params, options, expected }: GetImageBase64SavedToFileCaseType,

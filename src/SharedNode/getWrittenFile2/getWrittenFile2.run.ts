@@ -3,16 +3,13 @@ import { FileTypeEnum, getDateString } from 'yourails_common'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { type GetWrittenFile2CaseType, getWrittenFile2 } from './getWrittenFile2'
+import { getWrittenFile2Cases } from './getWrittenFile2.case'
 
 /**
  * @run npx tsx src/SharedNode/getWrittenFile2/getWrittenFile2.run.ts
  */
 if (require.main === module) {
   void (async () => {
-    const getWrittenFile2Cases = await import('./getWrittenFile2.case').then(
-      (m) => m.getWrittenFile2Cases,
-    )
-
     const promises = getWrittenFile2Cases.map(
       async (
         { description, params, options = {}, expected }: GetWrittenFile2CaseType,
