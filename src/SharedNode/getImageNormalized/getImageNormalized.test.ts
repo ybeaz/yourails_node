@@ -1,4 +1,4 @@
-import { expect, describe, it } from '@jest/globals'
+import { describe, expect, it } from '@jest/globals'
 import { getDateWithTime, withAssignedDate } from 'yourails_common'
 import { consoler } from '../consoler'
 import {
@@ -23,7 +23,7 @@ describe('getImageNormalized', () => {
     expected,
   }: GetImageNormalizedTestType) => {
     let getWithDate = getImageNormalized
-    if (paramsWithAssignedDate && paramsWithAssignedDate.timestamp)
+    if (paramsWithAssignedDate?.timestamp)
       getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
     let output: ReturnType<typeof getImageNormalized> = await (

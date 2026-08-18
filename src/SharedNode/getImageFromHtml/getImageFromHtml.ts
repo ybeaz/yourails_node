@@ -5,17 +5,17 @@ import {
   getDateString,
   getRestoredObject,
   ScalingModeEnum,
-  ServeSourceFileEnum,
+  ServeSourceForReplacementEnum,
   withTryCatchFinallyWrapper,
 } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getPausedScript } from '../getPausedScript'
 
-export type ConfigFileImageToServeType = {
-  serveSourceFile: ServeSourceFileEnum
-  pathFileAbs: string
-  replacement: string
+export type configsSourceToServeType = {
+  serveSourceAsFor: ServeSourceForReplacementEnum
+  source: string
+  replacementName: string
 }
 
 type GetImageFromHtmlParamsType = {
@@ -29,7 +29,7 @@ type GetImageFromHtmlParamsType = {
 
 type GetImageFromHtmlOptionsType = {
   isProduction: boolean
-  configsFilesImagesToServe?: ConfigFileImageToServeType[]
+  configsSourceToServe?: configsSourceToServeType[]
   funcParent?: string
 }
 
@@ -42,7 +42,7 @@ type GetImageFromHtmlType = (
 
 const optionsDefault = {
   isProduction: true,
-  configsFilesImagesToServe: [],
+  configsSourceToServe: [],
   funcParent: 'getImageFromHtml',
 } satisfies Required<GetImageFromHtmlOptionsType>
 
@@ -72,7 +72,7 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     scale,
     scalingMode = ScalingModeEnum.deviceScaleFactor,
   }: GetImageFromHtmlParamsType,
-  { isProduction, configsFilesImagesToServe = [] }: GetImageFromHtmlOptionsType = optionsDefault,
+  { isProduction, configsSourceToServe = [] }: GetImageFromHtmlOptionsType = optionsDefault,
 ) => {
   let html = htmlIn
 
@@ -100,31 +100,41 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   }
 
   const page = await browser.newPage(newPageConfig)
+  const replacements: any = {}
 
-  /* If we need to use local image files and serve them as base64 */
-  for await (const configFileImageToServe of configsFilesImagesToServe) {
-    const { serveSourceFile, pathFileAbs, replacement } = configFileImageToServe
-    if (serveSourceFile === ServeSourceFileEnum.serveAsImage64) {
-      const imageBase64 = await getImageToBase64({ pathFileAbs })
+  for await (const configSourceToServe of configsSourceToServe) {
+    const { serveSourceAsFor, replacementName, source } = configSourceToServe
 
-      /* 
+    /* If we need to make a basic string replacement */
+    if (serveSourceAsFor === ServeSourceForReplacementEnum.serveStringAsString) {
+      replacements[replacementName] = source
+    } else if (serveSourceAsFor === ServeSourceForReplacementEnum.serveImagePathAsImage64) {
+      /* If we need to use local image files and serve them as base64 */
+      const imageBase64 = await getImageToBase64({ pathFileAbs: source })
+
+      /*
         Use case: background-image: url('data:image/png;base64,__IMAGE_BASE_64__');
       */
-      html = getRestoredObject({
-        obj: htmlIn,
-        source: {},
-        variablePrefix: '__VARIABLES__.',
-        replacements: {
-          [replacement]: imageBase64,
-        },
-      })
+      replacements[replacementName] = imageBase64
     }
   }
 
+  consoler('getImageFromHtml [120]', {
+    replacements,
+  })
+
+  html = getRestoredObject({
+    obj: htmlIn,
+    source: {},
+    variablePrefix: '__VARIABLES__.',
+    replacements,
+  })
+
   /* If we need to use local image files and serve them as files */
-  const configsFilesImagesToServeAsFile = configsFilesImagesToServe.filter(
-    (configFileImageToServe: ConfigFileImageToServeType) =>
-      configFileImageToServe.serveSourceFile === ServeSourceFileEnum.serveAsFile,
+  const configsFilesImagesToServeAsFile = configsSourceToServe.filter(
+    (configSourceToServe: configsSourceToServeType) =>
+      configSourceToServe.serveSourceAsFor ===
+      ServeSourceForReplacementEnum.serveImagePathAsPathname,
   )
 
   if (configsFilesImagesToServeAsFile.length) {
@@ -138,20 +148,20 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     await page.route('http://local-assets/**', async (route) => {
       const promises = []
 
-      for await (const configFileImageToServe of configsFilesImagesToServeAsFile) {
-        const { pathFileAbs, replacement } = configFileImageToServe
+      for await (const configSourceToServe of configsFilesImagesToServeAsFile) {
+        const { source, replacementName } = configSourceToServe
 
-        const filename = basename(pathFileAbs)
+        const filename = basename(source)
 
         /* 
           Use case: background-image: url('http://local-assets/a1.png');
         */
         html = getRestoredObject({
-          obj: htmlIn,
+          obj: html,
           source: {},
           variablePrefix: '__VARIABLES__.',
           replacements: {
-            [replacement]: filename,
+            [replacementName]: filename,
           },
         })
 
@@ -222,7 +232,7 @@ export type {
   GetImageFromHtmlResType,
   GetImageFromHtmlType,
 }
-export { getImageFromHtml, ScalingModeEnum, ServeSourceFileEnum }
+export { getImageFromHtml, ScalingModeEnum }
 
 /**
  * @description Here the file is being run directly

@@ -1,6 +1,11 @@
 import { copyFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { FuncModeEnumType, ImageAspectRatioEnum, withTryCatchFinallyWrapper } from 'yourails_common'
+import {
+  FuncModeEnumType,
+  ImageAspectRatioEnum,
+  ImageSizesStandardEnum,
+  withTryCatchFinallyWrapper,
+} from 'yourails_common'
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getSpawnedProcess } from '../getSpawnedProcess/getSpawnedProcess'
@@ -30,13 +35,12 @@ const optionsDefault = {
   funcParent: 'getImageNormalized',
 } satisfies Required<GetImageNormalizedOptionsType>
 
-const DEFAULT_SIZE = { w: 1536, h: 1024 } as const
+const DEFAULT_SIZE = {
+  w: 1536,
+  h: 864,
+} as const
 
-/**
- * @prompt Context: Javascript chanllendge
- *         Question: Suggest unit test data to test the function with the description below
- *         Format: Follow the format of the array of test-objects below
- */
+const resDefault: GetImageNormalizedResType = { pathFileAbsOutputRaw: '', pathFileAbsOutput: '' }
 
 /**
  * @description Function to getImageNormalized
@@ -52,18 +56,40 @@ const getImageNormalizedUnsafe = async (
 ) => {
   await getEnsuredReadable({ pathFileAbsInput })
 
-  // 1) copy input → *_raw
+  /* 1) copy input → *_raw */
   let pathFileAbsOutputRaw = ''
   if (isCopyingRaw) {
     pathFileAbsOutputRaw = withRawSuffix({ pathFileAbsInput })
     await copyFile(pathFileAbsInput, pathFileAbsOutputRaw)
   }
 
-  // 2) build magick args
-  const target =
-    imageAspectRatio === ImageAspectRatioEnum['16:9_crop'] || ImageAspectRatioEnum['16:9_strech']
-      ? { w: 1536, h: 864 }
-      : DEFAULT_SIZE
+  /* 2) build magick args */
+  const isLandscape =
+    imageAspectRatio === ImageAspectRatioEnum['16:9_crop'] ||
+    imageAspectRatio === ImageAspectRatioEnum['16:9_strech']
+  const isPortrait =
+    imageAspectRatio === ImageAspectRatioEnum['9:16_crop'] ||
+    imageAspectRatio === ImageAspectRatioEnum['9:16_strech']
+  const isSquare =
+    imageAspectRatio === ImageAspectRatioEnum['1:1_crop'] ||
+    imageAspectRatio === ImageAspectRatioEnum['1:1_strech']
+
+  const target = isLandscape
+    ? {
+        w: ImageSizesStandardEnum.LANDSCAPE_16x9_WIDTH_L,
+        h: ImageSizesStandardEnum.LANDSCAPE_16x9_HEIGHT_L,
+      }
+    : isPortrait
+      ? {
+          w: ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_L,
+          h: ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_L,
+        }
+      : isSquare
+        ? {
+            w: ImageSizesStandardEnum.SQUARE_1x1_WIDTH,
+            h: ImageSizesStandardEnum.SQUARE_1x1_HEIGHT,
+          }
+        : DEFAULT_SIZE
 
   const sharedPrefix = ['-quiet', pathFileAbsInput, '-auto-orient', '-strip', '-colorspace', 'sRGB']
 
@@ -88,19 +114,37 @@ const getImageNormalizedUnsafe = async (
       '+repage',
     ],
     '16:9_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
+    '9:16_crop': [
+      '-resize',
+      `${Math.round(target.w * 1.15)}x${Math.round(target.h * 1.15)}`,
+      '-gravity',
+      'center',
+      '-crop',
+      `${target.w}x${target.h}+0+0`,
+      '+repage',
+    ],
+    '9:16_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
+    '1:1_crop': [
+      '-resize',
+      `${Math.round(target.w * 1.15)}x${Math.round(target.h * 1.15)}`,
+      '-gravity',
+      'center',
+      '-crop',
+      `${target.w}x${target.h}+0+0`,
+      '+repage',
+    ],
+    '1:1_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
   }
 
   const resizeArgs = RESIZE_DICT[imageAspectRatio]
 
   const args = [...sharedPrefix, ...resizeArgs, pathFileAbsOutput]
 
-  // 3) run magick pipeline
+  /* 3) run magick pipeline */
   await getSpawnedProcess({ cmd: 'magick', args }, { isQuiet })
 
   return { pathFileAbsOutputRaw, pathFileAbsOutput }
 }
-
-const resDefault: GetImageNormalizedResType = { pathFileAbsOutputRaw: '', pathFileAbsOutput: '' }
 
 const getImageNormalized = withTryCatchFinallyWrapper<
   GetImageNormalizedParamsType,
@@ -125,13 +169,13 @@ const getImageNormalizedTests: GetImageNormalizedTestType[] = [
   {
     description: 'basic test getImageNormalized',
     params: {
-      pathFileAbsInput: join(__dirname, '/__mocks__/s_0_2026-06-14-08-58-46_image.png'),
-      pathFileAbsOutput: join(__dirname, '/__mocks__/s_0_2026-06-14-08-58-46_2_image.png'),
+      pathFileAbsInput: join(__dirname, '/__mocks__/s_5_2026-07-30-17-11-11_image.png'),
+      pathFileAbsOutput: join(__dirname, '/__mocks__/s_5_2026-07-30-17-11-11_image_2.png'),
     },
     options: {
       isQuiet: true,
       isCopyingRaw: true,
-      imageAspectRatio: ImageAspectRatioEnum['16:9_strech'],
+      imageAspectRatio: ImageAspectRatioEnum['9:16_strech'],
     },
     expected: {
       pathFileAbsOutputRaw:
