@@ -1,10 +1,13 @@
-import { getCreatedSitemapXml, GetCreatedSitemapXmlParamsType } from 'yourails_common'
 import {
-  getMinifiedBundle,
-  GetMinifiedBundleParamsType,
+  GetCreatedSitemapXmlParamsType,
+  getCreatedSitemapXml,
+  NodeEnvEnumType,
+} from 'yourails_common'
+import {
   GetMinifiedBundleOptionsType,
+  GetMinifiedBundleParamsType,
+  getMinifiedBundle,
 } from './getMinifiedBundle'
-import { NodeEnvEnumType } from 'yourails_common'
 
 type GetWrittenSiteMapParamsType = {
   baseUrl: string

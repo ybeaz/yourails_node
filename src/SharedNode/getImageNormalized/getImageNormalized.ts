@@ -51,7 +51,7 @@ const getImageNormalizedUnsafe = async (
   {
     isQuiet,
     isCopyingRaw = false,
-    imageAspectRatio = ImageAspectRatioEnum['16:9_strech'],
+    imageAspectRatio = ImageAspectRatioEnum['16x9_strech'],
   }: GetImageNormalizedOptionsType = optionsDefault,
 ) => {
   await getEnsuredReadable({ pathFileAbsInput })
@@ -65,14 +65,14 @@ const getImageNormalizedUnsafe = async (
 
   /* 2) build magick args */
   const isLandscape =
-    imageAspectRatio === ImageAspectRatioEnum['16:9_crop'] ||
-    imageAspectRatio === ImageAspectRatioEnum['16:9_strech']
+    imageAspectRatio === ImageAspectRatioEnum['16x9_crop'] ||
+    imageAspectRatio === ImageAspectRatioEnum['16x9_strech']
   const isPortrait =
-    imageAspectRatio === ImageAspectRatioEnum['9:16_crop'] ||
-    imageAspectRatio === ImageAspectRatioEnum['9:16_strech']
+    imageAspectRatio === ImageAspectRatioEnum['9x16_crop'] ||
+    imageAspectRatio === ImageAspectRatioEnum['9x16_strech']
   const isSquare =
-    imageAspectRatio === ImageAspectRatioEnum['1:1_crop'] ||
-    imageAspectRatio === ImageAspectRatioEnum['1:1_strech']
+    imageAspectRatio === ImageAspectRatioEnum['1x1_crop'] ||
+    imageAspectRatio === ImageAspectRatioEnum['1x1_strech']
 
   const target = isLandscape
     ? {
@@ -104,7 +104,7 @@ const getImageNormalizedUnsafe = async (
       '-extent',
       `${target.w}x${target.h}`,
     ],
-    '16:9_crop': [
+    '16x9_crop': [
       '-resize',
       `${Math.round(target.w * 1.15)}x${Math.round(target.h * 1.15)}`,
       '-gravity',
@@ -113,8 +113,8 @@ const getImageNormalizedUnsafe = async (
       `${target.w}x${target.h}+0+0`,
       '+repage',
     ],
-    '16:9_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
-    '9:16_crop': [
+    '16x9_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
+    '9x16_crop': [
       '-resize',
       `${Math.round(target.w * 1.15)}x${Math.round(target.h * 1.15)}`,
       '-gravity',
@@ -123,8 +123,8 @@ const getImageNormalizedUnsafe = async (
       `${target.w}x${target.h}+0+0`,
       '+repage',
     ],
-    '9:16_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
-    '1:1_crop': [
+    '9x16_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
+    '1x1_crop': [
       '-resize',
       `${Math.round(target.w * 1.15)}x${Math.round(target.h * 1.15)}`,
       '-gravity',
@@ -133,7 +133,7 @@ const getImageNormalizedUnsafe = async (
       `${target.w}x${target.h}+0+0`,
       '+repage',
     ],
-    '1:1_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
+    '1x1_strech': ['-resize', `${target.w}x${target.h}!`, '+repage'],
   }
 
   const resizeArgs = RESIZE_DICT[imageAspectRatio]
@@ -175,7 +175,7 @@ const getImageNormalizedTests: GetImageNormalizedTestType[] = [
     options: {
       isQuiet: true,
       isCopyingRaw: true,
-      imageAspectRatio: ImageAspectRatioEnum['9:16_strech'],
+      imageAspectRatio: ImageAspectRatioEnum['9x16_strech'],
     },
     expected: {
       pathFileAbsOutputRaw:

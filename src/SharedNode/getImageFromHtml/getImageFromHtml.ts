@@ -1,4 +1,8 @@
+import { exec } from 'node:child_process'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
+import { promisify } from 'node:util'
+import open from 'open'
 import { chromium } from 'playwright'
 import {
   FuncModeEnumType,
@@ -11,6 +15,8 @@ import {
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getPausedScript } from '../getPausedScript'
+
+const execAsync = promisify(exec)
 
 export type configsSourceToServeType = {
   serveSourceAsFor: ServeSourceForReplacementEnum
@@ -29,6 +35,7 @@ type GetImageFromHtmlParamsType = {
 
 type GetImageFromHtmlOptionsType = {
   isProduction: boolean
+  isPreview?: boolean
   configsSourceToServe?: configsSourceToServeType[]
   funcParent?: string
 }
@@ -42,6 +49,7 @@ type GetImageFromHtmlType = (
 
 const optionsDefault = {
   isProduction: true,
+  isPreview: false,
   configsSourceToServe: [],
   funcParent: 'getImageFromHtml',
 } satisfies Required<GetImageFromHtmlOptionsType>
@@ -72,7 +80,11 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     scale,
     scalingMode = ScalingModeEnum.deviceScaleFactor,
   }: GetImageFromHtmlParamsType,
-  { isProduction, configsSourceToServe = [] }: GetImageFromHtmlOptionsType = optionsDefault,
+  {
+    isProduction,
+    isPreview = false,
+    configsSourceToServe = [],
+  }: GetImageFromHtmlOptionsType = optionsDefault,
 ) => {
   let html = htmlIn
 
@@ -118,10 +130,6 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
       replacements[replacementName] = imageBase64
     }
   }
-
-  consoler('getImageFromHtml [120]', {
-    replacements,
-  })
 
   html = getRestoredObject({
     obj: htmlIn,
@@ -179,6 +187,42 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
 
       await Promise.all(promises)
     })
+  }
+
+  if (isPreview) {
+    const previewDir = join(__dirname, '__preview__')
+    mkdirSync(previewDir, { recursive: true })
+
+    const previewWrapperHtml = `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <style>
+          body {
+            margin: 0;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+          }
+          iframe {
+            width: ${width}px;
+            height: ${height}px;
+            border: 1px solid #000;
+          }
+        </style>
+      </head>
+      <body>
+        <iframe src="slide.html" title="iframe"></iframe>
+      </body>
+      </html>`
+
+    writeFileSync(join(previewDir, 'slide.html'), html)
+    writeFileSync(join(previewDir, 'preview.html'), previewWrapperHtml)
+
+    await open(join(previewDir, 'preview.html'))
+
+    await getPausedScript({ message: 'Press Enter to continue...' })
   }
 
   await page.setContent(html, { waitUntil: 'networkidle' })

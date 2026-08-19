@@ -58,23 +58,10 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
       // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
       // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_16x9_WIDTH
       // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_16x9_HEIGHT
-      const WIDTH: number = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_L
-      const HEIGHT: number = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_L
-
-      // const TITLE_MAIN_FORMATTED = 'Python programming language. Strings'
-      // const SUBTITLE_MAIN =
-      //   'Comprehensive guide to Python strings: creation, methods, formatting, and more.'
-
-      // params.html = getRestoredObject({
-      //   obj: params.html,
-      //   source: {},
-      //   variablePrefix: '__VARIABLES__.',
-      //   replacements: {
-      //     __TITLE_MAIN_FORMATTED__: `${TITLE_MAIN_FORMATTED}`,
-      //     __DIV_SUBTITLE_MAIN__: `<div class="h2">${SUBTITLE_MAIN}</div>`,
-      //     __POSITION_IN_RECTANGLE_CSS__: `top: calc(40px); right: calc(40px);`,
-      //   },
-      // })
+      // const WIDTH: number = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_L
+      // const HEIGHT: number = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_L
+      const WIDTH = 550
+      const HEIGHT = 980
 
       params.width = WIDTH
       params.height = HEIGHT
