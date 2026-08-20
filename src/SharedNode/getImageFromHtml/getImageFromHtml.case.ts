@@ -2,6 +2,8 @@ import { join } from 'node:path'
 import {
   getDateString,
   ImageSizesStandardEnum,
+  POSITIONS_IN_RECTANGULAR_CSS_DICT,
+  type PositionInRectangleKeysType,
   ScalingModeEnum,
   ServeSourceForReplacementEnum,
 } from 'yourails_common'
@@ -22,7 +24,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   {
     description: 'scene regular with image one half',
     params: {
-      html: templatesHtml.templateHtml_2026_08_18_sceneRegular_9x16,
+      html: templatesHtml.templateHtml_2026_08_18_sceneRegular_9x16(),
       pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
       width: ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH, // Redefined in getImageFromHtml.run.ts
       height: ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT, // Redefined in getImageFromHtml.run.ts
@@ -41,11 +43,43 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
           source: `<style>.git{color:#24292f}.git-command{color:#8250df}.git-option{color:#0550ae}.git-argument{color:#0a3069}.git-comment{color:#6e7781;font-style:italic}</style>\n<span class=\"git\">\n<span class=\"git-comment\"># Clone using HTTPS</span><br>\n<span class=\"git-command\">git</span> <span class=\"git-command\">clone</span> <span class=\"git-argument\">https://github.com/user/repo.git</span><br><br>\n<span class=\"git-comment\"># Clone using SSH</span><br>\n<span class=\"git-command\">git</span> <span class=\"git-command\">clone</span> <span class=\"git-argument\">git@github.com:user/repo.git</span><br>\n</span>`,
           replacementName: '__SNIPPET_HTML__',
         },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source: POSITIONS_IN_RECTANGULAR_CSS_DICT.TOP,
+          replacementName: '__POSITION_IN_RECTANGLE_CSS__',
+        },
       ],
       isProduction: false,
     },
     expected: { imageBase64: '' },
   },
+  // {
+  //   description: 'scene regular with image one half',
+  //   params: {
+  //     html: templatesHtml.templateHtml_2026_08_18_sceneRegular_img_txt_9x16,
+  //     pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
+  //     width: ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH, // Redefined in getImageFromHtml.run.ts
+  //     height: ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT, // Redefined in getImageFromHtml.run.ts
+  //     scale: 1,
+  //     scalingMode: ScalingModeEnum.deviceScaleFactor,
+  //   },
+  //   options: {
+  //     configsSourceToServe: [
+  //       {
+  //         serveSourceAsFor: ServeSourceForReplacementEnum.serveImagePathAsImage64,
+  //         source: join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png'),
+  //         replacementName: '__IMAGE_BASE_64__',
+  //       },
+  //       {
+  //         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+  //         source: `<style>.git{color:#24292f}.git-command{color:#8250df}.git-option{color:#0550ae}.git-argument{color:#0a3069}.git-comment{color:#6e7781;font-style:italic}</style>\n<span class=\"git\">\n<span class=\"git-comment\"># Clone using HTTPS</span><br>\n<span class=\"git-command\">git</span> <span class=\"git-command\">clone</span> <span class=\"git-argument\">https://github.com/user/repo.git</span><br><br>\n<span class=\"git-comment\"># Clone using SSH</span><br>\n<span class=\"git-command\">git</span> <span class=\"git-command\">clone</span> <span class=\"git-argument\">git@github.com:user/repo.git</span><br>\n</span>`,
+  //         replacementName: '__SNIPPET_HTML__',
+  //       },
+  //     ],
+  //     isProduction: false,
+  //   },
+  //   expected: { imageBase64: '' },
+  // },
   // {
   //   description: 'scene first image with background and ScalingModeEnum.deviceScaleFactor',
   //   params: {

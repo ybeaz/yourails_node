@@ -1,4 +1,9 @@
-export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
+import { scriptToDrugTextSection } from './shared/scriptToDrugTextSection'
+import { scriptToResizeImage } from './shared/scriptToResizeImage'
+import { scriptToResizeTextFontSize } from './shared/scriptToResizeTextFontSize'
+
+export const templateHtml_2026_08_18_sceneRegular_9x16 = () => {
+  return `<!DOCTYPE html>
         <html lang="en">
           <head>
             <meta charset="UTF-8" />
@@ -30,10 +35,11 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
                 height: 100vh;
                 width: 100%;
                 display: flex;
-                flex-direction: column;
                 overflow: visible;
                 background-color: rgb(240 246 242);
               }
+
+              __POSITION_IN_RECTANGLE_CSS__
 
               .image-section {
                 height: 50%;
@@ -84,10 +90,9 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
               .resize-handle-right { right: 0; }
 
               .text-section {
-                height: 30vh; // Initial text section position
+                height: 48vh; /* Initial text section position */
                 width: 100%;
                 display: flex;
-                align-items: center;
                 justify-content: center;
                 overflow: auto;
                 position: relative;
@@ -140,225 +145,21 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
           </body>
 
           <script></script>
+
           <!-- SCRIPT TO RESIZE IMAGE -->
           <script>
-            (function () {
-              const section = document.getElementById('imageSection');
-              const cornerHandle = document.getElementById('resizeHandleCorner');
-              const leftHandle = document.getElementById('resizeHandleLeft');
-              const rightHandle = document.getElementById('resizeHandleRight');
-
-              // Proportional corner resize (unchanged from before)
-              function startProportionalResize(e) {
-                e.preventDefault();
-                const startX = e.clientX;
-                const startY = e.clientY;
-                const startWidth = section.offsetWidth;
-                const startHeight = section.offsetHeight;
-                const aspectRatio = startWidth / startHeight;
-
-                const onMouseMove = (e) => {
-                  const dx = e.clientX - startX;
-                  const dy = e.clientY - startY;
-                  let newWidth, newHeight;
-                  if (Math.abs(dx) > Math.abs(dy)) {
-                    newWidth = Math.max(startWidth + dx, 50);
-                    newHeight = newWidth / aspectRatio;
-                  } else {
-                    newHeight = Math.max(startHeight + dy, 50);
-                    newWidth = newHeight * aspectRatio;
-                  }
-                  section.style.width = newWidth + 'px';
-                  section.style.height = newHeight + 'px';
-                };
-
-                const onMouseUp = () => {
-                  document.removeEventListener('mousemove', onMouseMove);
-                  document.removeEventListener('mouseup', onMouseUp);
-                };
-
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-              }
-
-              // Free horizontal-only stretch (out of proportion)
-              function startHorizontalResize(e) {
-                e.preventDefault();
-                const startX = e.clientX;
-                const startWidth = section.offsetWidth;
-
-                const onMouseMove = (e) => {
-                  const dx = e.clientX - startX;
-                  // dragging either side grows the box outward from center,
-                  // since left:50%+translateX(-50%) already recenters it —
-                  // moving either edge by dx has the same net visual effect
-                  const newWidth = Math.max(startWidth + Math.abs(dx) * 2 * Math.sign(dx === 0 ? 1 : dx), 50);
-                  section.style.width = newWidth + 'px';
-                  // height is intentionally left untouched -> distorts aspect ratio
-                };
-
-                const onMouseUp = () => {
-                  document.removeEventListener('mousemove', onMouseMove);
-                  document.removeEventListener('mouseup', onMouseUp);
-                };
-
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-              }
-
-              cornerHandle.addEventListener('mousedown', startProportionalResize);
-              leftHandle.addEventListener('mousedown', startHorizontalResize);
-              rightHandle.addEventListener('mousedown', startHorizontalResize);
-            })();
+            ${scriptToResizeImage}
           </script>
            
           <!-- SCRIPT TO RESIZE TEXT FONT-SIZE -->
           <script>
-            (function () {
-              const textSection = document.getElementById('textSection');
-              const overlay = document.querySelector('.overlay');
-              const PADDING = 40;
-              const MIN_FONT = 10;
-              const MAX_FONT = 96;
-
-              function fitText() {
-                if (!overlay || !textSection) return;
-
-                const maxWidth = textSection.clientWidth - PADDING;
-                const maxHeight = textSection.clientHeight - PADDING;
-
-                // Guard: if container has no real size yet, bail and retry later
-                if (maxWidth <= 0 || maxHeight <= 0) {
-                  console.warn('fitText: textSection not laid out yet', { maxWidth, maxHeight });
-                  return false;
-                }
-
-                overlay.style.display = 'inline-block';
-
-                let lo = MIN_FONT;
-                let hi = MAX_FONT;
-                let best = MIN_FONT;
-
-                while (hi - lo > 0.5) {
-                  const mid = (lo + hi) / 2;
-                  overlay.style.fontSize = mid + 'px';
-                  const fits = overlay.scrollWidth <= maxWidth && overlay.scrollHeight <= maxHeight;
-                  if (fits) {
-                    best = mid;
-                    lo = mid;
-                  } else {
-                    hi = mid;
-                  }
-                }
-
-                overlay.style.fontSize = best + 'px';
-                console.log('fitText result', { best, maxWidth, maxHeight });
-                return true;
-              }
-
-              function runInitialFit() {
-                // Double rAF: first rAF waits for the browser's next paint tick,
-                // second rAF guarantees layout from that tick has been committed —
-                // avoids measuring against a stale/zero layout right after load.
-                requestAnimationFrame(() => {
-                  requestAnimationFrame(() => {
-                    const ok = fitText();
-                    // Safety net: if container still wasn't ready, retry shortly after
-                    if (!ok) setTimeout(fitText, 100);
-                  });
-                });
-              }
-
-              function start() {
-                if (document.fonts && document.fonts.ready) {
-                  // Wait for web fonts to finish loading before measuring —
-                  // otherwise scrollWidth/Height reflect fallback-font metrics
-                  // and the "biggest fit" size is computed against the wrong text box.
-                  document.fonts.ready.then(runInitialFit);
-                } else {
-                  runInitialFit();
-                }
-              }
-
-              if (document.readyState === 'complete') {
-                start();
-              } else {
-                window.addEventListener('load', start);
-              }
-
-              let rafId = null;
-              const ro = new ResizeObserver(() => {
-                if (rafId) cancelAnimationFrame(rafId);
-                rafId = requestAnimationFrame(fitText);
-              });
-              if (textSection) ro.observe(textSection);
-            })();
+            ${scriptToResizeTextFontSize}
           </script>
 
-          <!-- SCRIPT TO RESIZE TEXT SECTION (drag handles) -->
+          <!-- SCRIPT TO DRUG TEXT SECTION -->
           <script>
-            (function () {
-              const textSection = document.getElementById('textSection');
-              const cornerHandle = document.getElementById('textResizeHandleCorner');
-              const leftHandle = document.getElementById('textResizeHandleLeft');
-              const rightHandle = document.getElementById('textResizeHandleRight');
-
-              function startProportionalResize(e) {
-                e.preventDefault();
-                const startX = e.clientX;
-                const startY = e.clientY;
-                const startWidth = textSection.offsetWidth;
-                const startHeight = textSection.offsetHeight;
-                const aspectRatio = startWidth / startHeight;
-
-                const onMouseMove = (e) => {
-                  const dx = e.clientX - startX;
-                  const dy = e.clientY - startY;
-                  let newWidth, newHeight;
-                  if (Math.abs(dx) > Math.abs(dy)) {
-                    newWidth = Math.max(startWidth + dx, 50);
-                    newHeight = newWidth / aspectRatio;
-                  } else {
-                    newHeight = Math.max(startHeight + dy, 50);
-                    newWidth = newHeight * aspectRatio;
-                  }
-                  textSection.style.width = newWidth + 'px';
-                  textSection.style.height = newHeight + 'px';
-                };
-
-                const onMouseUp = () => {
-                  document.removeEventListener('mousemove', onMouseMove);
-                  document.removeEventListener('mouseup', onMouseUp);
-                };
-
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-              }
-
-              function startHorizontalResize(e) {
-                e.preventDefault();
-                const startX = e.clientX;
-                const startWidth = textSection.offsetWidth;
-
-                const onMouseMove = (e) => {
-                  const dx = e.clientX - startX;
-                  const newWidth = Math.max(startWidth + Math.abs(dx) * 2 * Math.sign(dx === 0 ? 1 : dx), 50);
-                  textSection.style.width = newWidth + 'px';
-                };
-
-                const onMouseUp = () => {
-                  document.removeEventListener('mousemove', onMouseMove);
-                  document.removeEventListener('mouseup', onMouseUp);
-                };
-
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-              }
-
-              if (cornerHandle) cornerHandle.addEventListener('mousedown', startProportionalResize);
-              if (leftHandle) leftHandle.addEventListener('mousedown', startHorizontalResize);
-              if (rightHandle) rightHandle.addEventListener('mousedown', startHorizontalResize);
-            })();
+            ${scriptToDrugTextSection}
           </script>
         </html>
       `
+}
