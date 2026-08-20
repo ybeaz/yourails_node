@@ -84,7 +84,7 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
               .resize-handle-right { right: 0; }
 
               .text-section {
-                height: 48vh;
+                height: 30vh; // Initial text section position
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -139,6 +139,7 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
             </div>
           </body>
 
+          <script></script>
           <!-- SCRIPT TO RESIZE IMAGE -->
           <script>
             (function () {
