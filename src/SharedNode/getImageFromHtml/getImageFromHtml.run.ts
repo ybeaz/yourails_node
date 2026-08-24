@@ -25,43 +25,25 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
       }: GetImageFromHtmlCaseType,
       index: number,
     ) => {
-      // const SCALE = 2
-      // const IS_PRODUCTION = true // 'What Is Sora? ggg, yyy, ppp'
-      // const __TITLE_MAIN_FORMATTED__ =
-      //   'OpenClaw Foundation<br />OpenClaw project<br />at a glance'
+      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_16x9_WIDTH_S
+      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_16x9_HEIGHT_S
+      // const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-07-13-19-53-18_imageRaw.png') // 16x9
 
-      // const SCENE_INDEX = 0
+      const WIDTH = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_S
+      const HEIGHT = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_S
+      const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png') // 9x16
 
-      // const dateString = getDateString({
-      //   timestamp: new Date(),
-      //   dash: true,
-      //   hours: true,
-      //   minutes: true,
-      //   seconds: true,
-      //   isUtcMethods: false,
-      // })
-      // const fileNameMain = `s_${SCENE_INDEX}_${dateString}`
-      // const pathFileAbsImageTitle = join(
-      //   __dirname,
-      //   '.',
-      //   '__output__',
-      //   `${fileNameMain}_image.png`,
-      // )
+      const imageBase64String2 = await getImageToBase64({
+        pathFileAbs: IMAGE_BASE_64_PNG,
+      })
 
-      // params.pathFileAbs = pathFileAbsImageTitle
-      // params.html = __TITLE_MAIN_FORMATTED__
-      // params.scale = SCALE
+      options.configsSourceToServe?.push({
+        serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        source: imageBase64String2,
+        replacementName: '__IMAGE_BASE_64__',
+      })
 
       // options.isProduction = IS_PRODUCTION
-
-      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_WIDTH
-      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
-      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_16x9_WIDTH
-      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_16x9_HEIGHT
-      // const WIDTH: number = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_L
-      // const HEIGHT: number = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_L
-      const WIDTH = 550
-      const HEIGHT = 980
 
       params.width = WIDTH
       params.height = HEIGHT

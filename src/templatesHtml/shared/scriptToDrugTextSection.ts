@@ -36,14 +36,14 @@ export const scriptToDrugTextSection = `(function () {
                 document.addEventListener('mouseup', onMouseUp);
               }
 
-              function startHorizontalResize(e) {
+              function startHorizontalResize(e, direction) {
                 e.preventDefault();
                 const startX = e.clientX;
                 const startWidth = textSection.offsetWidth;
 
                 const onMouseMove = (e) => {
                   const dx = e.clientX - startX;
-                  const newWidth = Math.max(startWidth + Math.abs(dx) * 2 * Math.sign(dx === 0 ? 1 : dx), 50);
+                  const newWidth = Math.max(startWidth + dx * direction * 2, 50);
                   textSection.style.width = newWidth + 'px';
                 };
 
@@ -57,6 +57,6 @@ export const scriptToDrugTextSection = `(function () {
               }
 
               if (cornerHandle) cornerHandle.addEventListener('mousedown', startProportionalResize);
-              if (leftHandle) leftHandle.addEventListener('mousedown', startHorizontalResize);
-              if (rightHandle) rightHandle.addEventListener('mousedown', startHorizontalResize);
+              if (leftHandle) leftHandle.addEventListener('mousedown', (e) => startHorizontalResize(e, -1));
+              if (rightHandle) rightHandle.addEventListener('mousedown', (e) => startHorizontalResize(e, 1));
             })();`

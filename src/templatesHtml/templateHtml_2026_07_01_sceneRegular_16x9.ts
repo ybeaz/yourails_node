@@ -1,5 +1,8 @@
+import { scriptToDrugTextSection } from './shared/scriptToDrugTextSection'
+import { scriptToResizeTextFontSize } from './shared/scriptToResizeTextFontSize'
+
 export const templateHtml_2026_07_01_sceneRegular_16x9 = `<!DOCTYPE html>
-      <html lang="en">
+     <html lang="en">
         <head>
           <meta charset="UTF-8" />
           <title>Slide</title>
@@ -31,53 +34,92 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `<!DOCTYPE html>
               height: 100%;
               overflow: hidden;
               display: flex;
-            }
-            .wrapper::before {
               background-image: url('data:image/png;base64,__IMAGE_BASE_64__');
               /* background-image: url('http://local-assets/__IMAGE_FILE_NAME__'); */
-              background-size: cover;
+              background-size: 100% 100%;   /* stretch to fill exactly, no cropping */
               background-position: center;
               background-repeat: no-repeat;
-              background-size: 100% 100%;   /* stretch to fill exactly, no cropping */
-              overflow: hidden;
-              content: "";
-              position: absolute;
-              inset: 0;
-              z-index: 1;
             }
           </style>
           <style>
-            .overlay {
+            .text-section {
               __POSITION_IN_RECTANGLE_CSS__
+              background-color: __BACKGROUND_COLOR__;
               position: absolute;
               width: calc(768px - 40px);
               height: calc(512px + 150px - 40px);
-              border-radius: 10px;
-              z-index: 10;
-              -webkit-text-size-adjust: 100%;
-              font-family: Consolas, Menlo, "courier new", monospace;
-              color: black;
+              overflow: visible;
+              flex-shrink: 0;
               display: flex;
-              align-items: center;
               justify-content: center;
-              overflow: auto;
-              resize: both;
-              background-color: rgb(240 246 242);
-              font-size: 22px;
-              line-height: 1.5;
-              padding: 2rem;
+              align-items: center;
             }
-            .parent * {
-                font-size: inherit;
+
+            /* Handles are positioned relative to .overlay, since that's what they resize */
+            .text-section .resize-handle-corner {
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              width: 16px;
+              height: 16px;
+              cursor: nwse-resize;
+              z-index: 20;
             }
+            .text-section .resize-handle-corner:hover {
+              background: rgba(0,0,0,0.15);
+            }
+
+            .text-section .resize-handle-left,
+            .text-section .resize-handle-right {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              width: 16px;
+              cursor: ew-resize;
+              z-index: 20;
+            }
+            .text-section .resize-handle-left:hover,
+            .text-section .resize-handle-right:hover {
+              background: rgba(0,0,0,0.08);
+            }
+
+            .text-section .resize-handle-left { left: 0; }
+            .text-section .resize-handle-right { right: 0; }
+
+            .overlay {
+              padding: 0 2rem;
+            }
+
           </style>
         </head>
         <body>
           <div class='wrapper'>
-            <div class="overlay">__SNIPPET_HTML__</div>
+              <div class="text-section" id="textSection">
+                <div class='overlay' id="textOverlay">
+                  __SNIPPET_HTML__
+                </div>
+                <div class="resize-handle-left" id="textResizeHandleLeft"></div>
+                <div class="resize-handle-right" id="textResizeHandleRight"></div>
+                <div class="resize-handle-corner" id="textResizeHandleCorner"></div>
+              </div>
           </div>
         </body>
+        <!-- SCRIPT TO RESIZE TEXT FONT-SIZE -->
         <script>
-          const overlay=document.querySelector('.overlay');let size=22;while(size<=36){overlay.style.fontSize=size+'px';if(overlay.scrollWidth>overlay.clientWidth||overlay.scrollHeight>overlay.clientHeight){overlay.style.fontSize=(size-0.5)+'px';break;}size+=0.5;};
+          ${scriptToResizeTextFontSize}
+        </script>
+
+        <!-- SCRIPT TO RESIZE TEXT FONT-SIZE -->
+        <script>
+          ${scriptToDrugTextSection}
         </script>
       </html>`
+
+// <script>
+//   const overlay=document.querySelector('.overlay');let size=22;while(size<=36){overlay.style.fontSize=size+'px';if(overlay.scrollWidth>overlay.clientWidth||overlay.scrollHeight>overlay.clientHeight){overlay.style.fontSize=(size-0.5)+'px';break;}size+=0.5;};
+// </script>
+
+// <!-- SCRIPT TO DRUG TEXT SECTION -->
+// <script>
+//   ${scriptToDrugTextSection}
+// </script>

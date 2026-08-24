@@ -36,7 +36,7 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = () => {
                 width: 100%;
                 display: flex;
                 overflow: visible;
-                background-color: rgb(240 246 242);
+                background-color: __BACKGROUND_COLOR__;
               }
 
               __POSITION_IN_RECTANGLE_CSS__
@@ -120,6 +120,10 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = () => {
                 bottom: 0;
                 cursor: nwse-resize;
                 z-index: 10;
+              }
+
+              .overlay {
+                padding: 0 2rem;
               }
             </style>
             <style>
