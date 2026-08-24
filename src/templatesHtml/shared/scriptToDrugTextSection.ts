@@ -1,5 +1,5 @@
 export const scriptToDrugTextSection = `(function () {
-              const textSection = document.getElementById('textSection');
+              const section = document.getElementById('textSection');
               const cornerHandle = document.getElementById('textResizeHandleCorner');
               const leftHandle = document.getElementById('textResizeHandleLeft');
               const rightHandle = document.getElementById('textResizeHandleRight');
@@ -8,8 +8,8 @@ export const scriptToDrugTextSection = `(function () {
                 e.preventDefault();
                 const startX = e.clientX;
                 const startY = e.clientY;
-                const startWidth = textSection.offsetWidth;
-                const startHeight = textSection.offsetHeight;
+                const startWidth = section.offsetWidth;
+                const startHeight = section.offsetHeight;
                 const aspectRatio = startWidth / startHeight;
 
                 const onMouseMove = (e) => {
@@ -23,8 +23,8 @@ export const scriptToDrugTextSection = `(function () {
                     newHeight = Math.max(startHeight + dy, 50);
                     newWidth = newHeight * aspectRatio;
                   }
-                  textSection.style.width = newWidth + 'px';
-                  textSection.style.height = newHeight + 'px';
+                  section.style.width = newWidth + 'px';
+                  section.style.height = newHeight + 'px';
                 };
 
                 const onMouseUp = () => {
@@ -39,12 +39,12 @@ export const scriptToDrugTextSection = `(function () {
               function startHorizontalResize(e, direction) {
                 e.preventDefault();
                 const startX = e.clientX;
-                const startWidth = textSection.offsetWidth;
+                const startWidth = section.offsetWidth;
 
                 const onMouseMove = (e) => {
                   const dx = e.clientX - startX;
                   const newWidth = Math.max(startWidth + dx * direction * 2, 50);
-                  textSection.style.width = newWidth + 'px';
+                  section.style.width = newWidth + 'px';
                 };
 
                 const onMouseUp = () => {

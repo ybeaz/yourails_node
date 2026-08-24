@@ -46,7 +46,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
         },
         {
           serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
-          source: POSITIONS_IN_RECTANGULAR_CSS_DICT.TOP,
+          source: POSITIONS_IN_RECTANGULAR_CSS_DICT.BOTTOM,
           replacementName: '__POSITION_IN_RECTANGLE_CSS__',
         },
         {
@@ -80,7 +80,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   //       },
   //       {
   //         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
-  //         source: POSITIONS_IN_RECTANGULAR_CSS_DICT.TOP_RIGHT,
+  //         source: POSITIONS_IN_RECTANGULAR_CSS_DICT.BOTTOM_RIGHT,
   //         replacementName: '__POSITION_IN_RECTANGLE_CSS__',
   //       },
   //       {
