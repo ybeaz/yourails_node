@@ -114,12 +114,3 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `<!DOCTYPE html>
           ${scriptToDrugTextSection}
         </script>
       </html>`
-
-// <script>
-//   const overlay=document.querySelector('.overlay');let size=22;while(size<=36){overlay.style.fontSize=size+'px';if(overlay.scrollWidth>overlay.clientWidth||overlay.scrollHeight>overlay.clientHeight){overlay.style.fontSize=(size-0.5)+'px';break;}size+=0.5;};
-// </script>
-
-// <!-- SCRIPT TO DRUG TEXT SECTION -->
-// <script>
-//   ${scriptToDrugTextSection}
-// </script>
