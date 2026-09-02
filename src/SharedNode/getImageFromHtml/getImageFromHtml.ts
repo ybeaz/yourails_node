@@ -26,7 +26,7 @@ export type configsSourceToServeType = {
 
 type GetImageFromHtmlParamsType = {
   html: string
-  pathFileAbs: string
+  pathFileAbs?: string /* Input image to use with html */
   width: number
   height: number
   scale: number
@@ -174,8 +174,6 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
         })
 
         const image = await fsa.readFile(pathFileAbs)
-
-        console.log('getImageFromHtml [170]', route.request().url())
 
         promises.push(
           route.fulfill({

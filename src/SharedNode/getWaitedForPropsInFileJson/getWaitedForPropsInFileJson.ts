@@ -87,7 +87,7 @@ const getWaitedForPropsInFileJsonUnsafe: GetWaitedForPropsInFileJsonType = async
     }
   }
 
-  const entity: any = await getReadFile2({ pathFileAbs }, { typeFile: FileTypeEnum.json })
+  const entity: any = await getReadFile2({ pathFileAbs }, { fileType: FileTypeEnum.json })
 
   let countDown = timeoutMs
 

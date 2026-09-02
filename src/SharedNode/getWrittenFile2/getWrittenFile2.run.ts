@@ -31,7 +31,7 @@ if (require.main === module) {
             '/Users/admin/Dev/yourails_node/src/SharedNode/getWrittenFile2/__mocks__/s_4_2026-05-31-07-28-53_imageRaw.png',
         })
         params.pathFileAbs = pathFileAbs
-        options.typeFile = FileTypeEnum.txt
+        options.fileType = FileTypeEnum.txt
 
         const output = await getRunWithSpinner(getWrittenFile2, 'Processing... ')(params, options)
 

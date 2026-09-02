@@ -20,7 +20,7 @@ export const getWrittenFile2Cases: GetWrittenFile2CaseType[] = [
         '/Users/admin/Dev/yourails_node/src/SharedNode/getWrittenFile2/__output__/text.txt',
       data: 'Hello world from TXT file\nSecond line\nThird line',
     },
-    options: { typeFile: FileTypeEnum.txt },
+    options: { fileType: FileTypeEnum.txt },
     expected: `Hello world from TXT file
 Second line
 Third line`,
@@ -64,7 +64,7 @@ Unicode: 🚀🔥✨`,
         { name: 'Bob', age: 40, city: 'Los Angeles' },
       ],
     },
-    options: { typeFile: FileTypeEnum.csv },
+    options: { fileType: FileTypeEnum.csv },
     expected:
       'name,age,city\n' +
       '"John",30,"New York"\n' +
@@ -90,7 +90,7 @@ Unicode: 🚀🔥✨`,
         '/Users/admin/Dev/yourails_node/src/SharedNode/getWrittenFile2/__output__/empty.csv',
       data: [],
     },
-    options: { typeFile: FileTypeEnum.csv },
+    options: { fileType: FileTypeEnum.csv },
     expected: '',
   },
 ]

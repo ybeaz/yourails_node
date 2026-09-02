@@ -40,7 +40,7 @@ if (require.main === module) {
 
         await getWrittenFile2(
           { pathFileAbs: pathFileAbsTxt, data: { imageBase64 } },
-          { typeFile: FileTypeEnum.json },
+          { fileType: FileTypeEnum.json },
         )
 
         consoler(`getImageToBase64 [90-${index}]`, {

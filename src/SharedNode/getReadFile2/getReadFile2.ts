@@ -12,7 +12,7 @@ type GetReadFile2ParamsType = {
   pathFileAbs: string
 }
 
-type GetReadFile2OptionsType = { typeFile?: FileTypeEnum; funcParent?: string }
+type GetReadFile2OptionsType = { fileType?: FileTypeEnum; funcParent?: string }
 
 type GetReadFile2ResType = unknown
 
@@ -22,7 +22,7 @@ type GetReadFile2Type = (
 ) => GetReadFile2ResType
 
 const optionsDefault = {
-  typeFile: FileTypeEnum.json,
+  fileType: FileTypeEnum.json,
   funcParent: 'getReadFile2',
 } satisfies Required<GetReadFile2OptionsType>
 
@@ -44,7 +44,7 @@ const getReadFile2Unsafe: GetReadFile2Type = async (
 
   const { promises: fsa } = await import('fs')
 
-  const { typeFile: typeFileOption, funcParent } = {
+  const { fileType: fileTypeOption, funcParent } = {
     ...optionsDefault,
     ...options,
   }
@@ -52,9 +52,9 @@ const getReadFile2Unsafe: GetReadFile2Type = async (
   const data = await fsa.readFile(pathFileAbs, 'utf8')
 
   const detectedType = getFileExtension({ pathFileAbs })
-  const typeFile = typeFileOption ?? detectedType ?? FileTypeEnum.txt
+  const fileType = fileTypeOption ?? detectedType ?? FileTypeEnum.txt
 
-  switch (typeFile) {
+  switch (fileType) {
     case FileTypeEnum.json:
       return JSON.parse(data)
 
@@ -98,7 +98,7 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
     params: {
       pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.json',
     },
-    options: { typeFile: FileTypeEnum.json },
+    options: { fileType: FileTypeEnum.json },
     expected: {
       a: 1,
       b: 'b2',
@@ -111,7 +111,7 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
     params: {
       pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.txt',
     },
-    options: { typeFile: FileTypeEnum.txt },
+    options: { fileType: FileTypeEnum.txt },
     expected: `Hello world from text file\nLine 2: simple content`,
   },
 
@@ -120,7 +120,7 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
     params: {
       pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.csv',
     },
-    options: { typeFile: FileTypeEnum.csv },
+    options: { fileType: FileTypeEnum.csv },
     expected: [
       { name: 'John', age: '30', city: 'New York' },
       { name: 'Jane', age: '25', city: 'San Francisco' },
