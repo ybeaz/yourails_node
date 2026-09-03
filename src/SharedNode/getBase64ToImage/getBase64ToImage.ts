@@ -14,7 +14,7 @@ type GetBase64ToImageOptionsType = {
   funcParent?: string
 }
 
-type GetBase64ToImageResType = { mediaType: string; pathFileAbsOutput: string }
+type GetBase64ToImageResType = { mediaType: string; data: string; pathFileAbsOutput: string }
 
 type GetBase64ToImageType = (
   params: GetBase64ToImageParamsType,
@@ -26,21 +26,7 @@ const optionsDefault = {
   fileType: FileTypeEnum.png,
 } satisfies Required<GetBase64ToImageOptionsType>
 
-const resDefault: GetBase64ToImageResType = { mediaType: '', pathFileAbsOutput: '' }
-
-/**
- * @prompt Context: Unit tests typescript challenge
- *         Question: Suggest unit test data to test the function with the description below
- *         fileType: Follow the fileType of the array of test-objects below
-          [
-            {
-              description: 'basic test getBase64ToImage',
-              params: {},
-              options: {},
-              expected: '',
-            },
-          ]
- */
+const resDefault: GetBase64ToImageResType = { mediaType: '', data: '', pathFileAbsOutput: '' }
 
 /**
  * @description Function to transform and save image files from imageBase64
@@ -123,7 +109,7 @@ const getBase64ToImageUnsafe: GetBase64ToImageType = async (
     buffer = undefined
   }
 
-  return { mediaType, pathFileAbsOutput }
+  return { mediaType, data: imageBase64In, pathFileAbsOutput }
 }
 
 const getBase64ToImage = withTryCatchFinallyWrapper<

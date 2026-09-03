@@ -6,6 +6,6 @@ export const getBase64ToImageCases: GetBase64ToImageCaseType[] = [
     description: 'basic test getBase64ToImage',
     params: { imageBase64: '', pathFileAbs: '' },
     options: { fileType: FileTypeEnum.png },
-    expected: { mediaType: '', pathFileAbsOutput: '' },
+    expected: { mediaType: '', data: '', pathFileAbsOutput: '' },
   },
 ]
