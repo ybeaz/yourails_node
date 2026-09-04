@@ -24,7 +24,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   {
     description: 'scene regular 9x16 with image one half',
     params: {
-      html: templatesHtml.templateHtml_2026_08_18_sceneRegular_9x16(),
+      html: templatesHtml.templateHtml_2026_08_18_sceneRegular_9x16,
       pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
       width: ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH, // Redefined in getImageFromHtml.run.ts
       height: ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT, // Redefined in getImageFromHtml.run.ts

@@ -2,8 +2,7 @@ import { scriptToDrugTextSection } from './shared/scriptToDrugTextSection'
 import { scriptToResizeImage } from './shared/scriptToResizeImage'
 import { scriptToResizeTextFontSize } from './shared/scriptToResizeTextFontSize'
 
-export const templateHtml_2026_08_18_sceneRegular_9x16 = () => {
-  return `<!DOCTYPE html>
+export const templateHtml_2026_08_18_sceneRegular_9x16 = `<!DOCTYPE html>
         <html lang="en">
           <head>
             <meta charset="UTF-8" />
@@ -166,4 +165,3 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = () => {
           </script>
         </html>
       `
-}
