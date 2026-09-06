@@ -82,6 +82,8 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
         padding: 2rem 4rem;
         border-radius: 5rem;
         background-color: rgba(255, 255, 255, 0.75);
+        resize: both;
+        overflow: auto;
       }
       /* Bottom */
       .bottom {
