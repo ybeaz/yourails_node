@@ -1,5 +1,6 @@
 export * from './consoler'
 export * from './consolerError'
+export * from './getAudioDuration/getAudioDuration'
 export * from './getBase64ToImage/getBase64ToImage'
 export * from './getCommandExecutedAsync'
 export * from './getCommandSpawnedAsync'

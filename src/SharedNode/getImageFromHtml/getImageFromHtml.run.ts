@@ -32,16 +32,27 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
       const WIDTH = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_S
       const HEIGHT = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_S
       const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png') // 9x16
+      const IMAGE_BASE_64_PNG_2 = join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png') // 9x16
 
-      const imageBase64String2 = await getImageToBase64({
+      const imageBase64String = await getImageToBase64({
         pathFileAbs: IMAGE_BASE_64_PNG,
       })
-
-      options.configsSourceToServe?.push({
-        serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
-        source: imageBase64String2,
-        replacementName: '__IMAGE_BASE_64__',
+      const imageBase64String2 = await getImageToBase64({
+        pathFileAbs: IMAGE_BASE_64_PNG_2,
       })
+
+      options.configsSourceToServe?.push(
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source: imageBase64String,
+          replacementName: '__IMAGE_BASE_64__',
+        },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source: imageBase64String2,
+          replacementName: '__IMAGE_BASE_64_2__',
+        },
+      )
 
       // options.isProduction = IS_PRODUCTION
 
