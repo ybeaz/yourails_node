@@ -82,6 +82,9 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
         padding: 2rem 4rem;
         border-radius: 5rem;
         background-color: rgba(255, 255, 255, 0.75);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         resize: both;
         overflow: auto;
       }
@@ -95,6 +98,11 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
         padding: 1rem 2rem;
         background-color: rgba(255, 255, 255, 0.75);
         border-radius: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        resize: both;
+        overflow: auto;
       }
       .bottom img {
         width: 32px;

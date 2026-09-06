@@ -96,6 +96,10 @@ const getVideoInfoUnsafe: GetVideoInfoType = async (
 
   const fps = parseFrameRate(videoStream.avg_frame_rate)
 
+  const sizeBytes = parseInt(info.format.size, 10) // 👈 ffprobe returns this as a string
+  const sizeKb = sizeBytes / 1024
+  const sizeMb = sizeKb / 1024
+
   return {
     width,
     height,
@@ -106,7 +110,10 @@ const getVideoInfoUnsafe: GetVideoInfoType = async (
     durationSec: parseFloat(info.format.duration),
     codecName: videoStream.codec_name,
     fps, // e.g. "30/1" -> 30
-    bitrate: info.format.bit_rate,
+    bitrate: info.format.bit_rate ? parseInt(info.format.bit_rate, 10) : null,
+    sizeBytes,
+    sizeKb: parseFloat(sizeKb.toFixed(2)),
+    sizeMb: parseFloat(sizeMb.toFixed(2)),
   }
 }
 

@@ -61,6 +61,11 @@ export const templateHtml_2026_09_04_sceneLast_9x16 = `
           border-radius: 5rem;
           background-color: rgba(255, 255, 255, 0.9);
           white-space: nowrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          resize: both;
+          overflow: auto;
         }
         /* Bottom */
         .bottom {
@@ -76,6 +81,11 @@ export const templateHtml_2026_09_04_sceneLast_9x16 = `
           background-color: rgba(255, 255, 255, 0.9);
           border-radius: 3rem;
           white-space: nowrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          resize: both;
+          overflow: auto;
         }
         .bottom img {
           width: 32px;
