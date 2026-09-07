@@ -1,6 +1,7 @@
 import { promisify } from 'node:util'
 import { exec } from 'child_process'
-import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
+import { FuncModeEnumType, VideoInfoSchemaType, withTryCatchFinallyWrapper } from 'yourails_common'
+import { z } from 'zod'
 
 const execAsync = promisify(exec)
 
@@ -55,18 +56,32 @@ type GetVideoInfoParamsType = { pathFileAbs: string }
 
 type GetVideoInfoOptionsType = { funcParent?: string }
 
-type GetVideoInfoResType = unknown
+type GetVideoInfoResType = VideoInfoSchemaType
 
 type GetVideoInfoType = (
   params: GetVideoInfoParamsType,
   options?: GetVideoInfoOptionsType,
-) => GetVideoInfoResType
+) => Promise<GetVideoInfoResType>
 
 const optionsDefault = {
   funcParent: 'getVideoInfo',
 } satisfies Required<GetVideoInfoOptionsType>
 
-const resDefault: GetVideoInfoResType = ''
+const resDefault: GetVideoInfoResType = {
+  width: 0,
+  height: 0,
+  rotation: 0,
+  displayAspectRatio: '',
+  sampleAspectRatio: '',
+  isPortrait: true,
+  durationSec: 0,
+  codecName: '',
+  fps: 0,
+  bitrate: 0,
+  sizeBytes: 0,
+  sizeKb: 0,
+  sizeMb: 0,
+}
 
 /**
  * @description Function to getVideoInfo
@@ -110,7 +125,7 @@ const getVideoInfoUnsafe: GetVideoInfoType = async (
     durationSec: parseFloat(info.format.duration),
     codecName: videoStream.codec_name,
     fps, // e.g. "30/1" -> 30
-    bitrate: info.format.bit_rate ? parseInt(info.format.bit_rate, 10) : null,
+    bitrate: info.format.bit_rate ? parseInt(info.format.bit_rate, 10) : 0,
     sizeBytes,
     sizeKb: parseFloat(sizeKb.toFixed(2)),
     sizeMb: parseFloat(sizeMb.toFixed(2)),

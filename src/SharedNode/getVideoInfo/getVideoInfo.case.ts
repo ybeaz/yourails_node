@@ -1,5 +1,9 @@
 import { join } from 'node:path'
-import type { GetVideoInfoCaseType, GetVideoInfoParamsType } from './getVideoInfo'
+import type {
+  GetVideoInfoCaseType,
+  GetVideoInfoParamsType,
+  GetVideoInfoResType,
+} from './getVideoInfo'
 
 export const getVideoInfoCases: GetVideoInfoCaseType[] = [
   {
@@ -9,7 +13,7 @@ export const getVideoInfoCases: GetVideoInfoCaseType[] = [
         '/Users/admin/Dev/__output__/2026-08-15-19-19-10-p_0-Create-an-ssh-key-generate-an/2026-09-06-12-09-46_final.mp4',
     } as GetVideoInfoParamsType,
     options: {},
-    expected: {},
+    expected: {} as GetVideoInfoResType,
   },
   // {
   //   description: 'for formal test: basic test getVideoInfo',
