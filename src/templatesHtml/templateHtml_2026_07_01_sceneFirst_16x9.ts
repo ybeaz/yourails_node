@@ -130,8 +130,8 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
     </div>
     <div class='wrapper'>
       <div class="text-group">
-        <div class="h1">__TITLE_MAIN_FORMATTED__</div>
-        __DIV_SUBTITLE_MAIN__
+        <div class="h1">__HEADER_MAIN__</div>
+        __SUBHEADER_MAIN__
       </div>
     </div>
   </body>

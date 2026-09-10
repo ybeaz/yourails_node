@@ -24,7 +24,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   {
     description: 'scene last 9x16 with two images and farewell',
     params: {
-      html: templatesHtml.templateHtml_2026_09_04_sceneLast_9x16,
+      html: templatesHtml.templateHtml_2026_09_04_sceneTitle_9x16,
       pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
       width: ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH, // Redefined in getImageFromHtml.run.ts
       height: ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT, // Redefined in getImageFromHtml.run.ts
@@ -43,6 +43,12 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
           serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
           source: 'rgb(240 246 242)',
           replacementName: '__BACKGROUND_COLOR__',
+        },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          // source: 'Git: Clone a Remote Repository: A Comprehensive Guide',
+          source: 'Thank you',
+          replacementName: '__HEADER_MAIN__',
         },
       ],
       isProduction: false,
@@ -75,7 +81,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   //       },
   //       {
   //         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
-  //         source: POSITIONS_IN_RECTANGULAR_CSS_DICT.BOTTOM,
+  //         source: POSITIONS_IN_RECTANGULAR_CSS_DICT.TOP,
   //         replacementName: '__POSITION_IN_RECTANGLE_CSS__',
   //       },
   //       {

@@ -91,7 +91,7 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
         .resize-handle-right { right: 0; }
 
         .text-section {
-          height: 48vh; /* Initial text section position */
+          height: 45vh; /* Initial text section position */
           width: 100%;
           display: flex;
           justify-content: center;
@@ -133,14 +133,14 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
     </head>
     <body>
       <div class="wrapper">
-        <div class="image-section" id="imageSection">
+        <div id="imageSection" class="image-section">
           <img src="data:image/png;base64,__IMAGE_BASE_64__" alt="" />
           <div class="resize-handle-left" id="resizeHandleLeft"></div>
           <div class="resize-handle-right" id="resizeHandleRight"></div>
           <div class="resize-handle-corner" id="resizeHandleCorner"></div>
         </div>
         
-        <div class="text-section" id="textSection">
+        <div id="textSection" class="text-section">
           <div class='overlay'>__SNIPPET_HTML__</div>
           <div class="resize-handle-left" id="textResizeHandleLeft"></div>
           <div class="resize-handle-right" id="textResizeHandleRight"></div>
