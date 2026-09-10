@@ -1,5 +1,4 @@
-import { scriptToDrugTextSection } from './shared/scriptToDrugTextSection'
-import { scriptToResizeImage } from './shared/scriptToResizeImage'
+import { scriptToDrugTextSectionCentered } from './shared/scriptToDrugTextSectionCentered'
 import { scriptToResizeTextFontSize } from './shared/scriptToResizeTextFontSize'
 
 export const templateHtml_2026_09_04_sceneTitle_9x16 = `
@@ -11,6 +10,11 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
       <title>Slide</title>
       <link rel="stylesheet" href="styles.css" />
       <style>
+        *, *::before, *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
         html, body {
           height: 100%;
           width: 100%;
@@ -49,25 +53,77 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
           display: block;
         }
 
-        .center {
+        .text-section {
           position: absolute;
           display: flex;
           align-items: center;
           justify-content: center;
-          left: 50%;
+          left: 2rem;
+          right: 2rem;
           top: 46%;
-          transform: translate(-50%, -50%);
+          transform: translateY(-50%);
           font-size: 64px;
           line-height: 1.4;
           font-weight: 500;
-          padding: 2rem 4rem;
-          border-radius: 5rem;
+          padding: 2rem;
           background-color: rgba(255, 255, 255, 0.9);
-          white-space: pre-line;
-          margin: 0 2rem;
-          resize: both;
-          overflow: auto;
+          border-radius: 5rem;
         }
+
+        .overlay {
+          text-align: center;
+        }
+
+        .resize-handle-corner {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 16px;
+          height: 16px;
+          cursor: nwse-resize;
+          z-index: 10;
+        }
+        .resize-handle-corner:hover {
+          background: rgba(0,0,0,0.15);
+        }
+
+        .resize-handle-left,
+        .resize-handle-right {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 16px;
+          cursor: ew-resize;
+          z-index: 10;
+        }
+        .resize-handle-left:hover,
+        .resize-handle-right:hover {
+          background: rgba(0,0,0,0.08);
+        }
+
+        .resize-handle-left { left: 0; }
+        .resize-handle-right { right: 0; }
+
+        .text-section .resize-handle-left,
+        .text-section .resize-handle-right {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          cursor: ew-resize;
+          z-index: 10;
+        }
+
+        .text-section .resize-handle-left { left: 0; }
+        .text-section .resize-handle-right { right: 0; }
+
+        .text-section .resize-handle-corner {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          cursor: nwse-resize;
+          z-index: 10;
+        }
+        
         /* Bottom */
         .bottom {
           position: absolute;
@@ -107,8 +163,11 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
         <div class="image-section">
           <img src="data:image/png;base64,__IMAGE_BASE_64_2__" alt="" />
         </div>
-        <div class="text center">
-          <div>__HEADER_MAIN__</div>
+        <div id="textSection" class="text-section center">
+          <div class='overlay'>__HEADER_MAIN__</div>
+          <div class="resize-handle-left" id="textResizeHandleLeft"></div>
+          <div class="resize-handle-right" id="textResizeHandleRight"></div>
+          <div class="resize-handle-corner" id="textResizeHandleCorner"></div>
         </div>
         <div class="text bottom">
           <img
@@ -119,6 +178,24 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
         </div>
       </div>
     </body>
+
+    <!-- SCRIPT TO RESIZE TEXT FONT-SIZE -->
+    <script>
+      ${scriptToResizeTextFontSize}
+    </script>
+
+    <!-- SCRIPT TO DRUG TEXT SECTION -->
+    <script>
+      ${scriptToDrugTextSectionCentered}
+    </script>
+
+    <script>
+      const overlay = document.querySelector('.overlay');
+      const wordsNumber = overlay.innerText.split(' ').length
+      if(wordsNumber < 3) overlay.style.whiteSpace = 'nowrap';
+      else overlay.style.whiteSpace = 'pre-line';
+    </script>
+
   </html>
 `
 

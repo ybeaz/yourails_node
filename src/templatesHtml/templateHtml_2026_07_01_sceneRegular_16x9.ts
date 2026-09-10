@@ -48,8 +48,8 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `
         __POSITION_IN_RECTANGLE_CSS__
         background-color: __BACKGROUND_COLOR__;
         position: absolute;
-        width: calc(768px - 40px);
-        height: calc(512px + 150px - 40px);
+        width: calc(50vw - 40px);
+        height: calc(50vh + 150px - 40px);
         overflow: visible;
         flex-shrink: 0;
         display: flex;

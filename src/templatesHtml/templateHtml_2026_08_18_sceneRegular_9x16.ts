@@ -11,10 +11,10 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
       <title>Slide</title>
       <link rel="stylesheet" href="styles.css" />
       <style>/* Reset for deterministic rendering */
-        * {
+        *, *::before, *::after {
+          box-sizing: border-box;
           margin: 0;
           padding: 0;
-          box-sizing: border-box;
         }
         html, body {
           height: 100%;
@@ -60,6 +60,23 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
           display: block;
         }
 
+        .text-section {
+          height: 45vh; /* Initial text section position */
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          overflow: auto;
+          position: relative;
+          top: 0;                        /* anchors to upper edge — untouched by resize */
+          left: 50%;
+          transform: translateX(-50%);   /* horizontal centering, same trick as image-section */
+          flex-shrink: 0;
+        }
+
+        .overlay {
+          padding: 0 2rem;
+        }
+
         .resize-handle-corner {
           position: absolute;
           right: 0;
@@ -90,19 +107,6 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
         .resize-handle-left { left: 0; }
         .resize-handle-right { right: 0; }
 
-        .text-section {
-          height: 45vh; /* Initial text section position */
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          overflow: auto;
-          position: relative;
-          top: 0;                        /* anchors to upper edge — untouched by resize */
-          left: 50%;
-          transform: translateX(-50%);   /* horizontal centering, same trick as image-section */
-          flex-shrink: 0;
-        }
-
         .text-section .resize-handle-left,
         .text-section .resize-handle-right {
           position: absolute;
@@ -121,10 +125,6 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
           bottom: 0;
           cursor: nwse-resize;
           z-index: 10;
-        }
-
-        .overlay {
-          padding: 0 2rem;
         }
       </style>
       <style>
