@@ -53,6 +53,20 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
           display: block;
         }
 
+        .logo-group {
+          position: absolute;
+          top: 48px;
+          left: 48px;
+          z-index: 2;
+          display: block;
+          display: __LOGO_GROUP_DISPLAY__;
+        }
+        .logo-group img {
+          width: 64px;
+          height: auto;
+          display: block;
+        }
+
         .text-section {
           position: absolute;
           display: flex;
@@ -150,6 +164,10 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
           opacity: 1;
           display: inline-block;
         }
+        .copyright {
+          display: block;
+          display: __COPYRIGHT_DISPLAY__;
+        }
       </style>
       <style>
 
@@ -163,13 +181,22 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
         <div class="image-section">
           <img src="data:image/png;base64,__IMAGE_BASE_64_2__" alt="" />
         </div>
+
+        <div class="logo-group">
+          <img
+            src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
+            alt="YouRails logo"
+          />
+        </div>
+
         <div id="textSection" class="text-section center">
           <div class='overlay'>__HEADER_MAIN__</div>
           <div class="resize-handle-left" id="textResizeHandleLeft"></div>
           <div class="resize-handle-right" id="textResizeHandleRight"></div>
           <div class="resize-handle-corner" id="textResizeHandleCorner"></div>
         </div>
-        <div class="text bottom">
+
+        <div class="text bottom copyright">
           <img
             src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
             alt="YouRails logo"

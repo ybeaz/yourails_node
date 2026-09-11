@@ -15,9 +15,8 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
  * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.run.ts
  */
 ;(async () => {
-  let index = 0
-
   for await (const {
+    index,
     description,
     params,
     options = { isProduction: false },
@@ -26,7 +25,6 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
     const CASE_TO_PICK_UP = 0
 
     if (index !== CASE_TO_PICK_UP) {
-      index += 1
       continue
     }
 
@@ -71,8 +69,6 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
       expected,
       tested: JSON.stringify(output) === JSON.stringify(expected),
     })
-
-    index += 1
   }
 
   // const promises = getImageFromHtmlCases.map(

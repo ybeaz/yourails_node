@@ -54,9 +54,11 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
         top: 48px;
         left: 48px;
         z-index: 2;
+        display: block;
+        display: __LOGO_GROUP_DISPLAY__;
       }
       .logo-group img {
-        width: 120px;
+        width: 72px;
         height: auto;
         display: block;
       }
@@ -73,12 +75,13 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
         align-items: center;
         width: 100%;
         z-index: 2;
+        gap: 1rem;
       }
       .text-group > :only-child {
         margin-top: auto;
         margin-bottom: auto;
       }
-      .wrapper .h1 {
+      .text-group .h1 {
         display: flex;
         justify-content: center;
         align-items: center; 
@@ -95,8 +98,9 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
         max-width: calc(100vw * 1 / 2);
         overflow: auto;
         resize: both;
+        font-size: 54px;
       }
-      .wrapper .h2 {
+      .text-group .h2 {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -114,9 +118,10 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
         max-width: calc(100vw * 2 / 3);
         overflow: auto;
         resize: both;
+        font-size: 36px;
       }
-      .wrapper .h1:empty,
-      .wrapper .h2:empty {
+      .text-group .h1:empty,
+      .text-group .h2:empty {
         display: none;
       }
     </style>

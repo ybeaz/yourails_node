@@ -260,6 +260,7 @@ const getImageFromHtml = withTryCatchFinallyWrapper<
 })
 
 type GetImageFromHtmlCaseType = {
+  index: number
   description?: string
   params: Parameters<typeof getImageFromHtml>[0]
   paramsWithAssignedDate?: { timestamp: number }

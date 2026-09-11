@@ -88,6 +88,7 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
         resize: both;
         overflow: auto;
       }
+
       /* Bottom */
       .bottom {
         bottom: 60px;
@@ -104,11 +105,17 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
         resize: both;
         overflow: auto;
       }
+
       .bottom img {
         width: 32px;
         height: auto;
         opacity: 1;
         display: inline-block;
+      }
+
+      .copyright {
+        display: block;
+        display: __COPYRIGHT_DISPLAY__;
       }
     </style>
   </head>
@@ -118,7 +125,7 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
       <div class="text center">
         <div>Thank you</div>
       </div>
-      <div class="text bottom">
+      <div class="text bottom copyright">
         <img
           src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
           alt="YouRails logo"

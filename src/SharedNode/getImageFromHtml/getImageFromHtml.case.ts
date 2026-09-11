@@ -22,6 +22,7 @@ const dateString = getDateString({
 
 export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   {
+    index: 0,
     description: 'scene last 9x16 with two images and farewell',
     params: {
       html: templatesHtml.templateHtml_2026_09_04_sceneTitle_9x16,
@@ -50,6 +51,16 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
           // source: 'Thank you',
           replacementName: '__HEADER_MAIN__',
         },
+        // {
+        //   serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        //   source: 'none',
+        //   replacementName: '__LOGO_GROUP_DISPLAY__',
+        // },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source: 'none',
+          replacementName: '__COPYRIGHT_DISPLAY__',
+        },
       ],
       isProduction: false,
     },
@@ -57,6 +68,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   },
 
   {
+    index: 1,
     description: 'scene regular 9x16 with image one half',
     params: {
       html: templatesHtml.templateHtml_2026_08_18_sceneRegular_9x16,
@@ -96,6 +108,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   },
 
   {
+    index: 2,
     description: 'scene regular 16x9',
     params: {
       html: templatesHtml.templateHtml_2026_07_01_sceneRegular_16x9,
@@ -135,6 +148,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   },
 
   {
+    index: 3,
     description: 'scene first image with background and ScalingModeEnum.deviceScaleFactor',
     params: {
       html: templatesHtml.templateHtml_2026_07_01_sceneFirst_16x9,
@@ -151,11 +165,21 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
           source: '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
           replacementName: '__IMAGE_BASE_64__',
         },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source: 'Git: Clone a Remote Repository: A Comprehensive Guide',
+          replacementName: '__HEADER_MAIN__',
+        },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source:
+            '<div class="h2">Learn to duplicate repositories, explore URL formats, and more.</div>',
+          replacementName: '__SUBHEADER_MAIN__',
+        },
         // {
-        //   serveSourceFile: ServeSourceForReplacementEnum.serveImagePathAsImage64,
-        //   pathFileAbs:
-        //     '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
-        //   replacement: '__IMAGE_FILE_NAME__',
+        //   serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        //   source: 'none',
+        //   replacementName: '__LOGO_GROUP_DISPLAY__',
         // },
       ],
       isProduction: false,
@@ -163,6 +187,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
     expected: { imageBase64: '' },
   },
   {
+    index: 4,
     description: 'scene last image with ScalingModeEnum.deviceScaleFactor',
     params: {
       html: templatesHtml.templateHtml_2026_07_01_sceneLast_16x9,
@@ -179,11 +204,15 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
           source: '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
           replacementName: '__IMAGE_BASE_64__',
         },
+        {
+          serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+          source: 'Thank you',
+          replacementName: '__HEADER_MAIN__',
+        },
         // {
-        //   serveSourceFile: ServeSourceForReplacementEnum.serveImagePathAsImage64,
-        //   pathFileAbs:
-        //     '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
-        //   replacement: '__IMAGE_FILE_NAME__',
+        //   serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        //   source: 'none',
+        //   replacementName: '__COPYRIGHT_DISPLAY__',
         // },
       ],
       isProduction: false,

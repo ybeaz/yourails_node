@@ -5,7 +5,8 @@ export const scriptToResizeTextFontSize = `(function () {
 
   const textSectionComputedStyle = getComputedStyle(textSection)
   const textSectionFontSizeInitText = textSectionComputedStyle?.fontSize
-  const textSectionFontSizeInit = textSectionFontSizeInitText ? parseInt(textSectionFontSizeInitText.replace('px', ''), 10) : 96
+  let textSectionFontSizeInit = textSectionFontSizeInitText ? parseInt(textSectionFontSizeInitText.replace('px', ''), 10) : 96
+  textSectionFontSizeInit = textSectionFontSizeInit > 24 ? textSectionFontSizeInit : 96
 
   const PADDING = 40;
   const MIN_FONT = 10;
