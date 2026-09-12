@@ -159,7 +159,7 @@ const getWaitedForPropsInFileJsonUnsafe: GetWaitedForPropsInFileJsonType = async
 
   return {
     isSuccess: false,
-    message: `❌ getWaitedForPropsInFileJson [150]: ${comment}\nscenario: ${pathFileAbs}\nprops are never ready: ${propsArr?.join(', ')}\nmissing: ${missingLog.join(', ')}`,
+    message: `❌ getWaitedForPropsInFileJson [150]: ${comment}\nscenario: ${pathFileAbs}\nprops are never ready (AND/OR): ${propsArr?.join(', ')}\nmissing: ${missingLog.join(', ')}`,
   }
 }
 
