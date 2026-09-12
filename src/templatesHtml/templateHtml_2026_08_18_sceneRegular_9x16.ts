@@ -139,13 +139,6 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
           <div class="resize-handle-right" id="resizeHandleRight"></div>
           <div class="resize-handle-corner" id="resizeHandleCorner"></div>
         </div>
-
-        <div class="logo-group">
-          <img
-            src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
-            alt="YouRails logo"
-          />
-        </div>
         
         <div id="textSection" class="text-section">
           <div class='overlay'>__SNIPPET_HTML__</div>
