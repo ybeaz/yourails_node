@@ -55,6 +55,7 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 2rem;
       }
 
       /* Handles are positioned relative to .overlay, since that's what they resize */

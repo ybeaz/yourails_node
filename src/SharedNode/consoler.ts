@@ -4,7 +4,7 @@ type ConsolerType = (
   comment: string,
   entity: any,
   options?: { headerColor: string; logColor: string; endLog: string },
-) => void
+) => string
 
 const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
 
@@ -14,8 +14,8 @@ const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
  * @import import { consoler } from './consoler'
  */
 
-export const consoler: ConsolerType = (comment, entity, options = optionsDefault) => {
-  if (typeof window !== 'undefined') return
+export const consoler: ConsolerType = (comment, entity, options = optionsDefault): string => {
+  if (typeof window !== 'undefined') return ''
 
   const { headerColor, logColor, endLog } = options
 
@@ -30,6 +30,8 @@ export const consoler: ConsolerType = (comment, entity, options = optionsDefault
 
   if (isConsoleInfo) console.info(toPrint)
   else console.error(toPrint)
+
+  return toPrint
 }
 
 /**

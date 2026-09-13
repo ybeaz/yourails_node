@@ -1,4 +1,5 @@
 import * as readline from 'readline'
+import { consoler } from '../consoler'
 
 let spinnerActive = false
 
@@ -31,7 +32,7 @@ export function getRunWithSpinner<P, O, R>(
     if (isTTY) {
       render(`${frames[0]} 0s ${messageInProgress}`)
     } else {
-      console.log(`${messageInProgress}...`)
+      consoler(`${messageInProgress}...\n`, '')
     }
 
     const interval = setInterval(() => {
@@ -54,6 +55,7 @@ export function getRunWithSpinner<P, O, R>(
         process.stdout.write('\n')
       } else {
         console.log(text)
+        process.stdout.write('\n')
       }
 
       spinnerActive = false
