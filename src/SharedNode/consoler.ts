@@ -1,12 +1,6 @@
 import { chalk, util } from './consolerEval'
 
-type ConsolerType = (
-  comment: string,
-  entity: any,
-  options?: { headerColor: string; logColor: string; endLog: string },
-) => string
-
-const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
+type ConsolerType = (comment: string, entity?: any) => string
 
 /**
  * @description Function to
@@ -14,16 +8,15 @@ const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
  * @import import { consoler } from './consoler'
  */
 
-export const consoler: ConsolerType = (comment, entity, options = optionsDefault): string => {
+export const consoler: ConsolerType = (comment, entity): string => {
   if (typeof window !== 'undefined') return ''
-
-  const { headerColor, logColor, endLog } = options
 
   const inspectedObject = util.inspect(entity, { depth: null })
 
-  const chalkComment = chalk.bold.cyan(comment)
-  const chalkInspectObject = chalk.gray(inspectedObject)
-  const toPrint = `${chalkComment} ${chalkInspectObject} ${endLog}`
+  const chalkComment = comment ? chalk.bold.cyan(comment) : ''
+  const chalkInspectObject = entity ? chalk.gray(inspectedObject) : undefined
+
+  const toPrint = [chalkComment, chalkInspectObject].filter(Boolean).join(' ')
 
   const isConsoleInfo =
     process.stdout && typeof process.stdout.write === 'function' && process.stdout.isTTY === true
@@ -36,10 +29,13 @@ export const consoler: ConsolerType = (comment, entity, options = optionsDefault
 
 /**
  * @description Here the file is being run directly
+ * @run npx tsx src/SharedNode/consoler.ts
  */
 if (require.main === module) {
   ;(async () => {
     const params = { a: 'abc', b: [1234, 5678, 9012] }
-    consoler('consoler [36]', params)
+    consoler('consoler [37]', params)
+
+    consoler('consoler [39]')
   })()
 }

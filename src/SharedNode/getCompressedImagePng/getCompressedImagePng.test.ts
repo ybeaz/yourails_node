@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { describe, expect, it } from '@jest/globals'
 // import { withAssignedDate } from '../withAssignedDate'
 import { withAssignedDate } from 'yourails_common'
-import { consoler } from 'yourails_node/consoler'
+import { consoler } from '../consoler'
 import { type GetCompressedImagePngCaseType, getCompressedImagePng } from './getCompressedImagePng'
 import { getCompressedImagePngCases } from './getCompressedImagePng.case'
 

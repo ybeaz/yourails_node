@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals'
 // import { withAssignedDate } from '../withAssignedDate'
 import { withAssignedDate } from 'yourails_common'
-import { consoler } from 'yourails_node/consoler'
+import { consoler } from '../consoler'
 import { type GetPathFileWithSuffixCaseType, getPathFileWithSuffix } from './getPathFileWithSuffix'
 import { getPathFileWithSuffixCases } from './getPathFileWithSuffix.case'
 

@@ -10,7 +10,16 @@ export const getVideoInfoCases: GetVideoInfoCaseType[] = [
     description: 'basic test getVideoInfo',
     params: {
       pathFileAbs:
-        '/Users/admin/Dev/__output__/2026-08-15-19-19-10-p_0-Create-an-ssh-key-generate-an/2026-09-06-12-09-46_final.mp4',
+        '/Users/admin/Dev/__output__/2026-08-15-19-19-48-p_5-Create-local-and-remote-branches-create/2026-09-13-11-02-58_final.mp4',
+    } as GetVideoInfoParamsType,
+    options: {},
+    expected: {} as GetVideoInfoResType,
+  },
+  {
+    description: 'basic test getVideoInfo',
+    params: {
+      pathFileAbs:
+        '/Users/admin/Dev/__output__/2026-08-15-19-19-48-p_5-Create-local-and-remote-branches-create/2026-09-13-13-17-32_final.mp4',
     } as GetVideoInfoParamsType,
     options: {},
     expected: {} as GetVideoInfoResType,

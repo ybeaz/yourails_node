@@ -13,6 +13,16 @@ const dateString = getDateString({
 
 export const getHtmlPageContentCases: GetHtmlPageContentCaseType[] = [
   {
+    index: 2,
+    description: 'basic test getHtmlPageContent',
+    params: {
+      url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while',
+    },
+    options: { waitForTimeout: 2000, isHeadless: true },
+    expected: { html: '' },
+  },
+  {
+    index: 1,
     description: 'basic test getHtmlPageContent',
     params: {
       url: 'https://www.linkedin.com/jobs/search/?currentJobId=4455964714&keywords=javascript',
@@ -24,14 +34,16 @@ export const getHtmlPageContentCases: GetHtmlPageContentCaseType[] = [
       pathFileAbs: join(__dirname, '__output__', `${dateString}_linkedin.html`),
     },
     expected: { html: '' },
+    // const match = output.html.match(/([\d,]+)\s+results\b/i)
+    // const count = match ? Number(match[1].replaceAll(',', '')) : null
   },
-  // {
-  //   description: 'basic test getHtmlPageContent',
-  //   params: {
-  //     url: 'https://example.com',
-  //     pathFileAbsOutput: join(__dirname, '__output__', `${dateString}_page.html`),
-  //   },
-  //   options: { waitForTimeout: 2000, isHeadless: false },
-  //   expected: { html: '' },
-  // },
+  {
+    index: 0,
+    description: 'basic test getHtmlPageContent',
+    params: {
+      url: 'https://example.com',
+    },
+    options: { waitForTimeout: 2000, isHeadless: false },
+    expected: { html: '' },
+  },
 ]

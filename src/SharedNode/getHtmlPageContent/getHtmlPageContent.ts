@@ -1,4 +1,3 @@
-import fs from 'node:fs/promises'
 import { join } from 'node:path'
 import { Browser, BrowserContext, chromium } from 'playwright'
 import { FileTypeEnum, FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
@@ -44,10 +43,20 @@ const resDefault: GetHtmlPageContentResType = { html: '' }
 
 /**
  * @description Function to getHtmlPageContent
- * @usage @import import { getHtmlPageContent, GetHtmlPageContentParamsType, GetHtmlPageContentOptionsType } from './getHtmlPageContent/getHtmlPageContent'
-   const getHtmlPageContentParams: GetHtmlPageContentParamsType = {}
-   const getHtmlPageContentOptions: GetHtmlPageContentOptionsType = {}
-   getHtmlPageContent(getHtmlPageContentParams, getHtmlPageContentOptions)
+ * @usage
+ * @import {
+ *   getHtmlPageContent,
+ *   GetHtmlPageContentParamsType,
+ *   GetHtmlPageContentOptionsType,
+ * } from './getHtmlPageContent/getHtmlPageContent'
+ *
+ * const getHtmlPageContentParams: GetHtmlPageContentParamsType = {}
+ * const getHtmlPageContentOptions: GetHtmlPageContentOptionsType = {}
+ *
+ * getHtmlPageContent(
+ *   getHtmlPageContentParams,
+ *   getHtmlPageContentOptions,
+ * )
  */
 const getHtmlPageContentUnsafe: GetHtmlPageContentType = async (
   { url }: GetHtmlPageContentParamsType,
@@ -56,7 +65,7 @@ const getHtmlPageContentUnsafe: GetHtmlPageContentType = async (
     isLaunchPersistentContext = false,
     isHeadless = true,
     waitUntil = WaitUntilEnum.load,
-    pathFileAbs = join(__dirname, '__output__', `page.html`),
+    pathFileAbs = join(__dirname, '__output__', 'page.html'),
   }: GetHtmlPageContentOptionsType = optionsDefault,
 ) => {
   let browser: Browser | undefined
@@ -70,25 +79,53 @@ const getHtmlPageContentUnsafe: GetHtmlPageContentType = async (
     browser = await chromium.launch({
       headless: isHeadless,
     })
+
     context = await browser.newContext()
   }
 
   const page = await context.newPage()
+
   await page.goto(url, {
-    waitUntil, // 'domcontentloaded'
+    waitUntil,
   })
 
-  // additional sleep, e.g. 3 seconds
+  await page.waitForLoadState('networkidle').catch(() => {})
+
   await page.waitForTimeout(waitForTimeout)
 
-  // This is the current DOM, similar to what you see in DevTools Elements
-  const html = await page.content()
+  const html = await page.evaluate(() => {
+    const elements = Array.from(document.querySelectorAll('*'))
 
-  if (pathFileAbs)
+    for (const element of elements) {
+      const shadowRoot = element.shadowRoot
+
+      if (!shadowRoot) {
+        continue
+      }
+
+      const template = document.createElement('template')
+      template.setAttribute('shadowrootmode', 'open')
+
+      template.content.append(...Array.from(shadowRoot.childNodes))
+
+      element.appendChild(template)
+    }
+
+    return document.documentElement.outerHTML
+  })
+
+  if (pathFileAbs) {
     await getWrittenFile2(
-      { pathFileAbs, data: html },
-      { fileType: FileTypeEnum.txt, isOverwrite: true },
+      {
+        pathFileAbs,
+        data: html,
+      },
+      {
+        fileType: FileTypeEnum.txt,
+        isOverwrite: true,
+      },
     )
+  }
 
   await context.close()
   await browser?.close()
@@ -146,6 +183,7 @@ const getHtmlPageContent = withTryCatchFinallyWrapper<
 })
 
 type GetHtmlPageContentCaseType = {
+  index: number
   description?: string
   params: Parameters<typeof getHtmlPageContent>[0]
   paramsWithAssignedDate?: { timestamp: number }

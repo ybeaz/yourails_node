@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 import { withAssignedDate } from 'yourails_common'
-import { consoler } from 'yourails_node/consoler'
+import { consoler } from '../consoler'
 import { type GetVideoInfoCaseType, getVideoInfo } from './getVideoInfo'
 import { getVideoInfoCases } from './getVideoInfo.case'
 

@@ -1,4 +1,4 @@
-import { consoler } from 'yourails_node/consoler'
+import { consoler } from '../consoler'
 import {
   type GetVideoInfoCaseType,
   type GetVideoInfoOptionsType,
