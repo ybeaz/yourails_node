@@ -13,21 +13,20 @@ import {
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getWrittenFile3 } from '../getWrittenFile3/getWrittenFile3'
-import htmlBlocksExtracted from './__mocks__/2026-09-17-10-50-22_html.json'
 import {
-  type GetHtmlPageHtmlCaseType,
-  type GetHtmlPageHtmlOptionsType,
-  type GetHtmlPageHtmlParamsType,
-  getHtmlPageHtml,
-} from './getHtmlPageHtml'
-import { getHtmlPageHtmlCases } from './getHtmlPageHtml.case'
+  type GetHtmlFromHtmlPageCaseType,
+  type GetHtmlFromHtmlPageOptionsType,
+  type GetHtmlFromHtmlPageParamsType,
+  getHtmlFromHtmlPage,
+} from './getHtmlFromHtmlPage'
+import { getHtmlFromHtmlPageCases } from './getHtmlFromHtmlPage.case'
 
 /**
- * @run npx tsx src/SharedNode/getHtmlPageHtml/getHtmlPageHtml.run.ts
+ * @run npx tsx src/sharedNode/getHtmlFromHtmlPage/getHtmlFromHtmlPage.run.ts
  */
 if (require.main === module) {
   void (async () => {
-    for await (const { index, description, params, options } of getHtmlPageHtmlCases) {
+    for await (const { index, description, params, options } of getHtmlFromHtmlPageCases) {
       const CASE_TO_PICK_UP = 2
 
       if (index !== CASE_TO_PICK_UP) continue
@@ -45,7 +44,7 @@ if (require.main === module) {
 
       /* EXTRACT HTML STRING */
 
-      const { html } = await getHtmlPageHtml(params, options)
+      const { html } = await getRunWithSpinner(getHtmlFromHtmlPage)(params, options)
 
       const pathFileAbs = join(__dirname, '__output__', `${dateString}_html.txt`)
 
@@ -81,7 +80,7 @@ if (require.main === module) {
         { fileType: FileTypeEnum.json, isOverwrite: true },
       )
 
-      consoler(`\n\n\n\n\ngetHtmlPageHtml EXTRACT HTML BLOCKS BY SELECTORS [85-2-${index}]`, {
+      consoler(`\n\n\n\n\ngetHtmlFromHtmlPage EXTRACT HTML BLOCKS BY SELECTORS [85-2-${index}]`, {
         description,
         htmlBlocksExtracted,
       })
@@ -94,14 +93,14 @@ if (require.main === module) {
           const getHtmlToTextConvertParams: GetHtmlToTextConvertParamsType = { html }
           const getHtmlToTextConvertOptions: GetHtmlToTextConvertOptionsType = {}
 
-          // consoler('\n\n\n\n\ngetHtmlPageHtml.run [100]', { html })
+          // consoler('\n\n\n\n\ngetHtmlFromHtmlPage.run [100]', { html })
 
           const textString = getHtmlToTextConvert(
             getHtmlToTextConvertParams,
             getHtmlToTextConvertOptions,
           )
 
-          // consoler('\n\n\n\n\ngetHtmlPageHtml.run [105]', { textString })
+          // consoler('\n\n\n\n\ngetHtmlFromHtmlPage.run [105]', { textString })
 
           return textString
         })
@@ -113,7 +112,7 @@ if (require.main === module) {
         { fileType: FileTypeEnum.json, isOverwrite: true },
       )
 
-      consoler(`\n\n\n\n\ngetHtmlPageHtml CONVERT HTML BLOCKS TO TEXT BLOCKS [85-3-${index}]`, {
+      consoler(`\n\n\n\n\ngetHtmlFromHtmlPage CONVERT HTML BLOCKS TO TEXT BLOCKS [85-3-${index}]`, {
         htmlBlocksExtractedLen: htmlBlocksExtracted.length,
         htmlTextsExtracted,
       })

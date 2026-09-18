@@ -10,11 +10,11 @@ export enum WaitUntilEnum {
   networkidle = 'networkidle', // 🐢 Slow/unpredictable	Network becomes idle
 }
 
-type GetHtmlPageHtmlParamsType = {
+type GetHtmlFromHtmlPageParamsType = {
   url: string
 }
 
-type GetHtmlPageHtmlOptionsType = {
+type GetHtmlFromHtmlPageOptionsType = {
   waitForTimeout?: number
   isLaunchPersistentContext?: boolean
   isHeadless?: boolean
@@ -25,45 +25,36 @@ type GetHtmlPageHtmlOptionsType = {
   funcParent?: string
 }
 
-type GetHtmlPageHtmlResType = { html: string }
+type GetHtmlFromHtmlPageResType = { html: string }
 
-type GetHtmlPageHtmlType = (
-  params: GetHtmlPageHtmlParamsType,
-  options?: GetHtmlPageHtmlOptionsType,
-) => Promise<GetHtmlPageHtmlResType>
+type GetHtmlFromHtmlPageType = (
+  params: GetHtmlFromHtmlPageParamsType,
+  options?: GetHtmlFromHtmlPageOptionsType,
+) => Promise<GetHtmlFromHtmlPageResType>
 
 const optionsDefault = {
   waitForTimeout: 2000,
   isLaunchPersistentContext: false,
   isHeadless: true,
-  funcParent: 'getHtmlPageHtml',
+  funcParent: 'getHtmlFromHtmlPage',
   waitUntil: WaitUntilEnum.load,
   isWaitingForLoad: false,
   isFlattenShadowDom: false,
   gotoTimeout: 30000,
-} satisfies Required<GetHtmlPageHtmlOptionsType>
+} satisfies Required<GetHtmlFromHtmlPageOptionsType>
 
-const resDefault: GetHtmlPageHtmlResType = { html: '' }
+const resDefault: GetHtmlFromHtmlPageResType = { html: '' }
 
 /**
- * @description Function to getHtmlPageHtml
+ * @description Function to getHtmlFromHtmlPage
  * @usage
- * @import {
- *   getHtmlPageHtml,
- *   GetHtmlPageHtmlParamsType,
- *   GetHtmlPageHtmlOptionsType,
- * } from './getHtmlPageHtml/getHtmlPageHtml'
- *
- * const getHtmlPageHtmlParams: GetHtmlPageHtmlParamsType = {}
- * const getHtmlPageHtmlOptions: GetHtmlPageHtmlOptionsType = {}
- *
- * getHtmlPageHtml(
- *   getHtmlPageHtmlParams,
- *   getHtmlPageHtmlOptions,
- * )
+   import { getHtmlFromHtmlPage, GetHtmlFromHtmlPageParamsType, GetHtmlFromHtmlPageOptionsType } from './getHtmlFromHtmlPage/getHtmlFromHtmlPage'
+   const getHtmlFromHtmlPageParams: GetHtmlFromHtmlPageParamsType = {}
+   const getHtmlFromHtmlPageOptions: GetHtmlFromHtmlPageOptionsType = {}
+   getHtmlFromHtmlPage(getHtmlFromHtmlPageParams, getHtmlFromHtmlPageOptions)
  */
-const getHtmlPageHtmlUnsafe: GetHtmlPageHtmlType = async (
-  { url }: GetHtmlPageHtmlParamsType,
+const getHtmlFromHtmlPageUnsafe: GetHtmlFromHtmlPageType = async (
+  { url }: GetHtmlFromHtmlPageParamsType,
   {
     waitForTimeout = 2000,
     isLaunchPersistentContext = false,
@@ -72,7 +63,7 @@ const getHtmlPageHtmlUnsafe: GetHtmlPageHtmlType = async (
     isWaitingForLoad = false,
     isFlattenShadowDom = false,
     gotoTimeout = 30000,
-  }: GetHtmlPageHtmlOptionsType = optionsDefault,
+  }: GetHtmlFromHtmlPageOptionsType = optionsDefault,
 ) => {
   let browser: Browser | undefined
   let context: BrowserContext | undefined
@@ -175,31 +166,31 @@ let browser: Browser | undefined
   }
 */
 
-const getHtmlPageHtml = withTryCatchFinallyWrapper<
-  GetHtmlPageHtmlParamsType,
-  GetHtmlPageHtmlOptionsType,
-  GetHtmlPageHtmlResType
->(getHtmlPageHtmlUnsafe, {
+const getHtmlFromHtmlPage = withTryCatchFinallyWrapper<
+  GetHtmlFromHtmlPageParamsType,
+  GetHtmlFromHtmlPageOptionsType,
+  GetHtmlFromHtmlPageResType
+>(getHtmlFromHtmlPageUnsafe, {
   optionsDefault,
   resDefault,
   funcMode: FuncModeEnumType.common,
   isFinally: false,
 })
 
-type GetHtmlPageHtmlCaseType = {
+type GetHtmlFromHtmlPageCaseType = {
   index: number
   description?: string
-  params: Parameters<typeof getHtmlPageHtml>[0]
+  params: Parameters<typeof getHtmlFromHtmlPage>[0]
   paramsWithAssignedDate?: { timestamp: number }
-  options?: Parameters<typeof getHtmlPageHtml>[1]
-  expected: ReturnType<typeof getHtmlPageHtml>
+  options?: Parameters<typeof getHtmlFromHtmlPage>[1]
+  expected: ReturnType<typeof getHtmlFromHtmlPage>
 }
 
 export type {
-  GetHtmlPageHtmlCaseType,
-  GetHtmlPageHtmlOptionsType,
-  GetHtmlPageHtmlParamsType,
-  GetHtmlPageHtmlResType,
-  GetHtmlPageHtmlType,
+  GetHtmlFromHtmlPageCaseType,
+  GetHtmlFromHtmlPageOptionsType,
+  GetHtmlFromHtmlPageParamsType,
+  GetHtmlFromHtmlPageResType,
+  GetHtmlFromHtmlPageType,
 }
-export { getHtmlPageHtml }
+export { getHtmlFromHtmlPage }

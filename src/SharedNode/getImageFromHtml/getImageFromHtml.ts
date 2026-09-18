@@ -69,7 +69,11 @@ const optionsDefault = {
           ✅ 2	Retina equivalent most common
           3	very sharp	high-end rendering
           4+	extreme	⚠️ rarely worth it
- * @import import { getImageFromHtml } from './getImageFromHtml'
+ * @usage
+   import { getImageFromHtml, GetImageFromHtmlParamsType, GetImageFromHtmlOptionsType } from './getImageFromHtml/getImageFromHtml'
+   const getImageFromHtmlParams: GetImageFromHtmlParamsType = {}
+   const getImageFromHtmlOptions: GetImageFromHtmlOptionsType = {}
+   getImageFromHtml(getImageFromHtmlParams, getImageFromHtmlOptions)
  */
 const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   {
@@ -279,6 +283,6 @@ export { getImageFromHtml, ScalingModeEnum }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.ts
- * @test pnpm jest getImageFromHtml.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageFromHtml/getImageFromHtml.ts"
+ * @run npx tsx src/sharedNode/getImageFromHtml/getImageFromHtml.ts
+ * @test pnpm jest getImageFromHtml.test.ts --coverage --collectCoverageFrom="src/sharedNode/getImageFromHtml/getImageFromHtml.ts"
  */

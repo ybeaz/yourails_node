@@ -1,6 +1,9 @@
 import { join } from 'node:path'
 import { getDateString } from 'yourails_common'
-import type { GetHtmlPageHtmlCaseType, GetHtmlPageHtmlParamsType } from './getHtmlPageHtml'
+import type {
+  GetHtmlFromHtmlPageCaseType,
+  GetHtmlFromHtmlPageParamsType,
+} from './getHtmlFromHtmlPage'
 
 const dateString = getDateString({
   timestamp: new Date(),
@@ -11,24 +14,24 @@ const dateString = getDateString({
   isUtcMethods: false,
 })
 
-export const getHtmlPageHtmlCases: GetHtmlPageHtmlCaseType[] = [
+export const getHtmlFromHtmlPageCases: GetHtmlFromHtmlPageCaseType[] = [
   {
     index: 2,
-    description: 'basic test getHtmlPageHtml',
+    description: 'basic test getHtmlFromHtmlPage',
     params: {
       url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while',
     },
     options: {
       waitForTimeout: 2000,
       isHeadless: true,
-      isWaitingForLoad: false,
-      isFlattenShadowDom: false,
+      isWaitingForLoad: true,
+      isFlattenShadowDom: true,
     },
     expected: { html: '' },
   },
   {
     index: 1,
-    description: 'basic test getHtmlPageHtml',
+    description: 'basic test getHtmlFromHtmlPage',
     params: {
       url: 'https://www.linkedin.com/jobs/search/?currentJobId=4455964714&keywords=javascript',
     },
@@ -43,7 +46,7 @@ export const getHtmlPageHtmlCases: GetHtmlPageHtmlCaseType[] = [
   },
   {
     index: 0,
-    description: 'basic test getHtmlPageHtml',
+    description: 'basic test getHtmlFromHtmlPage',
     params: {
       url: 'https://example.com',
     },
