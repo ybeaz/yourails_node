@@ -34,7 +34,11 @@ const optionsDefault = {
 
 /**
  * @description Function to getReadFile2
- * @import import { getReadFile2 } from './getReadFile2'
+ * @usage
+   import { getReadFile2, GetReadFile2ParamsType, GetReadFile2OptionsType } from './getReadFile2/getReadFile2'
+   const getReadFile2Params: GetReadFile2ParamsType = {}
+   const getReadFile2Options: GetReadFile2OptionsType = {}
+   getReadFile2(getReadFile2Params, getReadFile2Options)
  */
 const getReadFile2Unsafe: GetReadFile2Type = async (
   { pathFileAbs }: GetReadFile2ParamsType,

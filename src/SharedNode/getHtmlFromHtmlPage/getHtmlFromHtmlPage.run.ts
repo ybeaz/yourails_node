@@ -1,16 +1,18 @@
 import { join } from 'node:path'
 import {
   FileTypeEnum,
-  GetHtmlBlockExtractedResType,
-  GetHtmlBlocksExtractedOptionsType,
-  GetHtmlBlocksExtractedParamsType,
   GetHtmlToTextConvertOptionsType,
   GetHtmlToTextConvertParamsType,
   getDateString,
-  getHtmlBlocksExtracted,
   getHtmlToTextConvert,
 } from 'yourails_common'
 import { consoler } from '../consoler'
+import {
+  GetHtmlBlockExtractedResType,
+  GetHtmlBlocksExtractedOptionsType,
+  GetHtmlBlocksExtractedParamsType,
+  getHtmlBlocksExtracted,
+} from '../getHtmlBlocksExtracted/getHtmlBlocksExtracted'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getWrittenFile3 } from '../getWrittenFile3/getWrittenFile3'
 import {
@@ -27,7 +29,7 @@ import { getHtmlFromHtmlPageCases } from './getHtmlFromHtmlPage.case'
 if (require.main === module) {
   void (async () => {
     for await (const { index, description, params, options } of getHtmlFromHtmlPageCases) {
-      const CASE_TO_PICK_UP = 2
+      const CASE_TO_PICK_UP = 3
 
       if (index !== CASE_TO_PICK_UP) continue
 
@@ -42,7 +44,7 @@ if (require.main === module) {
         isUtcMethods: false,
       })
 
-      /* EXTRACT HTML STRING */
+      /* LOAD HTML STRING */
 
       const { html } = await getRunWithSpinner(getHtmlFromHtmlPage)(params, options)
 

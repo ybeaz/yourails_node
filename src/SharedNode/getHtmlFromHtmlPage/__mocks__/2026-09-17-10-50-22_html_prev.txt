@@ -1,4 +1,4 @@
-<html lang="en-US" data-theme="light dark" data-renderer="Doc"><head>
+<!DOCTYPE html><html lang="en-US" data-theme="light dark" data-renderer="Doc"><head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>while - JavaScript | MDN</title>
@@ -18,10 +18,10 @@ try {
   console.warn("Unable to set nop", error);
 }
 </script>
-          <link rel="stylesheet" href="/static/client/styles-global.0c244b38c411fb21.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/270.66bae6059a1c23f9.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-reference-layout.632d2f3884f10ca3.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/9228.c46ef79d5582674d.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-content-section.1eb240d1720d8ac3.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-heading-anchor.0eec5185ab9425b7.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-baseline-indicator.dcd17e42ea043f53.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-reference-toc.9b9bd019efd16b86.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-article-footer.81ae18c89fc527dc.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-left-sidebar.46e37af4d0b5c883.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-page-layout.5a4354f33e894319.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-a11y-menu.5796ee87cb69f93f.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-navigation.c3ebf384e65df345.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-logo.aea5ff6edf1b9cfb.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-menu.e2c5c8a53a8854c2.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-breadcrumbs-bar.9a51a3c76a6231d0.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-breadcrumbs.87eb742f4e711dc3.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-footer.66072dd619a4ef50.css" fetchpriority="high">
+          <link rel="stylesheet" href="/static/client/styles-global.13616ebb1fc8ee2f.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/270.66bae6059a1c23f9.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-reference-layout.632d2f3884f10ca3.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/9228.c46ef79d5582674d.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-content-section.1eb240d1720d8ac3.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-heading-anchor.0eec5185ab9425b7.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-baseline-indicator.dcd17e42ea043f53.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-reference-toc.9b9bd019efd16b86.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-article-footer.81ae18c89fc527dc.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-left-sidebar.46e37af4d0b5c883.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-page-layout.5a4354f33e894319.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-a11y-menu.5796ee87cb69f93f.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-navigation.c3ebf384e65df345.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-logo.aea5ff6edf1b9cfb.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-menu.e2c5c8a53a8854c2.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-breadcrumbs-bar.9a51a3c76a6231d0.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-breadcrumbs.87eb742f4e711dc3.css" fetchpriority="high"><link rel="stylesheet" href="/static/client/styles-footer.66072dd619a4ef50.css" fetchpriority="high">
           <link rel="preload" href="/static/client/jetbrains-mono-latin.119994ed445212c7.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="low"><link rel="preload" href="/static/client/inter-latin.9a3b1bc220d426ef.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="low">
           
-          <script src="/static/client/runtime.dc9effe0d587569e.js" type="module"></script><script src="/static/client/5909.489e266d049aa182.js" type="module"></script><script src="/static/client/4585.e30f706b333273cd.js" type="module"></script><script src="/static/client/1216.2fdb44f0bb574bc2.js" type="module"></script><script src="/static/client/index.6fa8f3cd21e47cf1.js" type="module"></script>
+          <script src="/static/client/runtime.3b64fc38729163b2.js" type="module"></script><script src="/static/client/5909.489e266d049aa182.js" type="module"></script><script src="/static/client/4585.e30f706b333273cd.js" type="module"></script><script src="/static/client/1216.2fdb44f0bb574bc2.js" type="module"></script><script src="/static/client/index.8c27f77aefc2e616.js" type="module"></script>
           
     <link rel="icon" sizes="32x32" href="https://developer.mozilla.org/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="https://developer.mozilla.org/favicon.svg">
@@ -43,18 +43,7 @@ try {
       </li>
     </ul>
         <div class="page-layout__banner" data-scheme="">
-          <mdn-placement-top><template shadowrootmode="open"><!----><div class="top-placement" style="--place-top-background-light:#FFFFFF;--place-top-color-light:#000000;--place-top-cta-background-light:#1E64D4;--place-top-cta-color-light:#FFFFFF;--place-top-background-dark:#FFFFFF;--place-top-color-dark:#000000;--place-top-cta-background-dark:#1E64D4;--place-top-cta-color-dark:#FFFFFF;" data-type="top-banner">
-          <section class="placement-container">
-            <div class="placement-inner">
-              <a class="placement-link" target="_blank" rel="sponsored" data-glean-id="pong: pong-&gt;click top-banner" href="/pong/click?code=aHR0cHM6Ly9zcnYuYnV5c2VsbGFkcy5jb20vYWRzL2NsaWNrL3gvR1RORDQyN1lGNlNERTJRV0Y2QTRZS1FVRlRBSTZLM01DVDdJVFozSkNBQURMSzdXQ0FTSUUyUUtDNllENUtRN0NLWUQ2SzdOQzZCRFZLM1dDNlNJNjUzS0M2U0lFNVFVQ1RZRFZLM0VISk5DTFNJWg%3D%3D.Zwu46JezGj2y%2FyVUr9dpbG%2BQKs2zn7u9x5pBKysKLoc%3D&amp;version=2"><div class="placement-content">
-                  <img height="50" src="/pimg/aHR0cHM6Ly9zdGF0aWM0LmJ1eXNlbGxhZHMubmV0L3V1LzIvMTc2NDc2LzE3ODU0MTg3MzMtZ29vZ2xlLWNsb3VkLTEyOHgxMjgucG5n.TI9Kq4BHz7xfNjTsrnsrJyl1TDW7nYZfgq3RpwFiFm0%3D" aria-hidden="false" alt="Google Cloud"><span><!--?lit$693478621$-->Innovate faster with enterprise-ready AI, enhanced by Gemini models. Get started for free.</span>
-                </div>
-                <span class="placement-cta"><!--?lit$693478621$-->Start Free</span></a>
-              <mdn-placement-note></mdn-placement-note>
-            </div>
-            <mdn-placement-no></mdn-placement-no>
-          </section>
-        </div></template></mdn-placement-top>
+          <mdn-placement-top></mdn-placement-top>
         </div>
         <header class="page-layout__header">
           
@@ -70,9 +59,7 @@ try {
       </a>
     </div>
         <div class="navigation__search" data-view="mobile">
-          <mdn-search-button><template shadowrootmode="open"><style>.mdn-search-button{align-items:center;background-color:var(--color-background-page);border:1px solid var(--color-border-primary);border-radius:var(--radius-full);color:var(--color-text-primary);cursor:pointer;display:flex;justify-content:space-between;margin:0;padding:.25rem .25rem .25rem .75rem;width:5rem}.mdn-search-button:hover{background-color:var(--color-background-secondary)}.mdn-search-button:before{content:"";height:18px;width:15px;--csstools-light-dark-toggle-95231fd5-0:var(--csstools-color-scheme--light) var(--color-blue-80);border-bottom:2px solid var(--csstools-light-dark-toggle-95231fd5-0,var(--color-blue-50))}@supports (color:light-dark(red,red)){.mdn-search-button:before{border-bottom:2px solid light-dark(var(--color-blue-50),var(--color-blue-80))}}</style><!--lit-part PwhADO+m7/M=--><!--lit-node 0--><button class="mdn-search-button" title="Search the site" data-glean-id="quick-search-open: menu">
-      <!--lit-part ijtgkDNyZhc=--><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><!--/lit-part-->
-    </button><!--/lit-part--></template></mdn-search-button>
+          <mdn-search-button></mdn-search-button>
         </div>
         <button class="navigation__button" type="button" aria-expanded="false" aria-controls="navigation__popup" aria-label="Toggle navigation"></button>
         <div class="navigation__popup" id="navigation__popup">
@@ -80,10 +67,10 @@ try {
       <nav class="menu">
         <div class="menu__tab" data-section="html">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: html" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_ydo7jchnv1p">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_tds2lpah97">
                       <span class="menu__tab-label">HTML</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_ydo7jchnv1p">
+                    <div class="menu__panel" slot="dropdown" id="uid_tds2lpah97">
                       <p class="menu__panel-title">
                         <a href="/en-US/docs/Web/HTML" data-glean-id="menu_click_menu: html -&gt; /en-US/docs/Web/HTML">HTML: Markup language</a>
                       </p>
@@ -128,16 +115,13 @@ try {
                               </dl>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="css">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: css" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_bzkuc9ko5rv">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_pxmhkl10op">
                       <span class="menu__tab-label">CSS</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_bzkuc9ko5rv">
+                    <div class="menu__panel" slot="dropdown" id="uid_pxmhkl10op">
                       <p class="menu__panel-title">
                         <a href="/en-US/docs/Web/CSS" data-glean-id="menu_click_menu: css -&gt; /en-US/docs/Web/CSS">CSS: Styling language</a>
                       </p>
@@ -188,16 +172,13 @@ try {
                               </dl>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="javascript">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: javascript" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_dwgku85yby4">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_9fohhdf97ih">
                       <span class="menu__tab-label" data-type="long">JavaScript</span><span class="menu__tab-label" data-type="short">JS</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_dwgku85yby4">
+                    <div class="menu__panel" slot="dropdown" id="uid_9fohhdf97ih">
                       <p class="menu__panel-title">
                         <a href="/en-US/docs/Web/JavaScript" data-glean-id="menu_click_menu: javascript -&gt; /en-US/docs/Web/JavaScript">JavaScript: Scripting language</a>
                       </p>
@@ -235,16 +216,13 @@ try {
                               </dl>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="webapis">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: webapis" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_ct50t26kckm">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_6scjam7tomh">
                       <span class="menu__tab-label">Web APIs</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_ct50t26kckm">
+                    <div class="menu__panel" slot="dropdown" id="uid_6scjam7tomh">
                       <p class="menu__panel-title">
                         <a href="/en-US/docs/Web/API" data-glean-id="menu_click_menu: webapis -&gt; /en-US/docs/Web/API">Web APIs: Programming interfaces</a>
                       </p>
@@ -286,16 +264,13 @@ try {
                               </dl>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="all">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: all" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_gh0q1pmg3ym">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_qld0og07po">
                       <span class="menu__tab-label">All</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_gh0q1pmg3ym">
+                    <div class="menu__panel" slot="dropdown" id="uid_qld0og07po">
                       <p class="menu__panel-title">
                         <a href="/en-US/docs/Web" data-glean-id="menu_click_menu: all -&gt; /en-US/docs/Web">All web technology</a>
                       </p>
@@ -337,16 +312,13 @@ try {
                               </dl>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="learn">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: learn" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_d56war41eeb">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_f7fgog5jqmu">
                       <span class="menu__tab-label">Learn</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_d56war41eeb">
+                    <div class="menu__panel" slot="dropdown" id="uid_f7fgog5jqmu">
                       <p class="menu__panel-title">
                         <a href="/en-US/docs/Learn_web_development" data-glean-id="menu_click_menu: learn -&gt; /en-US/docs/Learn_web_development">Learn web development</a>
                       </p>
@@ -390,16 +362,13 @@ try {
                               </dl>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="tools">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: tools" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_2lqmxqnpy8l">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_awppt1os5tk">
                       <span class="menu__tab-label">Tools</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_2lqmxqnpy8l">
+                    <div class="menu__panel" slot="dropdown" id="uid_awppt1os5tk">
                       <p class="menu__panel-title">
                         Discover our tools
                       </p>
@@ -427,16 +396,13 @@ try {
                           </ul>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="about">
             <mdn-dropdown data-glean-toggle-open="menu_toggle: about" loaded="">
-                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_k9di4h2j6gc">
+                    <button class="menu__tab-button" type="button" slot="button" aria-expanded="false" aria-controls="uid_7uocppaxxyn">
                       <span class="menu__tab-label">About</span>
                     </button>
-                    <div class="menu__panel" slot="dropdown" id="uid_k9di4h2j6gc">
+                    <div class="menu__panel" slot="dropdown" id="uid_7uocppaxxyn">
                       <p class="menu__panel-title">
                         Get to know MDN better
                       </p>
@@ -456,48 +422,22 @@ try {
                           </ul>
                       </div>
                     </div>
-                  <template shadowrootmode="open"><style>:host{display:contents}:host(:not([loaded],:focus-within)) slot[name=dropdown]{display:none}</style><!--lit-part NrjKVwpqTpA=-->
-      <!--lit-node 0--><slot name="button"></slot>
-      <!--lit-node 1--><slot name="dropdown" hidden=""></slot>
-    <!--/lit-part--></template></mdn-dropdown>
+                  </mdn-dropdown>
           </div><div class="menu__tab" data-section="blog">
             <a class="menu__tab-link" href="/en-US/blog/" data-glean-id="menu_click_link: top-level -&gt; /en-US/blog/">Blog</a>
           </div>
       </nav>
     </div>
           <div class="navigation__search" data-view="desktop">
-            <mdn-search-button><template shadowrootmode="open"><style>.mdn-search-button{align-items:center;background-color:var(--color-background-page);border:1px solid var(--color-border-primary);border-radius:var(--radius-full);color:var(--color-text-primary);cursor:pointer;display:flex;justify-content:space-between;margin:0;padding:.25rem .25rem .25rem .75rem;width:5rem}.mdn-search-button:hover{background-color:var(--color-background-secondary)}.mdn-search-button:before{content:"";height:18px;width:15px;--csstools-light-dark-toggle-95231fd5-0:var(--csstools-color-scheme--light) var(--color-blue-80);border-bottom:2px solid var(--csstools-light-dark-toggle-95231fd5-0,var(--color-blue-50))}@supports (color:light-dark(red,red)){.mdn-search-button:before{border-bottom:2px solid light-dark(var(--color-blue-50),var(--color-blue-80))}}</style><!--lit-part PwhADO+m7/M=--><!--lit-node 0--><button class="mdn-search-button" title="Search the site" data-glean-id="quick-search-open: menu">
-      <!--lit-part ijtgkDNyZhc=--><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><!--/lit-part-->
-    </button><!--/lit-part--></template></mdn-search-button>
+            <mdn-search-button></mdn-search-button>
           </div>
-          <mdn-user-menu><template shadowrootmode="open"><!---->
-                <mdn-button class="user-menu__login" variant="plain" data-glean-id="top_nav: login" href="https://developer.mozilla.org/users/fxa/login/authenticate/?next=%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FStatements%2Fwhile">
-                  <!--?lit$693478621$-->Log in
-                </mdn-button>
-              </template></mdn-user-menu>
+          <mdn-user-menu></mdn-user-menu>
         </div>
       </nav>
-      <mdn-search-modal id="mdn-search"><template shadowrootmode="open"><!---->
-      <dialog closedby="any">
-        <div class="header">
-          <form method="get" action="/en-US/search">
-            <input type="search" name="q" autocomplete="off" autofocus="" role="combobox" aria-autocomplete="list" aria-controls="search-modal-listbox" placeholder="Search" aria-label="Search" aria-expanded="false">
-          </form>
-          <div class="visually-hidden" role="status"><!--?lit$693478621$--></div>
-          <mdn-button class="close" variant="plain" icon-only=""><!--?lit$693478621$-->Exit search</mdn-button>
-        </div>
-        <!--?lit$693478621$-->
-        <ul id="search-modal-listbox" role="listbox" aria-label="Search results">
-          <!--?lit$693478621$-->
-          <!--?lit$693478621$-->
-        </ul>
-      </dialog>
-    </template></mdn-search-modal>
+      <mdn-search-modal id="mdn-search"></mdn-search-modal>
      
       <div class="breadcrumbs-bar" data-scheme="">
-        <mdn-toggle-sidebar><template shadowrootmode="open"><style>:host{border-right:1px solid var(--color-border-primary);display:block;height:100%}mdn-button{height:100%}</style><!--lit-part gv6WcfvvaIc=--><!--lit-node 0--><mdn-button icon-only="" variant="plain" aria-controls="main-sidebar">
-      <!--lit-part-->Toggle sidebar<!--/lit-part-->
-    </mdn-button><!--/lit-part--></template></mdn-toggle-sidebar> 
+        <mdn-toggle-sidebar></mdn-toggle-sidebar> 
       <ol class="breadcrumbs" vocab="https://schema.org/" typeof="BreadcrumbList">
         
             <li property="itemListElement" typeof="ListItem">
@@ -527,87 +467,9 @@ try {
           
       </ol>
     
-        <mdn-collection-save-button doc-url="/en-US/docs/Web/JavaScript/Reference/Statements/while" doc-title="while"><template shadowrootmode="open"><!----></template></mdn-collection-save-button>
-        <mdn-color-theme><template shadowrootmode="open"><style>.color-theme{--color-theme-light-dark:url(/static/ssr/contrast.d86e85c43de8dee8.svg);--color-theme-light:url(/static/ssr/sun.1d7c3ad7bf6fc390.svg);--color-theme-dark:url(/static/ssr/moon.74026b9da82b0694.svg);position:relative}.color-theme__button{align-items:center;background-color:initial;border:none;color:inherit;column-gap:.25rem;cursor:pointer;display:flex;font:inherit;margin:0;padding:0 .5rem}.color-theme__button:is(:hover,:focus,[aria-expanded=true]){background-color:var(--color-background-secondary)}@media (width <= 769px){.color-theme__button>span{display:none}}.color-theme__button:before{background-color:currentcolor;content:"";height:1.25rem;mask-size:cover;width:1.25rem}.color-theme__button[data-mode="light dark"]:before{mask-image:var(--color-theme-light-dark)}.color-theme__button[data-mode=light]:before{mask-image:var(--color-theme-light)}.color-theme__button[data-mode=dark]:before{mask-image:var(--color-theme-dark)}.color-theme__dropdown{border:1px solid var(--color-border-primary);padding:.75rem;position:absolute;right:0;z-index:1}.color-theme__dropdown,.color-theme__list{background-color:var(--color-background-primary);margin:0;width:max-content}.color-theme__list{list-style:none;padding:0}.color-theme__option{align-items:center;background-color:initial;border:none;color:var(--color-text-primary);column-gap:.25rem;cursor:pointer;display:flex;font:inherit;margin:0;padding:.25rem;width:100%}.color-theme__option:hover{background-color:var(--color-background-secondary)}.color-theme__option:before{background-color:currentcolor;content:"";height:1.25rem;mask-size:cover;width:1.25rem}.color-theme__option[data-mode="light dark"]:before{mask-image:var(--color-theme-light-dark)}.color-theme__option[data-mode=light]:before{mask-image:var(--color-theme-light)}.color-theme__option[data-mode=dark]:before{mask-image:var(--color-theme-dark)}.color-theme__option[data-current]{background:var(--color-background-secondary)}</style><!--lit-part qfulPQ/1soM=--><div class="color-theme">
-      <!--lit-node 1--><mdn-dropdown loaded="">
-        <!--lit-node 2--><button part="button" slot="button" class="color-theme__button" data-mode="light dark" type="button" aria-label="Switch color theme" aria-expanded="false" aria-controls="color-theme__dropdown">
-          <span><!--lit-part-->Theme<!--/lit-part--></span>
-        </button>
-        <div slot="dropdown" class="color-theme__dropdown" id="color-theme__dropdown">
-          <ul class="color-theme__list">
-            <!--lit-part--><!--lit-part oXzlp8XhpzI=--><li>
-                  <!--lit-node 1--><button class="color-theme__option" data-mode="light dark" data-current="" type="button">
-                    <!--lit-part-->OS default<!--/lit-part-->
-                  </button>
-                </li><!--/lit-part--><!--lit-part oXzlp8XhpzI=--><li>
-                  <!--lit-node 1--><button class="color-theme__option" data-mode="light" type="button">
-                    <!--lit-part-->Light<!--/lit-part-->
-                  </button>
-                </li><!--/lit-part--><!--lit-part oXzlp8XhpzI=--><li>
-                  <!--lit-node 1--><button class="color-theme__option" data-mode="dark" type="button">
-                    <!--lit-part-->Dark<!--/lit-part-->
-                  </button>
-                </li><!--/lit-part--><!--/lit-part-->
-          </ul>
-        </div>
-      </mdn-dropdown>
-    </div><!--/lit-part--></template></mdn-color-theme>
-        <mdn-language-switcher locale="en-US" native="English (US)" translations="[{&quot;locale&quot;:&quot;en-US&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;English (US)&quot;},{&quot;locale&quot;:&quot;de&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Deutsch&quot;},{&quot;locale&quot;:&quot;es&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Español&quot;},{&quot;locale&quot;:&quot;fr&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Français&quot;},{&quot;locale&quot;:&quot;ja&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;日本語&quot;},{&quot;locale&quot;:&quot;ko&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;한국어&quot;},{&quot;locale&quot;:&quot;pt-BR&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Português (do&nbsp;Brasil)&quot;},{&quot;locale&quot;:&quot;ru&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Русский&quot;},{&quot;locale&quot;:&quot;zh-CN&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;中文 (简体)&quot;},{&quot;locale&quot;:&quot;zh-TW&quot;,&quot;title&quot;:&quot;while 語法&quot;,&quot;native&quot;:&quot;正體中文 (繁體)&quot;}]" url="/en-US/docs/Web/JavaScript/Reference/Statements/while"><template shadowrootmode="open"><style>*,:after,:before{box-sizing:border-box}button,input,select,textarea{font:inherit}button{color:inherit;cursor:pointer}img{height:auto;max-width:100%}a{color:var(--color-link-normal)}[hidden]{display:none!important}#content{scroll-margin-block-start:var(--sticky-header-height)}.language-switcher{position:relative}.language-switcher__button{align-items:center;background-color:initial;border:none;color:inherit;column-gap:.25rem;cursor:pointer;display:flex;font:inherit;margin:0;padding:0 .5rem}.language-switcher__button:is(:hover,:focus,[aria-expanded=true]){background-color:var(--color-background-secondary)}@media screen and (width <= 480px){.language-switcher__button>span{display:none}}.language-switcher__button:before{background-color:currentcolor;content:"";height:1.25rem;mask-image:url(/static/ssr/languages.dcba936080e5be86.svg);mask-size:cover;width:1.25rem}.language-switcher__dropdown{background-color:var(--color-background-primary);border:1px solid var(--color-border-primary);margin:0;padding:.75rem;position:absolute;right:0;width:max-content;z-index:1}.language_switcher__remember{border-bottom:1px solid var(--color-border-primary);display:flex;font-size:var(--font-size-small);place-items:center;width:100%}.language_switcher__remember mdn-switch{padding:.25rem}:is(.language_switcher__remember mdn-switch):hover{background-color:var(--color-background-secondary)}.language-switcher__list{background-color:var(--color-background-primary);list-style:none;margin:0;padding:0;width:100%}.language-switcher__option{align-items:center;background-color:initial;border:none;color:var(--color-text-primary);column-gap:.25rem;display:flex;font:inherit;margin:0;padding:.25rem;-webkit-text-decoration:none;text-decoration:none;width:100%}.language-switcher__option:hover,.language-switcher__option[data-current]{background-color:var(--color-background-secondary)}</style><!--lit-part chc5lPcfcrc=--><div class="language-switcher">
-      <!--lit-node 1--><mdn-dropdown loaded="">
-        <button part="button" slot="button" class="language-switcher__button" type="button" aria-labelledby="current-locale" aria-expanded="false" aria-controls="language-switcher__dropdown">
-          <span id="current-locale"><!--lit-part-->English (US)<!--/lit-part--></span>
-        </button>
-        <div slot="dropdown" class="language-switcher__dropdown" id="language-switcher__dropdown">
-          <div class="language_switcher__remember">
-            <!--lit-node 7--><mdn-switch><!--lit-part-->Remember language<!--/lit-part--></mdn-switch>
-            <!--lit-node 9--><mdn-button variant="plain" icon-only="" href="https://github.com/orgs/mdn/discussions/739" target="_blank" title="Enable this setting to always switch to the current language when available. (Click to learn more.)"><!--lit-part-->Learn more<!--/lit-part--></mdn-button>
-          </div>
-          <ul class="language-switcher__list">
-            <!--lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/de/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; de"><!--lit-part-->Deutsch<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" data-current="" href="/en-US/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; en-US"><!--lit-part-->English (US)<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/es/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; es"><!--lit-part-->Español<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/fr/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; fr"><!--lit-part-->Français<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/ja/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; ja"><!--lit-part-->日本語<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/ko/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; ko"><!--lit-part-->한국어<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/pt-BR/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; pt-BR"><!--lit-part-->Português (do&nbsp;Brasil)<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/ru/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; ru"><!--lit-part-->Русский<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/zh-CN/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; zh-CN"><!--lit-part-->中文 (简体)<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--lit-part hnlaESZfzGU=-->
-          <li>
-            <!--lit-node 1--><a class="language-switcher__option" href="/zh-TW/docs/Web/JavaScript/Reference/Statements/while" data-glean-id="language: en-US -&gt; zh-TW"><!--lit-part-->正體中文 (繁體)<!--/lit-part--></a>
-          </li>
-        <!--/lit-part--><!--/lit-part-->
-          </ul>
-        </div>
-      </mdn-dropdown>
-    </div><!--/lit-part--></template></mdn-language-switcher>
+        <mdn-collection-save-button doc-url="/en-US/docs/Web/JavaScript/Reference/Statements/while" doc-title="while"></mdn-collection-save-button>
+        <mdn-color-theme></mdn-color-theme>
+        <mdn-language-switcher locale="en-US" native="English (US)" translations="[{&quot;locale&quot;:&quot;en-US&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;English (US)&quot;},{&quot;locale&quot;:&quot;de&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Deutsch&quot;},{&quot;locale&quot;:&quot;es&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Español&quot;},{&quot;locale&quot;:&quot;fr&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Français&quot;},{&quot;locale&quot;:&quot;ja&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;日本語&quot;},{&quot;locale&quot;:&quot;ko&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;한국어&quot;},{&quot;locale&quot;:&quot;pt-BR&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Português (do&nbsp;Brasil)&quot;},{&quot;locale&quot;:&quot;ru&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;Русский&quot;},{&quot;locale&quot;:&quot;zh-CN&quot;,&quot;title&quot;:&quot;while&quot;,&quot;native&quot;:&quot;中文 (简体)&quot;},{&quot;locale&quot;:&quot;zh-TW&quot;,&quot;title&quot;:&quot;while 語法&quot;,&quot;native&quot;:&quot;正體中文 (繁體)&quot;}]" url="/en-US/docs/Web/JavaScript/Reference/Statements/while"></mdn-language-switcher>
       </div>
     
         </header>
@@ -617,7 +479,7 @@ try {
           <div class="layout__header reference-layout__header">
             
             
-            <mdn-survey><template shadowrootmode="open"><!----></template></mdn-survey>
+            <mdn-survey></mdn-survey>
             <h1>while</h1>
             <details class="baseline-indicator high" data-glean-toggle-open="baseline_toggle_open">
       <summary>
@@ -686,71 +548,16 @@ try {
             </li>
       </ul>
     </nav>
-            <mdn-placement-sidebar><template shadowrootmode="open"><!----><section class="sidebar-placement ">
-          <div class="placement-container" style="--side-background-light:#FFFFFF;--side-color-light:#000000;--side-background-dark:#FFFFFF;--side-color-dark:#000000;" data-type="side">
-            <a class="placement-link" target="_blank" rel="sponsored" data-glean-id="pong: pong-&gt;click side" href="/pong/click?code=aHR0cHM6Ly9zcnYuYnV5c2VsbGFkcy5jb20vYWRzL2NsaWNrL3gvR1RORDQyN1lGNlNERTJRV0Y2U0xZS1FVRlRBSTZLM01DVDdJNFozSkNBQURMSzdXQ0E3STVLUUtDNkFEVktKSkNFWURQMlE3Q1RZSUs1UUlGVFlJTEs3WUhFWUk1NTM3Q0FZRFQyM0VDVE5DWUJaNTJL.TJG0v0cIYYT0y9mNvGB3veLPQmMcVDLCnIA5FWmK9Qg%3D&amp;version=2"><img width="125px" height="125px" src="/pimg/aHR0cHM6Ly9zdGF0aWM0LmJ1eXNlbGxhZHMubmV0L3V1LzIvMTc2NDc2LzE3ODU0MjE4NzEtR3JhZGllbnRfU3VwZXJfQ2xvdWRfNTAweDUwMC5wbmc%3D.kecdIMVSbA1gGn6lDjEt%2B%2F5GWwigDouBSAAdnufKXac%3D" aria-hidden="false" alt="Google Cloud">
-              <div class="placement-content">
-                <strong class="placement-heading"><!--?lit$693478621$-->Try Gemini in Agent Platform</strong>
-                <span class="placement-copy"><!--?lit$693478621$-->Use Agent Studio, Agent Builder, leading models in Gemini Enterprise Agent Platform.</span>
-                <span class="placement-cta external"><!--?lit$693478621$-->Start Free</span>
-              </div>
-            </a>
-            <mdn-placement-note></mdn-placement-note>
-          </div>
-          <mdn-placement-no></mdn-placement-no>
-        </section></template></mdn-placement-sidebar>
+            <mdn-placement-sidebar></mdn-placement-sidebar>
           </aside>
           <div class="layout__body reference-layout__body">
             <section class="content-section" aria-labelledby="try_it">
     <!--lit-part J1rEYwaybRw=--><!--lit-node 0--><h2 id="try_it" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#try_it">Try it</a></h2><!--/lit-part-->
-    <interactive-example name="JavaScript Demo: while statement"><template shadowrootmode="open"><!---->
-        <mdn-play-controller>
-          <div class="template-console" aria-labelledby="id-5lh4q6kku0r">
-            <header>
-              <h4 id="id-5lh4q6kku0r"><!--?lit$693478621$-->JavaScript Demo: while statement</h4>
-            </header>
-            <!--?lit$693478621$--><mdn-play-editor id="editor" language="js"></mdn-play-editor>
-            <div class="buttons">
-              <mdn-button id="execute" variant="secondary" title="Run example, and show console output"><!--?lit$693478621$-->Run</mdn-button>
-              <mdn-button id="reset" variant="secondary" title="Reset example, and clear console output"><!--?lit$693478621$-->Reset</mdn-button>
-            </div>
-            <mdn-play-console id="console" title="Console output"></mdn-play-console>
-            <mdn-play-runner sandbox="allow-modals"></mdn-play-runner>
-          </div>
-        </mdn-play-controller>
-      </template></interactive-example>
-<mdn-code-example hidden="" class="brush: js interactive-example notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js interactive-example notranslate"><code><!--?lit$693478621$--><span class="token keyword">let</span> n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  n<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// Expected output: 3</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+    <interactive-example name="JavaScript Demo: while statement"></interactive-example>
+<mdn-code-example hidden="" class="brush: js interactive-example notranslate"></mdn-code-example>
   </section><section class="content-section" aria-labelledby="syntax">
     <!--lit-part X3RKttXoaxo=--><!--lit-node 0--><h2 id="syntax" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#syntax">Syntax</a></h2><!--/lit-part-->
-    <mdn-code-example class="brush: js notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js notranslate"><code><!--?lit$693478621$--><span class="token keyword">while</span> <span class="token punctuation">(</span>condition<span class="token punctuation">)</span>
-  statement
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+    <mdn-code-example class="brush: js notranslate"></mdn-code-example>
 <dl>
 <dt id="condition"><a href="#condition"><code>condition</code></a></dt>
 <dd>
@@ -775,23 +582,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <!--lit-part WDjxAmK8thc=--><!--lit-node 0--><h3 id="using_while" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#using_while">Using while</a></h3><!--/lit-part-->
     <p>The following <code>while</code> loop iterates as long as <code>n</code> is less than
 three.</p>
-<mdn-code-example class="brush: js notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js notranslate"><code><!--?lit$693478621$--><span class="token keyword">let</span> n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  n<span class="token operator">++</span><span class="token punctuation">;</span>
-  x <span class="token operator">+=</span> n<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js notranslate"></mdn-code-example>
 <p>Each iteration, the loop increments <code>n</code> and adds it to <code>x</code>.
 Therefore, <code>x</code> and <code>n</code> take on the following values:</p>
 <ul>
@@ -805,33 +596,9 @@ so the loop terminates.</p>
     <!--lit-part TFCGlhUmN9M=--><!--lit-node 0--><h3 id="using_an_assignment_as_a_condition" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#using_an_assignment_as_a_condition">Using an assignment as a condition</a></h3><!--/lit-part-->
     <p>In some cases, it can make sense to use an assignment as a condition. This comes with readability tradeoffs, so there are certain stylistic recommendations that would make the pattern more obvious for everyone.</p>
 <p>Consider the following example, which iterates over a document's comments, logging them to the console.</p>
-<mdn-code-example class="brush: js example-bad notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js example-bad notranslate"><code><!--?lit$693478621$--><span class="token keyword">const</span> iterator <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createNodeIterator</span><span class="token punctuation">(</span>document<span class="token punctuation">,</span> NodeFilter<span class="token punctuation">.</span><span class="token constant">SHOW_COMMENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> currentNode<span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span>currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>currentNode<span class="token punctuation">.</span>textContent<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js example-bad notranslate"></mdn-code-example>
 <p>That's not completely a good-practice example, due to the following line specifically:</p>
-<mdn-code-example class="brush: js example-bad notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js example-bad notranslate"><code><!--?lit$693478621$--><span class="token keyword">while</span> <span class="token punctuation">(</span>currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js example-bad notranslate"></mdn-code-example>
 <p>The <em>effect</em> of that line is fine — in that, each time a comment node is found:</p>
 <ol>
 <li><code>iterator.nextNode()</code> returns that comment node, which gets assigned to <code>currentNode</code>.</li>
@@ -850,65 +617,14 @@ so the loop terminates.</p>
 <p>Expected a conditional expression and instead saw an assignment.</p>
 </blockquote>
 <p>Many style guides recommend more explicitly indicating the intention for the condition to be an assignment. You can do that minimally by putting additional parentheses as a <a href="/en-US/docs/Web/JavaScript/Reference/Operators/Grouping">grouping operator</a> around the assignment:</p>
-<mdn-code-example class="brush: js example-good notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js example-good notranslate"><code><!--?lit$693478621$--><span class="token keyword">const</span> iterator <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createNodeIterator</span><span class="token punctuation">(</span>document<span class="token punctuation">,</span> NodeFilter<span class="token punctuation">.</span><span class="token constant">SHOW_COMMENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> currentNode<span class="token punctuation">;</span>
-<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>currentNode<span class="token punctuation">.</span>textContent<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js example-good notranslate"></mdn-code-example>
 <p>In fact, this is the style enforced by ESLint's <code>no-cond-assign</code>'s default configuration, as well as <a href="https://prettier.io/" class="external" target="_blank" title="External link (opens in new tab)">Prettier</a>, so you'll likely see this pattern a lot in the wild.</p>
 <p>Some people may further recommend adding a comparison operator to turn the condition into an explicit comparison:</p>
-<mdn-code-example class="brush: js example-good notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js example-good notranslate"><code><!--?lit$693478621$--><span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js example-good notranslate"></mdn-code-example>
 <p>There are other ways to write this pattern, such as:</p>
-<mdn-code-example class="brush: js example-good notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js example-good notranslate"><code><!--?lit$693478621$--><span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> currentNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js example-good notranslate"></mdn-code-example>
 <p>Or, forgoing the idea of using a <code>while</code> loop altogether:</p>
-<mdn-code-example class="brush: js example-good notranslate"><template shadowrootmode="open"><!---->
-      <div class="code-example">
-        <div class="example-header">
-          <span class="language-name"><!--?lit$693478621$-->js</span>
-          <mdn-copy-button variant="secondary"></mdn-copy-button>
-          <!--?lit$693478621$-->
-        </div>
-        <pre class="brush: js example-good notranslate"><code><!--?lit$693478621$--><span class="token keyword">const</span> iterator <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createNodeIterator</span><span class="token punctuation">(</span>document<span class="token punctuation">,</span> NodeFilter<span class="token punctuation">.</span><span class="token constant">SHOW_COMMENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span> <span class="token punctuation">(</span>
-  <span class="token keyword">let</span> currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  currentNode<span class="token punctuation">;</span>
-  currentNode <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>currentNode<span class="token punctuation">.</span>textContent<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-      </div>
-    </template></mdn-code-example>
+<mdn-code-example class="brush: js example-good notranslate"></mdn-code-example>
 <p>If the reader is sufficiently familiar with the assignment as condition pattern, all these variations should have equivalent readability. Otherwise, the last form is probably the most readable, albeit the most verbose.</p>
   </section><section class="content-section" aria-labelledby="specifications">
     <!--lit-part s915xX5HiM4=--><!--lit-node 0--><h2 id="specifications" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#specifications">Specifications</a></h2><!--/lit-part-->
@@ -928,7 +644,7 @@ so the loop terminates.</p>
     </table>
   </section><section class="content-section" aria-labelledby="browser_compatibility">
       <!--lit-part y0+5SMr/T3s=--><!--lit-node 0--><h2 id="browser_compatibility" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#browser_compatibility">Browser compatibility</a></h2><!--/lit-part-->
-      <mdn-compat-table-lazy locale="en-US" query="javascript.statements.while"><template shadowrootmode="open"><style>*,:after,:before{box-sizing:border-box}button,input,select,textarea{font:inherit}button{color:inherit;cursor:pointer}img{height:auto;max-width:100%}a{color:var(--color-link-normal)}[hidden]{display:none!important}#content{scroll-margin-block-start:var(--sticky-header-height)}</style><!--lit-part y6RVfKR7hws=--><mdn-compat-table query="javascript.statements.while" locale="en-US"></mdn-compat-table><!--/lit-part--></template></mdn-compat-table-lazy>
+      <mdn-compat-table-lazy locale="en-US" query="javascript.statements.while"></mdn-compat-table-lazy>
     </section><section class="content-section" aria-labelledby="see_also">
     <!--lit-part p88DAUaBJzA=--><!--lit-node 0--><h2 id="see_also" class="heading"><!--lit-node 1--><a class="heading-anchor" href="#see_also">See also</a></h2><!--/lit-part-->
     <ul>
@@ -944,18 +660,7 @@ so the loop terminates.</p>
           <h2 id="feedback">
             Help improve MDN
           </h2>
-          <mdn-content-feedback locale="en-US"><template shadowrootmode="open"><style>.content-feedback{border:none;margin:0 0 .25rem;padding:0}.content-feedback>label{display:block;margin-bottom:.25rem}.content-feedback .thank-you{display:block;margin-bottom:calc(2.75rem + 2px)}.content-feedback mdn-button{flex:1;min-width:0}.content-feedback--buttons{display:inline-flex;gap:.75rem;margin:.25rem 0}.content-feedback--radios{align-items:center;display:flex;gap:.25rem;margin:.25rem 0}</style><!--lit-part wnhNI9MhleE=--><fieldset class="content-feedback">
-      <!--lit-part abqF9JTZmM8=--><label><!--lit-part-->Was this page helpful to you?<!--/lit-part-->
-      </label>
-      <div class="content-feedback--buttons">
-        <!--lit-node 3--><mdn-button data-vote="yes" variant="secondary" action="positive">
-          <!--lit-part-->Yes<!--/lit-part-->
-        </mdn-button>
-        <!--lit-node 5--><mdn-button data-vote="no" variant="secondary" action="negative">
-          <!--lit-part-->No<!--/lit-part-->
-        </mdn-button>
-      </div><!--/lit-part-->
-    </fieldset><!--/lit-part--></template></mdn-content-feedback>
+          <mdn-content-feedback locale="en-US"></mdn-content-feedback>
           <a class="article-footer__contribute" href="/en-US/docs/MDN/Community/Getting_started">Learn how to contribute</a> <p class="article-footer__last-modified">
     This page was last modified on <time datetime="2025-07-08T13:18:45.000Z">Jul 8, 2025</time> by <a href="/en-US/docs/Web/JavaScript/Reference/Statements/while/contributors.txt">MDN contributors</a>.
   </p> <div class="article-footer__links">
@@ -969,14 +674,7 @@ so the loop terminates.</p>
         <aside class="layout__left-sidebar" id="main-sidebar">
           <nav class="left-sidebar">
       <div class="left-sidebar__header">
-        <mdn-sidebar-filter><template shadowrootmode="open"><style>.visually-hidden{border:0!important;clip-path:inset(50%)!important;height:1px!important;margin:-1px!important;overflow:hidden!important;padding:0!important;position:absolute!important;white-space:nowrap!important;width:1px!important}*,:after,:before{box-sizing:border-box}button,input,select,textarea{font:inherit}button{color:inherit;cursor:pointer}img{height:auto;max-width:100%}a{color:var(--color-link-normal)}[hidden]{display:none!important}#content{scroll-margin-block-start:var(--sticky-header-height)}:host{align-items:center;display:grid;grid-template-areas:"icon input button";grid-template-columns:2.2rem 1fr min-content}.icon{background-color:var(--color-text-secondary);content:"";grid-area:icon;height:1.25rem;justify-self:center;margin-left:.4rem;mask-image:url(/static/ssr/filter.b77a4ccbfb57e2ef.svg);mask-size:cover;width:1.25rem}.input{background-color:initial;border:1px solid var(--color-border-primary);border-radius:var(--radius-full);grid-area:1/1/-1/-1;margin:0;padding:.3rem 4.2rem .3rem 2.2rem;width:100%}.input::placeholder{color:var(--color-text-secondary)}.input:focus{border-color:#0000}.counter{background-color:var(--color-background-yellow);border-radius:var(--radius-normal);font-size:var(--font-size-small);grid-area:input;justify-self:end;line-height:var(--font-line-ui);padding:.25rem;white-space:nowrap}.button{grid-area:button}.button::part(button){border-radius:50%}.button::part(button):hover{background-color:initial}:placeholder-shown~.button{visibility:hidden}</style><!--lit-part VUPWU8nR4ho=-->
-      <label class="icon" for="input">
-        <span class="visually-hidden"><!--lit-part-->Filter sidebar<!--/lit-part--></span>
-      </label>
-      <!--lit-node 3--><input id="input" autocomplete="off" class="input" type="text" placeholder="Filter" value="">
-      <!--lit-part--><!--/lit-part-->
-      <!--lit-node 5--><mdn-button class="button" variant="plain" icon-only=""><!--lit-part-->Clear filter input<!--/lit-part--></mdn-button>
-    <!--/lit-part--></template></mdn-sidebar-filter>
+        <mdn-sidebar-filter></mdn-sidebar-filter>
       </div>
       <div class="left-sidebar__content"><ol><li class="section"><a href="/en-US/docs/Web/JavaScript">JavaScript</a></li><li class="section"><span>Tutorials and guides</span></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Guide">JavaScript Guide</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Guide/Introduction">Introduction</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Grammar_and_types">Grammar and types</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling">Control flow and error handling</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration">Loops and iteration</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Functions">Functions</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators">Expressions and operators</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Numbers_and_strings">Numbers and strings</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Representing_dates_times">Representing dates &amp; times</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Regular_expressions">Regular expressions</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Indexed_collections">Indexed collections</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Keyed_collections">Keyed collections</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Working_with_objects">Working with objects</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Using_classes">Using classes</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Using_promises">Using promises</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Typed_arrays">JavaScript typed arrays</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators">Iterators and generators</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Resource_management">Resource management</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Internationalization">Internationalization</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Modules">JavaScript modules</a></li></ol></details></li><li><details><summary><span>Intermediate</span></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Guide/Language_overview">Language overview</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Data_structures">JavaScript data structures</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness">Equality comparisons and sameness</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Closures">Closures</a></li></ol></details></li><li><details><summary><span>Advanced</span></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">Inheritance and the prototype chain</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Meta_programming">Meta programming</a></li><li><a href="/en-US/docs/Web/JavaScript/Guide/Memory_management">Memory Management</a></li></ol></details></li><li class="section"><a href="/en-US/docs/Web/JavaScript/Reference">References</a></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects">Built-in objects</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AbstractModuleSource">AbstractModuleSource</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError">AggregateError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncDisposableStack">AsyncDisposableStack</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction">AsyncFunction</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator">AsyncGenerator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGeneratorFunction">AsyncGeneratorFunction</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncIterator">AsyncIterator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics">Atomics</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt">BigInt</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array">BigInt64Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array">BigUint64Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI">decodeURI()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent">decodeURIComponent()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/DisposableStack">DisposableStack</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI">encodeURI()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape">escape()<span role="img" class="icon icon-baseline discouraged" title="Deprecated. Not for use in new websites." aria-label="Deprecated"></span></a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">eval()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError">EvalError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/FinalizationRegistry">FinalizationRegistry</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float16Array">Float16Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array">Float32Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array">Float64Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator">Generator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction">GeneratorFunction</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis">globalThis</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity">Infinity</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array">Int8Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array">Int16Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array">Int32Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError">InternalError<span role="img" class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using." aria-label="Non-standard"></span></a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite">isFinite()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN">isNaN()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator">Iterator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">JSON</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">Math</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN">NaN</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat">parseFloat()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">parseInt()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError">RangeError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError">ReferenceError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect">Reflect</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">RegExp</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer">SharedArrayBuffer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/SuppressedError">SuppressedError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError">SyntaxError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal">Temporal</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArray</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError">TypeError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">Uint8Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray">Uint8ClampedArray</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array">Uint16Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array">Uint32Array</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/unescape">unescape()<span role="img" class="icon icon-baseline discouraged" title="Deprecated. Not for use in new websites." aria-label="Deprecated"></span></a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError">URIError</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeakMap</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakRef">WeakRef</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet">WeakSet</a></li></ol></details></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Operators">Expressions &amp; operators</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Addition">Addition (+)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Addition_assignment">Addition assignment (+=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Assignment">Assignment (=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/async_function">async function expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/async_function*">async function* expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/await">await</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND">Bitwise AND (&amp;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_AND_assignment">Bitwise AND assignment (&amp;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT">Bitwise NOT (~)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_OR">Bitwise OR (|)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_OR_assignment">Bitwise OR assignment (|=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR">Bitwise XOR (^)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR_assignment">Bitwise XOR assignment (^=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/class">class expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Comma_operator">Comma operator (,)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator">Conditional (ternary) operator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Decrement">Decrement (--)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/delete">delete</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring">Destructuring</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Division">Division (/)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Division_assignment">Division assignment (/=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Equality">Equality (==)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Exponentiation">Exponentiation (**)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Exponentiation_assignment">Exponentiation assignment (**=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/function*">function* expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Greater_than">Greater than (&gt;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Greater_than_or_equal">Greater than or equal (&gt;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Grouping">Grouping operator ( )</a></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Operators/import.meta">import.meta</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve">import.meta.resolve()</a></li></ol></details></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Operators/import">import()</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/import/defer">import.defer()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/import/source">import.source()</a></li></ol></details></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/in">in</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Increment">Increment (++)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Inequality">Inequality (!=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift">Left shift (&lt;&lt;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Left_shift_assignment">Left shift assignment (&lt;&lt;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Less_than">Less than (&lt;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Less_than_or_equal">Less than or equal (&lt;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND">Logical AND (&amp;&amp;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND_assignment">Logical AND assignment (&amp;&amp;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT">Logical NOT (!)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">Logical OR (||)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR_assignment">Logical OR assignment (||=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Multiplication">Multiplication (*)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Multiplication_assignment">Multiplication assignment (*=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/new">new</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/new.target">new.target</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/null">null</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_assignment">Nullish coalescing assignment (??=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing">Nullish coalescing operator (??)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer">Object initializer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence">Operator precedence</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining">Optional chaining (?.)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">Property accessors</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Remainder">Remainder (%)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Remainder_assignment">Remainder assignment (%=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift">Right shift (&gt;&gt;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Right_shift_assignment">Right shift assignment (&gt;&gt;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Spread syntax (...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality">Strict equality (===)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Strict_inequality">Strict inequality (!==)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Subtraction">Subtraction (-)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Subtraction_assignment">Subtraction assignment (-=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/typeof">typeof</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Unary_negation">Unary negation (-)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus">Unary plus (+)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift">Unsigned right shift (&gt;&gt;&gt;)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift_assignment">Unsigned right shift assignment (&gt;&gt;&gt;=)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/void">void operator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/yield">yield</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Operators/yield*">yield*</a></li></ol></details></li><li><details open=""><summary><a href="/en-US/docs/Web/JavaScript/Reference/Statements">Statements &amp; declarations</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async function</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/async_function*">async function*</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/await_using">await using</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/block">Block statement</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/break">break</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/class">class</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/const">const</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/continue">continue</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/debugger">debugger</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/do...while">do...while</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/Empty">Empty statement</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/export">export</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/Expression_statement">Expression statement</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for">for</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of">for await...of</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...in">for...in</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/for...of">for...of</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/function">function</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/function*">function*</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/if...else">if...else</a></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Statements/import">import</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/import/with">Import attributes</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/import/defer">import defer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/import/source">import source</a></li></ol></details></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/label">Labeled statement</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/let">let</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/return">return</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/switch">switch</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/throw">throw</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/try...catch">try...catch</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/using">using</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/var">var</a></li><li><em><a href="/en-US/docs/Web/JavaScript/Reference/Statements/while" aria-current="page">while</a></em></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Statements/with">with<span role="img" class="icon icon-baseline discouraged" title="Deprecated. Not for use in new websites." aria-label="Deprecated"></span></a></li></ol></details></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Functions">Functions</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow function expressions</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters">Default parameters</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/get">get</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions">Method definitions</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">Rest parameters</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/set">set</a></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Functions/arguments">The arguments object</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/arguments/Symbol.iterator">[Symbol.iterator]()</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/arguments/callee">callee<span role="img" class="icon icon-baseline discouraged" title="Deprecated. Not for use in new websites." aria-label="Deprecated"></span></a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Functions/arguments/length">length</a></li></ol></details></li></ol></details></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Classes">Classes</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Classes/extends">extends</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements">Private elements</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields">Public class fields</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Classes/static">static</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Classes/Static_initialization_blocks">Static initialization blocks</a></li></ol></details></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions">Regular expressions</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Backreference">Backreference: \1, \2</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Buffer_boundary_assertion">Buffer boundary assertion: \A, \z, \Z<span role="img" class="icon icon-experimental" title="Experimental. Expect behavior to change in the future." aria-label="Experimental"></span></a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Capturing_group">Capturing group: (...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Character_class_escape">Character class escape: \d, \D, \w, \W, \s, \S</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Character_class">Character class: [...], [^...]</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Character_escape">Character escape: \n, \u{...}</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Disjunction">Disjunction: |</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Input_boundary_assertion">Input boundary assertion: ^, $</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Literal_character">Literal character: a, b</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Lookahead_assertion">Lookahead assertion: (?=...), (?!...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Lookbehind_assertion">Lookbehind assertion: (?&lt;=...), (?&lt;!...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Modifier">Modifier: (?ims-ims:...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Named_backreference">Named backreference: \k&lt;name&gt;</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Named_capturing_group">Named capturing group: (?&lt;name&gt;...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Non-capturing_group">Non-capturing group: (?:...)</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Quantifier">Quantifier: *, +, ?, {n}, {n,}, {n,m}</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Unicode_character_class_escape">Unicode character class escape: \p{...}, \P{...}</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Wildcard">Wildcard: .</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Word_boundary_assertion">Word boundary assertion: \b, \B</a></li></ol></details></li><li><details><summary><a href="/en-US/docs/Web/JavaScript/Reference/Errors">Errors</a></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Promise_any_all_rejected">AggregateError: No Promise in Promise.any was resolved</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Property_access_denied">Error: Permission denied to access property "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Too_much_recursion">InternalError: too much recursion</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_valid_code_point">RangeError: argument is not a valid code point</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/BigInt_division_by_zero">RangeError: BigInt division by zero</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/BigInt_negative_exponent">RangeError: BigInt negative exponent</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Form_must_be_one_of">RangeError: form must be one of 'NFC', 'NFD', 'NFKC', or 'NFKD'</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_array_length">RangeError: invalid array length</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_date">RangeError: invalid date</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Precision_range">RangeError: precision is out of range</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_radix">RangeError: radix must be an integer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Resulting_string_too_large">RangeError: repeat count must be less than infinity</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Negative_repetition_count">RangeError: repeat count must be non-negative</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_be_converted_to_BigInt_because_it_isnt_an_integer">RangeError: x can't be converted to BigInt because it isn't an integer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined">ReferenceError: "x" is not defined</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Undeclared_var">ReferenceError: assignment to undeclared variable "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_access_lexical_declaration_before_init">ReferenceError: can't access lexical declaration 'X' before initialization</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Super_not_called">ReferenceError: must call super constructor before using 'this' in derived class constructor</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Super_called_twice">ReferenceError: super() called twice in derived class constructor</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_strict_arguments_eval">SyntaxError: 'arguments'/'eval' can't be defined or assigned to in strict mode code</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_octal_literal">SyntaxError: "0"-prefixed octal literals are deprecated</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Strict_non_simple_params">SyntaxError: "use strict" not allowed in function with non-simple parameters</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Reserved_identifier">SyntaxError: "x" is a reserved identifier</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_backslash_at_end_of_pattern">SyntaxError: \ at end of pattern</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_for-of_initializer">SyntaxError: a declaration in the head of a for-of loop can't have an initializer</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Delete_in_strict_mode">SyntaxError: applying the 'delete' operator to an unqualified name is deprecated</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Arguments_not_allowed">SyntaxError: arguments is not valid in fields</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_await">SyntaxError: await is only valid in async functions, async generators and modules</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/await_yield_in_parameter">SyntaxError: await/yield expression can't be used in parameter</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_use_nullish_coalescing_unparenthesized">SyntaxError: cannot use ?? unparenthesized within || and &amp;&amp; expressions</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_character_class_escape_in_class_range">SyntaxError: character class escape cannot be used in class range in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_continue">SyntaxError: continue must be inside loop</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_duplicate_capture_group_name">SyntaxError: duplicate capture group name in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Duplicate_parameter">SyntaxError: duplicate formal argument x</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_for-in_initializer">SyntaxError: for-in loop head declarations may not have initializers</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Unnamed_function_statement">SyntaxError: function statement requires a name</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Function_label">SyntaxError: functions cannot be labelled</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Either_be_both_static_or_non-static">SyntaxError: getter and setter for private name #x should either be both static or non-static</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Getter_no_arguments">SyntaxError: getter functions must have no arguments</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Identifier_after_number">SyntaxError: identifier starts immediately after numeric literal</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Illegal_character">SyntaxError: illegal character</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/import_decl_module_top_level">SyntaxError: import declarations may only appear at top level of a module</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_incomplete_quantifier">SyntaxError: incomplete quantifier in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_assignment_left-hand_side">SyntaxError: invalid assignment left-hand side</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_BigInt_syntax">SyntaxError: invalid BigInt syntax</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_capture_group_name">SyntaxError: invalid capture group name in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_char_in_class">SyntaxError: invalid character in class in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_class_set_operation">SyntaxError: invalid class set operation in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_decimal_escape">SyntaxError: invalid decimal escape in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_identity_escape">SyntaxError: invalid identity escape in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_named_capture_reference">SyntaxError: invalid named capture reference in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_property_name">SyntaxError: invalid property name in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_range_in_character_class">SyntaxError: invalid range in character class</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_group">SyntaxError: invalid regexp group</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_regexp_flag">SyntaxError: invalid regular expression flag "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_invalid_unicode_escape">SyntaxError: invalid unicode escape in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse">SyntaxError: JSON.parse: bad parsing</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Label_not_found">SyntaxError: label not found</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_colon_after_property_id">SyntaxError: missing : after property id</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_parenthesis_after_argument_list">SyntaxError: missing ) after argument list</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_parenthesis_after_condition">SyntaxError: missing ) after condition</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_bracket_after_list">SyntaxError: missing ] after element list</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_curly_after_function_body">SyntaxError: missing } after function body</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_curly_after_property_list">SyntaxError: missing } after property list</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_initializer_in_const">SyntaxError: missing = in const declaration</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_formal_parameter">SyntaxError: missing formal parameter</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Missing_name_after_dot_operator">SyntaxError: missing name after . operator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/No_variable_name">SyntaxError: missing variable name</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_negated_char_class_with_strings">SyntaxError: negated character class with strings in regular expression</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_new_optional">SyntaxError: new keyword cannot be used with an optional chain</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_nothing_to_repeat">SyntaxError: nothing to repeat</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_numbers_out_of_order_in_quantifier">SyntaxError: numbers out of order in {} quantifier.</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_octal_escape_sequence">SyntaxError: octal escape sequences can't be used in untagged template literals or in strict mode code</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Parameter_after_rest_parameter">SyntaxError: parameter after rest parameter</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_delete_private_fields">SyntaxError: private fields can't be deleted</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Duplicate_proto">SyntaxError: property name __proto__ appears more than once in object literal</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Regex_raw_bracket">SyntaxError: raw bracket is not allowed in regular expression with unicode flag</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Redeclared_parameter">SyntaxError: redeclaration of formal parameter "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Undeclared_private_field_or_method">SyntaxError: reference to undeclared private field or method #x</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Rest_with_default">SyntaxError: rest parameter may not have a default</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_return">SyntaxError: return not in function</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Setter_one_argument">SyntaxError: setter functions must have one argument</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/String_literal_EOL">SyntaxError: string literal contains an unescaped line break</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_super_call">SyntaxError: super() is only valid in derived class constructors</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_optional_template">SyntaxError: tagged template cannot be used with optional chain</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Hash_outside_class">SyntaxError: Unexpected '#' used outside of class body</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_token">SyntaxError: Unexpected token</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_break">SyntaxError: unlabeled break must be inside loop or switch</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Unparenthesized_unary_expr_lhs_exponentiation">SyntaxError: unparenthesized unary expression can't appear on the left-hand side of '**'</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Bad_super_prop">SyntaxError: use of super property/member accesses only valid within methods or eval code within methods</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_source_map_pragma">SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_caller_or_arguments_usage">TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/is_not_iterable">TypeError: 'x' is not iterable</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_type">TypeError: "x" is (not) "y"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_constructor">TypeError: "x" is not a constructor</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_function">TypeError: "x" is not a function</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/No_non-null_object">TypeError: "x" is not a non-null object</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Read-only">TypeError: "x" is read-only</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Already_executing_generator">TypeError: already executing generator</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/BigInt_not_serializable">TypeError: BigInt value can't be serialized in JSON</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Builtin_ctor_no_new">TypeError: calling a builtin X constructor without new is forbidden</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Get_set_missing_private">TypeError: can't access/set private field or method: object is not the right class</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_assign_to_property">TypeError: can't assign to property "x" on "y": not an object</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_convert_BigInt_to_number">TypeError: can't convert BigInt to number</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_convert_x_to_BigInt">TypeError: can't convert x to BigInt</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_define_property_object_not_extensible">TypeError: can't define property "x": "obj" is not extensible</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Non_configurable_array_element">TypeError: can't delete non-configurable array element</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_redefine_property">TypeError: can't redefine non-configurable property "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_set_prototype">TypeError: can't set prototype of this object</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_prototype">TypeError: can't set prototype: it would cause a prototype chain cycle</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/in_operator_no_object">TypeError: cannot use 'in' operator to search for 'x' in 'y'</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Class_ctor_no_new">TypeError: class constructors must be invoked with 'new'</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value">TypeError: cyclic object value</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_derived_return">TypeError: derived class constructor returned invalid value x</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Private_setter_only">TypeError: getting private setter-only property</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Private_double_initialization">TypeError: Initializing an object twice is an error with private fields/methods</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/invalid_right_hand_side_instanceof_operand">TypeError: invalid 'instanceof' operand 'x'</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Array_sort_argument">TypeError: invalid Array.prototype.sort argument</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_const_assignment">TypeError: invalid assignment to const "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Constructor_cant_be_used_directly">TypeError: Iterator/AsyncIterator constructor can't be used directly</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Requires_global_RegExp">TypeError: matchAll/replaceAll must be called with a global RegExp</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/More_arguments_needed">TypeError: More arguments needed</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/No_properties">TypeError: null/undefined has no properties</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Cant_delete">TypeError: property "x" is non-configurable and can't be deleted</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Reduce_of_empty_array_with_no_initial_value">TypeError: Reduce of empty array with no initial value</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Getter_only">TypeError: setting getter-only property "x"</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Key_not_weakly_held">TypeError: WeakSet key/WeakMap value 'x' must be an object or an unregistered symbol</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Called_on_incompatible_type">TypeError: X.prototype.y called on incompatible type</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Malformed_URI">URIError: malformed URI sequence</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Already_has_pragma">Warning: -file- is being assigned a //# sourceMappingURL, but already has one</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Errors/Stmt_after_return">Warning: unreachable code after return statement</a></li></ol></details></li><li><details><summary><span>Misc</span></summary><ol><li><a href="/en-US/docs/Web/JavaScript/Reference/JavaScript_technologies_overview">JavaScript technologies overview</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Execution_model">Execution model</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Lexical_grammar">Lexical grammar</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">Iteration protocols</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Strict_mode">Strict mode</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Template_literals">Template literals</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Trailing_commas">Trailing commas</a></li><li><a href="/en-US/docs/Web/JavaScript/Reference/Deprecated_and_obsolete_features">Deprecated features</a></li></ol></details></li></ol></div>
     </nav>
@@ -984,14 +682,7 @@ so the loop terminates.</p>
       </div>
     </div>
         <div class="page-layout__footer">
-      <mdn-placement-bottom><template shadowrootmode="open"><!----><div class="bottom-placement" style="--bottom-background:#490186;--bottom-color:#FBFBFA;" data-type="bottom-banner">
-      <section class="placement-container">
-        <a class="placement-link" target="_blank" rel="sponsored" data-glean-id="pong: pong-&gt;click bottom-banner" href="/pong/click?code=aHR0cHM6Ly9zcnYuYnV5c2VsbGFkcy5jb20vYWRzL2NsaWNrL3gvR1RORDQyN1lGNlNERUtRN0ZUWUxZS1FVRlRBSTZLM1dDNllERVozSkNBQURMSzdXRlQ3SUsyUUtDNkFJUEszN0NWQUlFMlFVQzZTRDRLN05DS0FEVjIzS0M2U0lFNVFVQ1RZRFZLM0VISk5DTFNJWg%3D%3D.R%2BEMy3X1r4FoVPP582NoarW97CkgCMvCAC%2FaPNKlyFE%3D&amp;version=2">
-          <img width="728" height="90" src="/pimg/aHR0cHM6Ly9zdGF0aWM0LmJ1eXNlbGxhZHMubmV0L3V1LzIvMTc5MTY0LzE3ODc2MDUzNjAtQXV0aDBfLV9Cb3R0b21fUnVuX29mX1NpdGVfQmFubmVyXy1fMTQ1NngxODAucG5n.GkF44Yqz3984xkxeWiZ4%2BE%2BAfXNiwKvNn1hjhd%2FKiKw%3D" aria-hidden="false" alt="Auth0">
-        </a>
-        <mdn-placement-note></mdn-placement-note>
-      </section>
-    </div></template></mdn-placement-bottom>
+      <mdn-placement-bottom></mdn-placement-bottom>
       <footer class="footer">
         <div class="footer__mdn">
           <div class="footer__intro">

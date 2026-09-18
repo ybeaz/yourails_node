@@ -1,16 +1,17 @@
 import {
-  FileTypeEnum,
   FuncModeEnumType,
-  GetHtmlBlockExtractedResType,
-  GetHtmlBlocksExtractedOptionsType,
-  GetHtmlBlocksExtractedParamsType,
   GetHtmlToTextConvertOptionsType,
   GetHtmlToTextConvertParamsType,
-  getHtmlBlocksExtracted,
   getHtmlToTextConvert,
   withTryCatchFinallyWrapper,
 } from 'yourails_common'
 import { consoler } from '../consoler'
+import {
+  GetHtmlBlockExtractedResType,
+  GetHtmlBlocksExtractedOptionsType,
+  GetHtmlBlocksExtractedParamsType,
+  getHtmlBlocksExtracted,
+} from '../getHtmlBlocksExtracted/getHtmlBlocksExtracted'
 import {
   type GetHtmlFromHtmlPageCaseType,
   type GetHtmlFromHtmlPageOptionsType,

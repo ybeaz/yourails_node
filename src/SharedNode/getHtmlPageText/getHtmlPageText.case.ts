@@ -7,7 +7,7 @@ export const getHtmlPageTextCases: GetHtmlPageTextCaseType[] = [
     params: {
       url: 'https://en.wikipedia.org/wiki/Arkady_and_Boris_Strugatsky',
       cssSelectorsArr: [
-        // 'main > header > h1',
+        'main > header > h1',
         'AFTER_INCLUDE:section[data-mw-section-id="0"]BEFORE:section[aria-labelledby="See_also"]',
       ],
     },
