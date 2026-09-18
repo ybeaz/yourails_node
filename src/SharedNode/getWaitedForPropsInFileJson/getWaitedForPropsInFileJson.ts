@@ -60,7 +60,7 @@ const resDefault: GetWaitedForPropsInFileJsonResType = {
  * @description Function to getWaitedForPropsInFileJson
  * @import import { getWaitedForPropsInFileJson } from './getWaitedForPropsInFileJson'
  * @run npx tsx src/Shared/getWaitedForPropsInFileJson.ts
- * @test pnpm jest getWaitedForPropsInFileJson.test.ts --coverage --collectCoverageFrom="src/SharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.ts"
+ * @test pnpm jest getWaitedForPropsInFileJson.test.ts --coverage --collectCoverageFrom="src/sharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.ts"
  *     params: { obj: { a: 1 }, objPropsPath: 'b' },
  */
 const getWaitedForPropsInFileJsonUnsafe: GetWaitedForPropsInFileJsonType = async ({

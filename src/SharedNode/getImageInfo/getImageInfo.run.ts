@@ -3,7 +3,7 @@ import { type GetImageInfoCaseType, getImageInfo } from './getImageInfo'
 import { getImageInfoCases } from './getImageInfo.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageInfo/getImageInfo.run.ts
+ * @run npx tsx src/sharedNode/getImageInfo/getImageInfo.run.ts
  */
 if (require.main === module) {
   ;(async () => {

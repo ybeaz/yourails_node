@@ -5,7 +5,7 @@ export const getImageColorsCases: GetImageColorsCaseType[] = [
     description: 'basic test getImageColors',
     params: {
       pathFileAbs:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getImageColors/__mocks__/s_3_2026-05-17-11-22-02_image.png',
+        '/Users/admin/Dev/yourails_node/src/sharedNode/getImageColors/__mocks__/s_3_2026-05-17-11-22-02_image.png',
     },
     options: {},
     expected: {

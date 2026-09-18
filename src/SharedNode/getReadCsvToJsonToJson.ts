@@ -1,10 +1,10 @@
-import { consoler } from '../SharedNode/consoler'
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
+import { consoler } from '../sharedNode/consoler'
 import {
-  getWrittenJsonFile,
-  GetWrittenJsonFileParamsType,
   GetWrittenJsonFileOptionsType,
+  GetWrittenJsonFileParamsType,
+  getWrittenJsonFile,
 } from './getWrittenJsonFile'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type GetReadCsvToJsonToJsonParamsType = {
   baseDir: string
@@ -24,7 +24,7 @@ type GetReadCsvToJsonToJsonResType = void
 interface GetReadCsvToJsonToJsonType {
   (
     params: GetReadCsvToJsonToJsonParamsType,
-    options?: GetReadCsvToJsonToJsonOptionsType
+    options?: GetReadCsvToJsonToJsonOptionsType,
   ): GetReadCsvToJsonToJsonResType
 }
 
@@ -43,7 +43,7 @@ const optionsDefault: Required<GetReadCsvToJsonToJsonOptionsType> = {
 
 const getReadCsvToJsonToJsonUnsafe: GetReadCsvToJsonToJsonType = async (
   params: GetReadCsvToJsonToJsonParamsType,
-  options?: GetReadCsvToJsonToJsonOptionsType
+  options?: GetReadCsvToJsonToJsonOptionsType,
 ) => {
   if (typeof window !== 'undefined') return
   const csvjson = require('csvjson')
@@ -74,7 +74,7 @@ const getReadCsvToJsonToJsonUnsafe: GetReadCsvToJsonToJsonType = async (
         filePathParts: [...filePathParts.slice(0, -1), `${filePathParts.at(-1)}.json`],
         data: arrayObjects,
       } as GetWrittenJsonFileParamsType,
-      { isOverwrite } as GetWrittenJsonFileOptionsType
+      { isOverwrite } as GetWrittenJsonFileOptionsType,
     )
 
   return arrayObjects
@@ -87,16 +87,17 @@ const getReadCsvToJsonToJson = withTryCatchFinallyWrapper(getReadCsvToJsonToJson
   isFinally: false,
 })
 
-export { getReadCsvToJsonToJson, getReadCsvToJsonToJsonUnsafe }
 export type {
-  GetReadCsvToJsonToJsonParamsType,
   GetReadCsvToJsonToJsonOptionsType,
+  GetReadCsvToJsonToJsonParamsType,
   GetReadCsvToJsonToJsonResType,
   GetReadCsvToJsonToJsonType,
 }
+export { getReadCsvToJsonToJson, getReadCsvToJsonToJsonUnsafe }
+
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getReadCsvToJsonToJson.ts
+ * @run npx tsx src/sharedNode/getReadCsvToJsonToJson.ts
  */
 if (require.main === module) {
   ;(async () => {

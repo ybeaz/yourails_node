@@ -29,7 +29,7 @@ export const consoler: ConsolerType = (comment, entity): string => {
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/consoler.ts
+ * @run npx tsx src/sharedNode/consoler.ts
  */
 if (require.main === module) {
   ;(async () => {

@@ -6,7 +6,7 @@ import { type GetWrittenFile3CaseType, getWrittenFile3 } from './getWrittenFile3
 import { getWrittenFile3Cases } from './getWrittenFile3.case'
 
 /**
- * @run npx tsx src/SharedNode/getWrittenFile3/getWrittenFile3.run.ts
+ * @run npx tsx src/sharedNode/getWrittenFile3/getWrittenFile3.run.ts
  */
 if (require.main === module) {
   void (async () => {
@@ -28,7 +28,7 @@ if (require.main === module) {
 
         params.data = await getImageToBase64({
           pathFileAbs:
-            '/Users/admin/Dev/yourails_node/src/SharedNode/getWrittenFile3/__mocks__/s_4_2026-05-31-07-28-53_imageRaw.png',
+            '/Users/admin/Dev/yourails_node/src/sharedNode/getWrittenFile3/__mocks__/s_4_2026-05-31-07-28-53_imageRaw.png',
         })
         params.pathFileAbs = pathFileAbs
         options.fileType = FileTypeEnum.txt

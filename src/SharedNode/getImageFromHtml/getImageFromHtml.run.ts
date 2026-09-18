@@ -12,7 +12,7 @@ import { type GetImageFromHtmlCaseType, getImageFromHtml } from './getImageFromH
 import { getImageFromHtmlCases } from './getImageFromHtml.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.run.ts
+ * @run npx tsx src/sharedNode/getImageFromHtml/getImageFromHtml.run.ts
  */
 ;(async () => {
   for await (const {

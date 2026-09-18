@@ -41,7 +41,7 @@ export const consolerError: ConsolerType = (message, params, { isEnd } = { isEnd
 }
 
 /**
- * @run npx tsx src/SharedNode/consolerError.ts
+ * @run npx tsx src/sharedNode/consolerError.ts
  */
 if (require.main === module) {
   void (async () => {

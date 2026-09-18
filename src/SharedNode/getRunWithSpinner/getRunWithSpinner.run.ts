@@ -4,7 +4,7 @@ import { consoler } from '../consoler'
 import { formatSpinnerMessage, getRunWithSpinner } from './getRunWithSpinner'
 
 /**
- * @run npx tsx src/SharedNode/getRunWithSpinner/getRunWithSpinner.run.ts
+ * @run npx tsx src/sharedNode/getRunWithSpinner/getRunWithSpinner.run.ts
  */
 if (require.main === module) {
   void (async () => {

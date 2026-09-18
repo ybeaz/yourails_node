@@ -9,7 +9,7 @@ export const getImageCroppedBySizeCases: GetImageCroppedBySizeCaseType[] = [
     params: {
       imageBase64: getImageToBase64({
         pathFileAbs:
-          '/Users/admin/Dev/yourails_node/src/SharedNode/getImageToBase64/__mocks__/s_1_2026-05-17-18-16-18_image.png',
+          '/Users/admin/Dev/yourails_node/src/sharedNode/getImageToBase64/__mocks__/s_1_2026-05-17-18-16-18_image.png',
       }) as string,
       pathFileAbs: join(__dirname, '__output__/xxx.png'),
       positionStartX: 0,

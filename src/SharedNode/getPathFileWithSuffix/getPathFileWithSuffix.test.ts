@@ -7,7 +7,7 @@ import { getPathFileWithSuffixCases } from './getPathFileWithSuffix.case'
 
 /**
  * @Description Test to challenge function getPathFileWithSuffix
- * @test pnpm jest getPathFileWithSuffix.test.ts --coverage --collectCoverageFrom="src/SharedNode/getPathFileWithSuffix/getPathFileWithSuffix.ts"
+ * @test pnpm jest getPathFileWithSuffix.test.ts --coverage --collectCoverageFrom="src/sharedNode/getPathFileWithSuffix/getPathFileWithSuffix.ts"
  */
 describe('getPathFileWithSuffix', () => {
   it.each(getPathFileWithSuffixCases)(

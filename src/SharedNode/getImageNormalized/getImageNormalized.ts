@@ -179,9 +179,9 @@ const getImageNormalizedTests: GetImageNormalizedTestType[] = [
     },
     expected: {
       pathFileAbsOutputRaw:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getImageNormalized/__mocks__/test_raw.png',
+        '/Users/admin/Dev/yourails_node/src/sharedNode/getImageNormalized/__mocks__/test_raw.png',
       pathFileAbsOutput:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getImageNormalized/__mocks__/test.png',
+        '/Users/admin/Dev/yourails_node/src/sharedNode/getImageNormalized/__mocks__/test.png',
     },
   },
 ]
@@ -197,8 +197,8 @@ export { getImageNormalized, getImageNormalizedTests }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getImageNormalized/getImageNormalized.ts
- * @test pnpm jest getImageNormalized.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageNormalized/getImageNormalized.tss"
+ * @run npx tsx src/sharedNode/getImageNormalized/getImageNormalized.ts
+ * @test pnpm jest getImageNormalized.test.ts --coverage --collectCoverageFrom="src/sharedNode/getImageNormalized/getImageNormalized.tss"
  */
 if (require.main === module) {
   ;(async () => {

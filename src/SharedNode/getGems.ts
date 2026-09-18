@@ -1,11 +1,11 @@
-import { withTryCatchFinallyWrapper } from 'yourails_common'
-
-import { nanoid as nanoidFunc, customRandom, random } from 'nanoid'
+import { customRandom, nanoid as nanoidFunc, random } from 'nanoid'
 import { v4 as uuidv4Func } from 'uuid'
-
-import { getDateString } from 'yourails_common'
-import { getPassword } from 'yourails_common'
-import { getChangedCharOnPostionToALCR } from 'yourails_common'
+import {
+  getChangedCharOnPostionToALCR,
+  getDateString,
+  getPassword,
+  withTryCatchFinallyWrapper,
+} from 'yourails_common'
 
 import { consoler } from './consoler'
 import { consolerError } from './consolerError'
@@ -81,7 +81,7 @@ export const getGems: GetGemsType = (optionsIn: OptionsType = optionsDefault) =>
 
     password = getChangedCharOnPostionToALCR(
       getPassword(nanoPassword, { charsNotAlphanumeric: ['!', '_', '#'] }),
-      { position: 0, charCase: 'lowerCase' }
+      { position: 0, charCase: 'lowerCase' },
     )
     password = getChangedCharOnPostionToALCR(password, {
       position: password.length - 1,
@@ -129,7 +129,7 @@ export const getGems: GetGemsType = (optionsIn: OptionsType = optionsDefault) =>
 }
 
 /**
- * @run npx tsx src/SharedNode/getGems.ts
+ * @run npx tsx src/sharedNode/getGems.ts
  */
 if (require.main === module) {
   const output = getGems()

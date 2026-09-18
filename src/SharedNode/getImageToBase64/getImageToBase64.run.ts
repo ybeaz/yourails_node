@@ -8,8 +8,8 @@ import { type GetImageToBase64CaseType, getImageToBase64 } from './getImageToBas
 import { getImageToBase64Cases } from './getImageToBase64.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageToBase64/getImageToBase64.run.ts
- * @test pnpm jest getImageToBase64.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageToBase64/getImageToBase64.ts"
+ * @run npx tsx src/sharedNode/getImageToBase64/getImageToBase64.run.ts
+ * @test pnpm jest getImageToBase64.test.ts --coverage --collectCoverageFrom="src/sharedNode/getImageToBase64/getImageToBase64.ts"
  */
 if (require.main === module) {
   ;(async () => {

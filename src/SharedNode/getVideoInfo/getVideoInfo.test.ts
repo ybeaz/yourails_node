@@ -6,7 +6,7 @@ import { getVideoInfoCases } from './getVideoInfo.case'
 
 /**
  * @Description Test to challenge function getVideoInfo
- * @test pnpm jest getVideoInfo.test.ts --coverage --collectCoverageFrom="src/SharedNode/getVideoInfo/getVideoInfo.ts"
+ * @test pnpm jest getVideoInfo.test.ts --coverage --collectCoverageFrom="src/sharedNode/getVideoInfo/getVideoInfo.ts"
  */
 describe('getVideoInfo', () => {
   it.each(getVideoInfoCases)(

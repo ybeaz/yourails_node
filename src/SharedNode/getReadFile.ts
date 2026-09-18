@@ -1,9 +1,9 @@
-import { consoler } from '../SharedNode/consoler'
 import {
-  withTryCatchFinallyWrapper,
   FuncModeEnumType,
   WithTryCatchFinallyWrapperOptionsType,
+  withTryCatchFinallyWrapper,
 } from 'yourails_common'
+import { consoler } from '../sharedNode/consoler'
 
 type GetReadFileParamsType = string
 
@@ -27,7 +27,7 @@ const resDefault: GetReadFileResType = ''
 
 const getReadFileUnsafe: GetReadFileType = async (
   path: string,
-  options?: GetReadFileOptionsType
+  options?: GetReadFileOptionsType,
 ) => {
   if (typeof window !== 'undefined') return
 
@@ -48,5 +48,5 @@ const getReadFile = withTryCatchFinallyWrapper(getReadFileUnsafe, {
   isFinally: false,
 })
 
+export type { GetReadFileOptionsType, GetReadFileParamsType, GetReadFileResType, GetReadFileType }
 export { getReadFile, getReadFileUnsafe }
-export type { GetReadFileParamsType, GetReadFileOptionsType, GetReadFileResType, GetReadFileType }

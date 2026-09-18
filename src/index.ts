@@ -1,2 +1,2 @@
-export * from './SharedNode/index'
+export * from './sharedNode/index'
 export * from './templatesHtml/index'

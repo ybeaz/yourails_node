@@ -96,7 +96,7 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
   {
     description: 'read JSON file basic',
     params: {
-      pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.json',
+      pathFileAbs: '/Users/admin/Dev/yourails_node/src/sharedNode/getReadFile2/__mocks__/text.json',
     },
     options: { fileType: FileTypeEnum.json },
     expected: {
@@ -109,7 +109,7 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
   {
     description: 'read TXT file basic',
     params: {
-      pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.txt',
+      pathFileAbs: '/Users/admin/Dev/yourails_node/src/sharedNode/getReadFile2/__mocks__/text.txt',
     },
     options: { fileType: FileTypeEnum.txt },
     expected: `Hello world from text file\nLine 2: simple content`,
@@ -118,7 +118,7 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
   {
     description: 'read CSV file basic',
     params: {
-      pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.csv',
+      pathFileAbs: '/Users/admin/Dev/yourails_node/src/sharedNode/getReadFile2/__mocks__/text.csv',
     },
     options: { fileType: FileTypeEnum.csv },
     expected: [
@@ -140,8 +140,8 @@ export { getReadFile2, getReadFile2Tests }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getReadFile2/getReadFile2.ts
- * @test pnpm jest getReadFile2.test.ts --coverage --collectCoverageFrom="src/SharedNode/getReadFile2/getReadFile2.ts"
+ * @run npx tsx src/sharedNode/getReadFile2/getReadFile2.ts
+ * @test pnpm jest getReadFile2.test.ts --coverage --collectCoverageFrom="src/sharedNode/getReadFile2/getReadFile2.ts"
  */
 if (require.main === module) {
   ;(async () => {

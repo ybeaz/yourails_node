@@ -1,5 +1,5 @@
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from './consoler'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 type getDecodedTokenJwtParamsType = {
   token?: string
@@ -72,17 +72,17 @@ const getDecodedTokenJwt = withTryCatchFinallyWrapper(getDecodedTokenJwtUnsafe, 
   isFinally: false,
 })
 
-export { getDecodedTokenJwt, getDecodedTokenJwtUnsafe }
 export type {
-  getDecodedTokenJwtParamsType,
   getDecodedTokenJwtOptionsType,
+  getDecodedTokenJwtParamsType,
   getDecodedTokenJwtResType,
   getDecodedTokenJwtType,
 }
+export { getDecodedTokenJwt, getDecodedTokenJwtUnsafe }
 
 /**
  * @description Here the file is being run directly
- * @run NODE_ENV=development npx tsx src/SharedNode/getDecodedTokenJwt.ts
+ * @run NODE_ENV=development npx tsx src/sharedNode/getDecodedTokenJwt.ts
  */
 if (require.main === module) {
   ;(async () => {

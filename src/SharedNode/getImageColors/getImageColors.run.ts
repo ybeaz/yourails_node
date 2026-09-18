@@ -4,8 +4,8 @@ import { type GetImageColorsCaseType, getImageColors } from './getImageColors'
 import { getImageColorsCases } from './getImageColors.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageColors/getImageColors.run.ts
- * @test pnpm jest getImageColors.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageColors/getImageColors.ts"
+ * @run npx tsx src/sharedNode/getImageColors/getImageColors.run.ts
+ * @test pnpm jest getImageColors.test.ts --coverage --collectCoverageFrom="src/sharedNode/getImageColors/getImageColors.ts"
  */
 if (require.main === module) {
   ;(async () => {

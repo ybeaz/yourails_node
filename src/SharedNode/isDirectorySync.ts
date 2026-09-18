@@ -1,6 +1,6 @@
+import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
 import { consoler } from './consoler'
 import { consolerError } from './consolerError'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
 
 interface IsDirectorySyncType {
   (path: string): boolean
@@ -11,7 +11,7 @@ interface IsDirectorySyncType {
  * @run npx tsx tools/isDirectorySync.ts
  * @import import { isDirectorySync } from './isDirectorySync'
  */
-const isDirectorySyncUnsafe: IsDirectorySyncType = path => {
+const isDirectorySyncUnsafe: IsDirectorySyncType = (path) => {
   if (typeof window !== 'undefined') return
 
   const fs = require('fs')
@@ -28,7 +28,7 @@ export const isDirectorySync = withTryCatchFinallyWrapper(isDirectorySyncUnsafe,
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/isDirectorySync.ts
+ * @run npx tsx src/sharedNode/isDirectorySync.ts
  */
 if (require.main === module) {
   ;(async () => {

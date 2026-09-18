@@ -14,7 +14,7 @@ import {
 import { getWaitedForPropsInFileJsonCases } from './getWaitedForPropsInFileJson.case'
 
 /**
- * @run npx tsx src/SharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.run.ts
+ * @run npx tsx src/sharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.run.ts
  */
 if (require.main === module) {
   ;(async () => {

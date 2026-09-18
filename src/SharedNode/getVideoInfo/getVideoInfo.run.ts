@@ -8,7 +8,7 @@ import {
 import { getVideoInfoCases } from './getVideoInfo.case'
 
 /**
- * @run npx tsx src/SharedNode/getVideoInfo/getVideoInfo.run.ts
+ * @run npx tsx src/sharedNode/getVideoInfo/getVideoInfo.run.ts
  */
 if (require.main === module) {
   void (async () => {

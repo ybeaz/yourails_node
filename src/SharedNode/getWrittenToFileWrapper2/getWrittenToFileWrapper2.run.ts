@@ -7,7 +7,7 @@ import {
 import { getWrittenToFileWrapper2Cases } from './getWrittenToFileWrapper2.case'
 
 /**
- * @run npx tsx src/SharedNode/getWrittenToFileWrapper2/getWrittenToFileWrapper2.run.ts
+ * @run npx tsx src/sharedNode/getWrittenToFileWrapper2/getWrittenToFileWrapper2.run.ts
  */
 if (require.main === module) {
   void (async () => {

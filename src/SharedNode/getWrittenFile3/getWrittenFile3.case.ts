@@ -6,7 +6,7 @@ export const getWrittenFile3Cases: GetWrittenFile3CaseType[] = [
     description: 'save JSON object basic',
     params: {
       pathFileAbs:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getWrittenFile3/__output__/text.json',
+        '/Users/admin/Dev/yourails_node/src/sharedNode/getWrittenFile3/__output__/text.json',
       data: { a: 1, b: 'b2', c: [null, 'b', 3] },
     },
     options: {},

@@ -162,7 +162,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
       configsSourceToServe: [
         {
           serveSourceAsFor: ServeSourceForReplacementEnum.serveImagePathAsImage64,
-          source: '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+          source: '/Users/admin/Dev/yourails_node/src/sharedNode/getImageFromHtml/__mocks__/a1.png',
           replacementName: '__IMAGE_BASE_64__',
         },
         {
@@ -201,7 +201,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
       configsSourceToServe: [
         {
           serveSourceAsFor: ServeSourceForReplacementEnum.serveImagePathAsImage64,
-          source: '/Users/admin/Dev/yourails_node/src/SharedNode/getImageFromHtml/__mocks__/a1.png',
+          source: '/Users/admin/Dev/yourails_node/src/sharedNode/getImageFromHtml/__mocks__/a1.png',
           replacementName: '__IMAGE_BASE_64__',
         },
         {
