@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { getDateString } from 'yourails_common'
-import type { GetHtmlPageContentCaseType, GetHtmlPageContentParamsType } from './getHtmlPageContent'
+import type { GetHtmlPageHtmlCaseType, GetHtmlPageHtmlParamsType } from './getHtmlPageHtml'
 
 const dateString = getDateString({
   timestamp: new Date(),
@@ -11,19 +11,24 @@ const dateString = getDateString({
   isUtcMethods: false,
 })
 
-export const getHtmlPageContentCases: GetHtmlPageContentCaseType[] = [
+export const getHtmlPageHtmlCases: GetHtmlPageHtmlCaseType[] = [
   {
     index: 2,
-    description: 'basic test getHtmlPageContent',
+    description: 'basic test getHtmlPageHtml',
     params: {
       url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while',
     },
-    options: { waitForTimeout: 2000, isHeadless: true },
+    options: {
+      waitForTimeout: 2000,
+      isHeadless: true,
+      isWaitingForLoad: false,
+      isFlattenShadowDom: false,
+    },
     expected: { html: '' },
   },
   {
     index: 1,
-    description: 'basic test getHtmlPageContent',
+    description: 'basic test getHtmlPageHtml',
     params: {
       url: 'https://www.linkedin.com/jobs/search/?currentJobId=4455964714&keywords=javascript',
     },
@@ -31,7 +36,6 @@ export const getHtmlPageContentCases: GetHtmlPageContentCaseType[] = [
       waitForTimeout: 2000,
       isLaunchPersistentContext: true,
       isHeadless: true,
-      pathFileAbs: join(__dirname, '__output__', `${dateString}_linkedin.html`),
     },
     expected: { html: '' },
     // const match = output.html.match(/([\d,]+)\s+results\b/i)
@@ -39,7 +43,7 @@ export const getHtmlPageContentCases: GetHtmlPageContentCaseType[] = [
   },
   {
     index: 0,
-    description: 'basic test getHtmlPageContent',
+    description: 'basic test getHtmlPageHtml',
     params: {
       url: 'https://example.com',
     },
