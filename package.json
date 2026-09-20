@@ -30,7 +30,7 @@
     "removeCreateDist": "rm -rf dist && mkdir dist",
     "buildUnpkg": "npx npx tsx esbuild.config.ts",
     "gzipUnpkg": ": gzip -k dist/lib.min.js",
-    "build": "pnpm removeCreateDist && tsc -p tsconfig.json && pnpm buildUnpkg && pnpm gzipUnpkg",
+    "build": "pnpm removeCreateDist && tsc -p tsconfig.build.json && pnpm buildUnpkg && pnpm gzipUnpkg",
     "pub": "pnpm build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && pnpm publish --access public --quiet --registry=https://registry.npmjs.org/",
     "pubV2": "pnpm build &&  eval $(ssh-agent -s); ssh-add ~/.ssh/2020-10-19-rsa && npx npm publish --access public --registry=https://registry.npmjs.org/",
     "test": "echo \"Error: no test specified\" && exit 1"

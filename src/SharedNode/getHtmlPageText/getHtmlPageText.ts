@@ -36,6 +36,7 @@ import {
 
 type GetHtmlPageTextParamsType = {
   url: string
+  cssSelectorHeader?: string
   cssSelectorsArr: string[]
 }
 
@@ -45,7 +46,14 @@ type GetHtmlPageTextOptionsType = {
   funcParent?: string
 }
 
-type GetHtmlPageTextResType = { html: string; text: string }
+type GetHtmlPageTextResType = {
+  html: string
+  text: string
+  header: string
+  htmlLen: number
+  textLen: number
+  headerLen: number
+}
 
 type GetHtmlPageTextType = (
   params: GetHtmlPageTextParamsType,
@@ -58,7 +66,14 @@ const optionsDefault = {
   funcParent: 'getHtmlPageText',
 } satisfies Required<GetHtmlPageTextOptionsType>
 
-const resDefault: GetHtmlPageTextResType = { html: '', text: '' }
+const resDefault: GetHtmlPageTextResType = {
+  html: '',
+  text: '',
+  header: '',
+  htmlLen: 0,
+  textLen: 0,
+  headerLen: 0,
+}
 
 /**
  * @description Function to getHtmlPageText
@@ -69,7 +84,7 @@ const resDefault: GetHtmlPageTextResType = { html: '', text: '' }
    getHtmlPageText(getHtmlPageTextParams, getHtmlPageTextOptions)
 */
 const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
-  { url, cssSelectorsArr = [] }: GetHtmlPageTextParamsType,
+  { url, cssSelectorHeader, cssSelectorsArr = [] }: GetHtmlPageTextParamsType,
   {
     isWaitingForLoad = false,
     isFlattenShadowDom = false,
@@ -90,12 +105,37 @@ const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
     getHtmlFromHtmlPageOptions,
   )
 
+  let header: string = ''
+
+  if (cssSelectorHeader) {
+    const getHtmlBlocksExtractedParams: GetHtmlBlocksExtractedParamsType = {
+      html: htmlFromHtmlPage,
+      cssSelectorsArr: [cssSelectorHeader],
+    }
+    const getHtmlBlocksExtractedOptions: GetHtmlBlocksExtractedOptionsType = {}
+
+    const htmlBlocksExtracted: GetHtmlBlockExtractedResType[] = await getHtmlBlocksExtracted(
+      getHtmlBlocksExtractedParams,
+      getHtmlBlocksExtractedOptions,
+    )
+
+    if (htmlBlocksExtracted.length) {
+      const { html } = htmlBlocksExtracted[0]
+      const getHtmlToTextConvertParams: GetHtmlToTextConvertParamsType = { html }
+      const getHtmlToTextConvertOptions: GetHtmlToTextConvertOptionsType = {}
+      header = getHtmlToTextConvert(
+        getHtmlToTextConvertParams,
+        getHtmlToTextConvertOptions,
+      ) as string
+
+      if (header) header = header.charAt(0).toUpperCase() + header.slice(1).toLowerCase()
+    }
+  }
+
   let text = ''
 
   /* EXTRACT HTML BLOCKS BY SELECTORS */
   if (cssSelectorsArr.length) {
-    consoler('\n\n\ngetHtmlPageText [96]', { htmlFromHtmlPage })
-
     const getHtmlBlocksExtractedParams: GetHtmlBlocksExtractedParamsType = {
       html: htmlFromHtmlPage,
       cssSelectorsArr,
@@ -107,13 +147,10 @@ const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
       getHtmlBlocksExtractedOptions,
     )
 
-    consoler('\n\n\ngetHtmlPageText [107]', { htmlBlocksExtracted })
-
     /* CONVERT HTML BLOCKS TO TEXT BLOCKS */
 
     const htmlTextsExtracted: string[] = htmlBlocksExtracted.map(
       ({ html }: GetHtmlBlockExtractedResType) => {
-        consoler('\n\n\ngetHtmlPageText [112]', { html })
         const getHtmlToTextConvertParams: GetHtmlToTextConvertParamsType = { html }
         const getHtmlToTextConvertOptions: GetHtmlToTextConvertOptionsType = {}
         const textString: string = getHtmlToTextConvert(
@@ -125,8 +162,6 @@ const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
       },
     )
 
-    consoler('\n\n\ngetHtmlPageText [120]', { htmlTextsExtracted })
-
     text = htmlTextsExtracted.reduce((accum: string, item: string) => `${accum}\n${item}`, '')
   } else {
     const getHtmlToTextConvertParams: GetHtmlToTextConvertParamsType = { html: htmlFromHtmlPage }
@@ -134,7 +169,14 @@ const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
     text = getHtmlToTextConvert(getHtmlToTextConvertParams, getHtmlToTextConvertOptions) as string
   }
 
-  return { html: htmlFromHtmlPage, text }
+  return {
+    html: htmlFromHtmlPage,
+    text,
+    header,
+    htmlLen: htmlFromHtmlPage.length,
+    textLen: text.length,
+    headerLen: header.length,
+  }
 }
 
 const getHtmlPageText = withTryCatchFinallyWrapper<

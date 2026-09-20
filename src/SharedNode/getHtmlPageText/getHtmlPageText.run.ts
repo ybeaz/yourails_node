@@ -17,7 +17,7 @@ import { getHtmlPageTextCases } from './getHtmlPageText.case'
 if (require.main === module) {
   void (async () => {
     for await (const { index, description, params, options, expected } of getHtmlPageTextCases) {
-      const CASE_TO_PICK_UP = 2
+      const CASE_TO_PICK_UP = 1
 
       if (index !== CASE_TO_PICK_UP) continue
 
@@ -32,7 +32,9 @@ if (require.main === module) {
         isUtcMethods: false,
       })
 
-      const { html, text } = await getRunWithSpinner(getHtmlPageText)(params, options)
+      const { html, text, header, htmlLen, textLen, headerLen } = await getRunWithSpinner(
+        getHtmlPageText,
+      )(params, options)
 
       const pathFileAbs = join(__dirname, '__output__', `${dateString}_html.txt`)
 
@@ -52,6 +54,10 @@ if (require.main === module) {
         description,
         params,
         text,
+        header,
+        htmlLen,
+        textLen,
+        headerLen,
       })
     }
   })()
