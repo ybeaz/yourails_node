@@ -1,12 +1,9 @@
-import { exec } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
-import { promisify } from 'node:util'
 import open from 'open'
 import { chromium } from 'playwright'
 import {
   FuncModeEnumType,
-  getDateString,
   getRestoredObject,
   ScalingModeEnum,
   ServeSourceForReplacementEnum,
@@ -15,8 +12,6 @@ import {
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getPausedScript } from '../getPausedScript'
-
-const execAsync = promisify(exec)
 
 export type configsSourceToServeType = {
   serveSourceAsFor: ServeSourceForReplacementEnum

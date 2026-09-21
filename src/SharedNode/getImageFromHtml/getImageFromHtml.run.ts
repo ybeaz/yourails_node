@@ -1,10 +1,5 @@
 import { join } from 'node:path'
-import {
-  getDateString,
-  getRestoredObject,
-  ImageSizesStandardEnum,
-  ServeSourceForReplacementEnum,
-} from 'yourails_common'
+import { IMAGES_BASE_64, ServeSourceForReplacementEnum } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
@@ -22,7 +17,7 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
     options = { isProduction: false },
     expected,
   } of getImageFromHtmlCases) {
-    const CASE_TO_PICK_UP = 1
+    const CASE_TO_PICK_UP = 0
 
     if (index !== CASE_TO_PICK_UP) {
       continue
@@ -52,6 +47,11 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
         source: imageBase64String2,
         replacementName: '__IMAGE_BASE_64_2__',
+      },
+      {
+        serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        source: IMAGES_BASE_64.logoJavascript,
+        replacementName: '__IMAGE_LOGO__',
       },
     )
 

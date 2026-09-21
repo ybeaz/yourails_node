@@ -184,8 +184,8 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
 
         <div class="logo-group">
           <img
-            src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
-            alt="YouRails logo"
+            src="data:image/png;base64,__IMAGE_LOGO__"
+            alt="logo"
           />
         </div>
 
