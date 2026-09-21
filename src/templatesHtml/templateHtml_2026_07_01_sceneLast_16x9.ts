@@ -93,7 +93,6 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
       .bottom {
         bottom: 60px;
         font-size: 28px;
-        opacity: 0.7;
         display: flex;
         gap: 1rem;
         padding: 1rem 2rem;
@@ -109,12 +108,12 @@ export const templateHtml_2026_07_01_sceneLast_16x9 = `
       .bottom img {
         width: 32px;
         height: auto;
-        opacity: 1;
         display: inline-block;
       }
 
       .copyright {
-        display: block;
+        opacity: 0.9; /* 0 = transparent, 1 = opaque */
+        display: flex;
         display: __COPYRIGHT_DISPLAY__;
       }
     </style>

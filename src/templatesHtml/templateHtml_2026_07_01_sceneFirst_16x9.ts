@@ -129,8 +129,8 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
   <body>
     <div class="logo-group">
       <img
-        src="http://localhost:3000/images/youRailsLogos/2026-05-22_logos/yourails_05_cycle.svg"
-        alt="YouRails logo"
+        src="data:image/png;base64,__IMAGE_LOGO__"
+        alt="logo"
       />
     </div>
     <div class='wrapper'>

@@ -109,7 +109,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
 
   {
     index: 2,
-    description: 'scene regular 16x9',
+    description: 'scene imahr regular 16x9',
     params: {
       html: templatesHtml.templateHtml_2026_07_01_sceneRegular_16x9,
       pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
@@ -149,7 +149,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
 
   {
     index: 3,
-    description: 'scene first image with background and ScalingModeEnum.deviceScaleFactor',
+    description: 'scene image first 16x9 with background and ScalingModeEnum.deviceScaleFactor',
     params: {
       html: templatesHtml.templateHtml_2026_07_01_sceneFirst_16x9,
       pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
@@ -188,7 +188,7 @@ export const getImageFromHtmlCases: GetImageFromHtmlCaseType[] = [
   },
   {
     index: 4,
-    description: 'scene last image with ScalingModeEnum.deviceScaleFactor',
+    description: 'scene image last 16x9 with ScalingModeEnum.deviceScaleFactor',
     params: {
       html: templatesHtml.templateHtml_2026_07_01_sceneLast_16x9,
       pathFileAbs: join(__dirname, '__output__', `t-${dateString}-image.png`),
