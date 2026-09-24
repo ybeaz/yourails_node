@@ -57,6 +57,9 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `
         align-items: center;
         border-radius: 2rem;
       }
+      .text-section > * {
+        width: inherit;
+      }
 
       /* Handles are positioned relative to .overlay, since that's what they resize */
       .text-section .resize-handle-corner {
@@ -90,7 +93,9 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `
       .text-section .resize-handle-right { right: 0; }
 
       .overlay {
-        padding: 0 1.5rem;
+        padding: 0 2rem;
+        width: 100%;
+        max-width: 100%;
       }
 
     </style>
