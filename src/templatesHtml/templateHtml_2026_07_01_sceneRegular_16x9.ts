@@ -90,7 +90,7 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `
       .text-section .resize-handle-right { right: 0; }
 
       .overlay {
-        padding: 0 2rem;
+        padding: 0 1.5rem;
       }
 
     </style>

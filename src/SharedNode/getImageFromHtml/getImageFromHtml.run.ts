@@ -17,7 +17,7 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
     options = { isProduction: false },
     expected,
   } of getImageFromHtmlCases) {
-    const CASE_TO_PICK_UP = 4
+    const CASE_TO_PICK_UP = 6
 
     if (index !== CASE_TO_PICK_UP) {
       continue
@@ -26,8 +26,8 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
     // const WIDTH = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_S
     // const HEIGHT = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_S
 
-    // const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-07-13-19-53-18_imageRaw.png') // 16x9
-    const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-09-06-14-44-16_imageRaw.png') // 9x16
+    const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-07-13-19-53-18_imageRaw.png') // 16x9
+    // const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-09-06-14-44-16_imageRaw.png') // 9x16
     const IMAGE_BASE_64_PNG_2 = join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png') // 9x16
 
     const imageBase64String = await getImageToBase64({
