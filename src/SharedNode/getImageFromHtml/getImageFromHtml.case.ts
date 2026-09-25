@@ -19,12 +19,16 @@ import { type GetImageFromHtmlCaseType } from './getImageFromHtml'
 
 const getHtmlSnippetFromItemsParams: GetHtmlSnippetFromItemsParamsType = {
   items: [
-    'Terminates current loop or switch statement',
-    'Transfers control to the statement after the terminated one',
-    'Can jump past a labeled statement',
-    'Must be nested within the referenced label',
-    "Cannot be used at the script's top level",
+    'function testBreak(x) { let i = 0; while (i < 6) { if (i === 3) { break; } i += 1; } return i * x; }',
+    'const food = "sushi"; switch (food) { case "sushi": console.log("Sushi is originally from Japan."); break; case "pizza": console.log("Pizza is originally from Italy."); break; default: console.log("I have never heard of that dish."); break; }',
   ],
+  // items: [
+  //   'Terminates current loop or switch statement',
+  //   'Transfers control to the statement after the terminated one',
+  //   'Can jump past a labeled statement',
+  //   'Must be nested within the referenced label',
+  //   "Cannot be used at the script's top level",
+  // ],
 }
 const getHtmlSnippetFromItemsOptions: GetHtmlSnippetFromItemsOptionsType = { contentType: 'none' }
 

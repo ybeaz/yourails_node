@@ -75,6 +75,8 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
 
         .overlay {
           padding: 0 2rem;
+          width: 100%;
+          max-width: 100%;
         }
 
         .resize-handle-corner {

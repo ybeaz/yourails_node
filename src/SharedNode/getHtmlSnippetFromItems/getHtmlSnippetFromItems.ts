@@ -16,7 +16,7 @@ import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
  */
 
 type GetHtmlSnippetFromItemsParamsType = {
-  items: string[]
+  items: string | string[]
 }
 
 type GetHtmlSnippetFromItemsOptionsType = {
@@ -91,9 +91,12 @@ const escapeHtml = (value: string): string =>
    getHtmlSnippetFromItems(getHtmlSnippetFromItemsParams, getHtmlSnippetFromItemsOptions)
 */
 const getHtmlSnippetFromItemsUnsafe: GetHtmlSnippetFromItemsType = (
-  { items }: GetHtmlSnippetFromItemsParamsType,
+  { items: itemsIn }: GetHtmlSnippetFromItemsParamsType,
   options: GetHtmlSnippetFromItemsOptionsType = optionsDefault,
 ) => {
+  let items: string[] = itemsIn as string[]
+  if (typeof itemsIn === 'string') items = [itemsIn]
+
   const { contentType } = resolveOptions(options)
 
   const listItems = items

@@ -86,6 +86,8 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
 
         .overlay {
           text-align: center;
+          width: 100%;
+          max-width: 100%;
         }
 
         .resize-handle-corner {
