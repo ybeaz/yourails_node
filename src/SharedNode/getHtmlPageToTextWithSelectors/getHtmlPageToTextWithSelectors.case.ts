@@ -1,6 +1,9 @@
-import type { GetHtmlPageTextCaseType, GetHtmlPageTextParamsType } from './getHtmlPageText'
+import type {
+  GetHtmlPageToTextWithSelectorsCaseType,
+  GetHtmlPageToTextWithSelectorsParamsType,
+} from './getHtmlPageToTextWithSelectors'
 
-export const getHtmlPageTextCases: GetHtmlPageTextCaseType[] = [
+export const getHtmlPageToTextWithSelectorsCases: GetHtmlPageToTextWithSelectorsCaseType[] = [
   {
     index: 2,
     description: 'basic test getHtmlFromHtmlPage',

@@ -4,20 +4,26 @@ import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getWrittenFile3 } from '../getWrittenFile3/getWrittenFile3'
 import {
-  type GetHtmlPageTextCaseType,
-  type GetHtmlPageTextOptionsType,
-  type GetHtmlPageTextParamsType,
-  getHtmlPageText,
-} from './getHtmlPageText'
-import { getHtmlPageTextCases } from './getHtmlPageText.case'
+  type GetHtmlPageToTextWithSelectorsCaseType,
+  type GetHtmlPageToTextWithSelectorsOptionsType,
+  type GetHtmlPageToTextWithSelectorsParamsType,
+  getHtmlPageToTextWithSelectors,
+} from './getHtmlPageToTextWithSelectors'
+import { getHtmlPageToTextWithSelectorsCases } from './getHtmlPageToTextWithSelectors.case'
 
 /**
- * @run npx tsx src/sharedNode/getHtmlPageText/getHtmlPageText.run.ts
+ * @run npx tsx src/sharedNode/getHtmlPageToTextWithSelectors/getHtmlPageToTextWithSelectors.run.ts
  */
 if (require.main === module) {
   void (async () => {
-    for await (const { index, description, params, options, expected } of getHtmlPageTextCases) {
-      const CASE_TO_PICK_UP = 1
+    for await (const {
+      index,
+      description,
+      params,
+      options,
+      expected,
+    } of getHtmlPageToTextWithSelectorsCases) {
+      const CASE_TO_PICK_UP = 2
 
       if (index !== CASE_TO_PICK_UP) continue
 
@@ -33,7 +39,7 @@ if (require.main === module) {
       })
 
       const { html, text, header, htmlLen, textLen, headerLen } = await getRunWithSpinner(
-        getHtmlPageText,
+        getHtmlPageToTextWithSelectors,
       )(params, options)
 
       const pathFileAbs = join(__dirname, '__output__', `${dateString}_html.txt`)
@@ -50,7 +56,7 @@ if (require.main === module) {
         { fileType: FileTypeEnum.txt, isOverwrite: true },
       )
 
-      consoler(`getHtmlPageText [50-${index}]`, {
+      consoler(`getHtmlPageToTextWithSelectors [50-${index}]`, {
         description,
         params,
         text,

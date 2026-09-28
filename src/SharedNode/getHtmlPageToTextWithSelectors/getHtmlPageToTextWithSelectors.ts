@@ -34,19 +34,19 @@ import {
            ]
  */
 
-type GetHtmlPageTextParamsType = {
+type GetHtmlPageToTextWithSelectorsParamsType = {
   url: string
   cssSelectorHeader?: string
   cssSelectorsArr: string[]
 }
 
-type GetHtmlPageTextOptionsType = {
+type GetHtmlPageToTextWithSelectorsOptionsType = {
   isWaitingForLoad?: boolean
   isFlattenShadowDom?: boolean
   funcParent?: string
 }
 
-type GetHtmlPageTextResType = {
+type GetHtmlPageToTextWithSelectorsResType = {
   html: string
   text: string
   header: string
@@ -55,18 +55,18 @@ type GetHtmlPageTextResType = {
   headerLen: number
 }
 
-type GetHtmlPageTextType = (
-  params: GetHtmlPageTextParamsType,
-  options?: GetHtmlPageTextOptionsType,
-) => Promise<GetHtmlPageTextResType>
+type GetHtmlPageToTextWithSelectorsType = (
+  params: GetHtmlPageToTextWithSelectorsParamsType,
+  options?: GetHtmlPageToTextWithSelectorsOptionsType,
+) => Promise<GetHtmlPageToTextWithSelectorsResType>
 
 const optionsDefault = {
   isWaitingForLoad: false,
   isFlattenShadowDom: false,
-  funcParent: 'getHtmlPageText',
-} satisfies Required<GetHtmlPageTextOptionsType>
+  funcParent: 'getHtmlPageToTextWithSelectors',
+} satisfies Required<GetHtmlPageToTextWithSelectorsOptionsType>
 
-const resDefault: GetHtmlPageTextResType = {
+const resDefault: GetHtmlPageToTextWithSelectorsResType = {
   html: '',
   text: '',
   header: '',
@@ -76,19 +76,19 @@ const resDefault: GetHtmlPageTextResType = {
 }
 
 /**
- * @description Function to getHtmlPageText
+ * @description Function to getHtmlPageToTextWithSelectors
  * @usage
-   import { getHtmlPageText, GetHtmlPageTextParamsType, GetHtmlPageTextOptionsType } from './getHtmlPageText/getHtmlPageText'
-   const getHtmlPageTextParams: GetHtmlPageTextParamsType = {}
-   const getHtmlPageTextOptions: GetHtmlPageTextOptionsType = {}
-   getHtmlPageText(getHtmlPageTextParams, getHtmlPageTextOptions)
+   import { getHtmlPageToTextWithSelectors, GetHtmlPageToTextWithSelectorsParamsType, GetHtmlPageToTextWithSelectorsOptionsType } from './getHtmlPageToTextWithSelectors/getHtmlPageToTextWithSelectors'
+   const getHtmlPageToTextWithSelectorsParams: GetHtmlPageToTextWithSelectorsParamsType = {}
+   const getHtmlPageToTextWithSelectorsOptions: GetHtmlPageToTextWithSelectorsOptionsType = {}
+   getHtmlPageToTextWithSelectors(getHtmlPageToTextWithSelectorsParams, getHtmlPageToTextWithSelectorsOptions)
 */
-const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
-  { url, cssSelectorHeader, cssSelectorsArr = [] }: GetHtmlPageTextParamsType,
+const getHtmlPageToTextWithSelectorsUnsafe: GetHtmlPageToTextWithSelectorsType = async (
+  { url, cssSelectorHeader, cssSelectorsArr = [] }: GetHtmlPageToTextWithSelectorsParamsType,
   {
     isWaitingForLoad = false,
     isFlattenShadowDom = false,
-  }: GetHtmlPageTextOptionsType = optionsDefault,
+  }: GetHtmlPageToTextWithSelectorsOptionsType = optionsDefault,
 ) => {
   /* EXTRACT HTML STRING */
 
@@ -179,31 +179,31 @@ const getHtmlPageTextUnsafe: GetHtmlPageTextType = async (
   }
 }
 
-const getHtmlPageText = withTryCatchFinallyWrapper<
-  GetHtmlPageTextParamsType,
-  GetHtmlPageTextOptionsType,
-  GetHtmlPageTextResType
->(getHtmlPageTextUnsafe, {
+const getHtmlPageToTextWithSelectors = withTryCatchFinallyWrapper<
+  GetHtmlPageToTextWithSelectorsParamsType,
+  GetHtmlPageToTextWithSelectorsOptionsType,
+  GetHtmlPageToTextWithSelectorsResType
+>(getHtmlPageToTextWithSelectorsUnsafe, {
   optionsDefault,
   resDefault,
   funcMode: FuncModeEnumType.common,
   isFinally: false,
 })
 
-type GetHtmlPageTextCaseType = {
+type GetHtmlPageToTextWithSelectorsCaseType = {
   index: number
   description?: string
-  params: Parameters<typeof getHtmlPageText>[0]
+  params: Parameters<typeof getHtmlPageToTextWithSelectors>[0]
   paramsWithAssignedDate?: { timestamp: number }
-  options?: Parameters<typeof getHtmlPageText>[1]
-  expected: ReturnType<typeof getHtmlPageText>
+  options?: Parameters<typeof getHtmlPageToTextWithSelectors>[1]
+  expected: ReturnType<typeof getHtmlPageToTextWithSelectors>
 }
 
 export type {
-  GetHtmlPageTextCaseType,
-  GetHtmlPageTextOptionsType,
-  GetHtmlPageTextParamsType,
-  GetHtmlPageTextResType,
-  GetHtmlPageTextType,
+  GetHtmlPageToTextWithSelectorsCaseType,
+  GetHtmlPageToTextWithSelectorsOptionsType,
+  GetHtmlPageToTextWithSelectorsParamsType,
+  GetHtmlPageToTextWithSelectorsResType,
+  GetHtmlPageToTextWithSelectorsType,
 }
-export { getHtmlPageText }
+export { getHtmlPageToTextWithSelectors }
