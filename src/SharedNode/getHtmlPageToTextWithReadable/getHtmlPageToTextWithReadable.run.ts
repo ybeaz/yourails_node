@@ -37,7 +37,8 @@ if (require.main === module) {
       if (index !== CASE_TO_PICK_UP) continue
 
       const getHtmlFromHtmlPageParams: GetHtmlFromHtmlPageParamsType = {
-        url: 'https://en.wikipedia.org/wiki/Arkady_and_Boris_Strugatsky',
+        url: 'https://en.wikipedia.org/wiki/TRIZ',
+        // url: 'https://en.wikipedia.org/wiki/Arkady_and_Boris_Strugatsky',
       }
       const getHtmlFromHtmlPageOptions: GetHtmlFromHtmlPageOptionsType = {}
       const { html: htmlIn } = await getRunWithSpinner(getHtmlFromHtmlPage)(
@@ -47,10 +48,9 @@ if (require.main === module) {
 
       getHtmlPageToTextWithReadableParams.html = htmlIn
 
-      const { header, text } = await getRunWithSpinner(getHtmlPageToTextWithReadable)(
-        getHtmlPageToTextWithReadableParams,
-        getHtmlPageToTextWithReadableOptions,
-      )
+      const { html, text, header, htmlLen, textLen, headerLen } = await getRunWithSpinner(
+        getHtmlPageToTextWithReadable,
+      )(getHtmlPageToTextWithReadableParams, getHtmlPageToTextWithReadableOptions)
 
       const dateString = getDateString({
         timestamp: new Date(),
@@ -61,7 +61,7 @@ if (require.main === module) {
         isUtcMethods: false,
       })
 
-      const pathFileAbs = join(__dirname, '__output__', `${dateString}_imageRaw.txt`)
+      const pathFileAbs = join(__dirname, '__output__', `${dateString}_text.txt`)
 
       const getWrittenFile3Params: GetWrittenFile3ParamsType = {
         pathFileAbs,
@@ -75,7 +75,11 @@ if (require.main === module) {
         description,
         // getHtmlPageToTextWithReadableParams,
         // getHtmlPageToTextWithReadableOptions,
-        // output,
+        text,
+        header,
+        htmlLen,
+        textLen,
+        headerLen,
       })
     }
   })()

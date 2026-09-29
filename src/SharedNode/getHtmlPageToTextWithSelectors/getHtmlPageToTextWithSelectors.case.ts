@@ -10,9 +10,9 @@ export const getHtmlPageToTextWithSelectorsCases: GetHtmlPageToTextWithSelectors
     params: {
       url: 'https://en.wikipedia.org/wiki/Arkady_and_Boris_Strugatsky',
       cssSelectorsArr: [
-        'main > header > h1',
         'AFTER_INCLUDE:section[data-mw-section-id="0"]BEFORE:section[aria-labelledby="See_also"]',
       ],
+      cssSelectorHeader: 'main > header > h1',
     },
     options: {
       isWaitingForLoad: true,

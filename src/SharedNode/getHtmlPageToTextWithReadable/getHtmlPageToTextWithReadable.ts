@@ -101,12 +101,6 @@ const getHtmlPageToTextWithReadableUnsafe: GetHtmlPageToTextWithReadableType = a
   const reader = new Readability(dom.window.document)
   const article = reader.parse()
 
-  // Remove
-  // if (article) {
-  //   consoler('getHtmlPageToTextWithReadable [57]', article.textContent)
-  //   consoler('getHtmlPageToTextWithReadable [58]', article.title)
-  // }
-
   return {
     html,
     text: article?.textContent || '',

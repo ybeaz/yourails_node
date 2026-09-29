@@ -129,7 +129,7 @@ export const templateHtml_2026_07_01_sceneFirst_16x9 = `
   <body>
     <div class="logo-group">
       <img
-        src="data:image/png;base64,__IMAGE_LOGO__"
+        src="__IMAGE_LOGO__"
         alt="logo"
       />
     </div>

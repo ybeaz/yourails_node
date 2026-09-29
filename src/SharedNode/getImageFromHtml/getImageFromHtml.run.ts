@@ -17,7 +17,7 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
     options = { isProduction: false },
     expected,
   } of getImageFromHtmlCases) {
-    const CASE_TO_PICK_UP = 2
+    const CASE_TO_PICK_UP = 3
 
     if (index !== CASE_TO_PICK_UP) {
       continue
@@ -50,7 +50,9 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
       },
       {
         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
-        source: IMAGES_BASE_64.logoJavascript,
+        // source:
+        //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7-QSbrTDw-udyB0dgf9D0-vdxKg8GC8wG3v-c3XdeA&s',
+        source: `data:image/png;base64,${IMAGES_BASE_64.logoJavascript}`,
         replacementName: '__IMAGE_LOGO__',
       },
     )

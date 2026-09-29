@@ -186,7 +186,7 @@ export const templateHtml_2026_09_04_sceneTitle_9x16 = `
 
         <div class="logo-group">
           <img
-            src="data:image/png;base64,__IMAGE_LOGO__"
+            src="__IMAGE_LOGO__"
             alt="logo"
           />
         </div>

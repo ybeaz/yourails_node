@@ -3,12 +3,7 @@ import { FileTypeEnum, getDateString } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
 import { getWrittenFile3 } from '../getWrittenFile3/getWrittenFile3'
-import {
-  type GetHtmlPageToTextWithSelectorsCaseType,
-  type GetHtmlPageToTextWithSelectorsOptionsType,
-  type GetHtmlPageToTextWithSelectorsParamsType,
-  getHtmlPageToTextWithSelectors,
-} from './getHtmlPageToTextWithSelectors'
+import { getHtmlPageToTextWithSelectors } from './getHtmlPageToTextWithSelectors'
 import { getHtmlPageToTextWithSelectorsCases } from './getHtmlPageToTextWithSelectors.case'
 
 /**
