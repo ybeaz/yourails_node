@@ -38,7 +38,10 @@ type GetGemsResType = {
   timestamp: number
 }
 
-type GetGemsType = (params: GetGemsParamsType, options?: GetGemsOptionsType) => GetGemsResType
+type GetGemsType = (
+  params: GetGemsParamsType,
+  options?: GetGemsOptionsType,
+) => Promise<GetGemsResType>
 
 const optionsDefault = {
   idLength: 21,
@@ -64,7 +67,7 @@ const resDefault: GetGemsResType = {
    const getGemsOptions: GetGemsOptionsType = {}
    getGems(getGemsParams, getGemsOptions)
 */
-const getGemsUnsafe: GetGemsType = (
+const getGemsUnsafe: GetGemsType = async (
   params: GetGemsParamsType,
   optionsIn: GetGemsOptionsType = optionsDefault,
 ) => {
@@ -129,7 +132,7 @@ const getGemsUnsafe: GetGemsType = (
   const dateTime = getDateString({})
   const timestamp = +new Date()
 
-  const passwordHuman = getPasswordHuman({}) as string
+  const passwordHuman = await getPasswordHuman({})
 
   const getGemsRes: GetGemsResType = {
     uuidv4,

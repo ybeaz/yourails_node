@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals'
-import { withAssignedDate } from 'yourails_common'
+// import { withAssignedDate } from 'yourails_common'
 import { consoler } from '../../sharedNode/consoler'
 import {
   type GetHtmlBlocksExtractedCaseType,
@@ -9,7 +9,7 @@ import { getHtmlBlocksExtractedCases } from './getHtmlBlocksExtracted.case'
 
 /**
  * @Description Test to challenge function getHtmlBlocksExtracted
- * @test pnpm jest getHtmlBlocksExtracted.test.ts --coverage --collectCoverageFrom="src/shared/getHtmlBlocksExtracted/getHtmlBlocksExtracted.ts"
+ * @test pnpm jest getHtmlBlocksExtracted.test.ts --coverage --collectCoverageFrom="src/sharedNode/getHtmlBlocksExtracted/getHtmlBlocksExtracted.ts"
  */
 describe('getHtmlBlocksExtracted', () => {
   it.each(getHtmlBlocksExtractedCases)(
@@ -22,12 +22,12 @@ describe('getHtmlBlocksExtracted', () => {
       paramsWithAssignedDate,
       expected,
     }: GetHtmlBlocksExtractedCaseType) => {
-      let getWithDate = getHtmlBlocksExtracted
-      if (paramsWithAssignedDate?.timestamp)
-        getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
+      // let getWithDate = getHtmlBlocksExtracted
+      // if (paramsWithAssignedDate?.timestamp)
+      //   getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
 
       const output: ReturnType<typeof getHtmlBlocksExtracted> = await (
-        getWithDate as typeof getHtmlBlocksExtracted
+        getHtmlBlocksExtracted as typeof getHtmlBlocksExtracted
       )(params, options)
       consoler('getHtmlBlocksExtracted.test', { index, description, params, output })
 
