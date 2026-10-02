@@ -8,7 +8,7 @@ import {
 import { getHtmlBlocksExtractedCases } from './getHtmlBlocksExtracted.case'
 
 /**
- * @run npx tsx src/Shared/getHtmlBlocksExtracted.run.ts
+ * @run npx tsx src/sharedNode/getHtmlBlocksExtracted/getHtmlBlocksExtracted.run.ts
  */
 if (require.main === module) {
   void (async () => {
@@ -19,11 +19,14 @@ if (require.main === module) {
       options,
       expected,
     } of getHtmlBlocksExtractedCases) {
-      const CASE_TO_PICK_UP = 1
+      const CASE_TO_PICK_UP = 69
 
       if (index !== CASE_TO_PICK_UP) continue
 
-      const output = await getHtmlBlocksExtracted(params, options)
+      const output: ReturnType<typeof getHtmlBlocksExtracted> = await getHtmlBlocksExtracted(
+        params,
+        options,
+      )
 
       consoler(`getHtmlBlocksExtracted [90-${index}]`, {
         description,

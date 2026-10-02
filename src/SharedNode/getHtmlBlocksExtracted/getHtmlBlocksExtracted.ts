@@ -1,7 +1,11 @@
 import * as cheerio from 'cheerio'
 // const cheerio = require('cheerio')
 
-import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
+import {
+  FuncModeEnumType,
+  getStringHtmlNormalizedWhitespace,
+  withTryCatchFinallyWrapper,
+} from 'yourails_common'
 
 /**
  * @prompt Context: Unit tests typescript challenge
@@ -52,6 +56,8 @@ const resDefault: GetHtmlBlockExtractedResType[] = []
  *   - "AFTER:<selector>"  — all [aria-labelledby] sections after the target (exclusive)
  *   - "AFTER:<selA>BEFORE:<selB>" — all [aria-labelledby] sections strictly between
  *     the two targets (both exclusive)
+ *   - AFTER_INCLUDE:<selector>
+ *   - BEFORE_INCLUDE:<selector>
  *
  * BEFORE: attempts a native :has() selector first and falls back to manual JS
  * filtering if :has() is unsupported or yields nothing. AFTER: and the combined
@@ -59,16 +65,16 @@ const resDefault: GetHtmlBlockExtractedResType[] = []
  * exists), so they always use manual filtering.
  *
  * @usage
-   import { getHtmlBlocksExtracted, GetHtmlBlocksExtractedParamsType, GetHtmlBlocksExtractedOptionsType } from './getHtmlBlocksExtracted/getHtmlBlocksExtracted'
-   const getHtmlBlocksExtractedParams: GetHtmlBlocksExtractedParamsType = {}
-   const getHtmlBlocksExtractedOptions: GetHtmlBlocksExtractedOptionsType = {}
-   getHtmlBlocksExtracted(getHtmlBlocksExtractedParams, getHtmlBlocksExtractedOptions)
+    import { getHtmlBlocksExtracted, GetHtmlBlocksExtractedParamsType, GetHtmlBlocksExtractedOptionsType } from './getHtmlBlocksExtracted/getHtmlBlocksExtracted'
+    const getHtmlBlocksExtractedParams: GetHtmlBlocksExtractedParamsType = {}
+    const getHtmlBlocksExtractedOptions: GetHtmlBlocksExtractedOptionsType = {}
+    getHtmlBlocksExtracted(getHtmlBlocksExtractedParams, getHtmlBlocksExtractedOptions)
 */
 const getHtmlBlocksExtractedUnsafe: GetHtmlBlocksExtractedType = (
   { html, cssSelectorsArr }: GetHtmlBlocksExtractedParamsType,
   options: GetHtmlBlocksExtractedOptionsType = optionsDefault,
 ) => {
-  const $ = cheerio.load(html)
+  const $ = cheerio.load(getStringHtmlNormalizedWhitespace(html) as string)
 
   const resolveAnchorElement = (targetSelector: string) => {
     const match = $(targetSelector)
@@ -315,8 +321,25 @@ const getHtmlBlocksExtractedUnsafe: GetHtmlBlocksExtractedType = (
     }
   }
 
+  const dropNestedDescendants = (elementsArr: any[]) => {
+    const matchedSet = new Set(elementsArr)
+
+    return elementsArr.filter((el) => {
+      let parent = el.parent
+
+      while (parent) {
+        if (matchedSet.has(parent)) return false
+        parent = parent.parent
+      }
+
+      return true
+    })
+  }
+
   const buildRangeResult = (selector: string, result: { elements: any; usedFallback: boolean }) => {
-    const elementsArr = Array.isArray(result.elements) ? result.elements : result.elements.toArray()
+    // const elementsArr = Array.isArray(result.elements) ? result.elements : result.elements.toArray()
+    const rawArr = Array.isArray(result.elements) ? result.elements : result.elements.toArray()
+    const elementsArr = dropNestedDescendants(rawArr)
 
     if (elementsArr.length === 0) {
       return {
@@ -337,7 +360,7 @@ const getHtmlBlocksExtractedUnsafe: GetHtmlBlocksExtractedType = (
     }
   }
 
-  return cssSelectorsArr.map((selector) => {
+  const selectorsBlocks = cssSelectorsArr.map((selector) => {
     /*
      * Combined AFTER / BEFORE selectors.
      *
@@ -470,6 +493,14 @@ const getHtmlBlocksExtractedUnsafe: GetHtmlBlocksExtractedType = (
       matchCount: elements.length,
     }
   })
+
+  return selectorsBlocks.map(({ html: htmlBlock, ...rest }: GetHtmlBlockExtractedResType) => {
+    return {
+      ...rest,
+      ...(Array.isArray(htmlBlock) ? { html: htmlBlock.join('') } : { html: htmlBlock }),
+    }
+  })
+  // Array.isArray(htmlBlock) ? htmlBlock.join('') : htmlBlock
 }
 
 const getHtmlBlocksExtracted = withTryCatchFinallyWrapper<

@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { Browser, BrowserContext, chromium } from 'playwright'
 import { FileTypeEnum, FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
-import { getWrittenFile2 } from '../getWrittenFile2/getWrittenFile2'
+import { withHtmlSelectorsPicker } from '../withHtmlSelectorsPicker/withHtmlSelectorsPicker'
 
 export enum WaitUntilEnum {
   commit = 'commit', // ⚡ Fastest	Response committed
@@ -25,7 +25,7 @@ type GetHtmlFromHtmlPageOptionsType = {
   funcParent?: string
 }
 
-type GetHtmlFromHtmlPageResType = { html: string }
+type GetHtmlFromHtmlPageResType = { html: string; status?: any; ok?: boolean }
 
 type GetHtmlFromHtmlPageType = (
   params: GetHtmlFromHtmlPageParamsType,
@@ -170,7 +170,8 @@ const getHtmlFromHtmlPage = withTryCatchFinallyWrapper<
   GetHtmlFromHtmlPageParamsType,
   GetHtmlFromHtmlPageOptionsType,
   GetHtmlFromHtmlPageResType
->(getHtmlFromHtmlPageUnsafe, {
+>(withHtmlSelectorsPicker(getHtmlFromHtmlPageUnsafe), {
+  // >(getHtmlFromHtmlPageUnsafe, {
   optionsDefault,
   resDefault,
   funcMode: FuncModeEnumType.common,

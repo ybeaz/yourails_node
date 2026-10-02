@@ -16,12 +16,21 @@ const dateString = getDateString({
 
 export const getHtmlFromHtmlPageCases: GetHtmlFromHtmlPageCaseType[] = [
   {
+    index: 4,
+    description: 'basic test getHtmlFromHtmlPage',
+    params: {
+      url: 'https://en.wikipedia.org/wiki/Arkady_and_Boris_Strugatsky?ids=firstHeading&ss=#content > div.layout__header.reference-layout__header > section&from_s=section[data-mw-section-id="0"]&to_s=section[data-mw-section-id="4"]',
+    },
+    options: { waitForTimeout: 2000, isHeadless: true },
+    expected: { html: '' },
+  },
+  {
     index: 3,
     description: 'basic test getHtmlFromHtmlPage',
     params: {
       url: 'https://en.wikipedia.org/wiki/Arkady_and_Boris_Strugatsky',
     },
-    options: { waitForTimeout: 2000, isHeadless: false },
+    options: { waitForTimeout: 2000, isHeadless: true },
     expected: { html: '' },
   },
   {

@@ -1,33 +1,8 @@
+import { getStringHtmlNormalizedWhitespace } from 'yourails_common'
 import type {
   GetHtmlBlocksExtractedCaseType,
   GetHtmlBlocksExtractedParamsType,
 } from './getHtmlBlocksExtracted'
-
-const STRUGATSKY_HTML = `
-<div>
-  <section data-mw-section-id="0">Lead section</section>
-  <section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
-  <section data-mw-section-id="2" aria-labelledby="Arkady"><h2>Arkady</h2></section>
-  <section aria-labelledby="Boris"><h2>Boris</h2></section>
-  <section aria-labelledby="Artistic_origins">
-    <h2>Artistic origins</h2>
-    <section aria-labelledby="Cultural_and_social_context"><h3>Cultural and social context</h3></section>
-    <section aria-labelledby="Work_in_tandem"><h3>Work in tandem</h3></section>
-    <section aria-labelledby="Literary_technique"><h3>Literary technique</h3></section>
-    <section aria-labelledby="Pretexts_and"><h3>Pretexts and</h3></section>
-    <section aria-labelledby="Authorial_Narrative"><h3>Authorial narrative</h3></section>
-    <section aria-labelledby="Themes"><h3>Themes</h3></section>
-    <section aria-labelledby="Poetics"><h3>Poetics</h3></section>
-    <section aria-labelledby="Characters"><h3>Characters</h3></section>
-    <section aria-labelledby="Style_and_quotation"><h3>Style and quotation</h3></section>
-    <section aria-labelledby="The_Strugatskys_and_Jewishness"><h3>The Strugatskys and Jewishness</h3></section>
-  </section>
-  <section aria-labelledby="Literary_features"><h2>Literary features</h2></section>
-  <section aria-labelledby="See_also"><h2>See also</h2></section>
-  <section aria-labelledby="Legacy_and_awards"><h2>Legacy and awards</h2></section>
-  <section aria-labelledby="Notes"><h2>Notes</h2></section>
-</div>
-`
 
 const SAMPLE_HTML = `
 <div>
@@ -39,7 +14,119 @@ const SAMPLE_HTML = `
 </div>
 `
 
+const STRUGATSKY_HTML = `
+<div>
+  <section id="a_01" data-mw-section-id="0">Lead section</section>
+  <section id="a_02" aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
+  <section id="a_03" data-mw-section-id="2" aria-labelledby="Arkady"><h2>Arkady</h2></section>
+  <section id="a_04" aria-labelledby="Boris"><h2>Boris</h2></section>
+  <section id="a_05" aria-labelledby="Artistic_origins">
+    <h2 id="b_01">Artistic origins</h2>
+    <section id="b_02" aria-labelledby="Cultural_and_social_context"><h3>Cultural and social context</h3></section>
+    <section id="b_03" aria-labelledby="Work_in_tandem"><h3>Work in tandem</h3></section>
+    <section id="b_04" aria-labelledby="Literary_technique"><h3>Literary technique</h3></section>
+    <section id="b_05" aria-labelledby="Pretexts_and"><h3>Pretexts and</h3></section>
+    <section id="b_06" aria-labelledby="Authorial_Narrative"><h3>Authorial narrative</h3></section>
+    <section id="b_07" aria-labelledby="Themes"><h3>Themes</h3></section>
+    <section id="b_08" aria-labelledby="Poetics"><h3>Poetics</h3></section>
+    <section id="b_09" aria-labelledby="Characters"><h3>Characters</h3></section>
+    <section id="b_10" aria-labelledby="Style_and_quotation"><h3>Style and quotation</h3></section>
+    <section id="b_11" aria-labelledby="The_Strugatskys_and_Jewishness"><h3>The Strugatskys and Jewishness</h3></section>
+  </section>
+  <section id="a_06" aria-labelledby="Literary_features"><h2>Literary features</h2></section>
+  <section id="a_07" aria-labelledby="See_also"><h2>See also</h2></section>
+  <section id="a_08" aria-labelledby="Legacy_and_awards"><h2>Legacy and awards</h2></section>
+  <section id="a_09" aria-labelledby="Notes"><h2>Notes</h2></section>
+</div>
+`
+
 export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
+  {
+    index: 69,
+    description: 'BEFORE_INCLUDE with nonexistent selector returns no sections',
+    params: {
+      html: STRUGATSKY_HTML,
+      cssSelectorsArr: ['AFTER_INCLUDE:#a_04BEFORE_INCLUDE:#a_06'],
+    },
+    options: {},
+    expected: [
+      {
+        selector: 'AFTER_INCLUDE:#a_04BEFORE_INCLUDE:#a_06',
+        html: getStringHtmlNormalizedWhitespace(`<section id="a_04" aria-labelledby="Boris"><h2>Boris</h2></section>
+  <section id="a_05" aria-labelledby="Artistic_origins">
+    <h2 id="b_01">Artistic origins</h2>
+    <section id="b_02" aria-labelledby="Cultural_and_social_context"><h3>Cultural and social context</h3></section>
+    <section id="b_03" aria-labelledby="Work_in_tandem"><h3>Work in tandem</h3></section>
+    <section id="b_04" aria-labelledby="Literary_technique"><h3>Literary technique</h3></section>
+    <section id="b_05" aria-labelledby="Pretexts_and"><h3>Pretexts and</h3></section>
+    <section id="b_06" aria-labelledby="Authorial_Narrative"><h3>Authorial narrative</h3></section>
+    <section id="b_07" aria-labelledby="Themes"><h3>Themes</h3></section>
+    <section id="b_08" aria-labelledby="Poetics"><h3>Poetics</h3></section>
+    <section id="b_09" aria-labelledby="Characters"><h3>Characters</h3></section>
+    <section id="b_10" aria-labelledby="Style_and_quotation"><h3>Style and quotation</h3></section>
+    <section id="b_11" aria-labelledby="The_Strugatskys_and_Jewishness"><h3>The Strugatskys and Jewishness</h3></section>
+  </section>
+  <section id="a_06" aria-labelledby="Literary_features"><h2>Literary features</h2></section>`),
+        matchCount: 3,
+        usedFallback: true,
+      },
+    ],
+  },
+  {
+    index: 68,
+    description: 'AFTER_INCLUDE and BEFORE_INCLUDE include both boundary sections',
+    params: {
+      html: `
+        <section id="a_00" data-mw-section-id="0"><h2>Section 0</h2></section>
+        <section id="a_01" data-mw-section-id="1"><h2>Section 1</h2></section>
+        <section id="a_02" data-mw-section-id="2"><h2>Section 2</h2></section>
+        <section id="a_03" data-mw-section-id="3"><h2>Section 3</h2></section>
+      `,
+      cssSelectorsArr: ['AFTER_INCLUDE:#a_02BEFORE_INCLUDE:#a_03'],
+    },
+    options: {},
+    expected: [
+      {
+        selector: 'AFTER_INCLUDE:#a_02BEFORE_INCLUDE:#a_03',
+        html: getStringHtmlNormalizedWhitespace(
+          `<section id="a_02" data-mw-section-id="2"><h2>Section 2</h2></section>
+           <section id="a_03" data-mw-section-id="3"><h2>Section 3</h2></section>`,
+        ),
+        matchCount: 2,
+        usedFallback: true,
+      },
+    ],
+  },
+
+  {
+    index: 67,
+    description: 'BEFORE_INCLUDE with nonexistent selector returns no sections',
+    params: {
+      html: STRUGATSKY_HTML,
+      cssSelectorsArr: ['#a_05'],
+    },
+    options: {},
+    expected: [
+      {
+        selector: '#a_05',
+        html: getStringHtmlNormalizedWhitespace(`<section id="a_05" aria-labelledby="Artistic_origins">
+    <h2 id="b_01">Artistic origins</h2>
+    <section id="b_02" aria-labelledby="Cultural_and_social_context"><h3>Cultural and social context</h3></section>
+    <section id="b_03" aria-labelledby="Work_in_tandem"><h3>Work in tandem</h3></section>
+    <section id="b_04" aria-labelledby="Literary_technique"><h3>Literary technique</h3></section>
+    <section id="b_05" aria-labelledby="Pretexts_and"><h3>Pretexts and</h3></section>
+    <section id="b_06" aria-labelledby="Authorial_Narrative"><h3>Authorial narrative</h3></section>
+    <section id="b_07" aria-labelledby="Themes"><h3>Themes</h3></section>
+    <section id="b_08" aria-labelledby="Poetics"><h3>Poetics</h3></section>
+    <section id="b_09" aria-labelledby="Characters"><h3>Characters</h3></section>
+    <section id="b_10" aria-labelledby="Style_and_quotation"><h3>Style and quotation</h3></section>
+    <section id="b_11" aria-labelledby="The_Strugatskys_and_Jewishness"><h3>The Strugatskys and Jewishness</h3></section>
+  </section>`),
+        matchCount: 1,
+      },
+    ],
+  },
+
   {
     index: 0,
     description: 'basic test getHtmlBlocksExtracted - single match',
@@ -79,7 +166,7 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
   },
   {
     index: 2,
-    description: 'selector with multiple matching elements returns array of html strings',
+    description: 'selector with multiple matching elements returns joined html string',
     params: {
       html: '<ul><li class="item">One</li><li class="item">Two</li><li class="item">Three</li></ul>',
       cssSelectorsArr: ['li.item'],
@@ -88,11 +175,9 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'li.item',
-        html: [
-          '<li class="item">One</li>',
-          '<li class="item">Two</li>',
-          '<li class="item">Three</li>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<li class="item">One</li><li class="item">Two</li><li class="item">Three</li>`,
+        ),
         matchCount: 3,
       },
     ],
@@ -236,11 +321,11 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: "BEFORE:section[aria-labelledby='specifications']",
-        html: [
-          '<section aria-labelledby="intro">Intro</section>',
-          '<section aria-labelledby="syntax">Syntax</section>',
-          '<section aria-labelledby="description">Description</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="intro">Intro</section>
+            <section aria-labelledby="syntax">Syntax</section>
+            <section aria-labelledby="description">Description</section>`,
+        ),
         matchCount: 3,
         usedFallback: false,
       },
@@ -261,10 +346,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: "BEFORE:section[aria-labelledby='does_not_exist']",
-        html: [
-          '<section aria-labelledby="intro">Intro</section>',
-          '<section aria-labelledby="syntax">Syntax</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="intro">Intro</section>
+          <section aria-labelledby="syntax">Syntax</section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -364,10 +449,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'BEFORE:.some-unrelated-class',
-        html: [
-          '<section aria-labelledby="intro">Intro</section>',
-          '<section aria-labelledby="syntax">Syntax</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="intro">Intro</section>
+          <section aria-labelledby="syntax">Syntax</section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -432,10 +517,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: "BEFORE:section[aria-labelledby='specifications']",
-        html: [
-          '<section aria-labelledby="intro">Intro 1</section>',
-          '<section aria-labelledby="specifications">Specs A</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="intro">Intro 1</section>
+          <section aria-labelledby="specifications">Specs A</section>`,
+        ),
         matchCount: 2,
         usedFallback: false,
       },
@@ -458,10 +543,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: "AFTER:section[aria-labelledby='syntax']",
-        html: [
-          '<section aria-labelledby="description">Description</section>',
-          '<section aria-labelledby="specifications">Specs</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="description">Description</section>
+          <section aria-labelledby="specifications">Specs</section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -605,10 +690,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: "AFTER:section[aria-labelledby='specifications']",
-        html: [
-          '<section aria-labelledby="specifications">Specs B (duplicate id, unusual but possible)</section>',
-          '<section aria-labelledby="see_also">See also</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="specifications">Specs B (duplicate id, unusual but possible)</section>
+          <section aria-labelledby="see_also">See also</section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -658,10 +743,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
       {
         selector:
           "AFTER:section[aria-labelledby='try_it']BEFORE:section[aria-labelledby='examples']",
-        html: [
-          '<section aria-labelledby="syntax">Syntax</section>',
-          '<section aria-labelledby="description">Description</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="syntax">Syntax</section>
+          <section aria-labelledby="description">Description</section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -736,11 +821,11 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
       {
         selector:
           "AFTER:section[aria-labelledby='intro']BEFORE:section[aria-labelledby='does_not_exist']",
-        html: [
-          '<section aria-labelledby="syntax">Syntax</section>',
-          '<section aria-labelledby="description">Description</section>',
-          '<section aria-labelledby="specifications">Specs</section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="syntax">Syntax</section>
+          <section aria-labelledby="description">Description</section>
+          <section aria-labelledby="specifications">Specs</section>`,
+        ),
         matchCount: 3,
         usedFallback: true,
       },
@@ -837,7 +922,7 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
 
   {
     index: 38,
-    description: 'standard CSS selector — multiple matches returns array of html strings',
+    description: 'standard CSS selector — multiple matches returns joined html string',
     params: {
       html: SAMPLE_HTML,
       cssSelectorsArr: ['section'],
@@ -846,13 +931,13 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'section',
-        html: [
-          '<section data-mw-section-id="0">Lead</section>',
-          '<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>',
-          '<section aria-labelledby="Arkady"><h2>Arkady</h2></section>',
-          '<section aria-labelledby="Boris"><h2>Boris</h2></section>',
-          '<section aria-labelledby="See_also"><h2>See also</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="0">Lead</section>
+          <section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
+          <section aria-labelledby="Arkady"><h2>Arkady</h2></section>
+          <section aria-labelledby="Boris"><h2>Boris</h2></section>
+          <section aria-labelledby="See_also"><h2>See also</h2></section>`,
+        ),
         matchCount: 5,
       },
     ],
@@ -888,7 +973,7 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
         selector: 'section[data-mw-section-id=',
         html: null,
         matchCount: 0,
-        error: expect.stringContaining('Invalid selector'),
+        error: "Invalid selector: Attribute selector didn't terminate", // expect.stringContaining('Invalid selector')
       },
     ],
   },
@@ -904,10 +989,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'BEFORE:section[aria-labelledby="Arkady"]',
-        html: [
-          '<section data-mw-section-id="0">Lead</section>',
-          '<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="0">Lead</section>
+          <section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: false,
       },
@@ -944,12 +1029,12 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'AFTER:section[data-mw-section-id="0"]',
-        html: [
-          '<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>',
-          '<section aria-labelledby="Arkady"><h2>Arkady</h2></section>',
-          '<section aria-labelledby="Boris"><h2>Boris</h2></section>',
-          '<section aria-labelledby="See_also"><h2>See also</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
+          <section aria-labelledby="Arkady"><h2>Arkady</h2></section>
+          <section aria-labelledby="Boris"><h2>Boris</h2></section>
+          <section aria-labelledby="See_also"><h2>See also</h2></section>`,
+        ),
         matchCount: 4,
         usedFallback: true,
       },
@@ -969,11 +1054,11 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'AFTER:section[data-mw-section-id="0"]BEFORE:section[aria-labelledby="See_also"]',
-        html: [
-          '<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>',
-          '<section aria-labelledby="Arkady"><h2>Arkady</h2></section>',
-          '<section aria-labelledby="Boris"><h2>Boris</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
+          <section aria-labelledby="Arkady"><h2>Arkady</h2></section>
+          <section aria-labelledby="Boris"><h2>Boris</h2></section>`,
+        ),
         matchCount: 3,
         usedFallback: true,
       },
@@ -1035,10 +1120,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'AFTER:  section[aria-labelledby="Arkady"]  ',
-        html: [
-          '<section aria-labelledby="Boris"><h2>Boris</h2></section>',
-          '<section aria-labelledby="See_also"><h2>See also</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="Boris"><h2>Boris</h2></section>
+          <section aria-labelledby="See_also"><h2>See also</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -1088,21 +1173,21 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
       },
       {
         selector: 'BEFORE:section[aria-labelledby="Boris"]',
-        html: [
-          '<section data-mw-section-id="0">Lead</section>',
-          '<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>',
-          '<section aria-labelledby="Arkady"><h2>Arkady</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="0">Lead</section>
+          <section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
+          <section aria-labelledby="Arkady"><h2>Arkady</h2></section>`,
+        ),
         matchCount: 3,
         usedFallback: false,
       },
       {
         selector: 'AFTER:section[data-mw-section-id="0"]BEFORE:section[aria-labelledby="See_also"]',
-        html: [
-          '<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>',
-          '<section aria-labelledby="Arkady"><h2>Arkady</h2></section>',
-          '<section aria-labelledby="Boris"><h2>Boris</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section aria-labelledby="Life_and_work"><h2>Life and work</h2></section>
+          <section aria-labelledby="Arkady"><h2>Arkady</h2></section>
+          <section aria-labelledby="Boris"><h2>Boris</h2></section>`,
+        ),
         matchCount: 3,
         usedFallback: true,
       },
@@ -1154,10 +1239,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'AFTER_INCLUDE:section[data-mw-section-id="1"]',
-        html: [
-          '<section data-mw-section-id="1"><h2>Section 1</h2></section>',
-          '<section data-mw-section-id="2"><h2>Section 2</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="1"><h2>Section 1</h2></section>
+          <section data-mw-section-id="2"><h2>Section 2</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -1201,10 +1286,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'BEFORE_INCLUDE:section[data-mw-section-id="1"]',
-        html: [
-          '<section data-mw-section-id="0"><h2>Section 0</h2></section>',
-          '<section data-mw-section-id="1"><h2>Section 1</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="0"><h2>Section 0</h2></section>
+          <section data-mw-section-id="1"><h2>Section 1</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -1252,11 +1337,11 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
       {
         selector:
           'AFTER_INCLUDE:section[data-mw-section-id="1"]BEFORE_INCLUDE:section[data-mw-section-id="3"]',
-        html: [
-          '<section data-mw-section-id="1"><h2>Section 1</h2></section>',
-          '<section data-mw-section-id="2"><h2>Section 2</h2></section>',
-          '<section data-mw-section-id="3"><h2>Section 3</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="1"><h2>Section 1</h2></section>
+          <section data-mw-section-id="2"><h2>Section 2</h2></section>
+          <section data-mw-section-id="3"><h2>Section 3</h2></section>`,
+        ),
         matchCount: 3,
         usedFallback: true,
       },
@@ -1307,10 +1392,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
       {
         selector:
           'AFTER_INCLUDE:section[data-mw-section-id="1"]BEFORE:section[data-mw-section-id="3"]',
-        html: [
-          '<section data-mw-section-id="1"><h2>Section 1</h2></section>',
-          '<section data-mw-section-id="2"><h2>Section 2</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="1"><h2>Section 1</h2></section>
+          <section data-mw-section-id="2"><h2>Section 2</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -1337,10 +1422,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
       {
         selector:
           'AFTER:section[data-mw-section-id="1"]BEFORE_INCLUDE:section[data-mw-section-id="3"]',
-        html: [
-          '<section data-mw-section-id="2"><h2>Section 2</h2></section>',
-          '<section data-mw-section-id="3"><h2>Section 3</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="2"><h2>Section 2</h2></section>
+          <section data-mw-section-id="3"><h2>Section 3</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -1411,10 +1496,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'AFTER_INCLUDE:section[data-mw-section-id="0"]',
-        html: [
-          '<section data-mw-section-id="0"><h2>Section 0</h2></section>',
-          '<section data-mw-section-id="1"><h2>Section 1</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="0"><h2>Section 0</h2></section>
+          <section data-mw-section-id="1"><h2>Section 1</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },
@@ -1435,10 +1520,10 @@ export const getHtmlBlocksExtractedCases: GetHtmlBlocksExtractedCaseType[] = [
     expected: [
       {
         selector: 'BEFORE_INCLUDE:section[data-mw-section-id="1"]',
-        html: [
-          '<section data-mw-section-id="0"><h2>Section 0</h2></section>',
-          '<section data-mw-section-id="1"><h2>Section 1</h2></section>',
-        ],
+        html: getStringHtmlNormalizedWhitespace(
+          `<section data-mw-section-id="0"><h2>Section 0</h2></section>
+          <section data-mw-section-id="1"><h2>Section 1</h2></section>`,
+        ),
         matchCount: 2,
         usedFallback: true,
       },

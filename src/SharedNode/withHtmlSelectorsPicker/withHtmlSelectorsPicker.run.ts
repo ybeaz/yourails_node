@@ -9,22 +9,23 @@ import {
 import { withHtmlSelectorsPickerCases } from './withHtmlSelectorsPicker.case'
 
 /**
- * @run npx tsx src/Shared/withHtmlSelectorsPicker.run.ts
+ * @run npx tsx src/sharedNode/withHtmlSelectorsPicker/withHtmlSelectorsPicker.run.ts
  */
 if (require.main === module) {
   void (async () => {
     for await (const {
       index,
       description,
+      func,
       params: withHtmlSelectorsPickerParams,
       options: withHtmlSelectorsPickerOptions,
       expected: _,
     } of withHtmlSelectorsPickerCases) {
-      const CASE_TO_PICK_UP = 0
+      const CASE_TO_PICK_UP = 1
 
       if (index !== CASE_TO_PICK_UP) continue
 
-      const output = await withHtmlSelectorsPicker(
+      const output = await withHtmlSelectorsPicker(func)(
         withHtmlSelectorsPickerParams,
         withHtmlSelectorsPickerOptions,
       )
@@ -32,9 +33,9 @@ if (require.main === module) {
       consoler(`withHtmlSelectorsPicker [30-${index}]`, {
         index,
         description,
-        withHtmlSelectorsPickerParams,
-        withHtmlSelectorsPickerOptions,
-        output,
+        // withHtmlSelectorsPickerParams,
+        // withHtmlSelectorsPickerOptions,
+        // output,
       })
     }
   })()

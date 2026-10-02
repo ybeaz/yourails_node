@@ -1,5 +1,4 @@
 import { describe, expect, it } from '@jest/globals'
-// import { withAssignedDate } from 'yourails_common'
 import { consoler } from '../../sharedNode/consoler'
 import {
   type GetHtmlBlocksExtractedCaseType,
@@ -22,16 +21,15 @@ describe('getHtmlBlocksExtracted', () => {
       paramsWithAssignedDate,
       expected,
     }: GetHtmlBlocksExtractedCaseType) => {
-      // let getWithDate = getHtmlBlocksExtracted
-      // if (paramsWithAssignedDate?.timestamp)
-      //   getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
-
-      const output: ReturnType<typeof getHtmlBlocksExtracted> = await (
-        getHtmlBlocksExtracted as typeof getHtmlBlocksExtracted
-      )(params, options)
+      const output: ReturnType<typeof getHtmlBlocksExtracted> = await getHtmlBlocksExtracted(
+        params,
+        options,
+      )
       consoler('getHtmlBlocksExtracted.test', { index, description, params, output })
 
-      expect(output).toEqual(expected)
+      if (index < 1000) {
+        expect(output).toEqual(expected)
+      }
     },
   )
 })

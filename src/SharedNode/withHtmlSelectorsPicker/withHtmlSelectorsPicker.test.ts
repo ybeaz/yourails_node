@@ -9,13 +9,14 @@ import { withHtmlSelectorsPickerCases } from './withHtmlSelectorsPicker.case'
 
 /**
  * @Description Test to challenge function withHtmlSelectorsPicker
- * @test pnpm jest withHtmlSelectorsPicker.test.ts --coverage --collectCoverageFrom="src/Shared/withHtmlSelectorsPicker.ts"
+ * @test pnpm jest withHtmlSelectorsPicker.test.ts --coverage --collectCoverageFrom="src/sharedNode/withHtmlSelectorsPicker/withHtmlSelectorsPicker.ts"
  */
 describe('withHtmlSelectorsPicker', () => {
   it.each(withHtmlSelectorsPickerCases)(
     '$index $description',
     async ({
       description,
+      func,
       params,
       options,
       paramsWithAssignedDate,
@@ -25,9 +26,7 @@ describe('withHtmlSelectorsPicker', () => {
       if (paramsWithAssignedDate?.timestamp)
         getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
 
-      const output: ReturnType<typeof withHtmlSelectorsPicker> = await (
-        getWithDate as typeof withHtmlSelectorsPicker
-      )(params, options)
+      const output = await (getWithDate as typeof withHtmlSelectorsPicker)(func)(params, options)
       consoler('withHtmlSelectorsPicker.test', { description, params, output })
 
       expect(output).toEqual(expected)
