@@ -18,10 +18,10 @@ import base64Obj from './__mocks__/b2.json'
 import { type GetImageFromHtmlCaseType } from './getImageFromHtml'
 
 const getHtmlSnippetFromItemsParams: GetHtmlSnippetFromItemsParamsType = {
-  items: [
-    'function testBreak(x) { let i = 0; while (i < 6) { if (i === 3) { break; } i += 1; } return i * x; }',
-    'const food = "sushi"; switch (food) { case "sushi": console.log("Sushi is originally from Japan."); break; case "pizza": console.log("Pizza is originally from Italy."); break; default: console.log("I have never heard of that dish."); break; }',
-  ],
+  // items: [
+  //   'function testBreak(x) { let i = 0; while (i < 6) { if (i === 3) { break; } i += 1; } return i * x; }',
+  //   'const food = "sushi"; switch (food) { case "sushi": console.log("Sushi is originally from Japan."); break; case "pizza": console.log("Pizza is originally from Italy."); break; default: console.log("I have never heard of that dish."); break; }',
+  // ],
   // items: [
   //   'Terminates current loop or switch statement',
   //   'Transfers control to the statement after the terminated one',
@@ -29,8 +29,13 @@ const getHtmlSnippetFromItemsParams: GetHtmlSnippetFromItemsParamsType = {
   //   'Must be nested within the referenced label',
   //   "Cannot be used at the script's top level",
   // ],
+  items: [
+    'The factions involved include the Astra Militarum,',
+    'Thousand Sons, and',
+    `Adeptus Custodes.`,
+  ],
 }
-const getHtmlSnippetFromItemsOptions: GetHtmlSnippetFromItemsOptionsType = { contentType: 'none' }
+const getHtmlSnippetFromItemsOptions: GetHtmlSnippetFromItemsOptionsType = { contentType: 'ul' }
 
 const dateString = getDateString({
   timestamp: new Date(),

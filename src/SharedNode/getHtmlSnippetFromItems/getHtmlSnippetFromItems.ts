@@ -32,7 +32,7 @@ type GetHtmlSnippetFromItemsType = (
 ) => GetHtmlSnippetFromItemsResType
 
 const optionsDefault = {
-  contentType: 'ul',
+  contentType: 'none',
   funcParent: 'getHtmlSnippetFromItems',
 } satisfies Required<GetHtmlSnippetFromItemsOptionsType>
 
@@ -67,10 +67,10 @@ const isContentType = (value: unknown): value is ContentType =>
 // Coerces missing/undefined/invalid values to the defaults
 const resolveOptions = (
   options: GetHtmlSnippetFromItemsOptionsType = {},
+  isList: boolean,
 ): Required<GetHtmlSnippetFromItemsOptionsType> => ({
-  contentType: isContentType(options.contentType)
-    ? options.contentType
-    : optionsDefault.contentType,
+  contentType:
+    isContentType(options.contentType) && isList ? options.contentType : optionsDefault.contentType,
   funcParent: options.funcParent ?? optionsDefault.funcParent,
 })
 
@@ -97,7 +97,7 @@ const getHtmlSnippetFromItemsUnsafe: GetHtmlSnippetFromItemsType = (
   let items: string[] = itemsIn as string[]
   if (typeof itemsIn === 'string') items = [itemsIn]
 
-  const { contentType } = resolveOptions(options)
+  const { contentType } = resolveOptions(options, itemsIn.length > 1)
 
   const listItems = items
     .map((item) => item.trim())
