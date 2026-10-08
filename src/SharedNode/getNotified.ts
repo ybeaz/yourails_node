@@ -1,12 +1,12 @@
 import { nanoid } from 'nanoid'
 import { NotificationCenter } from 'node-notifier'
 import {
-  withTryCatchFinallyWrapper,
   FuncModeEnumType,
+  timeout,
   WithTryCatchFinallyWrapperOptionsType,
+  withTryCatchFinallyWrapper,
 } from 'yourails_common'
 import { consoler } from './consoler'
-import { timeout } from 'yourails_common'
 
 enum SoundLocalEnum {
   alarm_2025_09_03_01 = '/Users/admin/Dev/yourails-nestjs-server-4/assets/audio/sounds/alarm_2025_09_03_01.mp3',
@@ -128,13 +128,13 @@ const getNotified = withTryCatchFinallyWrapper(getNotifiedUnsafe, {
   isFinally: false,
 })
 
+export type { GetNotifiedOptionsType, GetNotifiedParamsType, GetNotifiedResType, GetNotifiedType }
 export { getNotified, SoundLocalEnum }
-export type { GetNotifiedParamsType, GetNotifiedResType, GetNotifiedOptionsType, GetNotifiedType }
 
 /**
  * @description Here the file is being run directly
  * @link https://zvukipro.com/predmet/4618-zvuki-kolokolchika-dlja-prislugi.html
- * @run npx tsx src/SharedNode/getNotified.ts
+ * @run npx tsx src/sharedNode/getNotified.ts
  */
 if (require.main === module) {
   ;(async () => {

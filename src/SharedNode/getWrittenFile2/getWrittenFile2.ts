@@ -23,7 +23,7 @@ type GetWrittenFile2ParamsType<T> = {
 }
 
 type GetWrittenFile2OptionsType = {
-  typeFile?: FileTypeEnum
+  fileType?: FileTypeEnum
   isOverwrite?: boolean
   funcParent?: string
 }
@@ -36,7 +36,7 @@ type GetWrittenFile2Type<T> = (
 ) => GetWrittenFile2ResType<T>
 
 const optionsDefault = {
-  typeFile: FileTypeEnum.json,
+  fileType: FileTypeEnum.json,
   isOverwrite: true,
   funcParent: 'getWrittenFile2',
 } satisfies Required<GetWrittenFile2OptionsType>
@@ -49,7 +49,7 @@ const optionsDefault = {
 
 /**
  * @description Function to getWrittenFile2
- * @import import { getWrittenFile2 } from './getWrittenFile2'
+ * @import import { GetWrittenFile2OptionsType, GetWrittenFile2ParamsType, getWrittenFile2 } from './getWrittenFile2'
  */
 const getWrittenFile2Unsafe: GetWrittenFile2Type<unknown> = async (
   { pathFileAbs, data }: GetWrittenFile2ParamsType<unknown>,
@@ -60,7 +60,7 @@ const getWrittenFile2Unsafe: GetWrittenFile2Type<unknown> = async (
   const fs = require('fs')
   const { promises: fsa } = await import('fs')
 
-  const { typeFile, funcParent, isOverwrite } = {
+  const { fileType, funcParent, isOverwrite } = {
     ...optionsDefault,
     ...options,
   }
@@ -70,7 +70,7 @@ const getWrittenFile2Unsafe: GetWrittenFile2Type<unknown> = async (
 
   let output: string
 
-  switch (typeFile) {
+  switch (fileType) {
     case FileTypeEnum.json:
       output = JSON.stringify(data, null, 2)
       break

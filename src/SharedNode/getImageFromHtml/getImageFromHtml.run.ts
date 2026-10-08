@@ -1,92 +1,129 @@
 import { join } from 'node:path'
-import { getDateString, getRestoredObject, ImageSizesStandardEnum } from 'yourails_common'
+import { IMAGES_BASE_64, ServeSourceForReplacementEnum } from 'yourails_common'
 import { consoler } from '../consoler'
+import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
-import {
-  type GetImageFromHtmlCaseType,
-  getImageFromHtml,
-  ServeSourceFileEnum,
-} from './getImageFromHtml'
+import { type GetImageFromHtmlCaseType, getImageFromHtml } from './getImageFromHtml'
 import { getImageFromHtmlCases } from './getImageFromHtml.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.run.ts
+ * @run npx tsx src/sharedNode/getImageFromHtml/getImageFromHtml.run.ts
  */
 ;(async () => {
-  const promises = getImageFromHtmlCases.map(
-    async (
+  for await (const {
+    index,
+    description,
+    params,
+    options = { isProduction: false },
+    expected,
+  } of getImageFromHtmlCases) {
+    const CASE_TO_PICK_UP = 6
+
+    if (index !== CASE_TO_PICK_UP) {
+      continue
+    }
+
+    // const WIDTH = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_S
+    // const HEIGHT = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_S
+
+    const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-07-13-19-53-18_imageRaw.png') // 16x9
+    // const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-09-06-14-44-16_imageRaw.png') // 9x16
+    const IMAGE_BASE_64_PNG_2 = join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png') // 9x16
+
+    const imageBase64String = await getImageToBase64({
+      pathFileAbs: IMAGE_BASE_64_PNG,
+    })
+    const imageBase64String2 = await getImageToBase64({
+      pathFileAbs: IMAGE_BASE_64_PNG_2,
+    })
+
+    options.configsSourceToServe?.push(
       {
-        description,
-        params,
-        options = { isProduction: false },
-        expected,
-      }: GetImageFromHtmlCaseType,
-      index: number,
-    ) => {
-      // const SCALE = 2
-      // const IS_PRODUCTION = true // 'What Is Sora? ggg, yyy, ppp'
-      // const __TITLE_MAIN_FORMATTED__ =
-      //   'OpenClaw Foundation<br />OpenClaw project<br />at a glance'
+        serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        source: imageBase64String,
+        replacementName: '__IMAGE_BASE_64__',
+      },
+      {
+        serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        source: imageBase64String2,
+        replacementName: '__IMAGE_BASE_64_2__',
+      },
+      {
+        serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+        // source:
+        //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7-QSbrTDw-udyB0dgf9D0-vdxKg8GC8wG3v-c3XdeA&s',
+        source: `data:image/png;base64,${IMAGES_BASE_64.logoJavascript}`,
+        replacementName: '__IMAGE_LOGO__',
+      },
+    )
 
-      // const SCENE_INDEX = 0
+    // options.isProduction = IS_PRODUCTION
 
-      // const dateString = getDateString({
-      //   timestamp: new Date(),
-      //   dash: true,
-      //   hours: true,
-      //   minutes: true,
-      //   seconds: true,
-      //   isUtcMethods: false,
-      // })
-      // const fileNameMain = `s_${SCENE_INDEX}_${dateString}`
-      // const pathFileAbsImageTitle = join(
-      //   __dirname,
-      //   '.',
-      //   '__output__',
-      //   `${fileNameMain}_image.png`,
-      // )
+    // params.width = WIDTH
+    // params.height = HEIGHT
 
-      // params.pathFileAbs = pathFileAbsImageTitle
-      // params.html = __TITLE_MAIN_FORMATTED__
-      // params.scale = SCALE
+    const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
 
-      // options.isProduction = IS_PRODUCTION
+    consoler(`getImageFromHtml [120-${index}]`, {
+      description,
+      // params,
+      output: `${output.imageBase64.slice(1, 70)}...`,
+      expected,
+      tested: JSON.stringify(output) === JSON.stringify(expected),
+    })
+  }
 
-      const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_WIDTH
-      const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_HEIGHT
-      // const WIDTH: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_WIDTH
-      // const HEIGHT: number = ImageSizesStandardEnum.LANDSCAPE_THUMBNAIL_PLAYLIST_HEIGHT
+  // const promises = getImageFromHtmlCases.map(
+  //   async (
+  //     {
+  //       description,
+  //       params,
+  //       options = { isProduction: false },
+  //       expected,
+  //     }: GetImageFromHtmlCaseType,
+  //     index: number,
+  //   ) => {
+  //     const WIDTH = ImageSizesStandardEnum.PORTRAIT_9x16_WIDTH_S
+  //     const HEIGHT = ImageSizesStandardEnum.PORTRAIT_9x16_HEIGHT_S
+  //     const IMAGE_BASE_64_PNG = join(__dirname, '__mocks__', 's_1_2026-09-06-14-44-16_imageRaw.png') // 9x16
+  //     const IMAGE_BASE_64_PNG_2 = join(__dirname, '__mocks__', 's_0_2026-08-16-21-46-40_image.png') // 9x16
 
-      const TITLE_MAIN_FORMATTED = 'Python programming language. Strings'
-      const SUBTITLE_MAIN =
-        'Comprehensive guide to Python strings: creation, methods, formatting, and more.'
+  //     const imageBase64String = await getImageToBase64({
+  //       pathFileAbs: IMAGE_BASE_64_PNG,
+  //     })
+  //     const imageBase64String2 = await getImageToBase64({
+  //       pathFileAbs: IMAGE_BASE_64_PNG_2,
+  //     })
 
-      params.html = getRestoredObject({
-        obj: params.html,
-        source: {},
-        variablePrefix: '__VARIABLES__.',
-        replacements: {
-          __TITLE_MAIN_FORMATTED__: `${TITLE_MAIN_FORMATTED}`,
-          __DIV_SUBTITLE_MAIN__: `<div class="h2">${SUBTITLE_MAIN}</div>`,
-          __POSITION_IN_RECTANGLE_CSS__: `top: calc(40px); right: calc(40px);`,
-          __SNIPPET_HTML__: `<span class=\"syntaxcolor\" style=\"color:black\">\n<span style=\"color:#6a737d\"># Kubernetes Config</span><br>\n<span style=\"color:#005cc5\">apiVersion</span>:<br>\n&nbsp; <span style=\"color:green\">\"v1\"</span><br>\n<span style=\"color:#005cc5\">kind</span>:<br>\n&nbsp; <span style=\"color:green\">\"Pod\"</span><br>\n<span style=\"color:#005cc5\">metadata</span>:<br>\n&nbsp; <span style=\"color:#005cc5\">name</span>:<br>\n&nbsp;&nbsp; <span style=\"color:green\">\"myapp\"</span><br>\n</span>`,
-        },
-      })
+  //     options.configsSourceToServe?.push(
+  //       {
+  //         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+  //         source: imageBase64String,
+  //         replacementName: '__IMAGE_BASE_64__',
+  //       },
+  //       {
+  //         serveSourceAsFor: ServeSourceForReplacementEnum.serveStringAsString,
+  //         source: imageBase64String2,
+  //         replacementName: '__IMAGE_BASE_64_2__',
+  //       },
+  //     )
 
-      params.width = WIDTH
-      params.height = HEIGHT
+  //     // options.isProduction = IS_PRODUCTION
 
-      const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
+  //     params.width = WIDTH
+  //     params.height = HEIGHT
 
-      consoler(`getImageFromHtml [120-${index}]`, {
-        description,
-        // params,
-        output: `${output.imageBase64.slice(1, 70)}...`,
-        expected,
-        tested: JSON.stringify(output) === JSON.stringify(expected),
-      })
-    },
-  )
+  //     const output = await getRunWithSpinner(getImageFromHtml, 'Processing... ')(params, options)
 
-  await Promise.all(promises)
+  //     consoler(`getImageFromHtml [120-${index}]`, {
+  //       description,
+  //       // params,
+  //       output: `${output.imageBase64.slice(1, 70)}...`,
+  //       expected,
+  //       tested: JSON.stringify(output) === JSON.stringify(expected),
+  //     })
+  //   },
+  // )
+
+  // await Promise.all(promises)
 })()

@@ -3,20 +3,17 @@ import { getDateString } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getReadFile2 } from '../getReadFile2/getReadFile2'
 import { getRunWithSpinner } from '../getRunWithSpinner/getRunWithSpinner'
-import {
-  type GetImageBase64SavedToFileCaseType,
-  getImageBase64SavedToFile,
-} from './getImageBase64SavedToFile'
-import { getImageBase64SavedToFileCases } from './getImageBase64SavedToFile.case'
+import { type GetBase64ToImageCaseType, getBase64ToImage } from './getBase64ToImage'
+import { getBase64ToImageCases } from './getBase64ToImage.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageBase64SavedToFile/getImageBase64SavedToFile.run.ts
+ * @run npx tsx src/sharedNode/getBase64ToImage/getBase64ToImage.run.ts
  */
 if (require.main === module) {
   ;(async () => {
-    const promises = getImageBase64SavedToFileCases.map(
+    const promises = getBase64ToImageCases.map(
       async (
-        { description, params, options, expected }: GetImageBase64SavedToFileCaseType,
+        { description, params, options, expected }: GetBase64ToImageCaseType,
         index: number,
       ) => {
         const imageBase64: string = (await getReadFile2({
@@ -37,12 +34,9 @@ if (require.main === module) {
 
         params.pathFileAbs = join(__dirname, '__output__', `${dateString}_image.png`)
 
-        const output = await getRunWithSpinner(getImageBase64SavedToFile, 'Processing... ')(
-          params,
-          options,
-        )
+        const output = await getRunWithSpinner(getBase64ToImage, 'Processing... ')(params, options)
 
-        consoler(`getImageBase64SavedToFile [90-${index}]`, {
+        consoler(`getBase64ToImage [90-${index}]`, {
           description,
           imageBase64,
           params,

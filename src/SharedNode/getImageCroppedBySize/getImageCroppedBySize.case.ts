@@ -9,13 +9,13 @@ export const getImageCroppedBySizeCases: GetImageCroppedBySizeCaseType[] = [
     params: {
       imageBase64: getImageToBase64({
         pathFileAbs:
-          '/Users/admin/Dev/yourails_node/src/SharedNode/getImageToBase64/__mocks__/s_1_2026-05-17-18-16-18_image.png',
+          '/Users/admin/Dev/yourails_node/src/sharedNode/getImageToBase64/__mocks__/s_1_2026-05-17-18-16-18_image.png',
       }) as string,
       pathFileAbs: join(__dirname, '__output__/xxx.png'),
       positionStartX: 0,
       positionStartY: 0,
-      targetWidth: ImageSizesStandardEnum.LANDSCAPE_WIDTH,
-      targetHeight: ImageSizesStandardEnum.LANDSCAPE_HEIGHT_HALF,
+      targetWidth: ImageSizesStandardEnum.LANDSCAPE_3x2_WIDTH,
+      targetHeight: ImageSizesStandardEnum.LANDSCAPE_3x2_HEIGHT_HALF,
     },
     options: {},
     expected: '',

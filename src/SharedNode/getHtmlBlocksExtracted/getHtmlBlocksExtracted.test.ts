@@ -1,0 +1,35 @@
+import { describe, expect, it } from '@jest/globals'
+import { consoler } from '../../sharedNode/consoler'
+import {
+  type GetHtmlBlocksExtractedCaseType,
+  getHtmlBlocksExtracted,
+} from './getHtmlBlocksExtracted'
+import { getHtmlBlocksExtractedCases } from './getHtmlBlocksExtracted.case'
+
+/**
+ * @Description Test to challenge function getHtmlBlocksExtracted
+ * @test pnpm jest getHtmlBlocksExtracted.test.ts --coverage --collectCoverageFrom="src/sharedNode/getHtmlBlocksExtracted/getHtmlBlocksExtracted.ts"
+ */
+describe('getHtmlBlocksExtracted', () => {
+  it.each(getHtmlBlocksExtractedCases)(
+    '$index $description',
+    async ({
+      index,
+      description,
+      params,
+      options,
+      paramsWithAssignedDate,
+      expected,
+    }: GetHtmlBlocksExtractedCaseType) => {
+      const output: ReturnType<typeof getHtmlBlocksExtracted> = await getHtmlBlocksExtracted(
+        params,
+        options,
+      )
+      consoler('getHtmlBlocksExtracted.test', { index, description, params, output })
+
+      if (index < 1000) {
+        expect(output).toEqual(expected)
+      }
+    },
+  )
+})

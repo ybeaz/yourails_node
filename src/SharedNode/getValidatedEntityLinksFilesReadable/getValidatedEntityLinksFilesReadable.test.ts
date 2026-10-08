@@ -17,37 +17,40 @@ const getWrittenFileDeep = async (pathFileAbs: string, content: string = ''): Pr
 
 /**
  * @Description Test to challenge function getValidatedEntityLinksFilesReadable
- * @test pnpm jest getValidatedEntityLinksFilesReadable.test.ts --coverage --collectCoverageFrom="src/SharedNode/getValidatedEntityLinksFilesReadable/getValidatedEntityLinksFilesReadable.ts"
+ * @test pnpm jest getValidatedEntityLinksFilesReadable.test.ts --coverage --collectCoverageFrom="src/sharedNode/getValidatedEntityLinksFilesReadable/getValidatedEntityLinksFilesReadable.ts"
  */
 describe('getValidatedEntityLinksFilesReadable', () => {
-  it.each(getValidatedEntityLinksFilesReadableCases)('$description', async ({
-    description,
-    mockReadablePaths,
-    params,
-    options,
-    paramsWithAssignedDate,
-    expected,
-  }: GetValidatedEntityLinksFilesReadableCaseType) => {
-    let getWithDate = getValidatedEntityLinksFilesReadable
-    if (paramsWithAssignedDate?.timestamp)
-      getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
-
-    for await (const mockReadablePath of mockReadablePaths) {
-      // await getDeletedFile(mockReadablePath)
-      await getWrittenFileDeep(join(__dirname, '__mocks__', mockReadablePath))
-    }
-
-    const output: ReturnType<typeof getValidatedEntityLinksFilesReadable> = await (
-      getWithDate as typeof getValidatedEntityLinksFilesReadable
-    )(params, options)
-    consoler('getValidatedEntityLinksFilesReadable.test', {
+  it.each(getValidatedEntityLinksFilesReadableCases)(
+    '$description',
+    async ({
       description,
       mockReadablePaths,
-      // params,
-      output,
+      params,
+      options,
+      paramsWithAssignedDate,
       expected,
-    })
+    }: GetValidatedEntityLinksFilesReadableCaseType) => {
+      let getWithDate = getValidatedEntityLinksFilesReadable
+      if (paramsWithAssignedDate?.timestamp)
+        getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
 
-    expect(output).toEqual(expected)
-  })
+      for await (const mockReadablePath of mockReadablePaths) {
+        // await getDeletedFile(mockReadablePath)
+        await getWrittenFileDeep(join(__dirname, '__mocks__', mockReadablePath))
+      }
+
+      const output: ReturnType<typeof getValidatedEntityLinksFilesReadable> = await (
+        getWithDate as typeof getValidatedEntityLinksFilesReadable
+      )(params, options)
+      consoler('getValidatedEntityLinksFilesReadable.test', {
+        description,
+        mockReadablePaths,
+        // params,
+        output,
+        expected,
+      })
+
+      expect(output).toEqual(expected)
+    },
+  )
 })

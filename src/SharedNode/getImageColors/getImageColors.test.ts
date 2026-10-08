@@ -6,26 +6,28 @@ import { getImageColorsCases } from './getImageColors.case'
 
 /**
  * @Description Test to challenge function getImageColors
- * @test pnpm jest getImageColors.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageColors/getImageColors.ts"
+ * @test pnpm jest getImageColors.test.ts --coverage --collectCoverageFrom="src/sharedNode/getImageColors/getImageColors.ts"
  */
 describe('getImageColors', () => {
-  it.each(getImageColorsCases)('$description', async ({
-    description,
-    params,
-    options,
-    paramsWithAssignedDate,
-    expected,
-  }: GetImageColorsCaseType) => {
-    let getWithDate = getImageColors
-    if (paramsWithAssignedDate?.timestamp)
-      getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
-
-    const output: ReturnType<typeof getImageColors> = await (getWithDate as typeof getImageColors)(
+  it.each(getImageColorsCases)(
+    '$description',
+    async ({
+      description,
       params,
       options,
-    )
-    consoler('getImageColors.test', { description, params, output })
+      paramsWithAssignedDate,
+      expected,
+    }: GetImageColorsCaseType) => {
+      let getWithDate = getImageColors
+      if (paramsWithAssignedDate?.timestamp)
+        getWithDate = withAssignedDate(paramsWithAssignedDate)(getWithDate)
 
-    expect(output).toEqual(expected)
-  })
+      const output: ReturnType<typeof getImageColors> = await (
+        getWithDate as typeof getImageColors
+      )(params, options)
+      consoler('getImageColors.test', { description, params, output })
+
+      expect(output).toEqual(expected)
+    },
+  )
 })

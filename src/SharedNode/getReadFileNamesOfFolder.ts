@@ -1,9 +1,9 @@
-import { consoler } from './consoler'
 import {
-  withTryCatchFinallyWrapper,
   FuncModeEnumType,
   WithTryCatchFinallyWrapperOptionsType,
+  withTryCatchFinallyWrapper,
 } from 'yourails_common'
+import { consoler } from './consoler'
 
 type GetReadFileNamesOfFolderParamsType = {
   path: string
@@ -87,17 +87,17 @@ const getReadFileNamesOfFolder = withTryCatchFinallyWrapper(getReadFileNamesOfFo
   isFinally: false,
 })
 
-export { getReadFileNamesOfFolder, getReadFileNamesOfFolderUnsafe }
 export type {
-  GetReadFileNamesOfFolderParamsType,
   GetReadFileNamesOfFolderOptionsType,
+  GetReadFileNamesOfFolderParamsType,
   GetReadFileNamesOfFolderResType,
   GetReadFileNamesOfFolderType,
 }
+export { getReadFileNamesOfFolder, getReadFileNamesOfFolderUnsafe }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getReadFileNamesOfFolder.ts
+ * @run npx tsx src/sharedNode/getReadFileNamesOfFolder.ts
  */
 if (require.main === module) {
   ;(async () => {

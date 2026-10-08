@@ -11,7 +11,7 @@ import {
 import { getImageReservedRectangleCases } from './getImageReservedRectangle.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageReservedRectangle/getImageReservedRectangle.run.ts
+ * @run npx tsx src/sharedNode/getImageReservedRectangle/getImageReservedRectangle.run.ts
  */
 if (require.main === module) {
   ;(async () => {

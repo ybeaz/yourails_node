@@ -17,13 +17,13 @@ export const getWaitedForFileCases = [
     description: 'basic test getWaitedForFile',
     params: {
       pathFileAbs:
-        '/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForFile/__mocks__/test.json',
+        '/Users/admin/Dev/yourails_node/src/sharedNode/getWaitedForFile/__mocks__/test.json',
       timeoutMs: 2500,
       minSizeBytes: 10,
       stableMs: 500,
       comment: '',
     },
     options: {},
-    expected: '/Users/admin/Dev/yourails_node/src/SharedNode/getWaitedForFile/__mocks__/test.json',
+    expected: '/Users/admin/Dev/yourails_node/src/sharedNode/getWaitedForFile/__mocks__/test.json',
   },
 ]

@@ -6,7 +6,7 @@ export async function getEnsuredReadable({ pathFileAbsInput }: { pathFileAbsInpu
 }
 
 /**
- * @run npx tsx src/SharedNode/getImageNormalized/getEnsuredReadable.ts
+ * @run npx tsx src/sharedNode/getImageNormalized/getEnsuredReadable.ts
  */
 if (require.main === module) {
   void (async () => {

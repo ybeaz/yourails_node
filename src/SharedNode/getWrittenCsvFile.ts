@@ -1,6 +1,5 @@
-import { consoler } from '../SharedNode/consoler'
-import { timeout } from 'yourails_common'
-import { withTryCatchFinallyWrapper, FuncModeEnumType } from 'yourails_common'
+import { FuncModeEnumType, timeout, withTryCatchFinallyWrapper } from 'yourails_common'
+import { consoler } from '../sharedNode/consoler'
 
 type GetWrittenCsvFileParamsType = {
   baseDir: string
@@ -21,7 +20,7 @@ type GetWrittenCsvFileResType = void
 interface GetWrittenCsvFileType {
   (
     params: GetWrittenCsvFileParamsType,
-    options?: GetWrittenCsvFileOptionsType
+    options?: GetWrittenCsvFileOptionsType,
   ): GetWrittenCsvFileResType
 }
 
@@ -40,7 +39,7 @@ const optionsDefault: Required<GetWrittenCsvFileOptionsType> = {
 
 const getWrittenCsvFileUnsafe: GetWrittenCsvFileType = async (
   params: GetWrittenCsvFileParamsType,
-  options?: GetWrittenCsvFileOptionsType
+  options?: GetWrittenCsvFileOptionsType,
 ) => {
   if (typeof window !== 'undefined') return
 
@@ -90,16 +89,17 @@ const getWrittenCsvFile = withTryCatchFinallyWrapper(getWrittenCsvFileUnsafe, {
   isFinally: false,
 })
 
-export { getWrittenCsvFile, getWrittenCsvFileUnsafe }
 export type {
-  GetWrittenCsvFileParamsType,
   GetWrittenCsvFileOptionsType,
+  GetWrittenCsvFileParamsType,
   GetWrittenCsvFileResType,
   GetWrittenCsvFileType,
 }
+export { getWrittenCsvFile, getWrittenCsvFileUnsafe }
+
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getWrittenCsvFile.ts
+ * @run npx tsx src/sharedNode/getWrittenCsvFile.ts
  */
 if (require.main === module) {
   ;(async () => {

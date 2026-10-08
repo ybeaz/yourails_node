@@ -44,6 +44,7 @@ const getImageToBase64 = withTryCatchFinallyWrapper<
 })
 
 type GetImageToBase64CaseType = {
+  index: number
   description?: string
   params: Parameters<typeof getImageToBase64>[0]
   paramsWithAssignedDate?: { timestamp: number }

@@ -71,3 +71,5 @@ coverage/
 .env.development
 __output__
 __archive__
+__preview__
+playwright-profile

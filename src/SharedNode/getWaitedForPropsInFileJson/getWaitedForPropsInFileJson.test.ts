@@ -10,32 +10,35 @@ import { getWaitedForPropsInFileJsonCases } from './getWaitedForPropsInFileJson.
 
 /**
  * @Description Test to challenge function getWaitedForPropsInFileJson
- * @test pnpm jest getWaitedForPropsInFileJson.test.ts --coverage --collectCoverageFrom="src/SharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.ts"
+ * @test pnpm jest getWaitedForPropsInFileJson.test.ts --coverage --collectCoverageFrom="src/sharedNode/getWaitedForPropsInFileJson/getWaitedForPropsInFileJson.ts"
  *    In debugging mode:
  *       node --inspect-brk getWaitedForPropsInFileJson.test.ts
  *       chrome://inspect/#devices > Open dedicated DevTools for Node
  */
 describe('getWaitedForPropsInFileJson', () => {
-  it.each(getWaitedForPropsInFileJsonCases)('$description', async ({
-    description,
-    params,
-    options,
-    paramsWithAssignedDate,
-    expected,
-  }: GetWaitedForPropsInFileJsonCaseType) => {
-    let getWithDate = getWaitedForPropsInFileJson
-    if (paramsWithAssignedDate?.timestamp)
-      getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
-
-    const output: ReturnType<typeof getWaitedForPropsInFileJson> = await (
-      getWithDate as typeof getWaitedForPropsInFileJson
-    )(params, options)
-    consoler('getWaitedForPropsInFileJson.test [33]', {
+  it.each(getWaitedForPropsInFileJsonCases)(
+    '$description',
+    async ({
       description,
-      // params,
-      output,
-    })
+      params,
+      options,
+      paramsWithAssignedDate,
+      expected,
+    }: GetWaitedForPropsInFileJsonCaseType) => {
+      let getWithDate = getWaitedForPropsInFileJson
+      if (paramsWithAssignedDate?.timestamp)
+        getWithDate = await (await withAssignedDate(paramsWithAssignedDate))(getWithDate)
 
-    await expect(output).toEqual(expected)
-  })
+      const output: ReturnType<typeof getWaitedForPropsInFileJson> = await (
+        getWithDate as typeof getWaitedForPropsInFileJson
+      )(params, options)
+      consoler('getWaitedForPropsInFileJson.test [33]', {
+        description,
+        // params,
+        output,
+      })
+
+      await expect(output).toEqual(expected)
+    },
+  )
 })

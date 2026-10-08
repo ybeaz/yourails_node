@@ -1,4 +1,4 @@
-import { consoler } from '../../SharedNode/consoler'
+import { consoler } from '../../sharedNode/consoler'
 
 import {
   GetMinifiedBundleOptionsType,
@@ -17,14 +17,14 @@ type GetMinifiedBundleTestType = {
 const tests: GetMinifiedBundleTestType[] = [
   {
     params: {
-      inputFileIn: '/Users/admin/Dev/yourails_common/src/SharedNode/__mocks__/sitemap.xml',
-      outputFileIn: '/Users/admin/Dev/yourails_common/src/SharedNode/__mocks__/sitemap.xml.gz',
+      inputFileIn: '/Users/admin/Dev/yourails_common/src/sharedNode/__mocks__/sitemap.xml',
+      outputFileIn: '/Users/admin/Dev/yourails_common/src/sharedNode/__mocks__/sitemap.xml.gz',
     },
     options: {
       isUglifying: false,
       isWritingNotMinified: false,
     },
-    expected: '/Users/admin/Dev/yourails_common/src/SharedNode/__mocks__/sitemap.xml.gz',
+    expected: '/Users/admin/Dev/yourails_common/src/sharedNode/__mocks__/sitemap.xml.gz',
   },
 ]
 

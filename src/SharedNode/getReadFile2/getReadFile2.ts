@@ -12,7 +12,7 @@ type GetReadFile2ParamsType = {
   pathFileAbs: string
 }
 
-type GetReadFile2OptionsType = { typeFile?: FileTypeEnum; funcParent?: string }
+type GetReadFile2OptionsType = { fileType?: FileTypeEnum; funcParent?: string }
 
 type GetReadFile2ResType = unknown
 
@@ -22,7 +22,7 @@ type GetReadFile2Type = (
 ) => GetReadFile2ResType
 
 const optionsDefault = {
-  typeFile: FileTypeEnum.json,
+  fileType: FileTypeEnum.json,
   funcParent: 'getReadFile2',
 } satisfies Required<GetReadFile2OptionsType>
 
@@ -34,7 +34,11 @@ const optionsDefault = {
 
 /**
  * @description Function to getReadFile2
- * @import import { getReadFile2 } from './getReadFile2'
+ * @usage
+   import { getReadFile2, GetReadFile2ParamsType, GetReadFile2OptionsType } from './getReadFile2/getReadFile2'
+   const getReadFile2Params: GetReadFile2ParamsType = {}
+   const getReadFile2Options: GetReadFile2OptionsType = {}
+   getReadFile2(getReadFile2Params, getReadFile2Options)
  */
 const getReadFile2Unsafe: GetReadFile2Type = async (
   { pathFileAbs }: GetReadFile2ParamsType,
@@ -44,7 +48,7 @@ const getReadFile2Unsafe: GetReadFile2Type = async (
 
   const { promises: fsa } = await import('fs')
 
-  const { typeFile: typeFileOption, funcParent } = {
+  const { fileType: fileTypeOption, funcParent } = {
     ...optionsDefault,
     ...options,
   }
@@ -52,9 +56,9 @@ const getReadFile2Unsafe: GetReadFile2Type = async (
   const data = await fsa.readFile(pathFileAbs, 'utf8')
 
   const detectedType = getFileExtension({ pathFileAbs })
-  const typeFile = typeFileOption ?? detectedType ?? FileTypeEnum.txt
+  const fileType = fileTypeOption ?? detectedType ?? FileTypeEnum.txt
 
-  switch (typeFile) {
+  switch (fileType) {
     case FileTypeEnum.json:
       return JSON.parse(data)
 
@@ -96,9 +100,9 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
   {
     description: 'read JSON file basic',
     params: {
-      pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.json',
+      pathFileAbs: '/Users/admin/Dev/yourails_node/src/sharedNode/getReadFile2/__mocks__/text.json',
     },
-    options: { typeFile: FileTypeEnum.json },
+    options: { fileType: FileTypeEnum.json },
     expected: {
       a: 1,
       b: 'b2',
@@ -109,18 +113,18 @@ const getReadFile2Tests: GetReadFile2TestType[] = [
   {
     description: 'read TXT file basic',
     params: {
-      pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.txt',
+      pathFileAbs: '/Users/admin/Dev/yourails_node/src/sharedNode/getReadFile2/__mocks__/text.txt',
     },
-    options: { typeFile: FileTypeEnum.txt },
+    options: { fileType: FileTypeEnum.txt },
     expected: `Hello world from text file\nLine 2: simple content`,
   },
 
   {
     description: 'read CSV file basic',
     params: {
-      pathFileAbs: '/Users/admin/Dev/yourails_node/src/SharedNode/getReadFile2/__mocks__/text.csv',
+      pathFileAbs: '/Users/admin/Dev/yourails_node/src/sharedNode/getReadFile2/__mocks__/text.csv',
     },
-    options: { typeFile: FileTypeEnum.csv },
+    options: { fileType: FileTypeEnum.csv },
     expected: [
       { name: 'John', age: '30', city: 'New York' },
       { name: 'Jane', age: '25', city: 'San Francisco' },
@@ -140,8 +144,8 @@ export { getReadFile2, getReadFile2Tests }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getReadFile2/getReadFile2.ts
- * @test pnpm jest getReadFile2.test.ts --coverage --collectCoverageFrom="src/SharedNode/getReadFile2/getReadFile2.ts"
+ * @run npx tsx src/sharedNode/getReadFile2/getReadFile2.ts
+ * @test pnpm jest getReadFile2.test.ts --coverage --collectCoverageFrom="src/sharedNode/getReadFile2/getReadFile2.ts"
  */
 if (require.main === module) {
   ;(async () => {

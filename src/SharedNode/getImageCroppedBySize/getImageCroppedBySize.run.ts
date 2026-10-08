@@ -4,7 +4,7 @@ import { type GetImageCroppedBySizeCaseType, getImageCroppedBySize } from './get
 import { getImageCroppedBySizeCases } from './getImageCroppedBySize.case'
 
 /**
- * @run npx tsx src/SharedNode/getImageCroppedBySize/getImageCroppedBySize.run.ts
+ * @run npx tsx src/sharedNode/getImageCroppedBySize/getImageCroppedBySize.run.ts
  * @test pnpm jest getImageCroppedBySize.test.ts --coverage --collectCoverageFrom="src/Shared/getImageCroppedBySize.ts"
  */
 if (require.main === module) {

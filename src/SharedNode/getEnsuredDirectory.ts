@@ -9,7 +9,7 @@ type GetEnsuredDirectoryType = ({ path }: { path: string }) => Promise<string | 
 
 /**
  * @description Function to getEnsuredDirectory
- * @run npx tsx src/SharedNode/getEnsuredDirectory.ts
+ * @run npx tsx src/sharedNode/getEnsuredDirectory.ts
  * @import import { getEnsuredDirectory } from './getEnsuredDirectory'
  */
 const getEnsuredDirectoryUnsafe: GetEnsuredDirectoryType = async ({ path }) => {
@@ -30,7 +30,7 @@ export const getEnsuredDirectory = withTryCatchFinallyWrapper(getEnsuredDirector
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getEnsuredDirectory.ts
+ * @run npx tsx src/sharedNode/getEnsuredDirectory.ts
  */
 if (require.main === module) {
   ;(async () => {

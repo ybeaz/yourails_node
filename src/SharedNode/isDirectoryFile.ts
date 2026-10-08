@@ -63,7 +63,7 @@ export { isDirectoryFile, isDirectoryFileUnsafe }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/isDirectoryFile.ts
+ * @run npx tsx src/sharedNode/isDirectoryFile.ts
  */
 if (require.main === module) {
   ;(async () => {

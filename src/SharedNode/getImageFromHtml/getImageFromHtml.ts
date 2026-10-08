@@ -1,26 +1,27 @@
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
+import open from 'open'
 import { chromium } from 'playwright'
 import {
   FuncModeEnumType,
-  getDateString,
   getRestoredObject,
   ScalingModeEnum,
-  ServeSourceFileEnum,
+  ServeSourceForReplacementEnum,
   withTryCatchFinallyWrapper,
 } from 'yourails_common'
 import { consoler } from '../consoler'
 import { getImageToBase64 } from '../getImageToBase64/getImageToBase64'
 import { getPausedScript } from '../getPausedScript'
 
-export type ConfigFileImageToServeType = {
-  serveSourceFile: ServeSourceFileEnum
-  pathFileAbs: string
-  replacement: string
+export type configsSourceToServeType = {
+  serveSourceAsFor: ServeSourceForReplacementEnum
+  source: string
+  replacementName: string
 }
 
 type GetImageFromHtmlParamsType = {
   html: string
-  pathFileAbs: string
+  pathFileAbs?: string /* Input image to use with html */
   width: number
   height: number
   scale: number
@@ -29,7 +30,8 @@ type GetImageFromHtmlParamsType = {
 
 type GetImageFromHtmlOptionsType = {
   isProduction: boolean
-  configsFilesImagesToServe?: ConfigFileImageToServeType[]
+  isPreview?: boolean
+  configsSourceToServe?: configsSourceToServeType[]
   funcParent?: string
 }
 
@@ -42,7 +44,8 @@ type GetImageFromHtmlType = (
 
 const optionsDefault = {
   isProduction: true,
-  configsFilesImagesToServe: [],
+  isPreview: false,
+  configsSourceToServe: [],
   funcParent: 'getImageFromHtml',
 } satisfies Required<GetImageFromHtmlOptionsType>
 
@@ -61,7 +64,11 @@ const optionsDefault = {
           ✅ 2	Retina equivalent most common
           3	very sharp	high-end rendering
           4+	extreme	⚠️ rarely worth it
- * @import import { getImageFromHtml } from './getImageFromHtml'
+ * @usage
+   import { getImageFromHtml, GetImageFromHtmlParamsType, GetImageFromHtmlOptionsType } from './getImageFromHtml/getImageFromHtml'
+   const getImageFromHtmlParams: GetImageFromHtmlParamsType = {}
+   const getImageFromHtmlOptions: GetImageFromHtmlOptionsType = {}
+   getImageFromHtml(getImageFromHtmlParams, getImageFromHtmlOptions)
  */
 const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   {
@@ -72,7 +79,11 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     scale,
     scalingMode = ScalingModeEnum.deviceScaleFactor,
   }: GetImageFromHtmlParamsType,
-  { isProduction, configsFilesImagesToServe = [] }: GetImageFromHtmlOptionsType = optionsDefault,
+  {
+    isProduction,
+    isPreview = false,
+    configsSourceToServe = [],
+  }: GetImageFromHtmlOptionsType = optionsDefault,
 ) => {
   let html = htmlIn
 
@@ -100,31 +111,37 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
   }
 
   const page = await browser.newPage(newPageConfig)
+  const replacements: any = {}
 
-  /* If we need to use local image files and serve them as base64 */
-  for await (const configFileImageToServe of configsFilesImagesToServe) {
-    const { serveSourceFile, pathFileAbs, replacement } = configFileImageToServe
-    if (serveSourceFile === ServeSourceFileEnum.serveAsImage64) {
-      const imageBase64 = await getImageToBase64({ pathFileAbs })
+  for await (const configSourceToServe of configsSourceToServe) {
+    const { serveSourceAsFor, replacementName, source } = configSourceToServe
 
-      /* 
+    /* If we need to make a basic string replacement */
+    if (serveSourceAsFor === ServeSourceForReplacementEnum.serveStringAsString) {
+      replacements[replacementName] = source
+    } else if (serveSourceAsFor === ServeSourceForReplacementEnum.serveImagePathAsImage64) {
+      /* If we need to use local image files and serve them as base64 */
+      const imageBase64 = await getImageToBase64({ pathFileAbs: source })
+
+      /*
         Use case: background-image: url('data:image/png;base64,__IMAGE_BASE_64__');
       */
-      html = getRestoredObject({
-        obj: htmlIn,
-        source: {},
-        variablePrefix: '__VARIABLES__.',
-        replacements: {
-          [replacement]: imageBase64,
-        },
-      })
+      replacements[replacementName] = imageBase64
     }
   }
 
+  html = getRestoredObject({
+    obj: htmlIn,
+    source: {},
+    variablePrefix: '__VARIABLES__.',
+    replacements,
+  })
+
   /* If we need to use local image files and serve them as files */
-  const configsFilesImagesToServeAsFile = configsFilesImagesToServe.filter(
-    (configFileImageToServe: ConfigFileImageToServeType) =>
-      configFileImageToServe.serveSourceFile === ServeSourceFileEnum.serveAsFile,
+  const configsFilesImagesToServeAsFile = configsSourceToServe.filter(
+    (configSourceToServe: configsSourceToServeType) =>
+      configSourceToServe.serveSourceAsFor ===
+      ServeSourceForReplacementEnum.serveImagePathAsPathname,
   )
 
   if (configsFilesImagesToServeAsFile.length) {
@@ -138,26 +155,24 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
     await page.route('http://local-assets/**', async (route) => {
       const promises = []
 
-      for await (const configFileImageToServe of configsFilesImagesToServeAsFile) {
-        const { pathFileAbs, replacement } = configFileImageToServe
+      for await (const configSourceToServe of configsFilesImagesToServeAsFile) {
+        const { source, replacementName } = configSourceToServe
 
-        const filename = basename(pathFileAbs)
+        const filename = basename(source)
 
         /* 
           Use case: background-image: url('http://local-assets/a1.png');
         */
         html = getRestoredObject({
-          obj: htmlIn,
+          obj: html,
           source: {},
           variablePrefix: '__VARIABLES__.',
           replacements: {
-            [replacement]: filename,
+            [replacementName]: filename,
           },
         })
 
         const image = await fsa.readFile(pathFileAbs)
-
-        console.log('getImageFromHtml [170]', route.request().url())
 
         promises.push(
           route.fulfill({
@@ -169,6 +184,42 @@ const getImageFromHtmlUnsafe: GetImageFromHtmlType = async (
 
       await Promise.all(promises)
     })
+  }
+
+  if (isPreview) {
+    const previewDir = join(__dirname, '__preview__')
+    mkdirSync(previewDir, { recursive: true })
+
+    const previewWrapperHtml = `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <style>
+          body {
+            margin: 0;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+          }
+          iframe {
+            width: ${width}px;
+            height: ${height}px;
+            border: 1px solid #000;
+          }
+        </style>
+      </head>
+      <body>
+        <iframe src="slide.html" title="iframe"></iframe>
+      </body>
+      </html>`
+
+    writeFileSync(join(previewDir, 'slide.html'), html)
+    writeFileSync(join(previewDir, 'preview.html'), previewWrapperHtml)
+
+    await open(join(previewDir, 'preview.html'))
+
+    await getPausedScript({ message: 'Press Enter to continue...' })
   }
 
   await page.setContent(html, { waitUntil: 'networkidle' })
@@ -208,6 +259,7 @@ const getImageFromHtml = withTryCatchFinallyWrapper<
 })
 
 type GetImageFromHtmlCaseType = {
+  index: number
   description?: string
   params: Parameters<typeof getImageFromHtml>[0]
   paramsWithAssignedDate?: { timestamp: number }
@@ -222,10 +274,10 @@ export type {
   GetImageFromHtmlResType,
   GetImageFromHtmlType,
 }
-export { getImageFromHtml, ScalingModeEnum, ServeSourceFileEnum }
+export { getImageFromHtml, ScalingModeEnum }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getImageFromHtml/getImageFromHtml.ts
- * @test pnpm jest getImageFromHtml.test.ts --coverage --collectCoverageFrom="src/SharedNode/getImageFromHtml/getImageFromHtml.ts"
+ * @run npx tsx src/sharedNode/getImageFromHtml/getImageFromHtml.ts
+ * @test pnpm jest getImageFromHtml.test.ts --coverage --collectCoverageFrom="src/sharedNode/getImageFromHtml/getImageFromHtml.ts"
  */

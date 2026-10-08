@@ -141,7 +141,7 @@ export { getWrittenToFileWrapper, getWrittenToFileWrapperUnsafe }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx src/SharedNode/getWrittenToFileWrapper/getWrittenToFileWrapper.ts
+ * @run npx tsx src/sharedNode/getWrittenToFileWrapper/getWrittenToFileWrapper.ts
  */
 if (require.main === module) {
   ;(async () => {

@@ -23,11 +23,11 @@ export const getImageReservedRectangleCases: GetImageReservedRectangleCaseType[]
   //   params: {
   //     imageBase64: getImageToBase64({
   //       pathFileAbs:
-  //         '/Users/admin/Dev/yourails_node/src/SharedNode/getImageReservedRectangle/__mocks__/s_1_2026-05-17-18-16-18_image.png',
+  //         '/Users/admin/Dev/yourails_node/src/sharedNode/getImageReservedRectangle/__mocks__/s_1_2026-05-17-18-16-18_image.png',
   //     }) as string,
   //     ...AREA_RECTANGLE_DICT.LANDSCAPE.TOP_RIGHT,
   //     pathFileAbs:
-  //       '/Users/admin/Dev/yourails_node/src/SharedNode/getImageReservedRectangle/__output__/s_1_2026-05-17-18-16-18_image.png',
+  //       '/Users/admin/Dev/yourails_node/src/sharedNode/getImageReservedRectangle/__output__/s_1_2026-05-17-18-16-18_image.png',
   //   },
   //   options: { borderRadius: 16 },
   //   expected: '',
