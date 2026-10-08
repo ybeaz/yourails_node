@@ -29,10 +29,13 @@ const getHtmlSnippetFromItemsParams: GetHtmlSnippetFromItemsParamsType = {
   //   'Must be nested within the referenced label',
   //   "Cannot be used at the script's top level",
   // ],
+  // items: [
+  //   'The factions involved include the Astra Militarum,',
+  //   'Thousand Sons, and',
+  //   `Adeptus Custodes.`,
+  // ],
   items: [
-    'The factions involved include the Astra Militarum,',
-    'Thousand Sons, and',
-    `Adeptus Custodes.`,
+    'The factions involved include the Astra Militarum, Thousand Sons, and Adeptus Custodes.',
   ],
 }
 const getHtmlSnippetFromItemsOptions: GetHtmlSnippetFromItemsOptionsType = { contentType: 'ul' }
