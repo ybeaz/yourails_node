@@ -19,7 +19,7 @@ if (require.main === module) {
 
     const expected = undefined
 
-    console.log(`getTemplateFunc [20-${0}]`, {
+    console.log(`getExecutedBrowserActions [20-${0}]`, {
       params,
       output,
       expected,

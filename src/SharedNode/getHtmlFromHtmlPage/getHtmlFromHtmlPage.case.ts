@@ -16,6 +16,15 @@ const dateString = getDateString({
 
 export const getHtmlFromHtmlPageCases: GetHtmlFromHtmlPageCaseType[] = [
   {
+    index: 5,
+    description: 'basic test getHtmlFromHtmlPage',
+    params: {
+      url: 'https://accounts.google.com/o/oauth2/v2/auth?client_id=756709380715-92ni8gbaiddbee18c1l63pjeu0pc1u27.apps.googleusercontent.com&redirect_uri=http://localhost:3000/oauth2callback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutubepartner&access_type=offline&prompt=consent',
+    },
+    options: { waitForTimeout: 2000, isHeadless: false, isLaunchPersistentContext: true },
+    expected: { html: '' },
+  },
+  {
     index: 4,
     description: 'basic test getHtmlFromHtmlPage',
     params: {
