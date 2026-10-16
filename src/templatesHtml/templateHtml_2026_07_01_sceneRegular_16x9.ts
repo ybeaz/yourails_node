@@ -29,6 +29,7 @@ export const templateHtml_2026_07_01_sceneRegular_16x9 = `
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
       }
+      span:not(:has(*)) { padding: 0.125rem 0.4rem; }
       /* Fixed canvas for Playwright screenshot */
       .wrapper {
         position: relative;

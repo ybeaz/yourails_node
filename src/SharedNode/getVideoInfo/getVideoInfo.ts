@@ -144,6 +144,7 @@ const getVideoInfo = withTryCatchFinallyWrapper<
 })
 
 type GetVideoInfoCaseType = {
+  index?: number
   description?: string
   params: Parameters<typeof getVideoInfo>[0]
   paramsWithAssignedDate?: { timestamp: number }

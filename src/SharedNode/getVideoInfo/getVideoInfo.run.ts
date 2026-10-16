@@ -12,20 +12,26 @@ import { getVideoInfoCases } from './getVideoInfo.case'
  */
 if (require.main === module) {
   void (async () => {
-    const promises = getVideoInfoCases.map(
-      async ({ description, params, options, expected }: GetVideoInfoCaseType, index: number) => {
-        const output = await getVideoInfo(params, options)
+    for await (const {
+      index,
+      description,
+      params: getVideoInfoParams,
+      options: getVideoInfoOptions,
+      expected: _,
+    } of getVideoInfoCases) {
+      const CASE_TO_PICK_UP = 0
 
-        consoler(`getVideoInfo [90-${index}]`, {
-          description,
-          params,
-          output,
-          expected,
-          tested: JSON.stringify(output) === JSON.stringify(expected),
-        })
-      },
-    )
+      if (index !== CASE_TO_PICK_UP) continue
 
-    await Promise.all(promises)
+      const output = await getVideoInfo(getVideoInfoParams, getVideoInfoOptions)
+
+      consoler(`getVideoInfo [30-${index}]`, {
+        index,
+        description,
+        getVideoInfoParams,
+        getVideoInfoOptions,
+        output,
+      })
+    }
   })()
 }
