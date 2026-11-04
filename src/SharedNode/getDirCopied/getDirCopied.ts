@@ -1,4 +1,4 @@
-import { constants, copyFile, mkdir, readdir, readlink, symlink } from 'node:fs/promises'
+import { constants, copyFile, mkdir, readdir, readlink, rm, symlink } from 'node:fs/promises'
 import path from 'node:path'
 
 import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
@@ -18,46 +18,36 @@ import { FuncModeEnumType, withTryCatchFinallyWrapper } from 'yourails_common'
            ]
  */
 
+// Adjust these to match your existing types
+type NameDestFilesType = string | ((nameFile: string) => string)
+
 type GetDirCopiedParamsType = {
   pathDirAbsSrc: string
   pathDirAbsDest: string
 }
 
 type GetDirCopiedOptionsType = {
-  overwrite?: boolean
-  filter?: (srcPath: string) => boolean
-  /** Name of the copied directory inside `pathDirAbsDest`. Defaults to the basename of `pathDirAbsSrc`. */
+  overwrite: boolean
+  filter?: (pathAbs: string) => boolean
   nameDestDir?: string
-  /** Replaces the part of each file name before the first dot: xxx.test.ts -> yyy.test.ts */
-  nameDestFiles?: string
-  funcParent?: string
+  nameDestFiles?: NameDestFilesType
 }
-
-type GetDirCopiedResType = unknown
 
 type GetDirCopiedType = (
   params: GetDirCopiedParamsType,
-  options?: GetDirCopiedOptionsType,
-) => GetDirCopiedResType
+  options?: Partial<GetDirCopiedOptionsType>,
+) => Promise<string>
 
 const optionsDefault = {
-  overwrite: true,
-  filter: () => true,
   nameDestDir: '',
   nameDestFiles: '',
-  funcParent: 'getDirCopied',
+  overwrite: false,
+  filter: () => true,
 } satisfies Required<GetDirCopiedOptionsType>
 
-const resDefault: GetDirCopiedResType = ''
+type GetDirCopiedResType = unknown
 
-/** Swaps the stem (everything before the first dot) and keeps suffixes and extension. */
-const getRenamedFile = (fileName: string, nameDestFiles?: string): string => {
-  if (!nameDestFiles) return fileName
-  const dotIndex = fileName.indexOf('.')
-  // no extension (Makefile) or dotfile (.gitignore): leave as is
-  if (dotIndex <= 0) return fileName
-  return nameDestFiles + fileName.slice(dotIndex)
-}
+const resDefault: GetDirCopiedResType = ''
 
 /**
  * Recursively copies a directory into `pathDirAbsDest`, optionally renaming the copied
@@ -95,17 +85,28 @@ const getRenamedFile = (fileName: string, nameDestFiles?: string): string => {
    // ./pathDirAbsSrc/output/getYoutubePlaylistsCrud/getYoutubePlaylistsCrud.test.ts
    const copiedDirPath = await getDirCopied(getDirCopiedParams, getDirCopiedOptions)
  */
-const getDirCopiedUnsafe: GetDirCopiedType = async (
-  { pathDirAbsSrc, pathDirAbsDest }: GetDirCopiedParamsType,
-  options: GetDirCopiedOptionsType = optionsDefault,
+
+// A string maps every file to the same name (only sensible for a single file);
+// a function transforms each file name individually.
+const getRenamedFile = (nameFile: string, nameDestFiles?: NameDestFilesType): string => {
+  if (nameDestFiles === undefined) return nameFile
+  return typeof nameDestFiles === 'function' ? nameDestFiles(nameFile) : nameDestFiles
+}
+
+export const getDirCopiedUnsafe: GetDirCopiedType = async (
+  { pathDirAbsSrc, pathDirAbsDest },
+  options = {},
 ) => {
-  const { overwrite, filter, nameDestDir, nameDestFiles } = {
+  const { overwrite, filter, nameDestDir, nameDestFiles }: GetDirCopiedOptionsType = {
     ...optionsDefault,
     ...options,
   }
 
   const srcResolved = path.resolve(pathDirAbsSrc)
   const target = path.join(pathDirAbsDest, nameDestDir ?? path.basename(srcResolved))
+
+  // Destination paths written during this run, used to catch rename collisions
+  const written = new Set<string>()
 
   const copyRecursive = async (srcDir: string, destDir: string): Promise<void> => {
     await mkdir(destDir, { recursive: true })
@@ -123,7 +124,16 @@ const getDirCopiedUnsafe: GetDirCopiedType = async (
 
       const destPath = path.join(destDir, getRenamedFile(entry.name, nameDestFiles))
 
+      if (written.has(destPath)) {
+        throw new Error(
+          `Rename collision: multiple files map to ${destPath} (last source: ${srcPath})`,
+        )
+      }
+      written.add(destPath)
+
       if (entry.isSymbolicLink()) {
+        // symlink() throws EEXIST even when overwrite is true, so remove first
+        if (overwrite) await rm(destPath, { force: true })
         await symlink(await readlink(srcPath), destPath)
       } else {
         await copyFile(srcPath, destPath, overwrite ? 0 : constants.COPYFILE_EXCL)

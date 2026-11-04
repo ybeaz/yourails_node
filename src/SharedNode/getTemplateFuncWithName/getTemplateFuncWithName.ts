@@ -34,7 +34,8 @@ import { getWrittenFile3 } from '../getWrittenFile3/getWrittenFile3'
 type GetTemplateFuncWithNameParamsType = {
   from?: string
   to: string
-  name: string
+  namePrev?: string
+  nameNext: string
 }
 
 type GetTemplateFuncWithNameOptionsType = { funcParent?: string }
@@ -64,27 +65,37 @@ const getTemplateFuncWithNameUnsafe: GetTemplateFuncWithNameType = async (
   {
     from = '/Users/admin/Dev/manuals/templates/getTemplateFunc',
     to,
-    name,
+    namePrev = 'getTemplateFunc',
+    nameNext,
   }: GetTemplateFuncWithNameParamsType,
   options: GetTemplateFuncWithNameOptionsType = optionsDefault,
 ) => {
+  const toPascal = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+
+  const getNameFileReplaced =
+    (namePrev: string, nameNext: string) =>
+    (nameFile: string): string =>
+      nameFile.split(toPascal(namePrev)).join(toPascal(nameNext)).split(namePrev).join(nameNext)
+
   await getDirCopied(
     { pathDirAbsSrc: from, pathDirAbsDest: to },
     {
       overwrite: true,
-      nameDestDir: name,
-      nameDestFiles: name,
+      nameDestDir: nameNext,
+      nameDestFiles: getNameFileReplaced(namePrev, nameNext),
     },
   )
 
   const getDirFilesListedParams: GetDirFilesListedParamsType = { pathDirAbs: to }
   const getDirFilesListedOptions: GetDirFilesListedOptionsType = {
-    filter: (srcPath) => srcPath.endsWith('.ts'),
+    filter: (srcPath) => srcPath.endsWith('.ts') || srcPath.endsWith('.json'),
   }
   const pathsFilesAbs: GetDirFilesListedResType = await getDirFilesListed(
     getDirFilesListedParams,
     getDirFilesListedOptions,
   )
+
+  consoler('getTemplateFuncWithName [100]', { pathsFilesAbs })
 
   for await (const pathFileAbs of pathsFilesAbs) {
     /* Returns the text content of the files */
@@ -95,8 +106,8 @@ const getTemplateFuncWithNameUnsafe: GetTemplateFuncWithNameType = async (
 
     const getNameFuncReplacedParams: GetNameFuncReplacedParamsType = {
       str: content,
-      namePrev: 'getTemplateFunc',
-      nameNext: name,
+      namePrev,
+      nameNext,
     }
     const contentNext = getNameFuncReplaced(getNameFuncReplacedParams)
 
@@ -106,7 +117,7 @@ const getTemplateFuncWithNameUnsafe: GetTemplateFuncWithNameType = async (
     )
   }
 
-  return `${to}/${name}`
+  return `${to}/${nameNext}`
 }
 
 type GetTemplateFuncWithNameCaseType = {
