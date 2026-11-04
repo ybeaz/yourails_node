@@ -13,12 +13,10 @@ type getDecodedTokenJwtOptionsType = { funcParent?: string }
 
 type getDecodedTokenJwtResType = any
 
-interface getDecodedTokenJwtType {
-  (
-    params: getDecodedTokenJwtParamsType,
-    options?: getDecodedTokenJwtOptionsType,
-  ): getDecodedTokenJwtResType
-}
+type getDecodedTokenJwtType = (
+  params: getDecodedTokenJwtParamsType,
+  options?: getDecodedTokenJwtOptionsType,
+) => getDecodedTokenJwtResType
 
 const optionsDefault: Required<getDecodedTokenJwtOptionsType> = {
   funcParent: 'getDecodedTokenJwt',
@@ -137,6 +135,7 @@ if (require.main === module) {
         output,
         tested: JSON.stringify(output) === JSON.stringify(expected),
       })
+      return output
     })
     await Promise.all(promises)
   })()

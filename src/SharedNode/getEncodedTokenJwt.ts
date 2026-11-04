@@ -82,36 +82,37 @@ export { getEncodedTokenJwt, getEncodedTokenJwtUnsafe }
  * @description Here the file is being run directly
  * @run npx tsx src/sharedNode/getEncodedTokenJwt.ts
  */
-if (require.main === module) {
-  ;(async () => {
-    type ExampleType = {
-      params: GetEncodedTokenJwtParamsType
-      options: GetEncodedTokenJwtOptionsType
-      expected: GetEncodedTokenJwtResType
-    }
-    const examples: ExampleType[] = [
-      {
-        params: {
-          payload: { login: 'arbir.343@gmail.com', password: 'xxxYyyZzz' },
-          secretPrivateKey: 'my-secret-token-123456',
-          algorithm: 'HS256',
-        },
-        options: {},
-        expected:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImFyYmlyLjM0M0BnbWFpbC5jb20iLCJwYXNzd29yZCI6Inh4eFl5eVp6eiIsImlhdCI6MTc1MTA3OTYyOH0.hBoNu03GUbvJqacNdU8QAjI5Yovm0OOQIp_F21gZSc0',
-      },
-    ]
+// if (require.main === module) {
+//   ;(async () => {
+//     type ExampleType = {
+//       params: GetEncodedTokenJwtParamsType
+//       options: GetEncodedTokenJwtOptionsType
+//       expected: GetEncodedTokenJwtResType
+//     }
+//     const examples: ExampleType[] = [
+//       {
+//         params: {
+//           payload: { login: 'arbir.343@gmail.com', password: 'xxxYyyZzz' },
+//           secretPrivateKey: '', // 'my-secret-token-123456',
+//           algorithm: 'HS256',
+//         },
+//         options: {},
+//         expected:
+//           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImFyYmlyLjM0M0BnbWFpbC5jb20iLCJwYXNzd29yZCI6Inh4eFl5eVp6eiIsImlhdCI6MTc1MTA3OTYyOH0.hBoNu03GUbvJqacNdU8QAjI5Yovm0OOQIp_F21gZSc0',
+//       },
+//     ]
 
-    const promises = examples.map((example: ExampleType, index: number) => {
-      const { params, options, expected } = example
+//     const promises = examples.map((example: ExampleType, index: number) => {
+//       const { params, options, expected } = example
 
-      const output = getEncodedTokenJwt(params, options)
-      consoler(`getEncodedTokenJwt [61-${index}]`, {
-        params,
-        output,
-        tested: JSON.stringify(output) === JSON.stringify(expected),
-      })
-    })
-    await Promise.all(promises)
-  })()
-}
+//       const output = getEncodedTokenJwt(params, options)
+//       consoler(`getEncodedTokenJwt [61-${index}]`, {
+//         params,
+//         output,
+//         tested: JSON.stringify(output) === JSON.stringify(expected),
+//       })
+//       return output
+//     })
+//     await Promise.all(promises)
+//   })()
+// }

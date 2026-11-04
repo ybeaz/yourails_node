@@ -1,0 +1,32 @@
+[
+  {
+    "charactersID": "0KSsfpPuQC4V97i9adeWn",
+    "characters_label": "robinsonFamily_safe",
+    "genres": ["adventure", "family", "drama"],
+    "styles": ["live-action"],
+    "settings": ["island"],
+    "mood": ["epic"],
+    "characters_number": 5,
+    "characters": "Title: Family of Adventurers on a Remote Island\n\nDescription: A family of five living on a remote island. The father has a rugged appearance with a beard and wears earth-toned explorer attire. The mother is gentle, dressed in a modest, light-colored dress. They have three sons: a tall teenager and two younger boys. All three boys are sun-tanned with messy hair, dressed in simple linen shirts with rolled-up sleeves, shorts, and are barefoot, embodying a practical survivalist style."
+  },
+  {
+    "charactersID": "GJ3SFUjuqKVptFB47yFhO",
+    "characters_label": "vinniPukh_safe",
+    "genres": ["family", "comedy"],
+    "styles": ["cartoon"],
+    "settings": ["forest"],
+    "mood": ["cozy"],
+    "characters_number": 3,
+    "characters": "Three original cartoon characters: a round, cheerful brown bear with a curious personality; a small, energetic pink pig who is easily startled; a tall, calm donkey with a thoughtful and analytical personality. Flat modern cartoon illustration, warm colors, playful facial expressions, honey jars, forest paths, family-friendly educational tone. Original character designs, not based on any existing fictional characters."
+  },
+  {
+    "charactersID": "fxA107cW-Baz62SyxAREj",
+    "characters_label": "hedgehogInFog_safe",
+    "genres": ["adventure"],
+    "styles": ["comic-book"],
+    "settings": ["fantasy-world"],
+    "mood": ["epic"],
+    "characters_number": 3,
+    "characters": "Original grimdark science-fantasy characters:\nheavily armored space-knight warriors carrying banners, relics, and futuristic weapons.\nGothic starship cathedrals, ruined alien battlefields, incense smoke, braziers, and stained glass.\nBattle-worn metal, dramatic cinematic lighting, black, gunmetal, crimson, parchment, and gold.\nEpic solemn military atmosphere. Original character and world designs, not based on any existing fictional franchise."
+  }
+]

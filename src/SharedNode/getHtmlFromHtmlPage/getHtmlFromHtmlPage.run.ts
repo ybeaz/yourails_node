@@ -29,7 +29,7 @@ import { getHtmlFromHtmlPageCases } from './getHtmlFromHtmlPage.case'
 if (require.main === module) {
   void (async () => {
     for await (const { index, description, params, options } of getHtmlFromHtmlPageCases) {
-      const CASE_TO_PICK_UP = 4
+      const CASE_TO_PICK_UP = 5
 
       if (index !== CASE_TO_PICK_UP) continue
 

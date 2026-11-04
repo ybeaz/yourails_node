@@ -43,12 +43,7 @@ export function getRunWithSpinner<P, O, R>(
     const startTime = Date.now()
     let frame = 0
 
-    const formatElapsed = () =>
-      chalk.bold.cyan(
-        Math.floor((Date.now() - startTime) / 1000)
-          .toString()
-          .padStart(2, '0') + 's',
-      )
+    const formatElapsed = () => chalk.bold.cyan(`${Math.floor((Date.now() - startTime) / 1000)}s`)
 
     // Re-read columns on every render so terminal resizes are respected.
     // Spinner frames are clipped to a single row; the final line is not.

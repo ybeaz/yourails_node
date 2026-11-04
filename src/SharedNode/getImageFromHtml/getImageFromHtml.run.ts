@@ -17,7 +17,7 @@ import { getImageFromHtmlCases } from './getImageFromHtml.case'
     options = { isProduction: false },
     expected,
   } of getImageFromHtmlCases) {
-    const CASE_TO_PICK_UP = 6
+    const CASE_TO_PICK_UP = 2
 
     if (index !== CASE_TO_PICK_UP) {
       continue

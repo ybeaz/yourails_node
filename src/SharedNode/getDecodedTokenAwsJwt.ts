@@ -1,8 +1,7 @@
+import { CognitoJwtVerifier } from 'aws-jwt-verify'
+import jwt from 'jsonwebtoken'
 import { consoler } from './consoler'
 import { consolerError } from './consolerError'
-
-import jwt from 'jsonwebtoken'
-import { CognitoJwtVerifier } from 'aws-jwt-verify'
 
 // const envConfig = dotenv.parse(fs.readFileSync(`.env.${process.env.NODE_ENV}`))
 
@@ -59,6 +58,6 @@ if (require.main === module) {
         'eyJraWQiOiIyejNRd0l0Tkd2STl2Y2RzRlNJeEdpK0hNRjJTNjZiS1BPbFpmY3Z6Q1FJPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiQ1ltaUQwQlFIWGRDUFB5U1N5RU1mQSIsInN1YiI6Ijk0Zjg4NDk4LTIwOTEtNzBiYy1kY2M0LWEzMmYxZDgyNWIwYSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9NeHhpcnhNWXAiLCJjb2duaXRvOnVzZXJuYW1lIjoiOTRmODg0OTgtMjA5MS03MGJjLWRjYzQtYTMyZjFkODI1YjBhIiwib3JpZ2luX2p0aSI6IjgyYmE5ZTdiLTZjZDItNDlhZC05NDIzLWQ5M2NjOTFlODE3MyIsImF1ZCI6IjYzNWV2djJiNDR1dWx1aXU2YXUyNWRqcjY0IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MDgyMzQzOTYsImV4cCI6MTcwODIzNzk5NiwiaWF0IjoxNzA4MjM0Mzk2LCJqdGkiOiI0ZmYyZmNlMS0xNWU0LTQ2YmItYjE4OC02YTM3NTczNzE0ZmEiLCJlbWFpbCI6InIxQHVzZXJ0by5jb20ifQ.rxo4BwAV16rIoeXPA4mE23PHJIbcoF3an4hfnA7LDUK7hvfKBtD2Mtn6KJ-kJsUpetzO0blETN7K_-uOn14K3rhDLuiTVdxQVozDHTalWYBjtXVNT5Fm1A8hfykVzwTWTkV6ziJyOGdcPoDPTptlSjBIvL4qSm_GpjvUVO1nrs3CUmqeB7bHjLnn5joxXcopgPH1TCKq6rzr5Ic14XcwxrmUoTbj8Kiv-QDjGpI1YiSrec591gILGDEDR8wq91NNxb8OE36s8JIJpIqas6D11-Ccg92YowoRSwahrp8sXQHJk5VRnpINadAKK6KVOfc22vP2wPgoCMrbrxKhSoAMfA',
     }
     const output = await getDecodedTokenAwsJwt(params)
-    consoler('getTemplateFuncAsync [61]', output)
+    consoler('getExecutedBrowserActionsAsync [61]', output)
   })()
 }

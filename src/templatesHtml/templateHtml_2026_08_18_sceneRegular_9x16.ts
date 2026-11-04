@@ -31,6 +31,7 @@ export const templateHtml_2026_08_18_sceneRegular_9x16 = `
           -webkit-font-smoothing: antialiased;
           text-rendering: optimizeLegibility;
         }
+        span:not(:has(*)) { padding: 0.125rem 0.4rem; }
         .wrapper {
           position: relative;
           height: 100vh;
