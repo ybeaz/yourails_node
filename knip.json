@@ -1,0 +1,13 @@
+{
+  "entry": [
+    "src/index.ts",
+    "tools/*.ts"
+  ],
+  "project": [
+    "src/**/*.ts",
+    "tools/**/*.ts"
+  ],
+  "ignore": [
+    "dist/**"
+  ]
+}

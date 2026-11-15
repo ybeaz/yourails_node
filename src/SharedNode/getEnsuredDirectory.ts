@@ -34,7 +34,7 @@ export const getEnsuredDirectory = withTryCatchFinallyWrapper(getEnsuredDirector
  */
 if (require.main === module) {
   ;(async () => {
-    const path = '/Users/admin/Dev/yourails-nestjs-server-4/cdkMediaCrud/__output__/123'
+    const path = '/Users/admin/Dev/yourails_media_crud/src/__output__/123'
     const GetEnsuredDirectoryRes = await getEnsuredDirectory({ path })
     consoler('getEnsuredDirectory [40]', { GetEnsuredDirectoryRes })
   })()

@@ -95,7 +95,7 @@ const getAudioDurationTests: GetAudioDurationTestType[] = [
     description: 'basic test getAudioDuration',
     params: {
       pathFileAbs:
-        '/Users/admin/Dev/yourails-nestjs-server-4/cdkMediaCrud/getAudioDuration/__mocks__/kokoro-af_bella-0.9.wav',
+        '/Users/admin/Dev/yourails_media_crud/src/getAudioDuration/__mocks__/kokoro-af_bella-0.9.wav',
     },
     options: {},
     expected: 26.65,
@@ -113,8 +113,8 @@ export { getAudioDuration, getAudioDurationTests }
 
 /**
  * @description Here the file is being run directly
- * @run npx tsx cdkMediaCrud/getAudioDuration/getAudioDuration.ts
- * @test pnpm jest getAudioDuration.test.ts --coverage --collectCoverageFrom="cdkMediaCrud/getAudioDuration/getAudioDuration.ts"
+ * @run npx tsx src/getAudioDuration/getAudioDuration.ts
+ * @test pnpm jest getAudioDuration.test.ts --coverage --collectCoverageFrom="src/getAudioDuration/getAudioDuration.ts"
  */
 if (require.main === module) {
   ;(async () => {

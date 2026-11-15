@@ -1,4 +1,4 @@
-import { withTryCatchFinallyWrapper } from 'yourails_common'
+import { consoler } from './consoler'
 import { consolerError } from './consolerError'
 
 interface GetServerGitDataResType {
@@ -15,8 +15,9 @@ const resultDefault: GetServerGitDataResType = { commitHash: '', commitMsg: '', 
  */
 export const getServerGitData = (): GetServerGitDataResType => {
   if (typeof window !== 'undefined') return { commitHash: '', commitMsg: '', commitDate: '' }
+  if (process.env.NODE_ENV !== 'development') return resultDefault
 
-  const { execSync } = require('child_process')
+  const { execSync } = require('node:child_process')
   try {
     const commitHash = execSync('git rev-parse HEAD').toString().trim()
     const commitMsg = execSync('git log --format=%B -n 1').toString().trim()
@@ -25,6 +26,6 @@ export const getServerGitData = (): GetServerGitDataResType => {
     return { commitHash, commitMsg, commitDate }
   } catch (error) {
     consolerError('getServerGitData [25]', error)
-    return { commitHash: '', commitMsg: '', commitDate: '' }
+    return resultDefault
   }
 }

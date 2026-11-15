@@ -9,7 +9,7 @@ export const getDirFilesListedCases: GetDirFilesListedCaseType[] = [
     index: 0,
     description: 'basic test getDirFilesListed',
     params: {} as GetDirFilesListedParamsType,
-    options: {},
-    expected: '' as GetDirFilesListedResType,
+    options: {} as any,
+    expected: '' as any,
   },
 ]

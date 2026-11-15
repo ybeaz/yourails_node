@@ -9,7 +9,7 @@ export const getDirCopiedCases: GetDirCopiedCaseType[] = [
     index: 0,
     description: 'basic test getDirCopied',
     params: {} as GetDirCopiedParamsType,
-    options: {},
+    options: {} as any,
     expected: '' as GetDirCopiedResType,
   },
 ]
