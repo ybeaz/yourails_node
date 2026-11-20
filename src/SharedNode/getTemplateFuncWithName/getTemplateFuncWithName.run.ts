@@ -49,7 +49,7 @@ const namePrev = options.namePrev
  *
  * @run
  * For yourails_node getTemplateFunc
- * npx tsx src/sharedNode/getTemplateFuncWithName/getTemplateFuncWithName.run.ts -f /Users/admin/Dev/manuals/templates/getTemplateFunc -t /Users/admin/Dev/yourails_node/src/sharedNode/getTemplateFuncWithName/__output__ -n getConnectionSlice -p getTemplateFunc
+ * npx tsx src/sharedNode/getTemplateFuncWithName/getTemplateFuncWithName.run.ts -f /Users/admin/Dev/manuals/templates/getTemplateFunc -t /Users/admin/Dev/yourails_node/src/sharedNode/getTemplateFuncWithName/__output__ -n getAccessDataForProcess -p getTemplateFunc
  *
  * For yourails_node template
  * npx tsx src/sharedNode/getTemplateFuncWithName/getTemplateFuncWithName.run.ts -f /Users/admin/Dev/yourails-nestjs-server-4/src/modules/templates -t /Users/admin/Dev/yourails_node/src/sharedNode/getTemplateFuncWithName/__output__ -n jobs -p templates
